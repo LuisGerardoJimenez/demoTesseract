@@ -1,0 +1,67 @@
+\section{Modelo de actores}
+Los actores del sistema son los perfiles que tienen un usuario que interactúa con el sistema. Los perfiles que puede tener un usuario son: administrador, líder de análisis y el analista.
+%---------------------------------------------------------
+\begin{Usuario}{\hypertarget{admin}{\subsection{Administrador}}}{
+}
+	\item[Descripción: ]
+	Es la persona encargada de registrar los proyectos y al personal de la organización.
+    \item[Responsabilidades:] \cdtEmpty
+    \begin{itemize}
+		\item Registrar y modificar la información de los proyectos.
+		\item Asignar un líder de análisis a los proyectos.
+		\item Registrar y modificar la información
+    \end{itemize}
+
+	\item[Perfil:] \cdtEmpty
+    \begin{itemize}
+		\item Debe conocer los proyectos que la organización va a comenzar.
+		\item Debe conocer toda la información del personal que colabora en la organización.
+    \end{itemize}
+    
+    \item[Cantidad: ]
+    Uno.
+\end{Usuario}
+
+\begin{Usuario}{\hypertarget{jefe}{\subsection{Líder de proyecto}}}{
+}
+	\item[Descripción:]
+	Es la persona encargada de dirigir y coordinar el proyecto en desarrollo.
+    \item[Responsabilidades:] \cdtEmpty
+    \begin{itemize}
+		\item Asignar los colaboradores del proyecto que dirige.
+		\item Registrar y modificar módulos para los casos de uso y pantallas.
+		\item Registrar y modificar los elementos del sistema.
+		\item Revisar y realizar observaciones de los elementos para enviarlos a corrección.
+		\item Liberar los casos de uso que considere completos y correctos.
+    \end{itemize}
+
+	\item[Perfil:] \cdtEmpty
+    \begin{itemize}
+		\item Debe tener conocimientos referentes a la documentación de sistemas.
+		\item Debe tener dominio de Organización de equipos de desarrollo de software, estructuración de equipo, distribución de tareas y administración del tiempo.
+		\item Debe tener conocimientos de planificación de tiempo, estimación de costos, estimación de proyectos y estimación de riesgos.
+    \end{itemize}
+    \item[Cantidad: ]
+    Uno por proyecto.
+\end{Usuario}
+
+
+\begin{Usuario}{\hypertarget{analista}{\subsection{Analista}}}{
+}
+	\item[Descripción:]
+	Es la persona encargada de documentar los elementos que componen el proyecto y validar los requerimientos del software.
+    \item[Responsabilidades:] \cdtEmpty
+    \begin{itemize}
+		\item Registrar y modificar módulos para los casos de uso y pantallas 
+		\item Registrar y modificar los elementos del sistema.
+		\item Corregir la información de los elementos con base a las observaciones realizadas por el líder de análisis.
+    \end{itemize}
+
+	\item[Perfil:] \cdtEmpty
+    \begin{itemize}
+		\item Debe tener conocimientos referentes a la documentación de sistemas.
+		\item Debe tener habilidad para comunicarse de manera efectiva con los demás colaboradores del proyecto.
+    \end{itemize}
+    \item[Cantidad: ]
+    De acuerdo al personal de la organización.
+\end{Usuario}

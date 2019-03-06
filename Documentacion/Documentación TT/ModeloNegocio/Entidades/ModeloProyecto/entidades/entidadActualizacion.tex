@@ -1,0 +1,19 @@
+\begin{BusinessEntity}{actualizacionEntidad}{Actualización}
+	
+	\Battr{fechaActualizacion}{Fecha: }{Fecha en que se realiza la actualización. Especifica una \hyperlink{tFecha}{fecha} y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{comentarioActualizacion}{Comentario: }{Descripción de los cambios realizados en los elementos. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{revisionRelActualizacion}{Revisión}
+	\BRitem{\textbf{Descripción: }}{Un analista debe hacer revisiones de las actualizaciones de los elementos.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{estadoElemRelActualizacion}{Estado del Elemento}
+	\BRitem{\textbf{Descripción: }}{Una actualización debe indicar de que a que estado ha cambiado el elemento.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}

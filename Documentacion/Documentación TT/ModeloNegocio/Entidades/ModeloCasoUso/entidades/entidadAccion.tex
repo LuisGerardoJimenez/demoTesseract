@@ -1,0 +1,23 @@
+\begin{BusinessEntity}{accion}{Acción}
+		
+	\Battr{nombreACC}{Nombre: }{Nombre que identificará a la Acción. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+
+	\Battr{descripcionACC}{Descripción: }{Texto que describirá la Acción. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{imagenACC}{Imagen: }{Es un archivo en formato PNG o JPG. Imágen que ilustrará la interfaz gráfica del sistema. y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{urlACC}{URL: }{URL que determinará el destino de la acción. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{pantallaRelACC}{Pantalla}
+	\BRitem{\textbf{Descripción: }}{Una Acción llevará a una determinada Pantalla.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{tipoRelACC}{Tipo de acción}
+	\BRitem{\textbf{Descripción: }}{Una Acción es de un tipo específico.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}

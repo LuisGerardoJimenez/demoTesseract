@@ -1,0 +1,27 @@
+%--------------------------------------
+\section{IU 3.2 Modificar Persona}
+
+\subsection{Objetivo}
+	Esta pantalla permite al actor modificar la información de una persona.
+\subsection{Diseño}
+	En la figura \IUref{IU3.2}{Modificar Persona} se muestra la pantalla ''Modificar persona'' que permite al actor modificar la información de una persona.
+	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y actualizará la información solo si se han cumplido todas las reglas de negocio establecidas.
+	
+	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación Exitosa} en la pantalla \IUref{IU3}{Gestionar Personal}, para indicar que la información de la persona se ha modificado correctamente.
+
+\IUfig[1]{interfaces/IU3-2modificarPersona}{IU3.2}{Modificar Persona}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar los cambios de la persona, dirige a la pantalla \IUref{IU3}{Gestionar Personal}.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar los cambios de la persona, dirige a la pantalla \IUref{IU3}{Gestionar Personal}.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU3}{Gestionar Personal} para indicar que el registro fue exitoso.
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU3.2}{Modificar persona} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU3.2}{Modificar persona} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU3.2}{Modificar persona} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU3.2}{Modificar persona} cuando se registre una persona con una CURP que ya exista.
+\end{Citemize}

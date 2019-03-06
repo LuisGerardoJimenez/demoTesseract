@@ -1,0 +1,28 @@
+%--------------------------------------
+\section{IU 4.2 Modificar Módulo}
+
+\subsection{Objetivo}
+	Esta pantalla permite al actor modificar la información de un módulo.
+\subsection{Diseño}
+	En la figura \IUref{IU4.2}{Modificar Módulo} se muestra la pantalla ''Modificar módulo'' que permite al actor modificar la información de un módulo. En la esquina superior derecha de la pantalla, el sistema mostrará la clave y el nombre del proyecto en el cual se está realizando la modificación del módulo.
+	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y actualizará la información solo si se han cumplido todas las reglas de negocio establecidas.
+	
+	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación Exitosa} en la pantalla \IUref{IU4}{Gestionar Módulos}, para indicar que la información del módulo se ha modificado correctamente.
+
+\IUfig[1]{interfaces/IU4-2modificarModulo}{IU4.2}{Modificar Módulo}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar los cambios del módulo, dirige a la pantalla \IUref{IU4}{Gestionar Módulos}.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar los cambios del módulo, dirige a la pantalla \IUref{IU4}{Gestionar Módulos}.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU4}{Gestionar módulos} para indicar que el registro fue exitoso.
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU4.2}{Modificar módulo} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU4.2}{Modificar módulo} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU4.2}{Modificar módulo} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU4.2}{Modificar módulo} cuando se registre un módulo con un nombre o clave repetido en el proyecto.
+	\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU4.2}{Modificar módulo} cuando el actor ingrese una clave inválida.
+\end{Citemize}

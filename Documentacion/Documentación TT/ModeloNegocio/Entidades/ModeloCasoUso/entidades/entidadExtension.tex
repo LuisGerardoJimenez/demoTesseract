@@ -1,0 +1,17 @@
+\begin{BusinessEntity}{entidadExtension}{Extensión}
+		
+	\Battr{observacionRevision}{Número: }{Texto que describe la razón por la que se extiende a otro Caso de Uso. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}.
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{pasoRelExtension}{Paso}
+	\BRitem{\textbf{Descripción: }}{El punto de extensión ocurre en alguna región de la Trayectoria.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{CURelExtension}{Caso de Uso}
+	\BRitem{\textbf{Descripción: }}{Un punto de extensión extiende a un Caso de Uso.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a uno}
+\end{BusinessFact}

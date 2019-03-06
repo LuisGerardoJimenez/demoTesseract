@@ -1,0 +1,19 @@
+\begin{BusinessEntity}{MSGEntidad}{Mensaje}
+		
+	\Battr{claveMSG}{Clave: }{Clave que permitirá distinguir que el Elemento es un Mensaje. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+
+	\Battr{numeroMSG}{Número: }{Número de Mensaje. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{nombreMSG}{Nombre: }{Nombre que identificará al Mensaje. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{redaccionMSG}{Redacción: }{Redacción del Mensaje. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{paramMSG}{Parametrizado: }{Bandera que indicará si el mensaje se encuentra parametrizado. Indica ''si'' o ''no''. y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{vPAramRelMSG}{Valor del parámetro en Mensaje}
+	\BRitem{\textbf{Descripción: }}{Valor de los parámetros ocupados al definir el Mensaje como parametrizado.}
+	\BRitem{\textbf{Tipo: }}{\relAgregacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a Muchos}
+\end{BusinessFact}
