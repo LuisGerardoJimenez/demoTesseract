@@ -1,0 +1,141 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Componente: cdtControl.sty
+%  Autor: Ulises Vélez Saldaña
+%  Fecha: 27 de Abril, 2017
+%  Versión: 2.4
+%  Biblioteca: cdt
+%  Capa: 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cdt/cdtControl}[2013/04/06, v2.3 CDT-ESCOM-IPN Paquete para escribir documentos con control de versiones]
+\RequirePackage{cdt/cdtBook}
+\RequirePackage{listings}
+%=====================================================================
+% DEFINICION DE COLORES PARA EL CONTROL DE VERSIONES
+%=====================================================================
+
+\definecolor{cdtTODOColor}{rgb}{1.0, 0.0, 0.0}	
+\definecolor{cdtTOCHKColor}{rgb}{0.8, 0.5, 0.0}	
+\definecolor{cdtDONEColor}{rgb}{0.0, 0.5, 0.0}	
+
+%=====================================================
+% Comando: \instrucciones{Redacción}
+% Propósito: Especificar instrucciones de llenado para una plantila.
+%=====================================================
+\newcommand{\instrucciones}[1]{}
+\newcommand{\varInstrucciones}[1]{{\small\em\color{colorGris}#1}}
+
+%=====================================================
+% Comando: \TODO[tiempo o fecha]
+% Propósito: Especificar que la redacción anterior a este 
+%     comando habla de un 'pendiente' que se debe atender 
+%     a la fecha especificada o con la duración especificada.
+%=====================================================
+\newcommand{\TODO}[1][]{ {\color{cdtTODOColor}TODO:{\em\ #1}}}%
+\newcommand{\TOCHK}[1][]{ {\color{cdtTOCHKColor}TOCHK:{\em\ #1}}}%
+\newcommand{\DONE}[1][]{ {\color{cdtDONEColor}DONE:{\em\ #1}}}%
+
+%==========================================================================
+% Ficha de datos, generica
+%\begin{cdtCard}{Título}
+%	\cItem{Revisor:}{Nombre}
+%	\cItem{Volatilidad:}{Alta}
+%	\cItem{Madurez:}{Baja}
+%\end{cdtCard}
+%==========================================================================
+\newenvironment{cdtCard}{%
+\par\begin{longtable}{| p{.17\textwidth} | p{.75\textwidth} |}%
+	\arrayrulecolor{gray}%
+	\rowcolor{lightgray}%
+	\hline%
+	\rowcolor{white}%
+}{%
+	\arrayrulecolor{black}%
+	\end{longtable}%
+}
+
+\newcommand{\cItem}[2]{	\arrayrulecolor{gray}%
+{\color{gray}\bf {#1:}} & \color{gray}{\em #2} \\ \hline	\arrayrulecolor{black}%
+}%
+
+%==========================================================================
+% Ficha Técnica
+%\begin{techCard}{UlimaVersión}{Autor}{Status}
+%	\tItem{Revisor:}{Nombre}
+%	\tItem{Volatilidad:}{Alta}
+%	\tItem{Madurez:}{Baja}
+%\end{techCard}
+%==========================================================================
+\newenvironment{techCard}[3]{%
+	\begin{cdtCard}%
+	\techData{#1}{#2}{#3}
+}{%
+	\end{cdtCard}%
+}
+\newcommand{\techData}[3]{%
+	\arrayrulecolor{gray}%
+	\rowcolor{gray!30}%
+	\multicolumn{2}{|c|}{{\bf \color{white}Datos Técnicos}}\\ \hline%
+	\tItem{Versión}{{#1}}%
+	\tItem{Autor}{{#2}}%
+	\tItem{Status}{{#3}}%
+}
+
+\newcommand{\tItem}[2]{\cItem{#1}{#2}}%
+
+
+
+%==========================================================================
+% Ficha de Revisión para control de cambios
+%\begin{revCard}{VersionRevisada}{Revisor}{Fecha}
+%	\rItem{Id}{Descripcion}{status}
+%	\rItem{Id}{Descripcion}{status}
+%	\rItem{Id}{Descripcion}{status}
+%\end{revCard}
+%==========================================================================
+\newenvironment{revCard}[3]{%
+	\begin{cdtCard}%
+	\arrayrulecolor{gray}%
+	\rowcolor{gray!30}%
+	\multicolumn{2}{|c|}{{\bf \color{white}Control de cambios}}\\ \hline%
+	\tItem{Versión}{#1}%
+	\tItem{Revisor}{#2}%
+	\tItem{Fecha}{#3}%
+	{\color{gray}\bf {Cambios:}} & \begingroup\begin{Titemize}%
+}{%
+	\end{Titemize}%
+	\endgroup \\ \hline%
+	\end{cdtCard}%
+}
+
+\newcommand{\revision}[3]{}
+
+%==========================================================================
+% Agregar una petición de cambio
+% use \rItem{id}{descripción}{status: \DONE, \TODO o \TOCHK}
+%==========================================================================
+\newcommand{\rItem}[3]{%
+	\Titem {#1} {#2} {\em #3}%
+}
+
+%=====================================================
+% Comando: \showInstrucciones
+% Propósito: Controlar la generación de las instrucciones en el PDF.
+%=====================================================
+\newcommand{\showInstrucciones}{%
+	\let\instrucciones=\varInstrucciones%
+}
+
+%==========================================================================
+% Comando: \hideControlVersion 
+% Proposito: para eliminar de la salida toda la información de control de cambios.
+%==========================================================================
+\newcommand{\hideControlVersion}{%
+	\renewcommand{\rItem}[3]{}
+	\renewcommand{\cItem}[3]{}
+	\renewcommand{\tItem}[3]{}
+	\renewcommand{\UCccitem}[2]{}
+	\renewcommand{\UCccsection}[1]{}
+	\renewenvironment{revCard}[3]{}{}
+	\renewenvironment{techCard}[3]{}{}
+}

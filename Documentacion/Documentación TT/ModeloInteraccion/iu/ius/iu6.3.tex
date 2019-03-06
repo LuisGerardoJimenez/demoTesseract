@@ -1,0 +1,21 @@
+%--------------------------------------
+\section{IU 6.3 Consultar Caso de uso}
+
+\subsection{Objetivo}
+	Esta pantalla permite al actor consultar la información de un caso de uso, así mismo brindará la posibilidad de acceder a la consulta de cualquier elemento utilizado.
+\subsection{Diseño}
+	En la figura \IUref{IU6.3}{Consultar Caso de uso} se muestra la pantalla ''Consultar Caso de uso'' en la cual el actor podrá consultar la información del caso de uso. Cada uno de los elementos utilizados contará con un enlace a su respectiva consulta. En caso de que alguna de las secciones no cuente con información se mostrará la leyenda ''Sin información''.
+
+Una vez que el actor ha consultado la información mostrada, deberá oprimir el botón \IUbutton{Aceptar} y el sistema mostrará la pantalla en la cuál se solicitó la consulta.
+
+\IUfig[.6]{interfaces/IU6-3consultarCU}{IU6.3}{Consultar Caso de uso}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor concluir la consulta, dirige a la pantalla donde se solicitó la consuta.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla donde se solicitó la operación cuando el caso de uso que se desea consultar no existe..
+\end{Citemize}

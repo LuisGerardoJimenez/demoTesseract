@@ -1,0 +1,20 @@
+\begin{BusinessEntity}{moduloEntidad}{Módulo}
+	\Battr{claveModulo}{Clave: }{Palabra que permitirá distinguir al módulo, generalmente es la abreviación del nombre del módulo. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}. }
+		
+	\Battr{nombreModulo}{Nombre: }{Palabra que sirve para identificar el módulo. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{descripcionModulo}{Descripción: }{Párrafo que contiene las características generales módulo. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{CURelModulo}{Caso de uso}
+	\BRitem{\textbf{Descripción: }}{Un módulo puede contiener varios Casos de uso.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{pantallaRelModulo}{Pantalla}
+	\BRitem{\textbf{Descripción: }}{Un módulo puede contener varias Pantallas.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

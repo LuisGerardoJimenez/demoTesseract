@@ -1,0 +1,11 @@
+\begin{BusinessEntity}{entidadRevision}{Revisión}
+		
+	\Battr{observacionRevision}{Observación: }{Texto que describe los errores y/o cambios que deben realizarse al caso de uso identificados durante su revisión. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}.
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{seccionRelRevision}{Seccion}
+	\BRitem{\textbf{Descripción: }}{Las revisiones se hacen sobre una sección en particular.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}

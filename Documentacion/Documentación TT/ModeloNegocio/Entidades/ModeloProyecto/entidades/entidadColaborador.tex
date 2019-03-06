@@ -1,0 +1,24 @@
+\begin{BusinessEntity}{colaboradorEntidad}{Colaborador}
+
+	\Battr{curpColaborador}{CURP}{Clave Única de Registro. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener exactamente 18 caracteres. Caracteres admitidos: [A-Z] $|$ [0-9] }
+		
+	\Battr{nombreColaborador}{NOMBRE: }{Nombre o nombres de pila del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		
+		\Battr{pApellidoColaborador}{Primer Apellido: }{Es el primer apellido del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		
+		\Battr{sApellidoColaborador}{Segundo Apellido: }{Es el segundo apellido del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		
+		\Battr{correoColaborador}{Correo Electrónico: }{Es un identificador para que el usuario inicie sesión. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe contener a lo más 50 caracteres. Es una cadena de caracteres con formato xxx@yyy.com o xxx@yyy.com.mx}
+		
+		\Battr{passColaborador}{Contraseña: }{Es una clave que sirve para autenticarse la cual sirve como un mecanismo de seguridad. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		
+		\Battr{telefonoColaborador}{Teléfono: }{Es una secuencia de dígitos que representan un número telefónico. Es un valor numérico y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). }
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+
+\begin{BusinessFact}{proyectoRelColaborador}{Colaborador del Proyecto}
+	\BRitem{\textbf{Descripción: }}{Un colaborador puede participar en varios proyectos}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

@@ -1,0 +1,15 @@
+\begin{BusinessEntity}{entidadPostcondicion}{Postcondición}
+		
+	\Battr{redaccionPrecondicion}{Redacción: }{Redacción de la Postcondición. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{numeroPrecondicion}{Número: }{Número de la Postcondición. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+
+\begin{BusinessFact}{elementoRelPrecondicion}{Elemento}
+	\BRitem{\textbf{Descripción: }}{La Postcondición se encuentra constituida por diferentes elementos.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a Muchos}
+\end{BusinessFact}

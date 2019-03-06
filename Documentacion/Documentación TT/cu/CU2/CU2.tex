@@ -1,0 +1,38 @@
+	\begin{UseCase}{CU2}{Gestionar proyectos de Administrador}{
+		Este caso de uso permite al Administrador visualizar todos los proyectos registrados en el sistema, además sirve como punto de acceso para registrar, modificar o eliminar un proyecto.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{admin}{Administrador}}
+		\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de los proyectos.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \hyperlink{proyectoEntidad}{Proyecto}: Tabla que muestra la \cdtRef{proyectoEntidad:claveProyecto}{clave}, \cdtRef{proyectoEntidad:nombreProyecto}{nombre} y el \cdtRef{proyectoEntidad:liderProyecto}{Líder de Proyecto} de todos los proyectos existentes.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} cuando no existen proyectos registrados
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Caso de uso primario}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita gestionar los proyectos presionando la opción ''Proyectos'' del menú \IUref{MN1}{Menú de Administrador}.
+		\UCpaso[\UCsist] Busca la información de los proyectos registrados en cualquier estado. \Trayref{A}
+		\UCpaso[\UCsist] Muestra la información de los proyectos en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
+		\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar  y \eliminar. \label{P4}
+	\end{UCtrayectoria}		
+%--------------------------------------
+		\begin{UCtrayectoriaA}{A}{No existen registros de proyectos}
+			\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que no hay registros de proyectos para mostrar.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar un proyecto.}{Paso \ref{P4} de la trayectoria principal.}{\UCref{CU2.1}{Registrar Proyecto}}
+\UCExtenssionPoint{El actor requiere modificar un proyecto.}{Paso \ref{P4} de la trayectoria principal.}{\UCref{CU2.2}{Modificar Proyecto}}
+\UCExtenssionPoint{El actor requiere eliminar un proyecto.}{Paso \ref{P4} de la trayectoria principal.}{\UCref{CU2.3}{Eliminar Proyecto}}

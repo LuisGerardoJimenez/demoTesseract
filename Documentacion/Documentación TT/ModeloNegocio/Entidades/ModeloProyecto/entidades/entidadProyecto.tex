@@ -1,0 +1,46 @@
+\begin{BusinessEntity}{proyectoEntidad}{Proyecto}
+	\Battr{claveProyecto}{Clave: }{Palabra que permitirá distinguir al proyecto, regularmente es la sigla del nombre. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}. }
+		
+	\Battr{nombreProyecto}{Nombre: }{Nombre que identificará al proyecto. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{fechaIProyecto}{Fecha de Inicio: }{Fecha en que se arranca el proyecto. Especifica una \hyperlink{tFecha}{fecha} y este dato es \hyperlink{tOpcional}{opcional} {\em (se puede omitir)}.}
+	
+	\Battr{fechaFinProyecto}{Fecha de termino: }{Fecha en la que concluye el proyecto. Especifica una \hyperlink{tFecha}{fecha} y este dato es \hyperlink{tOpcional}{opcional} {\em (se puede omitir)}.}
+	
+	\Battr{fechaIPProyecto}{Fecha de inicio programada: }{Fecha en que se desea arrancar el proyecto. Especifica una \hyperlink{tFecha}{fecha} y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{fechaFinPProyecto}{Fecha de termino programada: }{Fecha en que se desea finalizar el proyecto. Especifica una \hyperlink{tFecha}{fecha} y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{descripcionProyecto}{Descripción: }{Párrafo que contiene las características generales del proyecto que se comenzará. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{liderProyecto}{Líder: }{Nombre y apellidos del líder del proyecto. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{contraparteProyecto}{Contraparte: }{Es el cliente del proyecto. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{presupuestoProyecto}{Presupuesto: }{Es el monto calculado del costo del proyecto. Es un valor numérico flotante y este dato es \hyperlink{tOpcional}{opcional} {\em (se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{elementoRelProyecto}{Elemento}
+	\BRitem{\textbf{Descripción: }}{Un proyecto puede tener varios Elementos asociados como reglas de negocio, mensajes, entidades y actores.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{estadoRelProyecto}{Estado del Proyecto}
+	\BRitem{\textbf{Descripción: }}{Un proyecto tiene un Estado del Proyecto.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{colaboradorRelProyecto}{Colaborador del Proyecto}
+	\BRitem{\textbf{Descripción: }}{Un proyecto tiene uno o varios Colaboradores del Proyecto.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{moduloRelProyecto}{Módulo}
+	\BRitem{\textbf{Descripción: }}{Un proyecto tiene uno o varios Módulos donde se organizarán los casos de uso y las pantallas.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

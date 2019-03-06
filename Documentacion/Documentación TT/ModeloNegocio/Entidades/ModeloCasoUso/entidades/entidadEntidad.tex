@@ -1,0 +1,15 @@
+\begin{BusinessEntity}{entidadEntidad}{Entidad}
+		
+	\Battr{claveEntidad}{Clave: }{Clave que permitirá distinguir que el elemento es una Entidad. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+
+	\Battr{numeroEntidad}{Número: }{Número de Entidad. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{nombreEntidad}{Nombre: }{Nombre que identificará a la Entidad. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{atributoRelEntidad}{Atributo}
+	\BRitem{\textbf{Descripción: }}{Una Entidad está compuesta por un conjunto de atributos.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

@@ -1,0 +1,25 @@
+%--------------------------------------
+\section{IU 6.1.1 Gestionar trayectorias}
+
+\subsection{Objetivo}
+	En esta pantalla el actor puede visualizar algunos atributos de las trayectorias y las operaciones para registrar, modificar y eliminar las mismas.
+\subsection{Diseño}
+	En la figura \IUref{IU6.1.1}{Gestionar Trayectorias} se muestra la pantalla ''Gestionar Trayectorias'', por medio de la cual se podrán gestionar las trayectorias a través de una tabla. El actor podrá solicitar el registro, la modificación y la eliminación de una trayectoria mediante los botones \IUbutton{Registrar}, \editar, \eliminar, respectivamente.
+	
+	En la parte superior derecha, el sistema muestra el proyecto, el módulo y el caso de uso en el que actualmente se encuentra trabajando.
+
+\IUfig[1]{interfaces/IU6-1-1gestionarTray}{IU6.1.1}{Gestionar Trayectorias}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Regresar}: Permite al actor regresar a la gestión de casos de uso, dirige a la pantalla \IUref{IU6}{Gestionar Casos de uso}
+	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de una trayectoria, dirige a la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}
+	\item \editar [Modificar]: Permite al actor solicitar la modificación de una trayectoria, \IUref{IU6.1.1.2}{Modificar Trayectoria}
+	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de un módulo, dirige a una pantalla emergente.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} cuando no existen trayectorias registradas.
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando el estado del caso de uso sea inválido.
+\end{Citemize}

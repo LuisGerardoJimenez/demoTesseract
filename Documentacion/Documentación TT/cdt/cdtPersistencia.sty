@@ -1,0 +1,402 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Componente: cdt/cdtPersistencia.sty                                               
+%  Autor: Ulises Vélez Saldaña
+%  Fecha: 27 Abril, 2017
+%  Versión: 1.0
+%  Biblioteca: cdt
+%  Capa: 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cdt/cdtPersistencia}[2017/04/27, v1.2 CDT-ESCOM-IPN Plantilla para definir el estilo de la documentación de CDT]
+%=====================================================
+\RequirePackage{datatool}
+\RequirePackage{cdt/cdtTheme}                      % Codificación de caracteres en UTF-8.
+\RequirePackage{pgfkeys}
+\RequirePackage{xstring}
+
+%=====================================================
+% Base de datos Element
+\DTLnewdb{cdtDBElement}
+\DTLifdbempty{cdtDBElement}{
+    \DTLaddcolumn{cdtDBElement}{id}
+    \DTLaddcolumn{cdtDBElement}{name}
+}{
+	% nothing to do.
+}
+
+%=====================================================
+% Base de datos UpdatedElements
+\DTLloaddb{cdtDBElementConsulta}{db/cdtDBElement.csv}
+	\DTLaddcolumn{cdtDBElementConsulta}{id}
+    \DTLaddcolumn{cdtDBElementConsulta}{name}
+
+%=====================================================
+% Ultimo elemento creado
+\newcommand{\varLastElementId}{}
+
+
+
+%=====================================================
+%=====================================================
+% Base de datos Casos de Uso
+\DTLnewdb{cdtDBUseCase}
+\DTLifdbempty{cdtDBUseCase}{
+    \DTLaddcolumn{cdtDBUseCase}{id}
+    \DTLaddcolumn{cdtDBUseCase}{name}
+}{
+	% nothing to do.
+}
+
+\DTLloaddb{cdtDBUseCaseConsulta}{db/cdtDBUseCase.csv}
+	\DTLaddcolumn{cdtDBUseCaseConsulta}{id}
+    \DTLaddcolumn{cdtDBUseCaseConsulta}{name}
+
+\newcommand{\varLastUseCaseId}{}
+
+%=====================================================
+%=====================================================
+% Base de datos Mensajes
+\DTLnewdb{cdtDBMensaje}
+\DTLifdbempty{cdtDBMensaje}{
+    \DTLaddcolumn{cdtDBMensaje}{id}
+    \DTLaddcolumn{cdtDBMensaje}{name}
+}{
+	% nothing to do.
+}
+
+\DTLloaddb{cdtDBMensajeConsulta}{db/cdtDBMensaje.csv}
+	\DTLaddcolumn{cdtDBMensajeConsulta}{id}
+    \DTLaddcolumn{cdtDBMensajeConsulta}{name}
+
+\newcommand{\varLastMensajeId}{}
+
+%=====================================================
+%=====================================================
+% Base de datos Interfaces
+\DTLnewdb{cdtDBInterface}
+\DTLifdbempty{cdtDBInterface}{
+    \DTLaddcolumn{cdtDBInterface}{id}
+    \DTLaddcolumn{cdtDBInterface}{name}
+}{
+	% nothing to do.
+}
+
+\DTLloaddb{cdtDBInterfaceConsulta}{db/cdtDBInterface.csv}
+	\DTLaddcolumn{cdtDBInterfaceConsulta}{id}
+    \DTLaddcolumn{cdtDBInterfaceConsulta}{name}
+
+\newcommand{\varLastInterfaceId}{}
+
+%=====================================================
+% Base de datos Interfaces
+\DTLnewdb{cdtDBTerm}
+\DTLifdbempty{cdtDBTerm}{
+    \DTLaddcolumn{cdtDBTerm}{id}
+    \DTLaddcolumn{cdtDBTerm}{name}
+}{
+	% nothing to do.
+}
+
+\DTLloaddb{cdtDBTermConsulta}{db/cdtDBTerm.csv}
+	\DTLaddcolumn{cdtDBTermConsulta}{id}
+    \DTLaddcolumn{cdtDBTermConsulta}{name}
+
+\newcommand{\varLastTermId}{}
+
+
+\newcommand{\dbname}{cdtDBElement}
+
+%=====================================================
+% Registrar un elemento
+\newcommand{\cdtAddElement}[6]{%
+	\dtlexpandnewvalue%
+%	\message{cdtAddElement: Registrando '#1' en la BD...}%
+	\IfBeginWith{#1}{t}{%
+    	\DTLnewrow{cdtDBTerm}%
+        \DTLnewdbentry{cdtDBTerm}{id}{{#1}}%
+        \DTLnewdbentry{cdtDBTerm}{name}{{#3}}%
+	}{\IfSubStr{#1}{CU}{%
+    	\DTLnewrow{cdtDBUseCase}%
+        \DTLnewdbentry{cdtDBUseCase}{id}{{#1}}%
+        \DTLnewdbentry{cdtDBUseCase}{name}{{#3}}%
+	}{\IfSubStr{#1}{UI}{%
+    	\DTLnewrow{cdtDBInterface}%
+        \DTLnewdbentry{cdtDBInterface}{id}{{#1}}%
+        \DTLnewdbentry{cdtDBInterface}{name}{{#3}}%
+	}{\IfBeginWith{#1}{MSG}{%
+    	\DTLnewrow{cdtDBMensaje}%
+        \DTLnewdbentry{cdtDBMensaje}{id}{{#1}}%
+        \DTLnewdbentry{cdtDBMensaje}{name}{{#3}}%
+	}{%
+    	\DTLnewrow{cdtDBElement}%
+        \DTLnewdbentry{cdtDBElement}{id}{{#1}}%
+        \DTLnewdbentry{cdtDBElement}{name}{{#3}}%
+	}}}}%
+	\dtlnoexpandnewvalue
+%	\message{cdtAddElement: Ok.}
+}
+
+
+%=====================================================
+% Genera la referencia
+\newcommand{\refElem}[1]{%
+%	\pgfkeysifdefined{#1}%
+%	{%
+%        \hyperlink{#1}{\pgfkeysvalueof{#1}}%
+%%		\message{refElem: La referencia '#1' es \pgfkeysvalueof{#1}}%
+%	}{%
+    	\IfBeginWith{#1}{t}{%
+    		\DTLgetvalueforkey{\varRefTermValue}{name}{cdtDBTermConsulta}{id}{#1}%
+    		\DTLifnull{\varRefTermValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{\varRefTermValue}%
+    				\pgfkeyssetvalue{#1}{\varRefTermValue}%
+%					\message{refElem: La 'Term' referencia '#1' es \varRefTermValue}%
+    			}%
+    	}{\IfSubStr{#1}{CU}{%
+        	\DTLnewrow{cdtDBUseCase}%
+    		\DTLgetvalueforkey{\varRefUCValue}{name}{cdtDBUseCaseConsulta}{id}{#1}%
+    		\DTLifnull{\varRefUCValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{\varRefUCValue}%
+    				\pgfkeyssetvalue{#1}{\varRefUCValue}%
+%					\message{refElem: La 'UC' referencia '#1' es \varRefUCValue}%
+    			}%
+    	}{\IfSubStr{#1}{UI}{%
+    		\DTLgetvalueforkey{\varRefIUValue}{name}{cdtDBInterfaceConsulta}{id}{#1}%
+    		\DTLifnull{\varRefIUValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{\varRefIUValue}%
+    				\pgfkeyssetvalue{#1}{\varRefIUValue}%
+%					\message{refElem: La 'IU' referencia '#1' es \varRefIUValue}%
+    			}%
+    	}{\IfBeginWith{#1}{MSG}{%
+    		\DTLgetvalueforkey{\varRefMsgValue}{name}{cdtDBMensajeConsulta}{id}{#1}%
+    		\DTLifnull{\varRefMsgValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{\varRefMsgValue}%
+    				\pgfkeyssetvalue{#1}{\varRefMsgValue}%
+%					\message{refElem: La 'MSG' referencia '#1' es \varRefMsgValue}%
+    			}%
+    	}{%
+    		\DTLgetvalueforkey{\varRefElemValue}{name}{cdtDBElementConsulta}{id}{#1}%
+    		\DTLifnull{\varRefElemValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{\varRefElemValue}%
+    				\pgfkeyssetvalue{#1}{\varRefElemValue}%
+%					\message{refElem: La 'Elem' referencia '#1' es \varRefElemValue}%
+    			}%
+    	}}}}%
+%	}%
+}
+
+
+%=====================================================
+% Registra y genera la referencia
+\newcommand{\refIdElem}[1]{%
+%	\pgfkeysifdefined{#1}%
+%	{%
+%        \hyperlink{#1}{\pgfkeysvalueof{#1}}%
+%		\message{refIdElem: La referencia '#1' es \pgfkeysvalueof{#1}}%
+%	}{%
+    	\IfBeginWith{#1}{t}{%
+    		\DTLgetvalueforkey{\varRefTermValue}{name}{cdtDBTermConsulta}{id}{#1}%
+    		\DTLifnull{\varRefTermValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{{#1}~{}\varRefTermValue}%
+    				\pgfkeyssetvalue{#1}{\varRefTermValue}%
+%					\message{refElem: La 'Term' referencia '#1' es \varRefTermValue}%
+    			}%
+    	}{\IfSubStr{#1}{CU}{%
+    		\DTLgetvalueforkey{\varRefUCValue}{name}{cdtDBUseCaseConsulta}{id}{#1}%
+    		\DTLifnull{\varRefUCValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{{#1}~{}\varRefUCValue}%
+    				\pgfkeyssetvalue{#1}{\varRefUCValue}%
+%					\message{refElem: La 'UC' referencia '#1' es \varRefUCValue}%
+    			}%
+    	}{\IfSubStr{#1}{UI}{%
+    		\DTLgetvalueforkey{\varRefIUValue}{name}{cdtDBInterfaceConsulta}{id}{#1}%
+    		\DTLifnull{\varRefIUValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{{#1}~{}\varRefIUValue}%
+    				\pgfkeyssetvalue{#1}{\varRefIUValue}%
+%					\message{refElem: La 'IU' referencia '#1' es \varRefIUValue}%
+    			}%
+    	}{\IfBeginWith{#1}{MSG}{%
+    		\DTLgetvalueforkey{\varRefMsgValue}{name}{cdtDBMensajeConsulta}{id}{#1}%
+    		\DTLifnull{\varRefMsgValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{{#1}~{}\varRefMsgValue}%
+    				\pgfkeyssetvalue{#1}{\varRefMsgValue}%
+%					\message{refElem: La 'Msg' referencia '#1' es \varRefMsgValue}%
+    			}%
+    	}{%
+    		\DTLgetvalueforkey{\varRefElemValue}{name}{cdtDBElementConsulta}{id}{#1}%
+    		\DTLifnull{\varRefElemValue}%
+    			{{\color{red}{#1} (broken)}}%
+    			{%
+    				\hyperlink{#1}{{#1}~{}\varRefElemValue}%
+    				\pgfkeyssetvalue{#1}{\varRefElemValue}%
+					\message{refIdElem: La 'Elem' referencia '#1' es \varRefElemValue}%
+    			}%
+    	}}}}%
+%	}%
+}
+
+
+%=====================================================
+% Guarda las bases de datos
+\newcommand{\cdtSaveData}{
+	% purge database
+	\DTLsavedb{cdtDBElement}{db/cdtDBElement.csv}
+	\DTLsavedb{cdtDBTerm}{db/cdtDBTerm.csv}
+	\DTLsavedb{cdtDBMensaje}{db/cdtDBMensaje.csv}
+	\DTLsavedb{cdtDBUseCase}{db/cdtDBUseCase.csv}
+	\DTLsavedb{cdtDBInterface}{db/cdtDBInterface.csv}
+}
+
+
+%%=====================================================
+%% Base de datos Element
+%\DTLloaddb{cdtDBElement}{db/cdtDBElement.csv}
+%\DTLifdbempty{cdtDBElement}{
+%    \DTLaddcolumn{cdtDBElement}{id}
+%    \DTLaddcolumn{cdtDBElement}{type}
+%    \DTLaddcolumn{cdtDBElement}{name}
+%    \DTLaddcolumn{cdtDBElement}{status}
+%    \DTLaddcolumn{cdtDBElement}{version}
+%    \DTLaddcolumn{cdtDBElement}{author}	
+%}{
+%	% nothing to do.
+%}
+
+
+%%=====================================================
+%% Base de datos UpdatedElements
+%\DTLnewdb{cdtDBUpdatedElement}
+%\DTLaddcolumn{cdtDBUpdatedElement}{id}
+
+
+%%=====================================================
+%% Ultimo subelemento creado
+%\newcommand{\varLastSubElementRefId}{}
+%\newcommand{\varLastSubElementId}{}
+
+%%=====================================================
+%% Registrar un elemento
+%\newcommand{\cdtAddElement}[6]{%
+%	\dtlexpandnewvalue%
+%	\message{cdtAddElement: buscando a '#1' en la BD...}
+%	\DTLgetvalueforkey{\varRefElemValue}{id}{cdtDBElement}{id}{#1}%
+%	\DTLifnull{\varRefElemValue}{%
+%		%\message{cdtAddElement: No se encontró, procedemos a registrarlo...}
+%		% Insert element	
+%    	\DTLnewrow{cdtDBElement}%
+%    	\DTLnewdbentry{cdtDBElement}{id}{{#1}}%
+%    	\DTLnewdbentry{cdtDBElement}{type}{{#2}}%
+%    	\DTLnewdbentry{cdtDBElement}{name}{{#3}}%
+%    	\DTLnewdbentry{cdtDBElement}{status}{{#4}}%
+%    	\DTLnewdbentry{cdtDBElement}{version}{{#5}}%
+%    	\DTLnewdbentry{cdtDBElement}{author}{{#6}}%
+%    	\DTLnewrow{cdtDBUpdatedElement}%
+%    	\DTLnewdbentry{cdtDBUpdatedElement}{id}{{#1}}%
+%		%\message{cdtAddElement: Listo.}
+%	}{%
+%		%\message{cdtAddElement: Error, el identificador '#1' está duplicado, favor de corregirlo.}
+%		\PackageError {cdtPersistencia} {\MessageBreak
+%		= C D T = C D T = C D T = C D T = C D T = C D T = C D T = C D T =\MessageBreak
+%		cdtAddElement: Error, el identificador '#1' est\'{a} duplicado.} {Revise el archivo que origin\'{o} el error y asigne otro identificador al elemento.}
+%		% Update element
+%		%\message{cdtAddElement: Encontrado, procedemos a actualizarlo...}
+%		\dtlgetrowindex{\varCurrentRow}{cdtDBElement}{\dtlcolumnindex{cdtDBElement}{id}}{#1}%
+%		%\message{cdtAddElement: El index del registro es \dtlcurrentrow}
+%		%\message{cdtAddElement: Posicionandose en el renglon...}
+%		\dtlgetrow{cdtDBElement}{\varCurrentRow}%
+%		%\message{cdtAddElement: Actualizando informacion...}
+%		\dtlupdateentryincurrentrow{id}{#1}%
+%		\dtlupdateentryincurrentrow{type}{#2}%
+%		\dtlupdateentryincurrentrow{name}{#3}%
+%		\dtlupdateentryincurrentrow{status}{#4}%
+%		\dtlupdateentryincurrentrow{version}{#5}%
+%		\dtlupdateentryincurrentrow{author}{#6}%	
+%		%\message{cdtAddElement: Ok, recombinando BD...}
+%		\dtlrecombine
+%    	\DTLnewrow{cdtDBUpdatedElement}%
+%    	\DTLnewdbentry{cdtDBUpdatedElement}{id}{{#1}}%
+%		%\message{cdtAddElement: Listo.}
+%	}%
+%	\renewcommand{\varLastElementId}{#1}%
+%	\dtlnoexpandnewvalue
+%	\message{cdtAddElement: Fin.}
+%}
+
+%%=====================================================
+%% Base de datos Reference
+%\DTLloaddb{cdtDBReference}{db/cdtDBReference.csv}
+%
+%\DTLifdbempty{cdtDBReference}{%
+%    \DTLaddcolumn{cdtDBReference}{id}%
+%    \DTLaddcolumn{cdtDBReference}{idRef}
+%}{
+%	% nothing to do.
+%}
+
+%%=====================================================
+%% Registra y genera la referencia
+%\newcommand{\refElem}[1]{%
+%	\DTLnewrow{cdtDBReference}%
+%	\DTLnewdbentry{cdtDBReference}{id}{{\varLastElementId}}%
+%	\DTLnewdbentry{cdtDBReference}{idRef}{#1}%
+%	\DTLgetvalueforkey{\varRefElemValue}{name}{cdtDBElement}{id}{#1}%
+%	\DTLifnull{\varRefElemValue}%
+%		{{\color{red}{#1} (broken)}}%
+%		{\hyperlink{#1}{\varRefElemValue}}%
+%}
+
+%%=====================================================
+%% Registra y genera la referencia
+%\newcommand{\refIdElem}[1]{%
+%	\DTLnewrow{cdtDBReference}%
+%	\DTLnewdbentry{cdtDBReference}{id}{{\varLastElementId}}%
+%	\DTLnewdbentry{cdtDBReference}{idRef}{#1}%
+%	\DTLgetvalueforkey{\varRefElemValue}{name}{cdtDBElement}{id}{#1}%
+%	\DTLifnull{\varRefElemValue}%
+%		{{\color{red}{#1} (broken)}}%
+%		{\hyperlink{#1}{{#1}~{}\varRefElemValue}}%
+%}
+
+%%=====================================================
+%% Guarda las bases de datos
+%\newcommand{\cdtSaveData}{
+%	% purge database
+%	\DTLforeach{cdtDBElement}{%
+%		\id=id%
+%	}{%
+%		\DTLgetvalueforkey{\varRefElemValue}{id}{cdtDBUpdatedElement}{id}{\id}%
+%		\DTLifnull{\varRefElemValue}{%
+%			% Element not in the document
+%			\DTLremovecurrentrow
+%		}{%
+%			% nothing to do.
+%		}%
+%	}
+%	\DTLsavedb{cdtDBElement}{db/cdtDBElement.csv}
+%	%\DTLsavedb{cdtDBReference}{db/cdtDBReference.csv}
+%}
+
+\newcommand{\disablePersistence}{
+	%\renewcommand{\cdtSaveData}{}
+	\renewcommand{\refIdElem}[1]{\hyperlink{##1}{{##1}}}
+	\renewcommand{\refElem}[1]{\hyperlink{##1}{{##1}}}
+	%\renewcommand{\cdtAddElement}[6]{}
+}

@@ -1,0 +1,476 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Componente: cdtBook.sty
+%  Autor: Ulises Vélez Saldaña
+%  Fecha: 27 de Octubre, 2017
+%  Versión: 1.2
+%  Biblioteca: cdt
+%  Capa: 3.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cdt/cdtBook}[2013/04/06, v1.1 CDT-ESCOM-IPN Plantilla para reportes de la Coordinación]
+\RequirePackage{datatool}
+\RequirePackage{cdt/cdtPersistencia}
+\RequirePackage{longtable}
+\RequirePackage{colortbl}
+\RequirePackage{multirow}
+\RequirePackage{pdfpages}
+\RequirePackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definición de columnas para datos tabulares
+%=====================================================
+
+% Renglón con fondo color agua y texto centrado
+\newcolumntype{h}{>{\columncolor{colorAgua}}c}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definición de Información para el documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%=====================================================
+% Comando: \organizacion[cve]{Nombre de la contraparte}
+% Propósito: Definir los datos de la contraparte
+% Ejemplo: \organizacion[DGEI--SEP]{Dirección General de Educación Indígena, SEP}
+%=====================================================
+\newcommand{\varOrganizacion}{Calmécac}
+\newcommand{\varCveOrganizacion}{?}
+\newcommand{\organizacion}[2][]{%
+	\renewcommand{\varCveOrganizacion}{{#1}}%
+	\renewcommand{\varOrganizacion}{{#2}}%
+}
+
+%=====================================================
+% Comando: \author{Nombre del autor}
+% Propósito: Definir el nombre del autor.
+%=====================================================
+\newcommand{\varAuthor}[1]{Escuela Superior de Cómputo, IPN}
+\let\varAuthor=\author
+\renewcommand{\author}[1]{%
+	\varAuthor{\color{colorSecundario}{{#1}}\\ {\color{colorGris}{\varOrganizacion}}}%
+}
+
+%=====================================================
+% Comando: \Sistema[cve]{Nombre del sistema}
+% Propósito: Definir clave y nombre del sistema.
+% Ejemplo: \Sistema[SINACEM2]{Sistema Nacional de ...}
+%=====================================================
+\newcommand{\varSistema}{}
+\newcommand{\varCveSistema}{}
+\newcommand{\sistema}[2][1]{%
+	\renewcommand{\varCveSistema}{{#1}}%
+	\renewcommand{\varSistema}{{#2}}%
+}
+
+%=====================================================
+% Comando: \proyecto[CVE]{Nombre del proyecto}
+% Propósito: Definir el nombre y clave del proyecto, generalmente es el mismo que el de el sistema.
+%=====================================================
+\newcommand{\varProyecto}{Calmécac}
+\newcommand{\varCveProyecto}{Sin Clave}
+\newcommand{\proyecto}[2][]{\renewcommand{\varCveProyecto}{{#1}}\renewcommand{\varProyecto}{{#2}}}
+
+%=====================================================
+% Comando: \documento{cve}{Nombre del documento}{Versión}
+% Propósito: Definir Clave, nombre y versión del documento, generalmente corresponde con el nombre de un componente. La versión debe especificarse con \DRAFT o \RELEASE.
+% Ejemplos:
+%    \documento{C1--DT}{Componente 1: Documentación Técnica}{\DRAFT{\today}}
+%    \documento{C3--EP}{Componente 3: Especificacion de Plataforma}{\RELEASE{1.0}}
+%=====================================================
+\newcommand{\varCveDocumento}{}
+\newcommand{\varDocumento}{}
+\newcommand{\varDocVersion}{}
+\newcommand{\documento}[3]{%
+	\renewcommand{\varCveDocumento}{{#1}}%
+	\renewcommand{\varDocumento}{{#2}}%
+	\renewcommand{\varDocVersion}{{#3}}
+}
+
+%=====================================================
+% Comando: \DRAFT{fecha}
+% Propósito: Indicar que el documento es una versión en borrador
+%=====================================================
+\newcommand{\DRAFT}[1]{ {\small\color{red}Borrador {\em #1}}}%
+
+%=====================================================
+% Comando: \RELEASE{numero}
+% Propósito: Indicar que el documento ha sido liberado y el número de la versión.
+%=====================================================
+\newcommand{\RELEASE}[1]{ {\small Versión #1}}%
+
+
+%=====================================================
+% Comando: \entregable{cve}{Nombre del entregable}
+% Propósito: Indicar el número de entregable del componente o documento (si aplica). El nombre del entregable depende de la forma en que se haya dividido el sistema.
+% Ejemplos:
+%    \entregable{E1}{Entregable 1}
+%    \entregable{P1}{Prototipo 1}
+%    \entregable{M1}{Módulo 1}
+%=====================================================
+\newcommand{\varEntregable}{\ }
+\newcommand{\varCveEntregable}{}
+\newcommand{\entregable}[2]{%
+	\renewcommand{\varCveEntregable}{{--#1}}%
+	\renewcommand{\varEntregable}{{#2}}%
+}
+
+%=====================================================
+% Comando: \title{Titulo del documento}
+% Propósito: Especificar el texto del título del documento (este comando puede no usarse.
+%=====================================================
+\newcommand{\varTitle}[1]{}
+\let\varTitle=\title
+\newcommand{\varSubTitle}{}
+\renewcommand{\title}[1]{%
+	\varTitle{%
+		{\Huge\color{colorPrincipal}{#1}}%
+		\\\bigskip {\LARGE \color{colorSecundario}\varSubTitle~{}%
+			\bigskip\\%
+			%
+		}
+		%\rule{\textwidth}{1mm}%
+		\color{colorSecundario}\fbox{\color{colorPrincipal}%
+		\small \varCveProyecto--\varCveSistema--\varCveDocumento\varCveEntregable \varDocVersion
+		}
+	}%
+}
+
+% Valor por defecto para el documento.
+\title{\varDocumento\\\bigskip \varEntregable}
+
+%=====================================================
+% Comando: \subtitle{Subtitulo del documento}
+% Propósito: Especificar el texto del subtitulo del documento, este comando puede no usarse
+%=====================================================
+\newcommand{\subtitle}[1]{\renewcommand{\varSubTitle}{{#1}}}
+
+% Valor por defecto para el subtitulo del documento.
+\subtitle{\varProyecto\\\varSistema}
+
+%=====================================================
+% Comando: \docFecha{Fecha del documento}
+% Propósito: Especificar la fecha del documento. Generalmente no se especifica a menos que se haga un freeze o un tag para marcar un hito o entregable.
+%=====================================================
+\newcommand{\varFecha}{\today}
+\newcommand{\fecha}[1]{\renewcommand{\varFecha}{{#1}}\date{{#1}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ficha técnica para revisión del documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%=====================================================
+% Comando: \makeDocInfo
+% Propósito: Generar la ficha de información del documento
+% Ejemplo: Generalmente se usan combinaciones de la siguiente secuencia
+%	\makeDocInfo
+%	\makeElemRefs
+%	\makeDocRefs
+%	\makeObservaciones[3cm]
+%	\makeFirmas
+%=====================================================
+\newcommand{\makeDocInfo}{%
+	\cleardoublepage%
+	\noindent\begin{tabular}{| p{.17\textwidth} | p{.2\textwidth} | p{.55\textwidth}|}%
+	 	\hline	%
+		\multicolumn{3}{|h|}{\bf Datos del proyecto}\\%
+	 	\hline%
+		{\bf Organización:} & {\varCveOrganizacion} & {\varOrganizacion} \\%
+		\hline	%
+		{\bf Proyecto:} & {\varCveProyecto} & {\varProyecto} \\%
+		\hline	%
+		{\bf Sistema:} & {\varCveSistema} & {\varSistema} \\%
+		\hline	%
+	\end{tabular}%
+	\bigskip\\%
+	%
+	\noindent\begin{tabular}{| p{.12\textwidth} | p{.5\textwidth} | p{.3\textwidth} |}%
+	 	\hline%
+		\multicolumn{3}{|h|}{\bf Documento}\\%
+	 	\hline%
+		{\bf Clave} & {\bf Nombre} & {\bf Versión} \\%
+		\hline%
+		\varCveDocumento\varCveEntregable & \varDocumento & \varDocVersion \\%
+		\hline%
+	\end{tabular}%
+	\renewcommand{\tablename}{Tabla}%
+	\renewcommand{\listtablename}{Índice de tablas}%
+}
+
+%=====================================================
+% Comando: \elaboro[Cargo]{Nombre}
+% Propósito: Especificar los datos del responsable del documento
+%=====================================================
+\newcommand{\varElaboro}{}
+\newcommand{\varElaboroCar}{}
+\newcommand{\elaboro}[2][]{\renewcommand{\varElaboroCar}{#1}\renewcommand{\varElaboro}{#2}}
+
+%=====================================================
+% Comando: \superviso[Cargo]{Nombre}
+% Propósito: Especificar los datos del responsable de revisar el documento.
+%=====================================================
+\newcommand{\varSuperviso}{}
+\newcommand{\varSupervisoCar}{}
+\newcommand{\superviso}[2][]{\renewcommand{\varSupervisoCar}{#1}\renewcommand{\varSuperviso}{#2}}
+
+%=====================================================
+% Comando: \aprobo[Cargo]{Nombre}
+% Propósito: Especificar los datos del responsable de aprobar el documento.
+%=====================================================
+\newcommand{\varAprobo}{}
+\newcommand{\varAproboCar}{}
+\newcommand{\aprobo}[2][]{\renewcommand{\varAproboCar}{#1}\renewcommand{\varAprobo}{#2}}
+
+\newcommand{\varDAE}{}
+\newcommand{\varDirectorDAE}{}
+\newcommand{\dae}[2][]{\renewcommand{\varDAE}{#1}\renewcommand{\varDirectorDAE}{#2}}
+
+\newcommand{\varDES}{}
+\newcommand{\varDirectorDES}{}
+\newcommand{\des}[2][]{\renewcommand{\varDES}{#1}\renewcommand{\varDirectorDES}{#2}}
+
+\newcommand{\varDEMS}{}
+\newcommand{\varDirectorDEMS}{}
+\newcommand{\dems}[2][]{\renewcommand{\varDEMS}{#1}\renewcommand{\varDirectorDEMS}{#2}}
+
+%=====================================================
+% Comando: \makeObservaciones[altura del espacio a generar]
+% Propósito: Crear un espacio para que a mano se detallen observaciones sobre el documento.
+%=====================================================
+\newcommand{\makeObservaciones}[1][10cm]{
+	\noindent\begin{longtable}{| p{.98\textwidth}|}%
+	 	\hline%
+		\multicolumn{1}{|h|}{\bf Observaciones}\\%
+	 	\hline%
+		\vspace{#1}\\%5
+		\hline\endhead%
+	\end{longtable}%
+	%
+}
+
+
+%=====================================================
+% Comando: \makeFirmas
+% Propósito: Expande los datos de las personas que elaboraron, revisaron y aprobaron el documento con espacio para firma.
+%=====================================================
+%\newcommand{\makeFirmas}{
+%	\noindent\begin{tabular}{|c p{.170\textwidth} c|c p{.170\textwidth} c | c p{.170\textwidth} c| c p{.170\textwidth} c|}%
+%	 	\hline%
+%		\multicolumn{12}{|h|}{\bf Firmas}\\%
+%		\hline%
+%		& \begin{center}\bf Entrega\end{center} & & & \begin{center}\bf Revisan\end{center} & & & \begin{center}\bf Aprueba\end{center} & & & \begin{center}\bf Recibe \end{center} & \\%
+%		&&&&&&&&&&& \\%
+%		&&&&&&&&&&& \\%
+%		&&&&&&&&&&& \\%
+%		\cline{2-2} \cline{5-5} \cline{8-8}	\cline{11-11}%
+%		& \centering \varElaboro & & & \centering \varDAE & & & \centering \varAprobo & & & \centering \varSuperviso &\\%
+%		& \centering \varElaboroCar & & & \centering \varDirectorDAE & & & \centering \varAproboCar & & & \centering \varSupervisoCar &\\%
+%		%\hline%
+%		&&&&&&&&&&& \\%
+%		&&&&&&&&&&& \\%
+%		&&&&&&&&&&& \\%
+%		\cline{5-5} %
+%		& & & & \centering \varDES & & & & & & &  \\
+%		& & & & \centering \varDirectorDES & & & & & & & \\
+%		%\hline
+%		&&&&&&&&&&& \\%
+%		&&&&&&&&&&& \\%
+%		&&&&&&&&&&& \\%
+%		\cline{5-5}%
+%		& & & & \centering \varDEMS & & & & & & &  \\
+%		& & & & \centering \varDirectorDEMS & & & & & & & \\
+%		\hline
+%
+%	\end{tabular}%
+%}
+
+
+%=====================================================
+% Comando: \clossing
+% Propósito: Generar una hoja de cierre de cada documento
+%=====================================================
+%\newcommand{\clossing}{
+%	\chapter*{{\huge Instituto Politécnico Nacional}\bigskip\\{\Large\color{colorSecundario}Escuela Superior de Cómputo}\bigskip\\{\large\color{colorPrincipal}Coordinación de Desarrollo Tecnológico}}
+
+%	\noindent{\bf Coordinador de Desarrollo Tecnológico}
+%	\begin{itemize}
+%		\item[{\color{colorPrincipal}\Gentsroom}] José Jaime López Rabadán.
+%		\item[{\color{colorPrincipal}\Mobilefone}] (044)--55--3227-9975.
+%		\item[{\color{colorPrincipal}\Telefon}] 57296000 Ext. 5004.
+%		\item[{\color{colorPrincipal}\Letter}] \url{cdt.escom@gmail.com}.
+%	\end{itemize}
+%	\bigskip
+
+%	\noindent{\bf Líder de Proyecto}
+%	\begin{itemize}
+%		\item[{\color{colorPrincipal}\Gentsroom}] Ulises Vélez Saldaña.
+%		\item[{\color{colorPrincipal}\Mobilefone}] (044)--55--3650--6147.
+%		\item[{\color{colorPrincipal}\Telefon}] 57296000 Ext. 52005.
+%		\item[{\color{colorPrincipal}\Letter}] \url{uvelez@ipn.mx}.
+%	\end{itemize}
+
+%	\noindent{\bf Coordinadores}
+%	\begin{itemize}
+%		\item[{\color{colorPrincipal}\Gentsroom}] Chadwick Carreto Arellano
+%		\item[{\color{colorPrincipal}\Gentsroom}] Hermes Francisco Montes Casiano
+%		\item[{\color{colorPrincipal}\Gentsroom}] José David Ortega Pacheco
+%		\item[{\color{colorPrincipal}\Gentsroom}] Luis Enrique Hernández Olvera
+%		\item[{\color{colorPrincipal}\Gentsroom}] Nayeli Vega García.
+%		\item[{\color{colorPrincipal}\Gentsroom}] Sandra Ivette Bautista Rosales
+%		\item[{\color{colorPrincipal}\Gentsroom}] Ulises Vélez Saldaña.
+%	\end{itemize}
+
+%	\noindent{\bf Participantes}
+%	\begin{itemize}
+%		\item[{\color{colorPrincipal}\Gentsroom}] Alberto García Paul
+%		\item[{\color{colorPrincipal}\Gentsroom}] Brenda Gómez Caballero
+%		\item[{\color{colorPrincipal}\Gentsroom}] Bruno Suárez Crúz		
+%		\item[{\color{colorPrincipal}\Gentsroom}] Carlos Aníbal Larios Moguel
+%		\item[{\color{colorPrincipal}\Gentsroom}] Carlos Alberto Robles Ruíz
+%		\item[{\color{colorPrincipal}\Gentsroom}] Cesar Raúl Ávila Padilla		
+%		\item[{\color{colorPrincipal}\Gentsroom}] Diana Laura Mejía Mendoza	
+%		\item[{\color{colorPrincipal}\Gentsroom}] Diego Efrén Pascual Hernández
+%		\item[{\color{colorPrincipal}\Gentsroom}] Eduardo Espino Maldonado 
+%		\item[{\color{colorPrincipal}\Gentsroom}] Francisco Isidoro Mera Torres
+%		\item[{\color{colorPrincipal}\Gentsroom}] Ivo Sebastián Sam Álvarez-Tostado
+%		\item[{\color{colorPrincipal}\Gentsroom}] María de los Ángeles Ramírez Cerritos
+%		\item[{\color{colorPrincipal}\Gentsroom}] María Rocío Guerrero Gómez
+%		\item[{\color{colorPrincipal}\Gentsroom}] Miguel Ángel Castañeda Sánchez
+%		\item[{\color{colorPrincipal}\Gentsroom}] Oscar Eduardo García García	
+%		\item[{\color{colorPrincipal}\Gentsroom}] Tanya Silvana Hernández Valdez
+%		\item[{\color{colorPrincipal}\Gentsroom}] Víctor Arquímedes Estrada Machuca	
+%	\end{itemize}
+%}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Estructuras en el documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%=====================================================
+%% Ambiente:
+%   \begin{objetivos}[Primer enunciado del comando]
+%       \item Objetivo 1
+%       \item Objetivo 2
+%       \item Objetivo 3
+%       \item ...
+%   \end{objetivo}
+% Propósito: Abrir un espacio de objetivos al inicio de cada capítulo. La leyenda que precede la lisa de objetivos se puede cambiar mediante el primer argumento opcional.
+%=====================================================
+\newenvironment{objetivos}[1][El presente capítulo tiene los siguientes objetivos:]{%
+	\arrayrulecolor{colorPrincipal}%
+	\indent\begin{tabular}{|p{.9\textwidth}|}%
+	\hline\rowcolor{colorAgua}%
+	{\bf\large\color{colorPrincipal} {#1}}\begin{itemize}}%
+{%
+	%
+	\end{itemize}\\\hline%
+	\end{tabular}%
+}
+
+\newcommand{\cdtInstrucciones}[1]{{\color{Gray}{#1}}}
+
+%=====================================================
+% Ambiente: Citemize
+% Propósito: Crear una lista de viñetas con poco espacio de separación entre elementos. No se recomienda anidarlos.
+%=====================================================
+\newenvironment{Citemize}%
+{%
+	\begin{itemize}[topsep=0pt]\addtolength{\itemsep}{-0.75\baselineskip}%
+}{%
+	\end{itemize}%
+}%
+
+%=====================================================
+% Ambiente: Cdescription
+% Propósito: Crear una lista de descripción con poco espacio de separación entre elementos. No se recomienda anidarlos.
+%=====================================================
+\newenvironment{Cdescription}%
+{%
+	\begin{description}\addtolength{\itemsep}{-0.3\baselineskip}%
+}{%
+	\end{description}%
+}%
+
+%=====================================================
+% Ambiente: Cenumerate
+% Propósito: Crear una lista enumerada con poco espacio de separación entre elementos. No se recomienda anidarlos.
+%=====================================================
+\newenvironment{Cenumerate}%
+{%
+	\begin{enumerate}\addtolength{\itemsep}{-0.3\baselineskip}%
+}{%
+	\end{enumerate}%
+}%
+
+%==========================================================================
+% Agregar una lista de viñetas en una tabla
+% use:
+% \begin{Titemize}
+% 		\Titem Bla bla bla
+% 		\Titem[o] Bla bla bla
+% \end{Titemize}
+%==========================================================================
+\newenvironment{Titemize}{\vspace{-1em}}{\vspace{0em}}
+
+%==========================================================================
+% use \Titem Bla bla bla
+%==========================================================================
+\newcommand{\Titem}[1][\textbullet]{%
+	\par{ \color{colorPrincipal}{#1} }%
+}
+
+%==========================================================================
+% \imgInline[hwight]{src}
+%==========================================================================
+\newcommand{\imgInline}[2][10pt]{\raisebox{-1mm}{\includegraphics[height=#1]{images/#2}}}
+
+
+%=====================================================================
+% Comando: \cdtEmpty
+% Propósito: Produce un espacio vacío de 10pt. Este se puede usar cuando es requerido hacer una linea en banco o etiquetar un lugar que no produce contenido.
+% Ejemplo: En el siguiente ejemplo se utiliza para que las viñetas aparezcan por debajo del texto ``Entradas:''. es requerido ya que sin él LaTeX generaría un error.
+%\begin{description}
+%	\item[id:] 5
+%	\item[Entradas:] \cdtEmpty\\
+%		\begin{itemize}
+% 			\item ...
+%		\end{itemize}
+%\end{description}
+%=====================================================================
+\newcommand{\cdtEmpty}{\hspace{10pt}}
+
+%=====================================================================
+% Comando: \cdtLabel{id}{Texto}
+% Propósito: Producir una etiqueta en el documento. Para generar una etiqueta vacía utilice \cdtLabel{id}{\cdtEmpty}
+%=====================================================================
+\newcommand{\cdtLabel}[2]{
+	\hypertarget{#1}{#2}
+}
+
+%=====================================================================
+% Comando: \cdtRef{id}{Nombre}
+% Propósito: Producir un texto que referencía aigun elemento del documento, por ejemplo: Casos de Uso, Reglas de Negocio, Entidad, Actor, Interfaz, Mensaje, etc. Este comando genera como salida el ``nombre'' que referencía al elemento identificado por ``id''
+% Ejemplo: ...la \cdtLabel{coordinacion}{Coordinación} esta en ...
+%          se puede ver en la \cdtRef
+
+%=====================================================================
+\newcommand{\cdtRef}[2]{%
+	%\hyperlink{#1}{{#2}}%
+	\refElem{#1}\footnote{usa el comando {\tt $\backslash$refElem\{#1\}}.}
+}
+
+%=====================================================================
+% Comando: \cdtIdRef{id}{Nombre}
+% Propósito: Funciona igual que cdtRef, solo que en la salida aparece también el ID referenciado, ideal para Casos de uso, reglas de negocio, mensajes e Interfaces.
+% Ejemplo: mediante la pantalla \cdtIdRef{IU5}{Registrar alumno}
+%=====================================================================
+\newcommand{\cdtIdRef}[2]{%
+	%\hyperlink{#1}{{#1}\ {#2}}%
+	\refIdElem{#1}\footnote{usa el comando {\tt $\backslash$refIdElem\{#1\}}.}
+}

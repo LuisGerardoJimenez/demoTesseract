@@ -1,0 +1,24 @@
+\begin{BusinessEntity}{entidadValorParamPaso}{Valor del Parámetro en Paso}
+		
+	\item Esta entidad no cuenta con atributos y únicamente sirve para ilustrar que el Paso cuenta con valores determinados por las relaciones de esta entidad.
+	
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{elementoRelValorParamPaso}{Elemento}
+	\BRitem{\textbf{Descripción: }}{El valor utilizado en el Paso corresponde a un Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{accionRelValorParamPaso}{Acción}
+	\BRitem{\textbf{Descripción: }}{El valor utilizado en el Paso corresponde a una Acción.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{tipoRelValorParamPaso}{Tipo}
+	\BRitem{\textbf{Descripción: }}{El valor utilizado en el Paso es de un tipo específico.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
