@@ -1,0 +1,128 @@
+	\begin{UseCase}{CU2.2}{Modificar proyecto}{
+		Este caso de uso permite al actor modificar la información de un proyecto en el sistema.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{admin}{Administrador}}
+		\UCitem{Propósito}{Modicar la información de un proyecto.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave:} Se escribe desde el teclado.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre:} Se escribe desde el teclado.
+			\item \cdtRef{proyectoEntidad:fechaIProyecto}{Fecha de inicio:} Se selecciona de un calendario.
+			\item \cdtRef{proyectoEntidad:fechaFinProyecto}{Fecha de término:} Se selecciona de un calendario.
+			\item \cdtRef{proyectoEntidad:fechaIPProyecto}{Fecha de inicio programada:} Se selecciona de un calendario.
+			\item \cdtRef{proyectoEntidad:fechaFinPProyecto}{Fecha de término programada:} Se selecciona de un calendario.
+			\item \cdtRef{proyectoEntidad:liderProyecto}{Líder del Proyecto:} Se selecciona de una lista.
+			\item \cdtRef{proyectoEntidad:descripcionProyecto}{Descripción:} Se escribe desde el teclado.
+			\item \cdtRef{proyectoEntidad:contraparteProyecto}{Contraparte} Se escribe desde el teclado.
+			\item \cdtRef{proyectoEntidad:presupuestoProyecto}{Presupuesto:} Se escribe desde el teclado.
+			\item \hyperlink{tEdoProy}{Estado del Proyecto:} Se selecciona de un lista.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{proyectoEntidad:claveProyecto}{Clave:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:fechaIProyecto}{Fecha de inicio:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:fechaFinProyecto}{Fecha de término:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:fechaIPProyecto}{Fecha de inicio programada:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:fechaFinPProyecto}{Fecha de término programada:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:liderProyecto}{Líder del Proyecto:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:descripcionProyecto}{Descripción:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:contraparteProyecto}{Contraparte} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:presupuestoProyecto}{Presupuesto:} Lo obtiene el sistema.
+				\item \hyperlink{tEdoProy}{Estado del Proyecto:} Lo obtiene el sistema.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que el registro fue exitoso.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+		\begin{itemize}
+			\item Que el proyecto se encuentre en estado ''En negociación'' o ''Iniciado''.
+		\end{itemize}
+		}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se modificará la información del proyecto en el sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en
+		el campo.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando se registre un proyecto con un nombre o clave que ya exista.
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} cuando no exista información de los estados de un proyecto.
+		\item \cdtIdRef{MSG17}{Falta información}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} cuando no existan colaboradores registrados.
+		\item \cdtIdRef{MSG26}{Orden de fechas}: Se muestra en la pantalla \IUref{IU2.1}{Registrar proyecto} cuando el actor ingrese fechas de término que no son posteriores a las fechas
+		de inicio correspondientes.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU2}{Gestionar proyectos de Administrador}}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar un proyecto oprimiendo el botón \editar de la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
+		\UCpaso[\UCsist] Verifica que exista información referente a los estados de un proyecto, con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que exista al menos un colaborador, con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \Trayref{B}
+		\UCpaso[\UCsist] Obtiene la información del proyecto seleccionado.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2.2}{Modificar proyecto}.
+		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU2.2-P5}
+		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU2.2}{Modificar proyecto}. \Trayref{C}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{D}
+		\UCpaso[\UCsist] Verifica que el nombre del proyecto no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{E}
+		\UCpaso[\UCsist] Verifica que la clave del proyecto no se encuentre registrada en el sistema con base en la regla de negocio \BRref{RN22}{Unicidad de la clave del Proyecto}. \Trayref{F}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{G} \Trayref{H}
+		\UCpaso[\UCsist] Verifica que la fecha de término sea posterior a la fecha de inicio. \Trayref{I}
+		\UCpaso[\UCsist] Verifica que la fecha de término programada sea posterior a la fecha de inicio programada. \Trayref{J}
+		\UCpaso[\UCsist] Actualiza la información del proyecto en el sistema
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar al actor que la modificación se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+		\begin{UCtrayectoriaA}{A}{No hay estados con los que puede iniciar un proyecto}
+			\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que no es posible realizar la operación debido a la falta de información necesaria para el sistema.
+		\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+		\begin{UCtrayectoriaA}{B}{No hay ningún colaborador registrado.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG17}{Falta de información} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} indicando que no hay colaboradores registrados.
+		\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{C}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU2.2}{Modificar Proyecto}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU2.2}{Modificar Proyecto}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{E}{El actor ingresó un nombre de proyecto repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU2.2}{Modificar Proyecto}, indicando al actor que existe un proyecto con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{F}{El actor ingresó una clave de proyecto repetida.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU2.2}{Modificar Proyecto}, indicando al actor que existe un proyecto con la misma clave.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{G}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU2.2}{Modificar Proyecto}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{H}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU2.2}{Modificar Proyecto}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{I}{El actor ingresó una fecha de término que no es posterior a la fecha de inicio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG26}{Orden de fechas} y señala el campo de la fecha de término en la pantalla \IUref{IU2.2}{Modificar Proyecto}.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{J}{El actor ingresó una fecha de término programada que no es posterior a la fecha de inicio programada.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG26}{Orden de fechas} y señala el campo de la fecha de término programada en la pantalla \IUref{IU2.2}{Modificar Proyecto}.
+		\UCpaso Regresa al paso \ref{CU2.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
