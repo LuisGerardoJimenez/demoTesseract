@@ -30,7 +30,7 @@
 				<tbody>
 					<s:iterator value="listColaboradores" var="colaborador">
 						<tr>
-							<td><input id="checkbox-${colaborador.curp}" type="checkbox" /></td>
+							<td align="center"><input id="checkbox-${colaborador.curp}" type="checkbox" /></td>
 							<td><s:property value="%{#colaborador.curp}" /></td>
 							<td><s:property
 									value="%{#colaborador.nombre + ' ' + #colaborador.apellidoPaterno + ' ' + #colaborador.apellidoMaterno}" /></td>
