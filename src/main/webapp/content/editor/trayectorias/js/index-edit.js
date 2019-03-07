@@ -150,10 +150,10 @@ function construirFila(noPaso, realiza, redaccion, verbo, otroVerbo, id) {
 					"/resources/images/icons/flechaAbajo.png' title='Bajar Paso'/></a>" +
 					"<a button='true' onclick='solicitarModificacionPaso(this);'>" +
 					"<img class='icon'  id='icon' src='" + window.contextPath + 
-					"/resources/images/icons/editar.png' title='Modificar Paso'/></a>" +
+					"/resources/images/icons/Editar.svg' title='Modificar Paso'/></a>" +
 					"<a onclick='dataTableCDT.deleteRowPasos(tablaPaso, this);' button='true'>" +
 					"<img class='icon'  id='icon' src='" + window.contextPath + 
-					"/resources/images/icons/eliminar.png' title='Eliminar Paso'/></a>" +
+					"/resources/images/icons/Eliminar.svg' title='Eliminar Paso'/></a>" +
 				"</center>" ];
 	return row;
 }

@@ -132,11 +132,11 @@ function construirFila(nombre, descripcion, tipoDato, otroTipoDato, longitud,
 					+ "<a button='true' onclick='solicitarModificacionAtributo(this);'>"
 					+ "<img class='icon'  id='icon' src='"
 					+ window.contextPath
-					+ "/resources/images/icons/editar.png' title='Modificar Atributo'/></a>"
+					+ "/resources/images/icons/Editar.svg' title='Modificar Atributo'/></a>"
 					+ "<a onclick='dataTableCDT.deleteRow(tablaAtributo, this);' button='true'>"
 					+ "<img class='icon'  id='icon' src='"
 					+ window.contextPath
-					+ "/resources/images/icons/eliminar.png' title='Eliminar Atributo'/></a>"
+					+ "/resources/images/icons/Eliminar.svg' title='Eliminar Atributo'/></a>"
 					+ "</center>" ];
 	return row;
 }
