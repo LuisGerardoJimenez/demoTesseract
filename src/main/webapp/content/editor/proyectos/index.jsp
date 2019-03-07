@@ -50,7 +50,7 @@
 										value="%{#pageContext.request.contextPath}/proyectos!elegirColaboradores?idSel=%{#proyecto.id}"/>
 									<s:a href="%{urlElegir}">
 										<img id="" class="button" title="Elegir Colaboradores"
-											src="${pageContext.request.contextPath}/resources/images/icons/colaboradores.png" />										
+											src="${pageContext.request.contextPath}/resources/images/icons/Colaboradores.svg" />										
 									</s:a> 						
 								</s:if>
 								<!-- Entrar -->
@@ -59,7 +59,7 @@
 										value="%{#pageContext.request.contextPath}/proyectos!entrar?idSel=%{#proyecto.id}" />
 								<s:a href="%{urlEntrar}">
 										<img id="" class="button" title="Entrar al Proyecto"
-											src="${pageContext.request.contextPath}/resources/images/icons/entrar.png" />										
+											src="${pageContext.request.contextPath}/resources/images/icons/Entrar.svg" />										
 								</s:a> 
 								<!-- Descargar documento -->
 								${blanks}
@@ -69,7 +69,7 @@
 								</s:url>
 								<s:a href="%{urlDescargar}" method="post">
 										<img id="" class="button" title="Descargar Documento"
-											src="${pageContext.request.contextPath}/resources/images/icons/pdf.png" />										
+											src="${pageContext.request.contextPath}/resources/images/icons/pdf.svg" />										
 								</s:a>
 								${blanks}
 								<s:url var="urlDescargarDocx"
@@ -78,7 +78,7 @@
 								</s:url>
 								<s:a href="%{urlDescargarDocx}" method="post">
 										<img id="" class="button" title="Descargar Documento"
-											src="${pageContext.request.contextPath}/resources/images/icons/docx.png" />										
+											src="${pageContext.request.contextPath}/resources/images/icons/docx.svg" />										
 								</s:a>
 							</td>
 						</tr>

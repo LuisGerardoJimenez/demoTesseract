@@ -34,21 +34,21 @@
 						<s:url var="urlCU" value="%{#pageContext.request.contextPath}/modulos!entrarCU?idSel=%{#modulo.id}"/>
 						<s:a href="%{urlCU}">
 						<img id="" class="button" title="Gestionar Casos de uso"
-								src="${pageContext.request.contextPath}/resources/images/icons/uc.png" /></s:a>
+								src="${pageContext.request.contextPath}/resources/images/icons/UC.svg" /></s:a>
 						${blanks}
 						<s:url var="urlIU" value="%{#pageContext.request.contextPath}/modulos!entrarIU?idSel=%{#modulo.id}"/>
 						<s:a href="%{urlIU}">
 						<img id="" class="button" title="Gestionar Pantallas"
-								src="${pageContext.request.contextPath}/resources/images/icons/iu.png" /></s:a>
+								src="${pageContext.request.contextPath}/resources/images/icons/IU.svg" /></s:a>
 						${blanks}
 						<s:url var="urlEditar" value="%{#pageContext.request.contextPath}/modulos/%{#modulo.id}/edit"/>			
 						<s:a href="%{urlEditar}">
 							<img id="" class="button" title="Modificar Módulo"
-									src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+									src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 						</s:a>
 						<s:a onclick="return verificarEliminacionElemento(%{#modulo.id});">
 						<img id="" class="button" title="Eliminar Módulo"
-								src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" /></s:a>
+								src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" /></s:a>
 						${blanks}
 					</td>
 				</tr>
