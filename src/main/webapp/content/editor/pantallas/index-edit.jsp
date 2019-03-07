@@ -79,7 +79,7 @@
 				<div class="btnEliminar">
 					<a onclick="eliminarImagen('pantalla', 'imagenPantalla');"><img
 						title="Eliminar"
-						src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" /></a>
+						src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" /></a>
 				</div>
 				<center>
 					<img id="pantalla" src="#" class="imagen" />

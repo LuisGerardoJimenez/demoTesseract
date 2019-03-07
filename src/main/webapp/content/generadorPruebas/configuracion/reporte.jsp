@@ -30,10 +30,10 @@
 			<s:iterator value="ListPruebas" var="p">
 			<div class="seccion">
 				<s:if test="%{#p.estado == 1}">
-					<p class="instrucciones"><img src="/prisma/resources/images/icons/wrong.png" title="checked" class="button" id=""/> <s:property value="'  Prueba No. '+#p.id+' realizada el: '+#p.fecha"/></p>
+					<p class="instrucciones"><img src="/prisma/resources/images/icons/Wrong.svg" title="checked" class="button" id=""/> <s:property value="'  Prueba No. '+#p.id+' realizada el: '+#p.fecha"/></p>
 				</s:if>
 				<s:elseif test="%{#p.estado == 0}">
-					<p class="instrucciones"><img src="/prisma/resources/images/icons/checked.png" title="checked" class="button" id=""/> <s:property value="'  Prueba No. '+#p.id+' realizada el: '+#p.fecha"/></p>
+					<p class="instrucciones"><img src="/prisma/resources/images/icons/Checked.svg" title="checked" class="button" id=""/> <s:property value="'  Prueba No. '+#p.id+' realizada el: '+#p.fecha"/></p>
 				</s:elseif>
 				<table class="table tablaGestion" cellspacing="0" width="100%"> 
 			     <thead>
@@ -57,10 +57,10 @@
 					  <tbody>
 						<tr>
 							<s:if test="%{#e.numError == 0}">
-								<td><img src="/prisma/resources/images/icons/checked.png" title="checked" class="button" id=""/></td>
+								<td><img src="/prisma/resources/images/icons/Checked.svg" title="checked" class="button" id=""/></td>
 							</s:if>
 							<s:else>
-								<td><img src="/prisma/resources/images/icons/wrong.png" title="checked" class="button" id=""/></td>
+								<td><img src="/prisma/resources/images/icons/Wrong.svg" title="checked" class="button" id=""/></td>
 							</s:else>
 							<td><s:property value="#e.pruebaid.CasoUsoid.clave + ' '+ #e.pruebaid.CasoUsoid.numero + ' '+#e.pruebaid.CasoUsoid.nombre"/></td>
 							<s:iterator value="ListPantallas" var="pan">

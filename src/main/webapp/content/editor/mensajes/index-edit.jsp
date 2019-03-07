@@ -74,7 +74,7 @@
 							<sj:a onclick="habilitarEdicionRedaccion();">
 							<img class="button"
 							title="Redefinir Mensaje"
-							src="${pageContext.request.contextPath}/resources/images/icons/editar.png" onclick="habilitarEdicionRedaccion();"/>
+							src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" onclick="habilitarEdicionRedaccion();"/>
 							</sj:a></td>
 				</tr>
 				
