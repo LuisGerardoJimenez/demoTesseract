@@ -32,14 +32,14 @@
 					<td><s:property value="%{#persona.nombre + ' ' + #persona.apellidoPaterno + ' ' + #persona.apellidoMaterno}"/></td>
 					<td align="center">
 						<s:url var="urlEditar" value="%{#pageContext.request.contextPath}/personal/%{#persona.curp}/edit"/>			
-						<s:a href="%{urlEditar}">
+						<s:a href="%{urlEditar}" style="color : DeepSkyBlue;">
 							<img id="" class="button" title="Modificar Persona"
-									src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+									src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 						</s:a>
 						${blanks}
 						<s:a onclick="return verificarEliminacion('%{#persona.curp}');">
 						<img id="" class="button" title="Eliminar Persona"
-								src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" /></s:a>		
+								src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" /></s:a>		
 					</td>
 				</tr>
 			</s:iterator>

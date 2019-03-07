@@ -9,7 +9,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
 public class ColaboradorDAO extends GenericDAO {
-	
+
 	public ColaboradorDAO() {
 		super();
 	}
@@ -35,9 +35,9 @@ public class ColaboradorDAO extends GenericDAO {
 			he.printStackTrace();
 			session.getTransaction().rollback();
 			throw he;
-		}		
+		}
 	}
-	
+
 	public Colaborador consultarColaborador(String curp) {
 		Colaborador colaborador = null;
 
@@ -54,17 +54,17 @@ public class ColaboradorDAO extends GenericDAO {
 		return colaborador;
 
 	}
-	
+
 	public void eliminarColaborador(Colaborador colaborador) {
 		try {
 			session.beginTransaction();
 			session.delete(colaborador);
-			
+
 			session.getTransaction().commit();
 		} catch (HibernateException he) {
 			he.printStackTrace();
 			session.getTransaction().rollback();
-		}		
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -72,8 +72,7 @@ public class ColaboradorDAO extends GenericDAO {
 		List<Colaborador> colaboradores = null;
 		try {
 			session.beginTransaction();
-			Query query = session
-					.createQuery("from Colaborador");
+			Query query = session.createQuery("from Colaborador");
 			colaboradores = query.list();
 			session.getTransaction().commit();
 		} catch (HibernateException he) {
@@ -87,7 +86,7 @@ public class ColaboradorDAO extends GenericDAO {
 			return colaboradores;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Colaborador consultarColaboradorCorreo(String correo) {
 		List<Colaborador> colaboradores = null;
@@ -106,6 +105,6 @@ public class ColaboradorDAO extends GenericDAO {
 			return null;
 		} else {
 			return colaboradores.get(0);
-		} 
+		}
 	}
 }
