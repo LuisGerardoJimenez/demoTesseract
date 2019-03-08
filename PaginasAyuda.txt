@@ -1,0 +1,43 @@
+Paginas que sirven para TT
+
+Regargar pagina eliminando caché y volviendo a cargar JS
+https://www.redeszone.net/2017/04/22/borra-cache-google-chrome-recargar-web/
+
+Problema Gitbash con los retornos de carro en Windows
+https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
+
+Convenciones Struts 2
+https://struts.apache.org/plugins/convention/#action-annotation
+
+Result Path Configuration
+https://www.journaldev.com/2160/struts-2-result-path-configuration-with-examples
+
+Form Validation Struts 2
+https://struts.apache.org/getting-started/form-validation.html
+
+Global Properties Struts 2
+https://struts.apache.org/getting-started/message-resource-files.html#global-properties
+
+Dynamic Method Invocation
+https://struts.apache.org/core-developers/action-configuration.html
+
+Struts2: Malformed OGNL expression
+https://stackoverflow.com/questions/9487462/struts2-malformed-ognl-expression
+
+struts 2 ognl error
+https://stackoverflow.com/questions/13234870/struts-2-ognl-error
+
+Redirect Action Result Struts 2
+https://struts.apache.org/core-developers/redirect-action-result.html
+
+Using Tags Struts 2
+https://struts.apache.org/getting-started/using-tags.html
+
+What's the difference between # , % and $ signs in Struts tags?
+https://stackoverflow.com/questions/8007858/whats-the-difference-between-and-signs-in-struts-tags
+
+Atajos Eclipse
+http://jjcoellov.es/2009/02/07/tips-de-supervivencia-atajos-de-teclado-en-eclipse/
+
+Shorcuts Eclipse
+https://dzone.com/articles/effective-eclipse-shortcut-key
