@@ -1,0 +1,71 @@
+	\begin{UseCase}{CU4.1}{Elegir Colaboradores}{
+	Este caso de uso permite al actor elegir las personas que colaborarán en el proyecto que él lidera.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}}
+		\UCitem{Propósito}{Elegir las personas que colaborarán en un proyecto.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{colaboradorEntidad}{Colaborador}: Tabla que muestra \cdtRef{colaboradorEntidad:curpColaborador}{CURP}, \cdtRef{colaboradorEntidad:nombreColaborador}{Nombre}, \cdtRef{colaboradorEntidad:pApellidoColaborador}{Primer Apellido} y \cdtRef{colaboradorEntidad:pApellidoColaborador}{Segundo Apellido} de todos los registros de las personas. Se selecciona de una lista.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{colaboradorEntidad}{Colaborador}: Tabla que muestra \cdtRef{colaboradorEntidad:curpColaborador}{CURP}, \cdtRef{colaboradorEntidad:nombreColaborador}{Nombre}, \cdtRef{colaboradorEntidad:pApellidoColaborador}{Primer Apellido} y \cdtRef{colaboradorEntidad:pApellidoColaborador}{Segundo Apellido} de todos los registros de las personas.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU4}{Gestionar Proyectos de colaborador} para indicar que se han actualizado los participantes exitosamente.
+				\item  \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU4.1}{Elegir Colaboradores} cuando no hay personal registrado.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Los colaboradores seleccionados podrán entrar al proyecto en cuestión.
+		\end{itemize}
+		}
+		\UCitem{Errores}{Ninguno}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU4}{Gestionar Proyectos de Colaborador}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar una persona oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU3}{Gestionar Personal}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU3.1}{Registrar Persona}.
+		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU3.1-P3}
+		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU3.1}{Registrar Persona}. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{B}
+		\UCpaso[\UCsist] Verifica que la CURP de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{C}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{D} \Trayref{E}
+		\UCpaso[\UCsist] Registra la información de la persona en el sistema
+		\UCpaso[\UCsist] Envía un correo con el mensaje \cdtIdRef{MSG25}{Datos de sesión} a la cuenta de correo electrónico proporcionada por el actor.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar al actor que el registro se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+		\begin{UCtrayectoriaA}{A}{El actor desea cancelar la operación.}
+			\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU3.1}{Registrar Persona}.
+			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU3}{Gestionar Personal}
+		\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+		\begin{UCtrayectoriaA}{B}{No hay ningún colaborador registrado.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG17}{Falta de información} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} indicando que no hay colaboradores registrados.
+		\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{C}{El actor ingresó una CURP repetida.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que existe una persona con la misma CURP.
+		\UCpaso Regresa al paso \ref{CU2.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU3.1}{Registrar Personal}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU3.1}{Registrar Persona}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
