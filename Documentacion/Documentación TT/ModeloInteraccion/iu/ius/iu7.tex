@@ -1,0 +1,21 @@
+%--------------------------------------
+\section{IU 6 Gestionar Pantallas}
+
+\subsection{Objetivo}
+	En esta pantalla el actor puede visualizar algunos atributos de las pantallas y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
+\subsection{Diseño}
+	En la figura \IUref{IU7}{Gestionar Pantallas} se muestra la pantalla ''Gestionar Pantallas'', por medio de la cual se podrán gestionar las pantallas de un módulo a través de una tabla. El actor podrá solicitar el registro, la consulta, la modificación y la eliminación de una pantalla mediante los botones \IUbutton{Registrar}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}}, \editar y \eliminar.
+
+\IUfig[1]{interfaces/IU7gestionarPantallas}{IU7}{Gestionar Pantallas}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de una pantalla, dirige a la pantalla \IUref{7.1}{Registrar Pantalla}.
+	\item \editar [Modificar]: Permite al actor solicitar la modificación de una pantalla, dirige a la pantalla \IUref{7.2}{Modificar Pantalla}.
+	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de una pantalla, dirige a una pantalla emergente.
+	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} [Consultar]: Permite al actor solicitar la consulta de una pantalla, dirige a la pantalla  \IUref{7.3}{Consultar Pantalla}.
+\end{itemize}
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} cuando no existen pantallas registradas.
+\end{Citemize}
