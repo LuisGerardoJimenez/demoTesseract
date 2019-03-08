@@ -122,7 +122,7 @@
 			</s:url>
 			<input class="boton" type="button"
 				onclick="location.href='${urlGestionarCU}'"
-				value="Aceptar" />
+				value="Regresar" />
 				
 		</div>
 	</s:form>

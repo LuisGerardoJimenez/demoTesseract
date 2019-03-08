@@ -49,7 +49,7 @@
 	<br />
 	<div align="center">
 		<input class="boton" type="button"
-			onclick="location.href='${urlPrev}'" value="Aceptar" />
+			onclick="location.href='${urlPrev}'" value="Regresar" />
 	</div>
 </body>
 	</html>
