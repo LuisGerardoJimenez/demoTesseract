@@ -88,7 +88,7 @@
 		<div align="center">
 			<input class="boton" type="button"
 				onclick="location.href='${urlPrev}'"
-				value="Aceptar" />
+				value="Regresar" />
 		</div>
 		
 		<s:hidden id="pantallaB64" name="pantallaB64"
