@@ -1,0 +1,19 @@
+%--------------------------------------
+\section{IU 7.3 Consultar Pantalla}
+
+\subsection{Objetivo}
+	Esta pantalla permite al actor consultar la información de una pantalla, así como visualizar las acciones que contiene.
+\subsection{Diseño}
+	En la figura \IUref{IU7.3}{Consultar Pantalla} se muestra la pantalla ''Consultar Pantalla'' que permite consultar una pantalla y visualizar sus acciones. Cuando no existan acciones registradas, la sección ''Acciones'' no aparecerá.
+
+\IUfig[.75]{interfaces/IU7-3consultarPantalla}{IU7.3}{Consultar Pantalla}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Regresar}: Permite al actor finalizar la operación, dirige a la pantalla \IUref{IU7}{Gestionar Pantallas}.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} cuando la pantalla que se desea consultar no existe.
+\end{Citemize}
