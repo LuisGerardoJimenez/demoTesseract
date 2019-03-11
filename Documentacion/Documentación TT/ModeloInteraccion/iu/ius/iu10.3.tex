@@ -1,0 +1,22 @@
+%--------------------------------------
+\section{IU 10.3 Consultar Mensaje}
+
+\subsection{Objetivo}
+	Esta pantalla permite al actor consultar la información de un actor.
+\subsection{Diseño}
+	En la figura \IUref{IU10.3}{Consultar Mensaje: Parametrizado} se muestra la pantalla ''Consultar Pantalla'' que permite consultar la información de un actor que contiene parámetros, en el caso que el mensaje no tenga parámetros se muestra la pantalla \IUref{IU10.3A}{Consultar Mensaje: No parametrizado}.
+	
+	En la parte superior derecha, el sistema muestra el proyecto en el que se encuentra trabajando.
+
+\IUfig[1]{interfaces/IU10-3consultarMSG}{IU10.3}{Consultar Mensaje: Parametrizado}
+\IUfig[1]{interfaces/IU10-3AconsultarMSG}{IU10.3A}{Consultar Mensaje: No parametrizado}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Regresar}: Permite al actor finalizar la operación, dirige a la pantalla \IUref{IU10}{Gestionar Mensajes}.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} cuando el mensaje que se desea consultar no existe.
+\end{Citemize}
