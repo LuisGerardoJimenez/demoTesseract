@@ -1,0 +1,23 @@
+%--------------------------------------
+\section{IU 8 Gestionar Actores}
+
+\subsection{Objetivo}
+	En esta pantalla el actor puede visualizar algunos atributos de los actores y las operaciones disponible de acuerdo a si está relacionado a un caso de uso liberado.
+\subsection{Diseño}
+	En la figura \IUref{IU8}{Gestionar Actores} se muestra la pantalla ''Gestionar Actores'', por medio de la cual se podrán gestionar los actores de un proyecto a través de una tabla. El actor podrá solicitar el registro, la consulta, la modificación y la eliminación de un actor mediante los botones \IUbutton{Registrar}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}}, \editar y \eliminar.
+	
+	En la parte superior derecha, el sistema muestra el proyecto en el que se encuentra trabajando.
+
+\IUfig[1]{interfaces/IU8gestionarActores}{IU8}{Gestionar Actores}
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de un actor, dirige a la pantalla \IUref{8.1}{Registrar Actor}.
+	\item \editar [Modificar]: Permite al actor solicitar la modificación de un actor, dirige a la pantalla \IUref{8.2}{Modificar Actor}.
+	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de un actor, dirige a una pantalla emergente.
+	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} [Consultar]: Permite al actor solicitar la consulta de un actor, dirige a la pantalla  \IUref{IU8.3}{Consultar Actor}.
+\end{itemize}
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando no existen actores registradas.
+\end{Citemize}
