@@ -17,12 +17,12 @@ public class Correo {
 
     public static void enviarCorreo(Colaborador obj, int sub) throws AddressException, MessagingException {
 
-            String mailServidor = "prisma901@outlook.com";
-            String passwordServidor = "12345admin";
+            String mailServidor = "prismav3escom@gmail.com";
+            String passwordServidor = "contrasenaglobal123";
             // Propiedades de la conexión.
             Properties props = new Properties();  
 	        props.put("mail.smtp.starttls.enable","true");
-	        props.put("mail.smtp.host","smtp.live.com");  
+	        props.put("mail.smtp.host","smtp.gmail.com");  
 	        props.put("mail.smtp.auth", "true");
 	        props.put("mail.smtp.port", "587");
 

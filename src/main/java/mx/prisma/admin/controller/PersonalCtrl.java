@@ -115,8 +115,8 @@ ModelDriven<Colaborador>, SessionAware{
 	public String update() throws Exception {
 		String resultado = null;
 		try {
-			ColaboradorBs.enviarCorreo(model, contrasenaAnterior, correoAnterior);
 			ColaboradorBs.modificarColaborador(model);
+			ColaboradorBs.enviarCorreo(model, contrasenaAnterior, correoAnterior);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Persona", "modificada" }));
@@ -124,7 +124,7 @@ ModelDriven<Colaborador>, SessionAware{
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 		} catch (PRISMAValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
-			resultado = editNew();
+			resultado = edit();
 		} catch (PRISMAException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
