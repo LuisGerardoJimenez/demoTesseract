@@ -41,3 +41,19 @@ http://jjcoellov.es/2009/02/07/tips-de-supervivencia-atajos-de-teclado-en-eclips
 
 Shorcuts Eclipse
 https://dzone.com/articles/effective-eclipse-shortcut-key
+
+
+Gif cargando
+https://loading.io/spinner/eclipse/-ring-loading-gif
+Usuario: q760483@nwytg.net
+Contrasenia: gifPrisma
+Color: #446872
+radius: 40
+Thickness: 2
+Background: rgba(100%,100%,100%,0)
+Speed: 1
+Size: 200
+Transparent: Yes
+
+Teseractor Tutorial
+https://aescripts.com/learn/create-an-animated-hypercube-using-shape-layers-in-after-effects/
