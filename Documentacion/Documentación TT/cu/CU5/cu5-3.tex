@@ -1,0 +1,50 @@
+	\begin{UseCase}{CU5.3}{Eliminar Módulo}{
+		Este caso de uso permite al actor eliminar la información de un módulo de un proyecto.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de un módulo.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU4}{Gestionar Módulos} para indicar que el módulo fue eliminado correctamente.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que no se existan referencias al contenido del módulo a eliminar desde elementos de otro módulo.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará un módulo del sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU4}{Gestionar Módulos} cuando no sea posible eliminar el módulo, con base en la regla de
+		negocio \BRref{RN28}{Eliminación de módulos}.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU5}{Gestionar Módulos}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar un módulo oprimiendo el botón \eliminar del módulo que desea eliminar de la pantalla \IUref{IU4}{Gestionar Módulos}.
+		\UCpaso[\UCsist] Obtiene la información del módulo seleccionado.
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU4}{Gestionar Módulos}.
+		\UCpaso[\UCactor] Confirma la eliminación del módulo oprimiendo el botón \IUbutton{Aceptar}. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que el módulo pueda eliminarse, con base en la regla de negocio \BRref{RN28}{Eliminación de módulos}. \Trayref{B}
+		\UCpaso[\UCsist] Elimina la información referente al módulo.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU4}{Gestionar Módulos} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{A}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} del mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU4}{Gestionar Módulos}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{No es posible eliminar el módulo.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU4}{Gestionar Módulos}.
+	\end{UCtrayectoriaA}
+	
+
