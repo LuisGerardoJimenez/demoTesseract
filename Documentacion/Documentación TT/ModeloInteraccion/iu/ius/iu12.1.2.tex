@@ -1,0 +1,39 @@
+%--------------------------------------
+\section{IU 12.1.2 Modificar Atributo}
+
+\subsection{Objetivo}
+	Esta pantalla permite al actor modificar la información de un atributo.
+\subsection{Diseño}
+	En la figura \IUref{IU12.1.2}{Modificar Atributo} se muestra la pantalla ''Modificar Atributo'' que permite realizar cambios a un atributo perteneciente a una entidad de un proyecto.
+	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y registrará la información solo si se han cumplido todas las reglas de negocio establecidas.
+	
+	En la parte superior derecha, el sistema muestra el proyecto en el que se encuentra trabajando.
+	
+	\IUfig[1]{interfaces/IU12-1-2modificarAtributo}{IU12.1.2}{Modificar Atributo}
+	
+	La información mostrada dependerá del tipo de dato:
+	\begin{itemize}
+		\item Tipo de dato ''Archivo'' el sistema solicitará los formatos válidos así como el tamaño máximo, como se muestra en la figura \IUref{IU12.1.1A}{Registrar Atributo: Archivo}.
+		\IUfig[1]{interfaces/IU12-1-2AmodificarAtributo}{IU12.1.2A}{Modificar Atributo: Archivo}
+		\item Tipo de dato ''Booleano'' o ''Fecha'', el sistema no solicitará ningún dato extra, como se muestra en la figura \IUref{IU12.1.1B}{Registrar Atributo: Booleano, Fecha}
+		\IUfig[1]{interfaces/IU12-1-2BmodificarAtributo}{IU12.1.2B}{Modificar Atributo: Booleano, Fecha}
+		\item Tipo de dato ''Cadena" o ''Entero'' o ''Flotante'', el sistema solicitará la longitud máxima, como se muestra en la figura \IUref{IU12.1.1C}{Registrar Atributo: Cadena, Entero, Flotante}
+		\IUfig[1]{interfaces/IU12-1-2CmodificarAtributo}{IU12.1.2C}{Modificar Atributo: Cadena, Entero, Flotante}
+		\item Tipo de dato ''Otro'', el sistema solicitará el tipo especificado, como se muestra en la figura \IUref{IU12.1.1D}{Registrar Atributo: Otro}
+		\IUfig[1]{interfaces/IU12-1-2DmodificarAtributo}{IU12.1.2D}{Modificar Atributo: Otro}
+	\end{itemize}
+
+\subsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar los cambios del atributo, dirige a la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad}.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar la edición del atributo, dirige a la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad}.
+\end{itemize}
+
+\subsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU12.1.2}{Modificar Atributo} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU12.1.2}{Modificar Atributo} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU12.1.2}{Modificar Atributo} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU12.1.2}{Modificar Atributo} cuando se registre un atributo con un nombre que ya se encuentre registrado.
+\end{Citemize}
