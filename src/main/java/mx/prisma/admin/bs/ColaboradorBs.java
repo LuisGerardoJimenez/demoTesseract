@@ -145,7 +145,7 @@ public class ColaboradorBs {
 	public static void enviarCorreo(Colaborador model,
 			String contrasenaAnterior, String correoAnterior) throws AddressException, MessagingException {
 		if(contrasenaAnterior == null || correoAnterior == null) {
-			//Correo.enviarCorreo(model, 0);
+			Correo.enviarCorreo(model, 0);
 			System.out.println("Se envió un correo al usuario que se registró.");
 		} else if(!contrasenaAnterior.equals(model.getContrasenia())) {
 			Correo.enviarCorreo(model, 0);
