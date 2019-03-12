@@ -47,9 +47,9 @@
 				</s:if>
 			</s:if>
 		</div>
-		<div class="menuSecundario">
-			<!--  -->
-		</div>
+		<!--  <div class="menuSecundario">
+			
+		</div>-->
 
 		<div class="areaTrabajo" id="idAreaTrabajo">
 				<s:if test="#session.idProyecto != null">
