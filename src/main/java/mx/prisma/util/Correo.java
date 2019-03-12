@@ -43,7 +43,8 @@ public class Correo {
 
                 message.setSubject("PRISMA: Información de la cuenta");
                 contenido = "<center>"
-                			+ "<div style=\"color: #084B8A; border: 1px dotted black;\">"
+                			//+ "<div style=\"color: #084B8A; border: 1px dotted black;\">"
+                			+ "<div style=\"color: #750e35; border: 1px dotted black;\">"
                 				+ "<table>"
 			                		+ "<tr>"
 										+ "<td>"
@@ -52,7 +53,8 @@ public class Correo {
 										+ "</td>" + "</tr>"
 								+ "</table>"
 							+ "</div>"
-                			+ "<div style=\"color: #FFFFFF;background-color: #084B8A;opacity: .85;\">"
+							//+ "<div style=\"color: #FFFFFF;background-color: #084B8A;opacity: .85;\">"
+							+ "<div style=\"color: #FFFFFF;background-color: #750e35;opacity: .85;\">"
                 				+ "<table>"
                 					+ "<tr>" 
                 						+ "<td>"
@@ -76,13 +78,15 @@ public class Correo {
             }
             if (sub == 1) {
                 message.setSubject("PRISMA: Recuperación de contraseña");
-                contenido = "<center><div style=\"color: #084B8A; border: 1px dotted black;\"><table>"
+                contenido = //"<center><div style=\"color: #084B8A; border: 1px dotted black;\"><table>"
+                		"<center><div style=\"color: #084B8A; border: 1px dotted black;\"><table>"
                         + "<tr>"
                         + "<td>"
                         + "<h2><b>Hola "
                         + obj.getNombre()
                         + "</td>" + "</tr>"
-                        + "<div style=\"color: #FFFFFF;background-color: #084B8A;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>PRISMA</i>."
+                        //+ "<div style=\"color: #FFFFFF;background-color: #084B8A;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>PRISMA</i>."
+                        + "<div style=\"color: #FFFFFF;background-color: #750e35;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>PRISMA</i>."
                         + "<tr>" + "<td>"
                         + "Contraseña: " + obj.getContrasenia()
                         + "</td>" + "</tr>"
