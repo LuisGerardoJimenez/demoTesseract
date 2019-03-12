@@ -73,8 +73,8 @@ ModelDriven<Colaborador>, SessionAware{
 	public String create() throws Exception {
 		String resultado = null;
 		try {
-			ColaboradorBs.enviarCorreo(model, null, null);
 			ColaboradorBs.registrarColaborador(model);
+			ColaboradorBs.enviarCorreo(model, null, null);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Persona", "registrada" }));
