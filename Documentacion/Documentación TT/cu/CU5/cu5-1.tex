@@ -1,0 +1,83 @@
+	\begin{UseCase}{CU5.1}{Registrar Módulo}{
+		Este caso de uso permite al actor registrar la información de un módulo de un proyecto.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Registrar la información de un proyecto.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{moduloEntidad:claveModulo}{Clave:} Se escribe desde el teclado.
+			\item \cdtRef{moduloEntidad:nombreModulo}{Nombre:} Se escribe desde el teclado.
+			\item \cdtRef{moduloEntidad:descripcionModulo}{Descripción:} Se selecciona de un calendario.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto:} Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto:} Lo obtiene el sistema.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU4}{Gestionar Módulos} para indicar que el registro fue exitoso.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se registrará un módulo de un proyecto en el sistema.
+			\item Se podrán gestionar los casos de uso del módulo.
+			\item Se podrán gestionar las pantallas del módulo.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en
+		el campo.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando se registre un módulo con un nombre o clave que ya se encuentra registrada en el sistema.
+		\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando el actor ingrese una clave inválida, con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU4}{Gestionar Módulos}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar un proyecto oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU4}{Gestionar Módulos}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU4.1}{Registrar Módulo}.
+		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU5.1-P3}
+		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU4.1}{Registrar Módulo}. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{B}
+		\UCpaso[\UCsist] Verifica que el nombre y la clave del módulo no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{C}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{D} \Trayref{E}
+		\UCpaso[\UCsist] Verifica que la clave del módulo sea válida como se especifica en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{F}
+		\UCpaso[\UCsist] Registra la información del módulo en el sistema.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU4}{Gestionar Módulos} para indicar al actor que el registro se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{A}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU4.1}{Registrar Módulo}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU4}{Gestionar Módulos}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU4.1}{Registrar Módulo}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU5.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{C}{El actor ingresó un nombre o clave de módulo repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU4.1}{Registrar Módulo}, indicando al actor que existe un módulo con el mismo nombre o clave.
+		\UCpaso Regresa al paso \ref{CU5.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU4.1}{Registrar Módulo}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU5.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU4.1}{Registrar Módulo}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU5.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{F}{El actor ingresó una clave inválida.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG18}{Caracteres inválidos} y señala el campo en la pantalla \IUref{IU4.1}{Registrar Módulo} para indicar que se ha ingresado una clave inválida.
+		\UCpaso Regresa al paso \ref{CU5.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
