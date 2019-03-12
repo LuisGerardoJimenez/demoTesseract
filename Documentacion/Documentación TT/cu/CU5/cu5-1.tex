@@ -3,12 +3,12 @@
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
-		\UCitem{Propósito}{Registrar la información de un proyecto.}
+		\UCitem{Propósito}{Registrar la información de un módulo.}
 		\UCitem{Entradas}{
 		\begin{itemize}
 			\item \cdtRef{moduloEntidad:claveModulo}{Clave:} Se escribe desde el teclado.
 			\item \cdtRef{moduloEntidad:nombreModulo}{Nombre:} Se escribe desde el teclado.
-			\item \cdtRef{moduloEntidad:descripcionModulo}{Descripción:} Se selecciona de un calendario.
+			\item \cdtRef{moduloEntidad:descripcionModulo}{Descripción:} Se escribe desde el teclado.
 		\end{itemize}	
 		}
 		\UCitem{Salidas}{\begin{itemize}
@@ -17,7 +17,7 @@
 				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU4}{Gestionar Módulos} para indicar que el registro fue exitoso.
 		\end{itemize}}
 		\UCitem{Destino}{Pantalla}
-		\UCitem{Precondiciones}{}
+		\UCitem{Precondiciones}{Ninguna}
 		\UCitem{Postcondiciones}{
 		\begin{itemize}
 			\item Se registrará un módulo de un proyecto en el sistema.
@@ -34,14 +34,14 @@
 		\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando el actor ingrese una clave inválida, con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}.
 		\end{itemize}
 		}
-		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU4}{Gestionar Módulos}.}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU5}{Gestionar Módulos}.}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
-		\UCpaso[\UCactor] Solicita registrar un proyecto oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU4}{Gestionar Módulos}.
+		\UCpaso[\UCactor] Solicita registrar un módulo oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU4}{Gestionar Módulos}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU4.1}{Registrar Módulo}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU5.1-P3}
-		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU4.1}{Registrar Módulo}. \Trayref{A}
+		\UCpaso[\UCactor] Solicita guardar la información del módulo oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU4.1}{Registrar Módulo}. \Trayref{A}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{B}
 		\UCpaso[\UCsist] Verifica que el nombre y la clave del módulo no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{C}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{D} \Trayref{E}
