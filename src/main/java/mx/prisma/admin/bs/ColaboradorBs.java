@@ -114,6 +114,11 @@ public class ColaboradorBs {
 					"El usuario ingreso un correo muy largo.", "MSG6",
 					new String[] { "45", "caracteres" }, "model.correoElectronico");
 		}
+		System.out.println(model.getCorreoElectronico());
+		if (!Validador.esCorreo(model.getCorreoElectronico())) {
+			throw new PRISMAValidacionException(
+					"El correo que ingreso no es un correo valido", "El correo que ingreso no es un correo valido",null, "model.correoElectronico");
+		}
 		Colaborador colaboradorBD = new ColaboradorDAO().consultarColaboradorCorreo(model.getCorreoElectronico());
 		if(colaboradorBD != null && !colaboradorBD.getCurp().equals(model.getCurp())) {
 			throw new PRISMAValidacionException(
