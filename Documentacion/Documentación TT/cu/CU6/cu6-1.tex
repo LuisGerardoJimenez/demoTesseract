@@ -25,8 +25,7 @@
 		}
 		\UCitem{Errores}{\begin{itemize}
 		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU11.1}{Registrar Término} cuando no se ha ingresado un dato marcado como obligatorio.
-		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU11.1}{Registrar Término} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en
-		el campo.
+		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU11.1}{Registrar Término} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU11.1}{Registrar Término} cuando se ha excedido la longitud de alguno de los campos.
 		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU11.1}{Registrar Término} cuando se registre un término con un nombre que ya se encuentra registrado en el sistema.
 		\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU11.1}{Registrar Término} cuando el nombre del término contiene un carácter no válido
@@ -36,10 +35,10 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
-		\UCpaso[\UCactor] Solicita registrar un módulo oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6}{Gestionar Términos}.
+		\UCpaso[\UCactor] Solicita registrar un término oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU11}{Gestionar Términos}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11.1}{Registrar Término}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU6.1-P3}
-		\UCpaso[\UCactor] Solicita guardar la información del término oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1}{Registrar Término}. \Trayref{A}
+		\UCpaso[\UCactor] Solicita guardar la información del término oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU11.1}{Registrar Término}. \Trayref{A}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{B}
 		\UCpaso[\UCsist] Verifica que el nombre del término no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{C}
 		\UCpaso[\UCsist] Verifica que el nombre del término no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{D}
@@ -51,7 +50,7 @@
 	
 	\begin{UCtrayectoriaA}{A}{El actor desea cancelar la operación.}
 		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU11.1}{Registrar Término}
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Términos}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos}.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{B}{El actor no ingresó algún dato marcado como obligatorio.}

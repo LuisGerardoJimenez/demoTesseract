@@ -30,6 +30,7 @@
 		\UCpaso[\UCsist] Obtiene la información del proyecto seleccionado.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG10}{Confirmar eliminación} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar}
 		\UCpaso[\UCsist] Confirma la eliminación del proyecto oprimiendo el botón \IUbutton{Aceptar}. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que el proyecto pueda eliminarse, con base en la regla de negocio \BRref{RN34}{Eliminación de proyectos}. \Trayref{B}
 		\UCpaso[\UCsist] Elimina el proyecto del sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar al actor que se ha eliminado el registro exitosamente.
 	\end{UCtrayectoria}		
@@ -40,3 +41,6 @@
 		\end{UCtrayectoriaA}
 
 %--------------------------------------
+		\begin{UCtrayectoriaA}{B}{No es posible eliminar el proyecto.}
+			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con el mensaje \cdtIdRef{MSG13}{Eliminación no permitida}.
+		\end{UCtrayectoriaA}
