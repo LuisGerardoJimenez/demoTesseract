@@ -66,8 +66,8 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 	public String login() throws Exception {
 		System.out.println("Entramos a login");
 		String resultado = null;
-		Colaborador colaborador = null;
-		Map<String, Object> session = null;
+		Colaborador colaborador;
+		Map<String, Object> session;
 		try {
 			if (userSession != null) {
 				userSession.clear();
@@ -147,15 +147,17 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 	}
 
 	public static String getMenu() throws Exception {
+		String resultado;
 		Proyecto proyecto = SessionManager.consultarProyectoActivo();
 		Colaborador colaborador = SessionManager.consultarColaboradorActivo();
 		if (colaborador != null && colaborador.isAdministrador()) {
-			return "administrador/menus/menuAdministrador";
+			resultado = "administrador/menus/menuAdministrador";
 		} else if (proyecto == null) {
-			return "editor/menus/menuAnalista";
+			resultado = "editor/menus/menuAnalista";
 		} else {
-			return "editor/menus/menuAnalistaProyecto";
+			resultado = "editor/menus/menuAnalistaProyecto";
 		}
+		return resultado;
 	}
 	
 	public static String getRol() throws Exception {

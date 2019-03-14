@@ -18,6 +18,9 @@ https://struts.apache.org/getting-started/form-validation.html
 Global Properties Struts 2
 https://struts.apache.org/getting-started/message-resource-files.html#global-properties
 
+Get Global Properties in code in Struts 2
+https://stackoverflow.com/questions/711093/how-do-you-get-a-struts2-value-from-the-properties-file-programatically
+
 Dynamic Method Invocation
 https://struts.apache.org/core-developers/action-configuration.html
 
@@ -41,6 +44,7 @@ http://jjcoellov.es/2009/02/07/tips-de-supervivencia-atajos-de-teclado-en-eclips
 
 Shorcuts Eclipse
 https://dzone.com/articles/effective-eclipse-shortcut-key
+https://gist.github.com/bertocq/7785603
 
 
 Gif cargando
