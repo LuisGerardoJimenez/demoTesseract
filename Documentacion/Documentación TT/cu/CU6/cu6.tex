@@ -1,7 +1,6 @@
 	\begin{UseCase}{CU6}{Gestionar Términos}{
 	Este caso de uso permite al Analista visualizar todos los módulos en que se divide el proyecto, así como solicitar el registro, modificación y eliminación de un módulo.
 	}
-	\UCitem{Versión}{\color{Gray}0.1}
 	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
 	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de los términos de un glosario de un proyecto.}
 	\UCitem{Entradas}{Ninguna}
@@ -21,7 +20,7 @@
 \begin{UCtrayectoria}
 	\UCpaso[\UCactor] Solicita gestionar los términos seleccionando la opción ''Glosario'' del menú \IUref{MN2}{Menú de Colaborador}.
 	\UCpaso[\UCsist] Obtiene la información de los términos registrados del proyecto seleccionado. \Trayref{A}
-	\UCpaso[\UCsist] Muestra la información de los términos en la pantalla \IUref{IU11}{Gestionar Términos de glosario}.
+	\UCpaso[\UCsist] Muestra la información de los términos en la pantalla \IUref{IU11}{Gestionar Términos de glosario} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
 	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar, \eliminar, \UCsist  y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pantalla}}. \label{CU6-P4}
 \end{UCtrayectoria}		
 %--------------------------------------

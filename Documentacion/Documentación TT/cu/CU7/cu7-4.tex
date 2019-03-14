@@ -1,0 +1,34 @@
+	\begin{UseCase}{CU7.4}{Consultar Entidad}{
+		Este caso de uso permite al analista consultar la información de una entidad de un proyecto.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Consultar la información de una entidad.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{entidadEntidad:nombreEntidad}{Nombre:} Lo obtiene el sistema.
+			\item \cdtRef{entidadEntidad:descripcionEntidad}{Descripción:} Lo obtiene el sistema.
+			\item \cdtRef{atributoEntidad}{Atributos:} Tabla que muestra \cdtRef{atributoEntidad:nombreATR}{Nombre}, \cdtRef{atributoEntidad:obligatorioATR}{Obligatorio (si o no)} y \hyperlink{tTipoDatoP}{Tipo de Dato} de todos los los registros de los atributos.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU12}{Gestionar Entidades} cuando la entidad que se desea consultar no existe.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU6}{Gestionar Términos del glosario}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar un término del glosario oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} del registro que desea consultar de la pantalla \IUref{IU12}{Gestionar Entidades} o la liga correspondiente a un término en la pantalla \IUref{IU6.3}{Consultar caso de uso}.
+		\UCpaso[\UCsist] Obtiene la información de la entidad seleccionada. \Trayref{A}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12.3}{Consultar Entidad} con la información de la entidad.
+		\UCpaso[\UCactor] Consulta la información de la entidad.
+		\UCpaso[\UCactor] Solicita finalizar la consulta oprimiendo el botón \IUref{Regresar} de la pantalla \IUref{IU12.3}{Consultar Entidad}.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{A}{La entidad que se desea consultar no existe.}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\end{UCtrayectoriaA}
