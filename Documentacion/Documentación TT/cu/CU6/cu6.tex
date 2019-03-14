@@ -19,12 +19,12 @@
 %--------------------------------------
 \begin{UCtrayectoria}
 	\UCpaso[\UCactor] Solicita gestionar los términos seleccionando la opción ''Glosario'' del menú \IUref{MN2}{Menú de Colaborador}.
-	\UCpaso[\UCsist] Obtiene la información de los términos registrados del proyecto seleccionado. \Trayref{A}
+	\UCpaso[\UCsist] Obtiene la información de los términos registrados del proyecto seleccionado. \Trayref{GT-A}
 	\UCpaso[\UCsist] Muestra la información de los términos en la pantalla \IUref{IU11}{Gestionar Términos de glosario} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
 	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar, \eliminar, \UCsist  y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pantalla}}. \label{CU6-P4}
 \end{UCtrayectoria}		
 %--------------------------------------
-\begin{UCtrayectoriaA}{A}{No existen registros de términos}
+\begin{UCtrayectoriaA}{GT-A}{No existen registros de términos}
 	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU11}{Gestionar Términos de Glosario} para indicar que no hay registros de términos para mostrar.
 \end{UCtrayectoriaA}
 

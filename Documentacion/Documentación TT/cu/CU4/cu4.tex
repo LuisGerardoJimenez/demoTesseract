@@ -18,13 +18,13 @@
 %--------------------------------------
 \begin{UCtrayectoria}
 	\UCpaso[\UCactor] Solicita gestionar los proyectos presionando la opción ''Proyectos'' del menú \IUref{MN2}{Menú de Colaborador}.
-	\UCpaso[\UCsist] Obtiene la información de los proyectos en los que el actor se encuentra colaborando. \Trayref{A}
+	\UCpaso[\UCsist] Obtiene la información de los proyectos en los que el actor se encuentra colaborando. \Trayref{GPC-A}
 	\UCpaso[\UCsist] Muestra la información del personal en la pantalla \IUref{IU4}{Gestionar Proyectos de colaborador}.
 	\UCpaso[\UCsist] Muestra el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/Colaboradores}} para cada proyecto en el que el actor sea líder.
 	\UCpaso[\UCactor] Gestiona los proyectos a través de las botones mostrados en la columna ''Acciones''. \label{CU4-P5}
 \end{UCtrayectoria}		
 %--------------------------------------
-\begin{UCtrayectoriaA}{A}{El actor no se encuentra colaborando en ningún proyecto.}
+\begin{UCtrayectoriaA}{GPC-A}{El actor no se encuentra colaborando en ningún proyecto.}
 	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU4}{Gestionar Proyectos de Colaborador} para indicar que no hay registros de proyectos para mostrar.
 \end{UCtrayectoriaA}
 
