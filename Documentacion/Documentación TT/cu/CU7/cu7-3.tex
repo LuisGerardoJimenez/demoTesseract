@@ -26,35 +26,33 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar una entidad oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU12}{Gestionar Entidades}.
-		\UCpaso[\UCsist] Verifica que la entidad se encuentra en un estado que permita la eliminación de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{A}
-		\UCpaso[\UCsist] Busca los elementos que estén utilizando a la entidad.
-		\UCpaso[\UCsist] Busca los elementos que estén utilizando algún atributo de la entidad.
-		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a la entidad. \Trayref{B}
-		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a alguno de los atributos de la entidad. \Trayref{C}
+		\UCpaso[\UCsist] Verifica que la entidad pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EENT-A}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a la entidad. \Trayref{EENT-B}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a alguno de los atributos de la entidad. \Trayref{EENT-C}
 		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU12}{Gestionar entidades}.
-		\UCpaso[\UCactor] Confirma la eliminación de la entidad oprimiendo el botón \IUbutton{Aceptar}. \Trayref{D}
+		\UCpaso[\UCactor] Confirma la eliminación de la entidad oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EENT-D}
 		\UCpaso[\UCsist] Elimina la información referente a la entidad.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU12}{Gestionar Entidades} para indicar al actor que el registro se ha eliminado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 	
-	\begin{UCtrayectoriaA}{A}{La entidad está en un estado en que no se permite la eliminación.}
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\begin{UCtrayectoriaA}{EENT-A}{La entidad esta asociada a un caso de uso liberado.}
+		\UCpaso[\UCsist] Oculta el botón \eliminar de la entidad que esta asociada a casos de uso liberados.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{B}{La entidad está siendo referenciado en un caso de uso.}
+	\begin{UCtrayectoriaA}{EENT-B}{La entidad está siendo referenciado en un caso de uso.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU12}{Gestionar Entidades} en una pantalla emergente con la lista de casos de uso que están referenciando a la entidad.
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades}.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{C}{Algunos atributos de la entidad están siendo referenciados en algún caso de uso.}
+	\begin{UCtrayectoriaA}{EENT-C}{Algunos atributos de la entidad están siendo referenciados en algún caso de uso.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU12}{Gestionar Entidades} en una pantalla emergente con la lista de elementos que están referenciando al atributo o atributos de la entidad.
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades}.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{D}{El actor desea cancelar la operación.}
+	\begin{UCtrayectoriaA}{EENT-D}{El actor desea cancelar la operación.}
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades}.
 	\end{UCtrayectoriaA}

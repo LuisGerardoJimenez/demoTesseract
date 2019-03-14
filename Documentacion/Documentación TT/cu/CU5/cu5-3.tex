@@ -31,19 +31,19 @@
 		\UCpaso[\UCactor] Solicita eliminar un módulo oprimiendo el botón \eliminar del módulo que desea eliminar de la pantalla \IUref{IU4}{Gestionar Módulos}.
 		\UCpaso[\UCsist] Obtiene la información del módulo seleccionado.
 		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU4}{Gestionar Módulos}.
-		\UCpaso[\UCactor] Confirma la eliminación del módulo oprimiendo el botón \IUbutton{Aceptar}. \Trayref{A}
-		\UCpaso[\UCsist] Verifica que el módulo pueda eliminarse, con base en la regla de negocio \BRref{RN28}{Eliminación de módulos}. \Trayref{B}
+		\UCpaso[\UCactor] Confirma la eliminación del módulo oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EM-A}
+		\UCpaso[\UCsist] Verifica que el módulo pueda eliminarse, con base en la regla de negocio \BRref{RN28}{Eliminación de módulos}. \Trayref{EM-B}
 		\UCpaso[\UCsist] Elimina la información referente al módulo.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU4}{Gestionar Módulos} para indicar al actor que el registro se ha eliminado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 	
-	\begin{UCtrayectoriaA}{A}{El actor desea cancelar la operación.}
+	\begin{UCtrayectoriaA}{EM-A}{El actor desea cancelar la operación.}
 		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} del mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU4}{Gestionar Módulos}.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{B}{No es posible eliminar el módulo.}
+	\begin{UCtrayectoriaA}{EM-B}{No es posible eliminar el módulo.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU4}{Gestionar Módulos}.
 	\end{UCtrayectoriaA}
 	

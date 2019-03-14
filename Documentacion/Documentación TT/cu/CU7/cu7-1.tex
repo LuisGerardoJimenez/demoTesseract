@@ -40,43 +40,43 @@
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12.1}{Registrar Entidad}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU7.1-P3}
 		\UCpaso[\UCactor] Gestiona los atributos a través de los botones: \IUbutton{Registrar}, \editar y \eliminar. \label{CU7.1-P4}
-		\UCpaso[\UCactor] Solicita guardar la información de la entidad oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU12.1}{Registrar Entidad}. \Trayref{A}
-		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{B}
-		\UCpaso[\UCsist] Verifica que el nombre de la entidad no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{C}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{D} 
-		\UCpaso[\UCsist] Verifica que el nombre de la entidad no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{E}
-		\UCpaso[\UCsist] Verifica que el actor haya ingresado al menos un atributo. \Trayref{F}
+		\UCpaso[\UCactor] Solicita guardar la información de la entidad oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU12.1}{Registrar Entidad}. \Trayref{RENT-A}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RENT-B}
+		\UCpaso[\UCsist] Verifica que el nombre de la entidad no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RENT-C}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RENT-D} 
+		\UCpaso[\UCsist] Verifica que el nombre de la entidad no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{RENT-E}
+		\UCpaso[\UCsist] Verifica que el actor haya ingresado al menos un atributo. \Trayref{RENT-F}
 		\UCpaso[\UCsist] Registra la información de la entidad en el sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU12}{Gestionar Entidades} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 	
-	\begin{UCtrayectoriaA}{A}{El actor desea cancelar la operación.}
+	\begin{UCtrayectoriaA}{RENT-A}{El actor desea cancelar la operación.}
 		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU12.1}{Registrar Entidad}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades}.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{B}{El actor no ingresó algún dato marcado como obligatorio.}
+	\begin{UCtrayectoriaA}{RENT-B}{El actor no ingresó algún dato marcado como obligatorio.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU12.1}{Registrar Entidad}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU7.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 	
-	\begin{UCtrayectoriaA}{C}{El actor ingresó un nombre de una entidad repetido.}
+	\begin{UCtrayectoriaA}{RENT-C}{El actor ingresó un nombre de una entidad repetido.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU12.1}{Registrar Entidad}, indicando al actor que existe una entidad con el mismo nombre.
 		\UCpaso Regresa al paso \ref{CU7.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{D}{El actor proporciona un dato que excede la longitud máxima.}
+	\begin{UCtrayectoriaA}{RENT-D}{El actor proporciona un dato que excede la longitud máxima.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU12.1}{Registrar Entidad}, para indicar que el dato excede el tamaño máximo permitido.
 		\UCpaso Regresa al paso \ref{CU7.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{E}{El actor ingresó un nombre con caracteres inválidos.}
+	\begin{UCtrayectoriaA}{RENT-E}{El actor ingresó un nombre con caracteres inválidos.}
 	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG18}{Caracteres inválidos} y señala el campo que contiene los caracteres inválidos en la pantalla \IUref{IU12.1}{Registrar Entidad}.
 	\UCpaso Regresa al paso \ref{CU7.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{F}{El actor no registró ningún atributo.}
+	\begin{UCtrayectoriaA}{RENT-F}{El actor no registró ningún atributo.}
 	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG16}{Dato incorrecto} en la sección de atributos de la pantalla \IUref{IU12.1}{Registrar Entidad}.
 	\UCpaso Regresa al paso \ref{CU7.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
