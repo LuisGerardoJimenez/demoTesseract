@@ -23,25 +23,23 @@ public class AccessBs {
 					"El usuario no ingresó el correo electrónico", "MSG4", null,
 					"userName");
 		}
-		
 		if (Validador.esNuloOVacio(password)) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la contraseña.", "MSG4", null,
 					"password");
 		}
-		
 		if (Validador.validaLongitudMaxima(userName, Constantes.NUMERO_TREINTA)) {
 			throw new PRISMAValidacionException(
-					"El usuario no ingresó el correo electrónico", "MSG4", null,
+					"El usuario no ingresó el correo electrónico", "MSG6", 
+					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres"},
 					"userName");
 		}
-		
-		if (Validador.esNuloOVacio(password)) {
+		if (Validador.validaLongitudMaxima(password, Constantes.NUMERO_VEINTE)) {
 			throw new PRISMAValidacionException(
-					"El usuario no ingresó la contraseña.", "MSG4", null,
+					"El usuario no ingresó la contraseña.", "MSG6", 
+					new String[] { Constantes.NUMERO_VEINTE.toString(), "caracteres"},
 					"password");
 		}
-		
 		try {
 			colaborador = new ColaboradorDAO().consultarColaboradorCorreo(userName);
 		} catch (Exception e) {
@@ -50,8 +48,7 @@ public class AccessBs {
 		if (colaborador == null || !colaborador.getContrasenia().equals(password)) {
 			throw new PRISMAValidacionException("Colaborador no encontrado o contraseña incorrecta", "MSG31");
 		}
-		return colaborador; 
-		
+		return colaborador;
 	}
 
 	public static boolean isLogged(Map<String, Object> userSession) {

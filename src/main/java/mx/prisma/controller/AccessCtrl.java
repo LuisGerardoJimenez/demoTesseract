@@ -82,7 +82,6 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 			} else {
 				resultado = "colaborador";
 			}
-
 		} catch (PRISMAValidacionException pve) {
 			System.out.println("Uno");
 			ErrorManager.agregaMensajeError(this, pve);

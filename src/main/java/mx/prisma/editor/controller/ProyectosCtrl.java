@@ -84,7 +84,6 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-
 		} catch (PRISMAException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {

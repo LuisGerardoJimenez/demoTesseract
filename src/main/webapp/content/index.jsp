@@ -24,7 +24,7 @@
 
 				<tr>
 					<td class="label obligatorio"><s:text name="labelCorreo" /></td>
-					<td><s:textfield name="userName" maxlength="45"
+					<td><s:textfield name="userName" maxlength="30"
 							cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 						<s:fielderror fieldName="userName" cssClass="error" theme="jquery" /></td>
 				</tr>
