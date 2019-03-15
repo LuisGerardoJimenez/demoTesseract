@@ -2,15 +2,15 @@
 
 	\Battr{curpColaborador}{CURP}{Clave Única de Registro. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener exactamente 18 caracteres. Caracteres admitidos: [A-Z] $|$ [0-9]}
 		
-	\Battr{nombreColaborador}{NOMBRE: }{Nombre o nombres de pila del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+	\Battr{nombreColaborador}{NOMBRE: }{Nombre o nombres de pila del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener como máximo 50 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [á-é-í-ó-ú] $|$ [ ]}
 		
-		\Battr{pApellidoColaborador}{Primer Apellido: }{Es el primer apellido del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		\Battr{pApellidoColaborador}{Primer Apellido: }{Es el primer apellido del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener como máximo 30 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [á-é-í-ó-ú]}
 		
-		\Battr{sApellidoColaborador}{Segundo Apellido: }{Es el segundo apellido del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		\Battr{sApellidoColaborador}{Segundo Apellido: }{Es el segundo apellido del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener como máximo 30 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [á-é-í-ó-ú]}
 		
-		\Battr{correoColaborador}{Correo Electrónico: }{Es un identificador para que el usuario inicie sesión. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe contener a lo más 50 caracteres. Es una cadena de caracteres con formato xxx@yyy.com o xxx@yyy.com.mx}
+		\Battr{correoColaborador}{Correo Electrónico: }{Es un identificador para que el usuario inicie sesión. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe contener a lo más 30 caracteres. Es una cadena de caracteres con formato xxx@yyy.com o xxx@yyy.com.mx. [A-Z] $|$ [a-z] $|$ [0-9] $|$ [\_] $|$ [-] $|$ [,]}
 		
-		\Battr{passColaborador}{Contraseña: }{Es una clave que sirve para autenticarse la cual sirve como un mecanismo de seguridad. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}).}
+		\Battr{passColaborador}{Contraseña: }{Es una clave que sirve para autenticarse la cual sirve como un mecanismo de seguridad. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe contener a lo más 20 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [0-9]}
 		
 		\Battr{telefonoColaborador}{Teléfono: }{Es una secuencia de dígitos que representan un número telefónico. Es un valor numérico y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). }
 \end{BusinessEntity}

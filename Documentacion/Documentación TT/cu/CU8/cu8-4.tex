@@ -1,0 +1,40 @@
+	\begin{UseCase}{CU8.4}{Consultar Regla de negocio}{
+		Este caso de uso permite al analista consultar la información de Regla de negocio.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Consultar la información de una regla de negocio de un proyecto.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{
+			\begin{itemize}
+				\item \cdtRef{BREntidad:claveBR}{Clave:} Lo calcula el sistma mediante la regla de negocio \BRref{RN12}{Idenficador de elemento}.
+				\item \cdtRef{BRSEntidad:numeroBR}{Número:} Lo obtiene el sistema.
+				\item \cdtRef{BREntidad:nombreBR}{Nombre:} Lo obtiene el sistema.
+				\item \cdtRef{BREntidad:descripciónBR}{Descripción:} Lo obtiene el sistema.
+				\item \cdtRef{BREntidad:redaccionBR}{Redacción:} Lo obtiene el sistema.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU9}{Gestionar Reglas de negocio} cuando la regla de negocio que se desea consultar no existe.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU8}{Gestionar Reglas de negocio}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita consultar una regla de negocio oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} del registro que desea consultar de la pantalla \IUref{IU9}{Gestionar Reglas de negocio} o la liga correspondiente a una regla de negocio en la pantalla \IUref{IU6.3}{Consultar caso de uso}.
+		\UCpaso[\UCsist] Obtiene la información de la regla de negocio seleccionado. \Trayref{CBR-A} 
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU9.3}{Consultar Regla de negocio} con la información de la regla de negocio.
+		\UCpaso[\UCactor] Consulta la información de la regla de negocio.
+		\UCpaso[\UCactor] Solicita finalizar oprimiendo el botón \IUref{Regresar} de la pantalla \IUref{IU9.3}{Consultar Regla de negocio}.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{CBR-A}{La regla de negocio que se desea consultar no existe.}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU9}{Gestionar Reglas de negocio} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\end{UCtrayectoriaA}
+
+
+	

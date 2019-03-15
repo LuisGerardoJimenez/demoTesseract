@@ -1,0 +1,52 @@
+	\begin{UseCase}{CU8.3}{Eliminar Regla de negocio}{
+		Este caso de uso permite al actor eliminar del sistema una regla de negocio.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de una regla de negocio.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU8}{Gestionar Reglas de negocio} para indicar que la regla de negocio fue eliminada correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU8}{Gestionar Reglas de negocio} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará una regla de negocio de un proyecto del sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU9}{Gestionar Regla de negocio} cuando la regla de negocio no se encuentra en un estado que permita la eliminación.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU8}{Gestionar Reglas de negocio}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar una entidad oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU9}{Gestionar Reglas de negocio}.
+		\UCpaso[\UCsist] Verifica que la regla de negocio pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EBR-A}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a la regla de negocio. \Trayref{EBR-B}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU9}{Gestionar Reglas de negocio}.
+		\UCpaso[\UCactor] Confirma la eliminación de la entidad oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EBR-C}
+		\UCpaso[\UCsist] Elimina la información referente a la regla de negocio.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU9}{Gestionar Regla de negocio} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{EBR-A}{La regla de negocio esta asociada a un caso de uso liberado.}
+		\UCpaso[\UCsist] Oculta el botón \eliminar de la regla de negocio que esta asociada a casos de uso liberados.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EBR-B}{La regla de negocio está siendo referenciado en un caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU9}{Gestionar Reglas de negocio} en una pantalla emergente con la lista de casos de uso que están referenciando a la entidad.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU9}{Gestionar Reglas de negocio}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EBR-C}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU9}{Gestionar Reglas de negocio}.
+	\end{UCtrayectoriaA}
+	
+
