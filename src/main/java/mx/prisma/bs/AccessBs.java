@@ -9,6 +9,7 @@ import mx.prisma.admin.dao.ColaboradorDAO;
 import mx.prisma.admin.model.Colaborador;
 import mx.prisma.admin.model.ColaboradorProyecto;
 import mx.prisma.admin.model.Proyecto;
+import mx.prisma.util.Constantes;
 import mx.prisma.util.Correo;
 import mx.prisma.util.PRISMAValidacionException;
 import mx.prisma.util.Validador;
@@ -18,6 +19,18 @@ public class AccessBs {
 	public static Colaborador verificarLogin(String userName, String password) {
 		Colaborador colaborador = null;
 		if (Validador.esNuloOVacio(userName)) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó el correo electrónico", "MSG4", null,
+					"userName");
+		}
+		
+		if (Validador.esNuloOVacio(password)) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la contraseña.", "MSG4", null,
+					"password");
+		}
+		
+		if (Validador.validaLongitudMaxima(userName, Constantes.NUMERO_TREINTA)) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el correo electrónico", "MSG4", null,
 					"userName");
