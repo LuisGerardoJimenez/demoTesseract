@@ -1,0 +1,39 @@
+	\begin{UseCase}{CU8}{Gestionar reglas de negocio}{
+	Este caso de uso permite al analista visualizar los registros de las reglas de negocio del sistema.
+	También permite al actor acceder a las operaciones de registro, consulta, modificación y eliminación de una regla de negocio.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de las reglas de negocio de un proyecto.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{BREntidad}{Regla de negocio}: Tabla que muestra \cdtRef{BREntidad:claveBR}{clave}, y el \cdtRef{BREntidad:nombreBR}{Nombre} de todos los registros de las reglas de negocio.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU9}{Gestionar Reglas de Negocio} cuando no existen reglas de negocio registradas.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Tipo}{Primario}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar los términos seleccionando la opción ''Reglas de negocio'' del menú \IUref{MN2}{Menú de Colaborador}.
+	\UCpaso[\UCsist] Obtiene la información de las reglas de negocio del proyecto seleccionado. \Trayref{GBR-A}
+	\UCpaso[\UCsist] Muestra la información de las reglas de negocio en la pantalla \IUref{IU9}{Gestionar Reglas de negocio} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
+	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar y \eliminar. \label{CU8-P4}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GBR-A}{No existen registros de términos}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU9}{Gestionar Reglas de negocio} para indicar que no hay registros de reglas de negocio para mostrar.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar una regla de negocio.}{Paso \ref{CU8-P4} de la trayectoria principal.}{\UCref{CU8.1}{Registrar Regla de negocio}}
+\UCExtenssionPoint{El actor requiere modificar una regla de negocio.}{Paso \ref{CU8-P4} de la trayectoria principal.}{\UCref{CU8.2}{Modificar Regla de negocio}}
+\UCExtenssionPoint{El actor requiere eliminar una regla de negocio.}{Paso \ref{CU8-P4} de la trayectoria principal.}{\UCref{CU8.3}{Eliminar Regla de negocio}}
+\UCExtenssionPoint{El actor requiere consultar una regla de negocio.}{Paso \ref{CU8-P4} de la trayectoria principal.}{\UCref{CU8.4}{Consultar Regla de negocio}}
