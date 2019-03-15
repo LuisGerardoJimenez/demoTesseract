@@ -17,10 +17,21 @@ public class Validador {
 	}
 
 	public static boolean validaLongitudMaxima(String cadena, int longitud) {
-		if(cadena == null) {
+		if (cadena == null) {
 			return false;
 		}
 		return cadena.length() > longitud;
+	}
+
+	public static boolean validaNumeroMaximo(Double numero, Double longitud) {
+		if (numero == null) {
+			return false;
+		}
+		return Double.compare(numero, longitud) > Constantes.NUMERO_CERO;
+	}
+
+	public static boolean esDouble(Object object) {
+		return object instanceof Double;
 	}
 
 	public static boolean esNuloOVacio(Set set) {
@@ -28,8 +39,7 @@ public class Validador {
 	}
 
 	public static boolean contieneCaracterInvalido(String cadena) {
-		return cadena.contains("_") || cadena.contains(":")
-				|| cadena.contains("·") || cadena.contains(".")
+		return cadena.contains("_") || cadena.contains(":") || cadena.contains("·") || cadena.contains(".")
 				|| cadena.contains(",");
 	}
 

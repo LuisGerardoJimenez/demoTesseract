@@ -44,9 +44,11 @@ public class ProyectoBs {
 		return proyectos;
 	}
 
-	public static void registrarProyecto(Proyecto model) throws Exception {
+	public static void registrarProyecto(Proyecto model, String curpLider, int idEstadoProyecto, String presupuesto) throws Exception {
 		try {
-			validar(model);
+			validar(model, curpLider, idEstadoProyecto, presupuesto);
+			ProyectoBs.agregarEstado(model, idEstadoProyecto);
+			ProyectoBs.agregarLider(model, curpLider);
 			new ProyectoDAO().registrarProyecto(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
@@ -63,7 +65,12 @@ public class ProyectoBs {
 		
 	}
 
-	private static void validar(Proyecto model) {
+	private static void validar(Proyecto model, String curpLider, int idEstadoProyecto, String presupuesto) {
+		
+		Double pre = Double.valueOf(presupuesto);
+		//if () TODO HOY
+		
+		//Validaciones campo obligatorio
 		if (Validador.esNuloOVacio(model.getClave())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la clave del proyecto.", "MSG4",
@@ -74,19 +81,71 @@ public class ProyectoBs {
 					"El usuario no ingresó el nombre del proyecto.", "MSG4",
 					null, "model.nombre");
 		}
+		if (Validador.esNulo(model.getFechaInicioProgramada())) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la fecha de inicio programada.", "MSG4",
+					null, "model.fechaInicioProgramada");
+		}
+		if (Validador.esNulo(model.getFechaTerminoProgramada())) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la fecha de término programada.", "MSG4",
+					null, "model.fechaTerminoProgramada");
+		}
+		if(curpLider.equals("-1")) {
+			throw new PRISMAValidacionException("El usuario no seleccionó el lider del proyecto.", "MSG4", null, "curpLider");
+		}
+		if (Validador.esNuloOVacio(model.getDescripcion())) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la descripción del proyecto.", "MSG4",
+					null, "model.descripcion");
+		}
+		if (Validador.esNuloOVacio(model.getContraparte())) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la contraparte del proyecto.", "MSG4",
+					null, "model.contraparte");
+		}
+		if(idEstadoProyecto == -1) {
+			throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
+		}
+		
+		//Validaciones tipo de dato
+		if (Validador.esDouble(model.getPresupuesto())) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una tipo de dato incorrecto.", "MSG5",
+					new String[] { "un", "dígitos" }, "model.presupuesto");
+		}
+		
+		//Validaciones Longitud  de campo
 		if (Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una clave muy larga.", "MSG6",
 					new String[] { Constantes.NUMERO_DIEZ.toString(), "caracteres" },
 					"model.clave");
 		}
-		
 		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_CINCUENTA)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" },
 					"model.nombre");
 		}
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una descripción muy larga.", "MSG6",
+					new String[] { Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE.toString(), "caracteres" }, "model.descripcion");
+		}
+		if (Validador.validaLongitudMaxima(model.getContraparte(), Constantes.NUMERO_CIEN)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una contraparte muy larga.", "MSG6",
+					new String[] { Constantes.NUMERO_CIEN.toString(), "caracteres" }, "model.contraparte");
+		}
+		
+		//Validacion cantidad
+		if (Validador.validaNumeroMaximo(model.getPresupuesto(), Constantes.NUMERO_MIL_MILLONES)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una presupuesto muy grande.", "MSG6",
+					new String[] { Constantes.NUMERO_DOCE.toString(), "dígitos" }, "model.presupuesto");
+		}
+		
 		//Se asegura la unicidad del nombre y clave
 		List<Proyecto> proyectosBD = new ProyectoDAO().consultarProyectos();
 		for(Proyecto proy : proyectosBD) {
@@ -107,17 +166,8 @@ public class ProyectoBs {
 				}
 			}
 		}
+		
 		// Validaciones de las fechas
-		if (Validador.esNulo(model.getFechaInicioProgramada())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la fecha de inicio programada.", "MSG4",
-					null, "model.fechaInicioProgramada");
-		}
-		if (Validador.esNulo(model.getFechaTerminoProgramada())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la fecha de término programada.", "MSG4",
-					null, "model.fechaTerminoProgramada");
-		}
 		if (model.getFechaInicio() != null && model.getFechaTermino() != null && Validador.esInvalidoOrdenFechas(model.getFechaInicio(), model.getFechaTermino())) {
 			throw new PRISMAValidacionException(
 					"El usuario ingresó en desorden las fechas.", "MSG35",
@@ -127,33 +177,7 @@ public class ProyectoBs {
 			throw new PRISMAValidacionException(
 					"El usuario ingresó en desorden las fechas.", "MSG35",
 					new String[] { "fecha de término programada", "fecha de inicio programada" }, "model.fechaTerminoProgramada");
-		}
-		// Validaciones de la descripción
-		if (Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la descripción del proyecto.", "MSG4",
-					null, "model.descripcion");
-		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una descripción muy larga.", "MSG6",
-					new String[] { "999", "caracteres" }, "model.descripcion");
-		}
-		// Validaciones de la contraparte
-		if (Validador.esNuloOVacio(model.getContraparte())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la contraparte del proyecto.", "MSG4",
-					null, "model.contraparte");
-		}
-		if (Validador.validaLongitudMaxima(model.getContraparte(), 45)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una contraparte muy larga.", "MSG6",
-					new String[] { "45", "caracteres" }, "model.contraparte");
-		}
-		
-		
-		
-				
+		}	
 	}
 
 	public static List<EstadoProyecto> consultarEstadosProyecto() {
@@ -259,7 +283,7 @@ public class ProyectoBs {
 
 	public static void modificarProyecto(Proyecto model) throws Exception {
 		try {
-			validar(model);
+			//validar(model);
 			new ProyectoDAO().modificarProyecto(model);
 		} catch (JDBCException je) {
 			System.out.println("ERROR CODE " + je.getErrorCode());

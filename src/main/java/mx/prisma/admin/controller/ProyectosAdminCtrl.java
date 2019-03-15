@@ -48,6 +48,7 @@ ModelDriven<Proyecto>, SessionAware{
 	private Integer idSel;
 	private int idEstadoProyecto;
 	private String curpLider;
+	private String presupuesto;
 	
 	public String index() throws Exception {
 		try {
@@ -95,16 +96,7 @@ ModelDriven<Proyecto>, SessionAware{
 	public String create() throws Exception {
 		String resultado = null;
 		try {
-			if(curpLider.equals("-1")) {
-				throw new PRISMAValidacionException("El usuario no seleccionó el lider del proyecto.", "MSG4", null, "curpLider");
-			}
-			if(idEstadoProyecto == -1) {
-				throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
-			}
-			
-			ProyectoBs.agregarEstado(model, idEstadoProyecto);
-			ProyectoBs.agregarLider(model, curpLider);
-			ProyectoBs.registrarProyecto(model);
+			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuesto);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "registrado" }));
@@ -255,6 +247,14 @@ ModelDriven<Proyecto>, SessionAware{
 
 	public void setListPersonas(List<Colaborador> listPersonas) {
 		this.listPersonas = listPersonas;
+	}
+
+	public String getPresupuesto() {
+		return presupuesto;
+	}
+
+	public void setPresupuesto(String presupuesto) {
+		this.presupuesto = presupuesto;
 	}
 	
 	
