@@ -13,11 +13,12 @@ public final class Constantes {
 	public static final Integer NUMERO_SIETE = 7;
 	public static final Integer NUMERO_OCHO = 8;
 	public static final Integer NUMERO_NUEVE = 9;
-	public static final Integer NUMERO_DIEZ = 2;
+	public static final Integer NUMERO_DIEZ = 10;
 	public static final Integer NUMERO_DIECIOCHO = 18;
 	public static final Integer NUMERO_VEINTE = 20;
 	public static final Integer NUMERO_TREINTA = 30;
 	public static final Integer NUMERO_CUARENTA_Y_CINCO = 45;
+	public static final Integer NUMERO_CINCUENTA = 50;
 	
 	//ERRORES
 	public static final String NUMERO_UNO_NEGATIVO_STRING = "-1";
