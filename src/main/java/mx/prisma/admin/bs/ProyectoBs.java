@@ -16,6 +16,7 @@ import mx.prisma.admin.model.Rol;
 import mx.prisma.bs.EstadoProyectoEnum;
 import mx.prisma.bs.RolBs;
 import mx.prisma.bs.RolBs.Rol_Enum;
+import mx.prisma.util.Constantes;
 import mx.prisma.util.PRISMAException;
 import mx.prisma.util.PRISMAValidacionException;
 import mx.prisma.util.Validador;
@@ -63,27 +64,28 @@ public class ProyectoBs {
 	}
 
 	private static void validar(Proyecto model) {
-		// Validaciones de la clave
 		if (Validador.esNuloOVacio(model.getClave())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la clave del proyecto.", "MSG4",
 					null, "model.clave");
 		}
-		if (Validador.validaLongitudMaxima(model.getClave(), 10)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una clave muy larga.", "MSG6",
-					new String[] { "10", "caracteres" }, "model.clave");
-		}
-		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el nombre del proyecto.", "MSG4",
 					null, "model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), 50)) {
+		if (Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una clave muy larga.", "MSG6",
+					new String[] { Constantes.NUMERO_DIEZ.toString(), "caracteres" },
+					"model.clave");
+		}
+		
+		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_CINCUENTA)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { "50", "caracteres" }, "model.nombre");
+					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" },
+					"model.nombre");
 		}
 		//Se asegura la unicidad del nombre y clave
 		List<Proyecto> proyectosBD = new ProyectoDAO().consultarProyectos();
