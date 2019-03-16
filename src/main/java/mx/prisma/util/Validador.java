@@ -2,6 +2,8 @@ package mx.prisma.util;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -57,6 +59,24 @@ public class Validador {
 
 	public static boolean esInvalidoOrdenFechas(Date fechaInicio, Date fechaTermino) {
 		return fechaInicio.after(fechaTermino) ? true : false;
+	}
+
+	public static boolean esAlfanumerico(String cadena) {
+		Pattern pattern = Pattern.compile(Constantes.REGEX_CAMPO_ALFANUMERICO);
+		Matcher mat = pattern.matcher(cadena);
+		if(mat.matches()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean esAlfanumericoMayusculasSinEspacios(String cadena) {
+		Pattern pattern = Pattern.compile(Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS);
+		Matcher mat = pattern.matcher(cadena);
+		if(mat.matches()) {
+			return true;
+		}
+		return false;
 	}
 
 }

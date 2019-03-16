@@ -67,7 +67,7 @@ public class ProyectoBs {
 
 	private static void validar(Proyecto model, String curpLider, int idEstadoProyecto, String presupuesto) {
 		
-		Double pre = Double.valueOf(presupuesto);
+		//Double pre = Double.valueOf(presupuesto);
 		//if () TODO HOY
 		
 		//Validaciones campo obligatorio
@@ -91,7 +91,7 @@ public class ProyectoBs {
 					"El usuario no ingresó la fecha de término programada.", "MSG4",
 					null, "model.fechaTerminoProgramada");
 		}
-		if(curpLider.equals("-1")) {
+		if(curpLider.equals(Constantes.NUMERO_UNO_NEGATIVO_STRING)) {
 			throw new PRISMAValidacionException("El usuario no seleccionó el lider del proyecto.", "MSG4", null, "curpLider");
 		}
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
@@ -104,15 +104,8 @@ public class ProyectoBs {
 					"El usuario no ingresó la contraparte del proyecto.", "MSG4",
 					null, "model.contraparte");
 		}
-		if(idEstadoProyecto == -1) {
+		if(idEstadoProyecto == Constantes.NUMERO_UNO_NEGATIVO) {
 			throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
-		}
-		
-		//Validaciones tipo de dato
-		if (Validador.esDouble(model.getPresupuesto())) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una tipo de dato incorrecto.", "MSG5",
-					new String[] { "un", "dígitos" }, "model.presupuesto");
 		}
 		
 		//Validaciones Longitud  de campo
@@ -128,10 +121,10 @@ public class ProyectoBs {
 					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" },
 					"model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE)) {
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una descripción muy larga.", "MSG6",
-					new String[] { Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE.toString(), "caracteres" }, "model.descripcion");
+					new String[] { Constantes.NUMERO_MIL.toString(), "caracteres" }, "model.descripcion");
 		}
 		if (Validador.validaLongitudMaxima(model.getContraparte(), Constantes.NUMERO_CIEN)) {
 			throw new PRISMAValidacionException(
@@ -139,8 +132,25 @@ public class ProyectoBs {
 					new String[] { Constantes.NUMERO_CIEN.toString(), "caracteres" }, "model.contraparte");
 		}
 		
+		//Validaciones tipo de dato
+				if (Validador.esAlfanumericoMayusculasSinEspacios(model.getClave())) {
+					throw new PRISMAValidacionException(
+							"El usuario ingreso una clave incorrecta.", "MSG5",
+							new String[] { "una", "clave correcta" }, "model.clave");
+				}
+				if (Validador.esAlfanumerico(model.getNombre())) {
+					throw new PRISMAValidacionException(
+							"El usuario ingreso un nombre incorrecto.", "MSG5",
+							new String[] { "un", "nombre correcto" }, "model.nombre");
+				}
+				if (Validador.esDouble(model.getPresupuesto())) {
+					throw new PRISMAValidacionException(
+							"El usuario ingreso una tipo de dato incorrecto.", "MSG5",
+							new String[] { "un", "dígitos" }, "model.presupuesto");
+				}
+		
 		//Validacion cantidad
-		if (Validador.validaNumeroMaximo(model.getPresupuesto(), Constantes.NUMERO_MIL_MILLONES)) {
+		/*if (Validador.validaNumeroMaximo(model.getPresupuesto(), Constantes.NUMERO_MIL_MILLONES)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una presupuesto muy grande.", "MSG6",
 					new String[] { Constantes.NUMERO_DOCE.toString(), "dígitos" }, "model.presupuesto");
@@ -177,7 +187,7 @@ public class ProyectoBs {
 			throw new PRISMAValidacionException(
 					"El usuario ingresó en desorden las fechas.", "MSG35",
 					new String[] { "fecha de término programada", "fecha de inicio programada" }, "model.fechaTerminoProgramada");
-		}	
+		}	*/
 	}
 
 	public static List<EstadoProyecto> consultarEstadosProyecto() {
