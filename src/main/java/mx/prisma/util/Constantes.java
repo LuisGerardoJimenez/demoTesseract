@@ -23,12 +23,22 @@ public final class Constantes {
 	public static final Integer NUMERO_CUARENTA_Y_CINCO = 45;
 	public static final Integer NUMERO_CINCUENTA = 50;
 	public static final Integer NUMERO_CIEN = 100;
-	public static final Integer NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE = 999;
+	public static final Integer NUMERO_MIL = 1000;
 	
 	//NUMEROS CONSTANTES DOUBLES
 	public static final Double NUMERO_MIL_MILLONES = 1000000000.00;
 	
 	//ERRORES
 	public static final String NUMERO_UNO_NEGATIVO_STRING = "-1";
+	
+	//EXPRESIONES REGULARES
+	public static final String REGEX_CAMPO_ALFANUMERICO = "^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s]+$";
+	public static final String REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS = "^[A-Z0-9ÑÁÉÍÓÚ]+$";
+	public static final String REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES = "^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s\\.\\,]+$";
+	public static final String REGEX_CAMPO_ALFABETICO = "^[a-zA-zñÑáéíóúÁÉÍÓÚ\\s]+$";
+	public static final String REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS = "^[a-zA-zñÑáéíóúÁÉÍÓÚ]+$";
+	public static final String REGEX_CAMPO_NUMERICO_ENTERO = "^[0-9]+$";
+	public static final String REGEX_PRESUPUESTO = "^[0-9]{1,9}\\.[0-9]{1,2}$";
+	public static final String REGEX_CURP = "^([A-Z][AEIOUX][A-Z]{2}\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\\d])(\\d)$";
 
 }
