@@ -65,10 +65,7 @@ public class ProyectoBs {
 		
 	}
 
-	private static void validar(Proyecto model, String curpLider, int idEstadoProyecto, String presupuesto) {
-		
-		//Double pre = Double.valueOf(presupuesto);
-		//if () TODO HOY
+	private static void validar(Proyecto model, String curpLider, int idEstadoProyecto, String presupuestoString) {
 		
 		//Validaciones campo obligatorio
 		if (Validador.esNuloOVacio(model.getClave())) {
@@ -107,7 +104,6 @@ public class ProyectoBs {
 		if(idEstadoProyecto == Constantes.NUMERO_UNO_NEGATIVO) {
 			throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
 		}
-		
 		//Validaciones Longitud  de campo
 		if (Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
 			throw new PRISMAValidacionException(
@@ -131,29 +127,32 @@ public class ProyectoBs {
 					"El usuario ingreso una contraparte muy larga.", "MSG6",
 					new String[] { Constantes.NUMERO_CIEN.toString(), "caracteres" }, "model.contraparte");
 		}
-		
 		//Validaciones tipo de dato
-				if (Validador.esAlfanumericoMayusculasSinEspacios(model.getClave())) {
-					throw new PRISMAValidacionException(
-							"El usuario ingreso una clave incorrecta.", "MSG5",
-							new String[] { "una", "clave correcta" }, "model.clave");
-				}
-				if (Validador.esAlfanumerico(model.getNombre())) {
-					throw new PRISMAValidacionException(
-							"El usuario ingreso un nombre incorrecto.", "MSG5",
-							new String[] { "un", "nombre correcto" }, "model.nombre");
-				}
-				if (Validador.esDouble(model.getPresupuesto())) {
-					throw new PRISMAValidacionException(
-							"El usuario ingreso una tipo de dato incorrecto.", "MSG5",
-							new String[] { "un", "dígitos" }, "model.presupuesto");
-				}
-		
-		//Validacion cantidad
-		/*if (Validador.validaNumeroMaximo(model.getPresupuesto(), Constantes.NUMERO_MIL_MILLONES)) {
+		if (Validador.esInvalidaREGEX(model.getClave(), Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS)) {
 			throw new PRISMAValidacionException(
-					"El usuario ingreso una presupuesto muy grande.", "MSG6",
-					new String[] { Constantes.NUMERO_DOCE.toString(), "dígitos" }, "model.presupuesto");
+				"El usuario ingreso una clave incorrecta.", "MSG50", null, "model.clave");
+		}
+		System.out.println("Validación REGEX Nombre");
+		if (Validador.esInvalidaREGEX(model.getNombre(), Constantes.REGEX_CAMPO_ALFANUMERICO)) {
+			throw new PRISMAValidacionException(
+				"El usuario ingreso un nombre incorrecto.", "MSG50", null, "model.nombre");
+		}
+		if (Validador.esInvalidaREGEX(model.getDescripcion(), Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una descripción incorrecta.", "MSG50", null, "model.descripcion");
+		}
+		if (Validador.esInvalidaREGEX(model.getContraparte(), Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una contraparte incorrecta.", "MSG50", null, "model.contraparte");
+		}
+		if (!Validador.esNuloOVacio(presupuestoString)) {
+			if (Validador.esInvalidaREGEX(presupuestoString, Constantes.REGEX_PRESUPUESTO)) {
+				throw new PRISMAValidacionException(
+					"El usuario ingreso presupuesto incorrecto.", "MSG50", null, "presupuestoString");
+			} else {
+				System.out.println("Entro a guardar");
+				model.setPresupuesto(Double.valueOf(presupuestoString));
+			}
 		}
 		
 		//Se asegura la unicidad del nombre y clave
@@ -178,16 +177,18 @@ public class ProyectoBs {
 		}
 		
 		// Validaciones de las fechas
+		// Se verifica nulidad para validar fechas en caso de haber ingresado un valor
 		if (model.getFechaInicio() != null && model.getFechaTermino() != null && Validador.esInvalidoOrdenFechas(model.getFechaInicio(), model.getFechaTermino())) {
 			throw new PRISMAValidacionException(
 					"El usuario ingresó en desorden las fechas.", "MSG35",
 					new String[] { "fecha de término", "fecha de inicio" }, "model.fechaTermino");
 		}
-		if (model.getFechaInicioProgramada() != null && model.getFechaTerminoProgramada() != null && Validador.esInvalidoOrdenFechas(model.getFechaInicioProgramada(), model.getFechaTerminoProgramada())) {
+		// No se verifica nulidad, anteriormente se verificó
+		if (Validador.esInvalidoOrdenFechas(model.getFechaInicioProgramada(), model.getFechaTerminoProgramada())) {
 			throw new PRISMAValidacionException(
 					"El usuario ingresó en desorden las fechas.", "MSG35",
 					new String[] { "fecha de término programada", "fecha de inicio programada" }, "model.fechaTerminoProgramada");
-		}	*/
+		}
 	}
 
 	public static List<EstadoProyecto> consultarEstadosProyecto() {
@@ -303,7 +304,7 @@ public class ProyectoBs {
 			he.printStackTrace();
 			throw new Exception();
 		}
-		
+
 	}
 
 	public static List<Proyecto> findByColaborador(Colaborador colaborador) throws Exception {

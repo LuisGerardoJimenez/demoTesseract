@@ -48,7 +48,7 @@ ModelDriven<Proyecto>, SessionAware{
 	private Integer idSel;
 	private int idEstadoProyecto;
 	private String curpLider;
-	private String presupuesto;
+	private String presupuestoString;
 	
 	public String index() throws Exception {
 		try {
@@ -58,7 +58,6 @@ ModelDriven<Proyecto>, SessionAware{
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-
 		} catch (PRISMAException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
@@ -68,7 +67,6 @@ ModelDriven<Proyecto>, SessionAware{
 	}
 	
 	public String editNew() throws Exception {
-
 		String resultado = null;
 		try {
 			buscarCatalogos();
@@ -96,7 +94,8 @@ ModelDriven<Proyecto>, SessionAware{
 	public String create() throws Exception {
 		String resultado = null;
 		try {
-			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuesto);
+			System.out.println("Presupuesto: "+presupuestoString);
+			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "registrado" }));
@@ -249,12 +248,12 @@ ModelDriven<Proyecto>, SessionAware{
 		this.listPersonas = listPersonas;
 	}
 
-	public String getPresupuesto() {
-		return presupuesto;
+	public String getPresupuestoString() {
+		return presupuestoString;
 	}
 
-	public void setPresupuesto(String presupuesto) {
-		this.presupuesto = presupuesto;
+	public void setPresupuestoString(String presupuesto) {
+		this.presupuestoString = presupuesto;
 	}
 	
 	
