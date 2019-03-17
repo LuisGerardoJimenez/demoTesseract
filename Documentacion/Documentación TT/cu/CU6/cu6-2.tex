@@ -34,14 +34,13 @@
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita registrar un módulo oprimiendo el botón \editar de la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
 		\UCpaso[\UCsist] Obtiene la información del término.
-		\UCpaso[\UCsist] Verifica que el término pueda modificarse con base en la regla de negocio \BRref{RN5}{Modificación de elementos asociados a casos de uso liberados}. \Trayref{MT-G}
+		\UCpaso[\UCsist] Verifica que el término pueda modificarse con base en la regla de negocio \BRref{RN5}{Modificación de elementos asociados a casos de uso liberados}. \Trayref{MT-F}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11.2}{Modificar Término} con la información obtenida.
 		\UCpaso[\UCactor] Modifica el nombre y la descripción del término. \label{CU6.2-P5}
 		\UCpaso[\UCactor] Solicita modificar del término oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU11.2}{Modificar Término}. \Trayref{MT-A}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{MT-B}
-		\UCpaso[\UCsist] Verifica que el nombre del término no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{MT-C}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{D} \Trayref{MT-E}
-		\UCpaso[\UCsist] Verifica que el nombre del término no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{MT-F}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{MT-C} \Trayref{MT-D}
+		\UCpaso[\UCsist] Verifica que el nombre del término no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{MT-E}
 		\UCpaso[\UCsist] Modifica la información del término en el sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU11}{Gestionar Términos del glosario} para indicar al actor que el registro se ha modificado exitosamente.
 	\end{UCtrayectoria}		
@@ -56,28 +55,22 @@
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU11.2}{Modificar Término}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
 	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MT-C}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU11.2}{Modificar Término}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
 	
-	\begin{UCtrayectoriaA}{MT-C}{El actor ingresó un nombre de término repetido.}
+	\begin{UCtrayectoriaA}{MT-D}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU11.2}{Modificar Término}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{MT-E}{El actor ingresó un nombre de término repetido.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU11.2}{Modificar Término}, indicando al actor que existe un término con el mismo nombre.
 		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{MT-D}{El actor proporciona un dato que excede la longitud máxima.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU11.2}{Modificar Término}, para indicar que el dato excede el tamaño máximo permitido.
-		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{MT-E}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU11.2}{Modificar Término}, para indicar que se ha ingresado un tipo de dato inválido.
-		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{MT-F}{El actor ingresó un nombre con caracteres inválidos.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG18}{Caracteres inválidos} y señala el campo que contiene los caracteres inválidos en la pantalla \IUref{IU11.2}{Modificar Término}.
-	\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-
-	\begin{UCtrayectoriaA}{MT-G}{El término no puede modificarse debido a que se encuentra asociado a casos de uso liberados.}
+	\begin{UCtrayectoriaA}{MT-F}{El término no puede modificarse debido a que se encuentra asociado a casos de uso liberados.}
 		\UCpaso[\UCsist] Oculta el botón \editar del término que esta asociado a casos de uso liberados.
 	\end{UCtrayectoriaA}

@@ -1,4 +1,4 @@
-	\begin{UseCase}{CU6.1}{Registrar Regla de negocio}{
+	\begin{UseCase}{CU8.1}{Registrar Regla de negocio}{
 		Este caso de uso permite al analista registrar la información de una regla de negocio.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
@@ -66,16 +66,15 @@
 		\UCpaso[\UCsist] Ingresa la redacción de la regla de negocio. \label{CU8.1-P9}
 		\UCpaso[\UCactor] Solicita guardar la información de la regla de negocio oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU9.1A}{Registrar Regla de negocio: Comparación de atributos}, \IUref{IU9.1B}{Registrar Regla de negocio: Unicidad de parámetros} o \IUref{IU9.1C}{Registrar Regla de negocio: Formato correcto}, según corresponda. \Trayref{RBR-B}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RBR-C}
-		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RBR-D}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RBR-E}
-		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{RBR-F}
-		\UCpaso[\UCsist] Verifica que el número de la regla de negocio no se encuentre registrado con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{RBR-G}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RBR-D} \Trayref{RBR-E}
+		\UCpaso[\UCsist] Verifica que el número de la regla de negocio no se encuentre registrado con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{RBR-F}
+		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RBR-G}
 		\UCpaso[\UCsist] Registra la información de la regla de negocio en el sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU9}{Gestionar Reglas de negocio} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 	
-	\begin{UCtrayectoriaA}{RBR-A}{El actor desea cancelar la operación.}
+	\begin{UCtrayectoriaA}{RBR-A}{La regla de negocio no requiere parámetros.}
 		\UCpaso[\UCactor] Continúa con el paso \ref{CU8.1-P9} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 	
@@ -89,24 +88,24 @@
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{RBR-D}{El actor ingresó un nombre de regla de negocio repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RBR-E}{El actor proporciona un dato que excede la longitud máxima.}
+	\begin{UCtrayectoriaA}{RBR-D}{El actor proporciona un dato que excede la longitud máxima.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, para indicar que el dato excede el tamaño máximo permitido.
 		\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RBR-F}{El actor ingresó un nombre con caracteres inválidos.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG18}{Caracteres inválidos} y señala el campo que contiene los caracteres inválidos en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}.
-	\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
+	
+	\begin{UCtrayectoriaA}{RBR-E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RBR-G}{El actor ingresó un número de regla de negocio repetido.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en
-	la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo número.
-	\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
+	\begin{UCtrayectoriaA}{RBR-F}{El actor ingresó un número de regla de negocio repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en
+		la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo número.
+		\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RBR-G}{El actor ingresó un nombre de regla de negocio repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU8.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
