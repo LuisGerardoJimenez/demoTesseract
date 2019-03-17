@@ -38,9 +38,8 @@
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU7.1.1-P3}
 		\UCpaso[\UCactor] Solicita guardar la información de atributo oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU12.1.1}{Registrar Atributo}. \Trayref{RATR-A}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RATR-B}
-		\UCpaso[\UCsist] Verifica que el nombre del atributo no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RATR-C}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RATR-D} \Trayref{RATR-E}
-		\UCpaso[\UCsist] Verifica que el nombre del atributo no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{RATR-F}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RATR-C} \Trayref{RATR-D}
+		\UCpaso[\UCsist] Verifica que el nombre del atributo no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RATR-E}
 		\UCpaso[\UCsist] Agrega el atributo a la tabla de la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad}.
 	\end{UCtrayectoria}		
 %--------------------------------------
@@ -54,24 +53,20 @@
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU12.1.1}{Registrar Atributo}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU7.1.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{RATR-C}{El actor ingresó un nombre de un atributo repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU12.1.1}{Registrar Atributo}, indicando al actor que existe un atributo con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU7.1.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RATR-D}{El actor proporciona un dato que excede la longitud máxima.}
+	\begin{UCtrayectoriaA}{RATR-C}{El actor proporciona un dato que excede la longitud máxima.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU12.1.1}{Registrar Atributo}, para indicar que el dato excede el tamaño máximo permitido.
 		\UCpaso Regresa al paso \ref{CU7.1.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RATR-E}{El actor ingresó un tipo de dato incorrecto.}
+	\begin{UCtrayectoriaA}{RATR-D}{El actor ingresó un tipo de dato incorrecto.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU12.1.1}{Registrar Atributo} para indicar que se ha ingresado un tipo de dato inválido.
 		\UCpaso Regresa al paso \ref{CU7.1.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RATR-F}{El actor ingresó un nombre con caracteres inválidos.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG18}{Caracteres inválidos} y señala el campo que contiene los caracteres inválidos en la pantalla \IUref{IU12.1.1}{Registrar Atributo}.
-	\UCpaso Regresa al paso \ref{CU7.1.1-P3} de la trayectoria principal.
+	\begin{UCtrayectoriaA}{RATR-E}{El actor ingresó un nombre de un atributo repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU12.1.1}{Registrar Atributo}, indicando al actor que existe un atributo con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU7.1.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
+
 

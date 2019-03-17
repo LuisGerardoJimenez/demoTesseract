@@ -81,7 +81,7 @@
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita registrar un término oprimiendo el botón \IUbutton{Registrar} del registro que desea modificar en la pantalla \IUref{IU9}{Gestionar Reglas de negocio}.
 		\UCpaso[\UCsist] Obtiene la información de la regla de negocio.
-		\UCpaso[\UCsist] Verifica que la regla de negocio pueda modificarse con base en la regla de negocio \BRref{RN5}{Modificación de elementos asociados a casos de uso liberados}. \Trayref{MBR-H}
+		\UCpaso[\UCsist] Verifica que la regla de negocio pueda modificarse con base en la regla de negocio \BRref{RN5}{Modificación de elementos asociados a casos de uso liberados}. \Trayref{MBR-G}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU9.2}{Modificar Regla de negocio}.
 		\UCpaso[\UCactor] Modifica la información solicitada en la pantalla. \label{CU8.2-P5}
 		\UCpaso[\UCactor] Selecciona el tipo de regla de negocio.
@@ -91,19 +91,16 @@
 		\UCpaso[\UCsist] Ingresa la redacción de la regla de negocio. \label{CU8.2-P11}
 		\UCpaso[\UCactor] Solicita guardar los cambio de la regla de negocio oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU9.2A}{Modificar Regla de negocio: Comparación de atributos}, \IUref{IU9.2B}{Modificar Regla de negocio: Unicidad de parámetros} o \IUref{IU9.2C}{Modificar Regla de negocio: Formato correcto}, según corresponda. \Trayref{MBR-B}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{MBR-C}
-		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{MBR-D}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{MBR-E}
-		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{MBR-F}
-		\UCpaso[\UCsist] Verifica que el número de la regla de negocio no se encuentre registrado con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{MBR-G}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{MBR-D} \Trayref{MBR-E}
+		\UCpaso[\UCsist] Verifica que el número de la regla de negocio no se encuentre registrado con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{MBR-F}
 		\UCpaso[\UCsist] Registra los cambios de la regla de negocio en el sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU9}{Gestionar Reglas de negocio} para indicar al actor que la modificación se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 	
-	\begin{UCtrayectoriaA}{MBR-A}{El actor desea cancelar la operación.}
+	\begin{UCtrayectoriaA}{MBR-A}{La regla de negocio no requiere parámetros..}
 		\UCpaso[\UCactor] Continúa con el paso \ref{CU8.2-P11} de la trayectoria principal.
 	\end{UCtrayectoriaA}
-	
 	
 	\begin{UCtrayectoriaA}{MBR-B}{El actor desea cancelar la operación.}
 		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU9.2}{Modificar Regla de negocio}
@@ -114,28 +111,28 @@
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU9.2}{Modificar Regla de negocio}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
 	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{MBR-D}{El actor ingresó un nombre de regla de negocio repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU9.2}{Modificar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{MBR-E}{El actor proporciona un dato que excede la longitud máxima.}
+	\begin{UCtrayectoriaA}{MBR-D}{El actor proporciona un dato que excede la longitud máxima.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU9.2}{Modificar Regla de negocio}, para indicar que el dato excede el tamaño máximo permitido.
 		\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{MBR-F}{El actor ingresó un nombre con caracteres inválidos.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG18}{Caracteres inválidos} y señala el campo que contiene los caracteres inválidos en la pantalla \IUref{IU9.2}{Modificar Regla de negocio}.
-	\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
+	\begin{UCtrayectoriaA}{MBR-E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{MBR-E}{El actor ingresó un número de regla de negocio repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en
+		la pantalla \IUref{IU9.2}{Modificar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo número.
+		\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{MBR-F}{El actor ingresó un nombre de regla de negocio repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU9.2}{Modificar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{MBR-G}{El actor ingresó un número de regla de negocio repetido.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en
-	la pantalla \IUref{IU9.2}{Modificar Regla de negocio}, indicando al actor que existe una regla de negocio con el mismo número.
-	\UCpaso Regresa al paso \ref{CU8.2-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{MBR-H}{La regla de negocio no puede modificarse debido a que se encuentra asociada a casos de uso liberados.}
+	\begin{UCtrayectoriaA}{MBR-G}{La regla de negocio no puede modificarse debido a que se encuentra asociada a casos de uso liberados.}
 		\UCpaso[\UCsist] Oculta el botón \editar de la regla de negocio que esta asociada a casos de uso liberados.
 	\end{UCtrayectoriaA}
