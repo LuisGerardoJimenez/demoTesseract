@@ -118,10 +118,9 @@
 					
 					<tr>
 						<td class="label"><s:text name="labelPresupuesto" /></td>
-						<td><s:textfield name="model.presupuesto" maxlength="12" type="number"
-								min="0" max="999999999.99" step="0.1"
+						<td><s:textfield name="presupuestoString" maxlength="12"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
-							<s:fielderror fieldName ="model.presupuesto" cssClass="error"
+							<s:fielderror fieldName ="presupuestoString" cssClass="error"
 								theme="jquery" /></td>
 					</tr>
 					
