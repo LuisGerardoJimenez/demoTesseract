@@ -34,7 +34,7 @@ public final class Constantes {
 	//EXPRESIONES REGULARES
 	public static final String REGEX_CAMPO_ALFANUMERICO = "^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s]+$";
 	public static final String REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS = "^[A-Z0-9ÑÁÉÍÓÚ]+$";
-	public static final String REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES = "^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s\\.\\,]+$";
+	public static final String REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES = "^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\\s\\-\\,]+$";
 	public static final String REGEX_CAMPO_ALFABETICO = "^[a-zA-zñÑáéíóúÁÉÍÓÚ\\s]+$";
 	public static final String REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS = "^[a-zA-zñÑáéíóúÁÉÍÓÚ]+$";
 	public static final String REGEX_CAMPO_NUMERICO_ENTERO = "^[0-9]+$";

@@ -25,13 +25,6 @@ public class Validador {
 		return cadena.length() > longitud;
 	}
 
-	public static boolean validaNumeroMaximo(Double numero, Double longitud) {
-		if (numero == null) {
-			return false;
-		}
-		return Double.compare(numero, longitud) > Constantes.NUMERO_CERO;
-	}
-
 	public static boolean esDouble(Object object) {
 		return object instanceof Double;
 	}
@@ -61,22 +54,13 @@ public class Validador {
 		return fechaInicio.after(fechaTermino) ? true : false;
 	}
 
-	public static boolean esAlfanumerico(String cadena) {
-		Pattern pattern = Pattern.compile(Constantes.REGEX_CAMPO_ALFANUMERICO);
+	public static boolean esInvalidaREGEX(String cadena, String regex) {
+		Pattern pattern = Pattern.compile(regex);
 		Matcher mat = pattern.matcher(cadena);
 		if(mat.matches()) {
-			return true;
+			return false;
 		}
-		return false;
-	}
-	
-	public static boolean esAlfanumericoMayusculasSinEspacios(String cadena) {
-		Pattern pattern = Pattern.compile(Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS);
-		Matcher mat = pattern.matcher(cadena);
-		if(mat.matches()) {
-			return true;
-		}
-		return false;
+		return true;
 	}
 
 }

@@ -99,7 +99,7 @@ public class Proyecto implements java.io.Serializable {
 	}
 
 	public void setClave(String clave) {
-		this.clave = clave;
+		this.clave = clave.trim();
 	}
 
 	@Column(name = "nombre", unique = true, nullable = false, length = 50)
