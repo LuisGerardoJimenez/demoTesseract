@@ -121,9 +121,9 @@
 
 					<tr>
 						<td class="label"><s:text name="labelPresupuesto" /></td>
-						<td><s:textfield name="model.presupuesto"
+						<td><s:textfield name="presupuestoString" maxlength="12"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
-							<s:fielderror fieldName="model.presupuesto" cssClass="error"
+							<s:fielderror fieldName="presupuestoString" cssClass="error"
 								theme="jquery" /></td>
 					</tr>
 

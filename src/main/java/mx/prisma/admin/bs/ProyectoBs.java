@@ -64,9 +64,25 @@ public class ProyectoBs {
 		}
 		
 	}
+	
+	public static void modificarProyecto(Proyecto model, String curpLider, int idEstadoProyecto, String presupuestoString) throws Exception {
+		try {
+			validar(model, curpLider, idEstadoProyecto, presupuestoString);
+			ProyectoBs.agregarEstado(model, idEstadoProyecto);
+			ProyectoBs.agregarLider(model, curpLider);
+			new ProyectoDAO().modificarProyecto(model);
+		} catch (JDBCException je) {
+			System.out.println("ERROR CODE " + je.getErrorCode());
+			je.printStackTrace();
+			throw new Exception();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			throw new Exception();
+		}
+
+	}
 
 	private static void validar(Proyecto model, String curpLider, int idEstadoProyecto, String presupuestoString) {
-		
 		//Validaciones campo obligatorio
 		if (Validador.esNuloOVacio(model.getClave())) {
 			throw new PRISMAValidacionException(
@@ -104,7 +120,7 @@ public class ProyectoBs {
 		if(idEstadoProyecto == Constantes.NUMERO_UNO_NEGATIVO) {
 			throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
 		}
-		//Validaciones Longitud  de campo
+		//Valida Longitud
 		if (Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una clave muy larga.", "MSG6",
@@ -130,12 +146,11 @@ public class ProyectoBs {
 		//Validaciones tipo de dato
 		if (Validador.esInvalidaREGEX(model.getClave(), Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS)) {
 			throw new PRISMAValidacionException(
-				"El usuario ingreso una clave incorrecta.", "MSG50", null, "model.clave");
+					"El usuario ingreso una clave incorrecta.", "MSG50", null, "model.clave");
 		}
-		System.out.println("Validación REGEX Nombre");
 		if (Validador.esInvalidaREGEX(model.getNombre(), Constantes.REGEX_CAMPO_ALFANUMERICO)) {
 			throw new PRISMAValidacionException(
-				"El usuario ingreso un nombre incorrecto.", "MSG50", null, "model.nombre");
+					"El usuario ingreso un nombre incorrecto.", "MSG50", null, "model.nombre");
 		}
 		if (Validador.esInvalidaREGEX(model.getDescripcion(), Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES)) {
 			throw new PRISMAValidacionException(
@@ -148,9 +163,8 @@ public class ProyectoBs {
 		if (!Validador.esNuloOVacio(presupuestoString)) {
 			if (Validador.esInvalidaREGEX(presupuestoString, Constantes.REGEX_PRESUPUESTO)) {
 				throw new PRISMAValidacionException(
-					"El usuario ingreso presupuesto incorrecto.", "MSG50", null, "presupuestoString");
+						"El usuario ingreso presupuesto incorrecto.", "MSG50", null, "presupuestoString");
 			} else {
-				System.out.println("Entro a guardar");
 				model.setPresupuesto(Double.valueOf(presupuestoString));
 			}
 		}
@@ -290,21 +304,6 @@ public class ProyectoBs {
 		}
 		
 		return estados;
-	}
-
-	public static void modificarProyecto(Proyecto model) throws Exception {
-		try {
-			//validar(model);
-			new ProyectoDAO().modificarProyecto(model);
-		} catch (JDBCException je) {
-			System.out.println("ERROR CODE " + je.getErrorCode());
-			je.printStackTrace();
-			throw new Exception();
-		} catch (HibernateException he) {
-			he.printStackTrace();
-			throw new Exception();
-		}
-
 	}
 
 	public static List<Proyecto> findByColaborador(Colaborador colaborador) throws Exception {
