@@ -1,5 +1,6 @@
 package mx.prisma.admin.controller;
 
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import mx.prisma.util.ErrorManager;
 import mx.prisma.util.PRISMAException;
 import mx.prisma.util.PRISMAValidacionException;
 import mx.prisma.util.SessionManager;
+import mx.prisma.util.Validador;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.ResultPath;
@@ -133,7 +135,10 @@ ModelDriven<Proyecto>, SessionAware{
 	private void prepararVista() {
 		idEstadoProyecto = model.getEstadoProyecto().getId();
 		curpLider = ProyectoBs.consultarColaboradorProyectoLider(model).getColaborador().getCurp();
-		presupuestoString = model.getPresupuesto().toString();
+		if (!Validador.esNulo(model.getPresupuesto())) {
+			DecimalFormat df2 = new DecimalFormat(".##");
+			presupuestoString = df2.format(model.getPresupuesto()).toString();
+		}
 	}
 
 	public String update() throws Exception {
