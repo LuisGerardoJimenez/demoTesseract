@@ -28,7 +28,8 @@
 		}
 		\UCitem{Errores}{\begin{itemize}
 		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando no se ha ingresado un dato marcado como obligatorio.
-		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG5}{Formato de campo incorrecto}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando el número de mensaje contiene un carácter no válido.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando se ha excedido la longitud de alguno de los campos.
 		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando se registre un mensaje con un nombre o número que ya se encuentre registrado en el sistema.
 		\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU10.1}{Registrar Mensaje} cuando el nombre demensaje contiene un carácter no válido
@@ -38,15 +39,15 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
-		\UCpaso[\UCactor] Solicita registrar una entidad oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU10}{Gestionar Mensajes}.
+		\UCpaso[\UCactor] Solicita registrar una mensaje oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU10}{Gestionar Mensajes}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU10.1}{Registrar Mensaje: No parametrizado}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU9.1-P3} \Trayref{RMSG-A}
 		\UCpaso[\UCactor] Solicita guardar la información del mensaje oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU10.1}{Registrar Mensaje}. \label{CU9.1-P4} \Trayref{RMSG-B} 
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RMSG-C}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RMSG-D} \Trayref{E}
-		\UCpaso[\UCsist] Verifica que el número del mensaje no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{RMSG-F}
-		\UCpaso[\UCsist] Verifica que el nombre de la entidad no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RMSG-G}
-		\UCpaso[\UCsist] Verifica que el nombre de la entidad no contenga caracteres inválidos con base en la regla de negocio \BRref{RN2}{Nombres de los elementos}. \Trayref{RMSG-F} 
+		\UCpaso[\UCsist] Verifica que el número del mensaje sea proporcionado correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RMSG-F}
+		\UCpaso[\UCsist] Verifica que el número del mensaje no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{RMSG-G}
+		\UCpaso[\UCsist] Verifica que el nombre de la mensaje no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RMSG-H} 
 		\UCpaso[\UCsist] Registra la información del mensaje en el sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU10}{Gestionar Mensajes} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
@@ -76,16 +77,21 @@
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RMSG-E}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU9.1}{Registrar Regla de negocio}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU10.1}{Registrar Mensaje}, para indicar que se ha ingresado un tipo de dato inválido.
 		\UCpaso Regresa al paso \ref{CU9.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RMSG-F}{El actor ingresó un número de mensaje repetido.}
+	\begin{UCtrayectoriaA}{RMSG-F}{El actor ingresó un número de mensaje con un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Formato de campo incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU10.1}{Registrar Mensaje}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU9.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RMSG-G}{El actor ingresó un número de mensaje repetido.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} señala el campo que presenta la duplicidad en la pantalla \IUref{IU10.1}{Registrar Mensaje}, indicando al actor que existe un mensaje con el mismo número.
 		\UCpaso Regresa al paso \ref{CU9.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 	
-	\begin{UCtrayectoriaA}{RMSG-D}{El actor ingresó un nombre de un mensaje repetido.}
+	\begin{UCtrayectoriaA}{RMSG-H}{El actor ingresó un nombre de un mensaje repetido.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU10.1}{Registrar Mensaje}, indicando al actor que existe un mensaje con el mismo nombre.
 		\UCpaso Regresa al paso \ref{CU9.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}

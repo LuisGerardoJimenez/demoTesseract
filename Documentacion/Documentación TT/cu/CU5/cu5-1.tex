@@ -27,7 +27,7 @@
 		}
 		\UCitem{Errores}{\begin{itemize}
 		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando no se ha ingresado un dato marcado como obligatorio.
-		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en
 		el campo.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando se ha excedido la longitud de alguno de los campos.
 		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU4.1}{Registrar Módulo} cuando se registre un módulo con un nombre o clave que ya se encuentra registrada en el sistema.
@@ -66,7 +66,7 @@
 	\end{UCtrayectoriaA}
 	
 	\begin{UCtrayectoriaA}{RM-D}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Dato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU4.1}{Registrar Módulo}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU4.1}{Registrar Módulo}, para indicar que se ha ingresado un tipo de dato inválido.
 		\UCpaso Regresa al paso \ref{CU5.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 	
