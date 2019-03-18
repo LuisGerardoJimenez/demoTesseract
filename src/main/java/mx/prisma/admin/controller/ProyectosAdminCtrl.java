@@ -67,7 +67,7 @@ ModelDriven<Proyecto>, SessionAware{
 	}
 	
 	public String editNew() throws Exception {
-		String resultado = null;
+		String resultado;
 		try {
 			buscarCatalogos();
 			resultado = EDITNEW;
@@ -92,14 +92,12 @@ ModelDriven<Proyecto>, SessionAware{
 	}
 
 	public String create() throws Exception {
-		String resultado = null;
+		String resultado;
 		try {
-			System.out.println("Presupuesto: "+presupuestoString);
 			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "registrado" }));
-
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 		} catch (PRISMAValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
@@ -116,7 +114,7 @@ ModelDriven<Proyecto>, SessionAware{
 	
 	public String edit() throws Exception {
 
-		String resultado = null;
+		String resultado;
 		try {
 			buscarCatalogosModificacion();
 			prepararVista();
@@ -135,26 +133,16 @@ ModelDriven<Proyecto>, SessionAware{
 	private void prepararVista() {
 		idEstadoProyecto = model.getEstadoProyecto().getId();
 		curpLider = ProyectoBs.consultarColaboradorProyectoLider(model).getColaborador().getCurp();
+		presupuestoString = model.getPresupuesto().toString();
 	}
 
 	public String update() throws Exception {
-		String resultado = null;
+		String resultado;
 		try {
-			if(curpLider.equals("-1")) {
-				throw new PRISMAValidacionException("El usuario no seleccionó el lider del proyecto.", "MSG4", null, "curpLider");
-			}
-			if(idEstadoProyecto == -1) {
-				throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
-			}
-
-			ProyectoBs.agregarEstado(model, idEstadoProyecto);
-			ProyectoBs.agregarLider(model, curpLider);
-			
-			ProyectoBs.modificarProyecto(model);
+			ProyectoBs.modificarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "modificado" }));
-
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 		} catch (PRISMAValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
@@ -170,7 +158,7 @@ ModelDriven<Proyecto>, SessionAware{
 	}
 	
 	public String destroy() throws Exception {
-		String resultado = null;
+		String resultado;
 		try {
 			ProyectoBs.eliminarProyecto(model);
 			resultado = SUCCESS;
