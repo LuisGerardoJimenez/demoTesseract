@@ -24,6 +24,20 @@ public class Validador {
 		}
 		return cadena.length() > longitud;
 	}
+	
+	public static boolean validaLongitudMinima(String cadena, int longitud) {
+		if (cadena == null) {
+			return false;
+		}
+		return cadena.length() < longitud;
+	}
+	
+	public static boolean validaLongitudExacta(String cadena, int longitud) {
+		if (cadena == null) {
+			return false;
+		}
+		return cadena.length() != longitud;
+	}
 
 	public static boolean esDouble(Object object) {
 		return object instanceof Double;
@@ -67,16 +81,20 @@ public class Validador {
 		Pattern pattern = Pattern.compile(Constantes.REGEX_CURP);
 		Matcher mat = pattern.matcher(cadena);
 		if (mat.matches()) {
-			System.out.println("Entro validador: ");
 			String diccionario  = Constantes.DICCIONARIO;
-			Double lngSuma = 0.0;
-			Double lngDigito = 0.0;
+			Double lngSuma = Constantes.NUMERO_CERO_DOUBLE;
+			Double lngDigito = Constantes.NUMERO_CERO_DOUBLE;
 			for(int i=Constantes.NUMERO_CERO; i<Constantes.NUMERO_DIECISIETE; i++) {
 				lngSuma = lngSuma + diccionario.indexOf(cadena.charAt(i)) * (Constantes.NUMERO_DIECIOCHO - i);
 				lngDigito = Constantes.NUMERO_DIEZ - lngSuma % Constantes.NUMERO_DIEZ;
 			}
-			System.out.println("Valor resultante: "+lngDigito);
-			return true;
+			if (lngDigito.equals(Constantes.NUMERO_DIEZ_DOUBLE)) { 
+				lngDigito = Constantes.NUMERO_CERO_DOUBLE;
+			}
+			Double digitoValidador = Double.valueOf(String.valueOf(cadena.charAt(Constantes.NUMERO_DIECISIETE)));
+			if (lngDigito.equals(digitoValidador)) {
+				return false;
+			}
 		}
 		return true;
 	}
