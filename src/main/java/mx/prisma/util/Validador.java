@@ -62,5 +62,23 @@ public class Validador {
 		}
 		return true;
 	}
+	
+	public static boolean esInvalidoCurp(String cadena) {
+		Pattern pattern = Pattern.compile(Constantes.REGEX_CURP);
+		Matcher mat = pattern.matcher(cadena);
+		if (mat.matches()) {
+			System.out.println("Entro validador: ");
+			String diccionario  = Constantes.DICCIONARIO;
+			Double lngSuma = 0.0;
+			Double lngDigito = 0.0;
+			for(int i=Constantes.NUMERO_CERO; i<Constantes.NUMERO_DIECISIETE; i++) {
+				lngSuma = lngSuma + diccionario.indexOf(cadena.charAt(i)) * (Constantes.NUMERO_DIECIOCHO - i);
+				lngDigito = Constantes.NUMERO_DIEZ - lngSuma % Constantes.NUMERO_DIEZ;
+			}
+			System.out.println("Valor resultante: "+lngDigito);
+			return true;
+		}
+		return true;
+	}
 
 }

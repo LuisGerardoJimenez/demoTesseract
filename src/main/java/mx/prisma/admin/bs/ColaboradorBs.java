@@ -76,6 +76,10 @@ public class ColaboradorBs {
 					"El usuario ingreso una CURP muy larga.", "MSG6",
 					new String[] { "18", "caracteres" }, "model.curp");
 		}
+		if (Validador.esInvalidoCurp(model.getCurp())) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una CURP invalida.", "MSG50", null, "model.curp");
+		}
 		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
 			throw new PRISMAValidacionException(
