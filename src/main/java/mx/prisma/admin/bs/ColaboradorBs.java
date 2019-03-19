@@ -150,7 +150,7 @@ public class ColaboradorBs {
 		}
 		if (!Validador.esCorreo(model.getCorreoElectronico())) {
 			throw new PRISMAValidacionException(
-					"El correo que ingreso no es un correo valido", "El correo que ingreso no es un correo valido",null, "model.correoElectronico");
+					"El correo que ingreso no es un correo valido", "MSG50", null, "model.correoElectronico");
 		}
 		
 		
