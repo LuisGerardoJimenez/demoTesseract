@@ -31,7 +31,6 @@
 		}
 		\UCitem{Errores}{\begin{itemize}
 		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU3.2}{Modificar Persona} cuando no se ha ingresado un dato marcado como obligatorio.
-		\item \cdtIdRef{MSG28}{Longitud de CURP inválida}: Se muestra en la pantalla \IUref{IU3.2}{Modificar Persona} cuando la CURP ingresada no cumple con la longitud especificada.
 		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU3.2}{Modificar Persona} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU3.2}{Modificar Persona} cuando se ha excedido la longitud de alguno de los campos.
 		\end{itemize}
@@ -47,10 +46,9 @@
 		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU3.2}{Modificar Persona}. \Trayref{MPE-A}
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{MPE-B}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{MPE-C} \Trayref{MPE-D}
-		\UCpaso[\UCsist] Verifica que la CURP ingresada sea válida con base en la regla de negocio \BRref{RN33}{Longitud de la CURP}. \Trayref{MPE-E}
 		\UCpaso[\UCsist] Actualiza la información del proyecto en el sistema.
-		\UCpaso[\UCsist] Verifica que el correo electrónico y la contraseña de la persona no hayan cambiado. \Trayref{MPE-F}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar al actor que la modificación se ha realizado exitosamente. \ref{CU3.2-P10}
+		\UCpaso[\UCsist] Verifica que el correo electrónico y la contraseña de la persona no hayan cambiado. \Trayref{MPE-E}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar al actor que la modificación se ha realizado exitosamente. 
 	\end{UCtrayectoria}		
 %--------------------------------------
 		\begin{UCtrayectoriaA}{MPE-A}{El actor desea cancelar la operación.}
@@ -73,17 +71,10 @@
 	\begin{UCtrayectoriaA}{MPE-D}{El actor ingresó un tipo de dato incorrecto.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU3.2}{Modificar Persona}, para indicar que se ha ingresado un tipo de dato inválido.
 		\UCpaso Regresa al paso \ref{CU3.2-P4} de la trayectoria principal.
-
-
-	\begin{UCtrayectoriaA}{MPE-E}{El actor ingresó una CURP con una longitud incorrecta.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG28}{Longitud de CURP inválida} y señala el campo que presenta el error en la pantalla \IUref{IU3.2}{Modificar Persona}, indicando al actor que la CURP no cumple con la longitud especificada.
-		\UCpaso Regresa al paso \ref{CU3.2-P4} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
 	\end{UCtrayectoriaA}
 
 
-	\begin{UCtrayectoriaA}{MPE-F}{El actor modificó el correo electrónico o la contraseña.}
+	\begin{UCtrayectoriaA}{MPE-E}{El actor modificó el correo electrónico o la contraseña.}
 		\UCpaso[\UCsist] Envía un correo con el mensaje \cdtIdRef{MSG25}{Datos de sesión} a la cuenta de correo electrónico proporcionada por el actor.
 		\UCpaso Regresa al paso \ref{CU3.2-P4} de la trayectoria principal.
 	\end{UCtrayectoriaA}
