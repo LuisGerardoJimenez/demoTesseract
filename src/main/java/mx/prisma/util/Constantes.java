@@ -15,7 +15,6 @@ public final class Constantes {
 	public static final Integer NUMERO_OCHO = 8;
 	public static final Integer NUMERO_NUEVE = 9;
 	public static final Integer NUMERO_DIEZ = 10;
-	public static final Double NUMERO_DIEZ_DOUBLE = 10.0;
 	public static final Integer NUMERO_ONCE = 11;
 	public static final Integer NUMERO_DOCE = 12;
 	public static final Integer NUMERO_DIECISIETE = 17;
@@ -26,6 +25,10 @@ public final class Constantes {
 	public static final Integer NUMERO_CINCUENTA = 50;
 	public static final Integer NUMERO_CIEN = 100;
 	public static final Integer NUMERO_MIL = 1000;
+	
+	//NUMEROS CONSTATNES DOUBLES
+	public static final Double NUMERO_CERO_DOUBLE= 0.0;
+	public static final Double NUMERO_DIEZ_DOUBLE = 10.0;
 	
 	//NUMEROS CONSTANTES DOUBLES
 	public static final Double NUMERO_MIL_MILLONES = 1000000000.00;

@@ -14,6 +14,7 @@ import mx.prisma.admin.model.Colaborador;
 import mx.prisma.admin.model.ColaboradorProyecto;
 import mx.prisma.bs.RolBs;
 import mx.prisma.bs.RolBs.Rol_Enum;
+import mx.prisma.util.Constantes;
 import mx.prisma.util.Correo;
 import mx.prisma.util.PRISMAException;
 import mx.prisma.util.PRISMAValidacionException;
@@ -65,64 +66,96 @@ public class ColaboradorBs {
 	}
 
 	private static void validar(Colaborador model) {
-		//Validaciones del CURP
+		//Validaciones campo obligatorio
 		if (Validador.esNuloOVacio(model.getCurp())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la CURP del colaborador.", "MSG4",
 					null, "model.curp");
 		}
-		if (Validador.validaLongitudMaxima(model.getCurp(), 18)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una CURP muy larga.", "MSG6",
-					new String[] { "18", "caracteres" }, "model.curp");
-		}
-		if (Validador.esInvalidoCurp(model.getCurp())) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una CURP invalida.", "MSG50", null, "model.curp");
-		}
-		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el nombre del colaborador.", "MSG4",
 					null, "model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), 45)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { "45", "caracteres" }, "model.nombre");
-		}
-		// Validaciones de los apellidos
 		if (Validador.esNuloOVacio(model.getApellidoPaterno())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el apellido paterno del colaborador.", "MSG4",
 					null, "model.apellidoPaterno");
 		}
-		if (Validador.validaLongitudMaxima(model.getApellidoPaterno(), 45)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un apellido paterno muy largo.", "MSG6",
-					new String[] { "45", "caracteres" }, "model.apellidoPaterno");
-		}
-		if (Validador.validaLongitudMaxima(model.getApellidoMaterno(), 45)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un apellido materno muy largo.", "MSG6",
-					new String[] { "45", "caracteres" }, "model.apellidoMaterno");
-		}
-		// Validaciones del correo
 		if (Validador.esNuloOVacio(model.getCorreoElectronico())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el correo del colaborador.", "MSG4",
 					null, "model.correoElectronico");
 		}
-		if (Validador.validaLongitudMaxima(model.getCorreoElectronico(), 45)) {
+		if (Validador.esNuloOVacio(model.getContrasenia())) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la contraseña del colaborador.", "MSG4",
+					null, "model.contrasenia");
+		}
+		//Validaciones Longitud
+		if (Validador.validaLongitudExacta(model.getCurp(), Constantes.NUMERO_DIECIOCHO)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una CURP muy larga.", "MSG51", null, "model.curp");
+		}
+		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_TREINTA)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre muy largo.", "MSG6",
+					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.nombre");
+		}
+		if (Validador.validaLongitudMaxima(model.getApellidoPaterno(), Constantes.NUMERO_TREINTA)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un apellido paterno muy largo.", "MSG6",
+					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.apellidoPaterno");
+		}
+		if (!Validador.esNulo(model.getApellidoMaterno())) {
+			if (Validador.validaLongitudMaxima(model.getApellidoMaterno(), Constantes.NUMERO_TREINTA)) {
+				throw new PRISMAValidacionException(
+						"El usuario ingreso un apellido materno muy largo.", "MSG6",
+						new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.apellidoMaterno");
+			}
+		}
+		if (Validador.validaLongitudMaxima(model.getCorreoElectronico(), Constantes.NUMERO_TREINTA)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso un correo muy largo.", "MSG6",
-					new String[] { "45", "caracteres" }, "model.correoElectronico");
+					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.correoElectronico");
 		}
-		System.out.println(model.getCorreoElectronico());
+		if (Validador.validaLongitudMinima(model.getContrasenia(), Constantes.NUMERO_OCHO)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una contraseña muy corta.", "MSG53",
+					new String[] { Constantes.NUMERO_OCHO.toString(), "caracteres" }, "model.contrasenia");
+		}
+		if (Validador.validaLongitudMaxima(model.getContrasenia(), Constantes.NUMERO_VEINTE)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una contraseña muy larga.", "MSG6",
+					new String[] { Constantes.NUMERO_VEINTE.toString(), "caracteres" }, "model.contrasenia");
+		}
+		//Validaciones tipo de dato
+		if (Validador.esInvalidoCurp(model.getCurp())) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una CURP invalida.", "MSG52", null, "model.curp");
+		}
+		if (Validador.esInvalidaREGEX(model.getNombre(), Constantes.REGEX_CAMPO_ALFABETICO)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre incorrecto.", "MSG50", null, "model.nombre");
+		}
+		if (Validador.esInvalidaREGEX(model.getApellidoPaterno(), Constantes.REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un apellido paterno incorrecto.", "MSG50", null, "model.apellidoPaterno");
+		}
+		if (!Validador.esNulo(model.getApellidoMaterno())) {
+			if (Validador.esInvalidaREGEX(model.getApellidoMaterno(), Constantes.REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS)) {
+				throw new PRISMAValidacionException(
+						"El usuario ingreso un apellido materno incorrecto.", "MSG50", null, "model.apellidoMaterno");
+			}
+		}
 		if (!Validador.esCorreo(model.getCorreoElectronico())) {
 			throw new PRISMAValidacionException(
 					"El correo que ingreso no es un correo valido", "El correo que ingreso no es un correo valido",null, "model.correoElectronico");
 		}
+		
+		
+		//Validaciones Negocio
+		
 		Colaborador colaboradorBD = new ColaboradorDAO().consultarColaboradorCorreo(model.getCorreoElectronico());
 		if(colaboradorBD != null && !colaboradorBD.getCurp().equals(model.getCurp())) {
 			throw new PRISMAValidacionException(
@@ -130,18 +163,6 @@ public class ColaboradorBs {
 					"MSG7",
 					new String[] { "El", "Correo electrónico", model.getCorreoElectronico() },
 					"model.correoElectronico");
-		}
-		
-		// Validaciones de la contraseña
-		if (Validador.esNuloOVacio(model.getContrasenia())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la contraseña del colaborador.", "MSG4",
-					null, "model.contrasenia");
-		}
-		if (Validador.validaLongitudMaxima(model.getContrasenia(), 20)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una contraseña muy larga.", "MSG6",
-					new String[] { "20", "caracteres" }, "model.contrasenia");
 		}
 		
 	}

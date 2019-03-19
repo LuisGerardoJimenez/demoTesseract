@@ -120,7 +120,7 @@ public class ProyectoBs {
 		if(idEstadoProyecto == Constantes.NUMERO_UNO_NEGATIVO) {
 			throw new PRISMAValidacionException("El usuario no seleccionó el estado del proyecto.", "MSG4", null, "idEstadoProyecto");
 		}
-		//Valida Longitud
+		//Validaciones Longitud
 		if (Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una clave muy larga.", "MSG6",
@@ -169,6 +169,7 @@ public class ProyectoBs {
 			}
 		}
 		
+		//Validaciones Negocio
 		//Se asegura la unicidad del nombre y clave
 		List<Proyecto> proyectosBD = new ProyectoDAO().consultarProyectos();
 		for(Proyecto proy : proyectosBD) {
