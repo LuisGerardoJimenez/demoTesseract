@@ -161,7 +161,6 @@ public class ColaboradorBs {
 		Colaborador colaboradorBD;
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR)) {
 			colaboradorBD = new ColaboradorDAO().consultarColaboradorCURP(model.getCurp());
-			System.out.println("Colaborador: "+colaboradorBD);
 			if(colaboradorBD != null && colaboradorBD.getCurp().equals(model.getCurp())) {
 				throw new PRISMAValidacionException(
 						"El CURP ya existe.", "MSG7", new String[] { "El", "CURP", model.getCurp() }, "model.curp");
