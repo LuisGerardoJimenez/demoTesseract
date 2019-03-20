@@ -36,29 +36,7 @@ public class MensajeDAO extends ElementoDAO {
 		}
 	}
 
-//	public void modificarMensaje(Mensaje mensaje, Actualizacion actualizacion)
-//			throws Exception {
-//		try {
-//			session.beginTransaction();
-//			Query query1 = session
-//					.createQuery("DELETE FROM MensajeParametro WHERE mensaje.id = :id");
-//			query1.setParameter("id", mensaje.getId());
-//			query1.executeUpdate();
-//
-//			for (MensajeParametro parametro : mensaje.getParametros()) {
-//				session.saveOrUpdate(parametro.getParametro());
-//			}
-//			session.update(mensaje);
-//			session.save(actualizacion);
-//			session.getTransaction().commit();
-//		} catch (HibernateException he) {
-//			he.printStackTrace();
-//			session.getTransaction().rollback();
-//			throw he;
-//		}
-//	}
-	
-	public void modificarMensaje(Mensaje mensaje)
+	public void modificarMensaje(Mensaje mensaje, Actualizacion actualizacion)
 			throws Exception {
 		try {
 			session.beginTransaction();
@@ -68,6 +46,30 @@ public class MensajeDAO extends ElementoDAO {
 			query1.executeUpdate();
 
 			for (MensajeParametro parametro : mensaje.getParametros()) {
+				session.saveOrUpdate(parametro.getParametro());
+			}
+			session.update(mensaje);
+			session.save(actualizacion);
+			session.getTransaction().commit();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			session.getTransaction().rollback();
+			throw he;
+		}
+	}
+	
+	public void modificarMensaje(Mensaje mensaje)
+			throws Exception {
+		try {
+			session.beginTransaction();
+			Query query1 = session
+					.createQuery("DELETE FROM MensajeParametro WHERE mensaje.id = :id");
+			query1.setParameter("id", mensaje.getId());
+			query1.executeUpdate();
+			System.out.println("ENTRO AQUI");
+			for (MensajeParametro parametro : mensaje.getParametros()) {
+				System.err.println(parametro.getParametro().getNombre());
+				System.err.println(parametro.getParametro().getDescripcion());
 				session.saveOrUpdate(parametro.getParametro());
 			}
 			session.update(mensaje);
