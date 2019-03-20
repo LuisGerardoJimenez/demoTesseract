@@ -45,7 +45,7 @@ public class ColaboradorBs {
 
 	public static void registrarColaborador(Colaborador model) throws Exception {
 		try {
-			validar(model);
+			validar(model, Constantes.VALIDACION_REGISTRAR);
 			new ColaboradorDAO().registrarColaborador(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
@@ -65,9 +65,9 @@ public class ColaboradorBs {
 		
 	}
 
-	private static void validar(Colaborador model) {
+	private static void validar(Colaborador model, String bandera) {
 		//Validaciones campo obligatorio
-		if (Validador.esNuloOVacio(model.getCurp())) {
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esNuloOVacio(model.getCurp())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la CURP del colaborador.", "MSG4",
 					null, "model.curp");
@@ -93,7 +93,7 @@ public class ColaboradorBs {
 					null, "model.contrasenia");
 		}
 		//Validaciones Longitud
-		if (Validador.validaLongitudExacta(model.getCurp(), Constantes.NUMERO_DIECIOCHO)) {
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.validaLongitudExacta(model.getCurp(), Constantes.NUMERO_DIECIOCHO)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una CURP muy larga.", "MSG51", null, "model.curp");
 		}
@@ -130,7 +130,7 @@ public class ColaboradorBs {
 					new String[] { Constantes.NUMERO_VEINTE.toString(), "caracteres" }, "model.contrasenia");
 		}
 		//Validaciones tipo de dato
-		if (Validador.esInvalidoCurp(model.getCurp())) {
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esInvalidoCurp(model.getCurp())) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una CURP invalida.", "MSG52", null, "model.curp");
 		}
@@ -152,18 +152,27 @@ public class ColaboradorBs {
 			throw new PRISMAValidacionException(
 					"El correo que ingreso no es un correo valido", "MSG50", null, "model.correoElectronico");
 		}
-		if (!Validador.esInvalidaREGEX(model.getContrasenia(), Constantes.REGEX_CONTRASENIA)) {
+		if (Validador.esInvalidaREGEX(model.getContrasenia(), Constantes.REGEX_CONTRASENIA)) {
 			throw new PRISMAValidacionException(
 					"La contraseña que ingreso no es valida", "MSG50", null, "model.contrasenia");
 		}
 		
 		//Validaciones Negocio
-		Colaborador colaboradorBD = new ColaboradorDAO().consultarColaboradorCorreo(model.getCorreoElectronico());
-		if(colaboradorBD != null && !colaboradorBD.getCurp().equals(model.getCurp())) {
+		Colaborador colaboradorBD;
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR)) {
+			colaboradorBD = new ColaboradorDAO().consultarColaboradorCURP(model.getCurp());
+			System.out.println("Colaborador: "+colaboradorBD);
+			if(colaboradorBD != null && colaboradorBD.getCurp().equals(model.getCurp())) {
+				throw new PRISMAValidacionException(
+						"El CURP ya existe.", "MSG7", new String[] { "El", "CURP", model.getCurp() }, "model.curp");
+			}
+		}
+		
+		colaboradorBD = new ColaboradorDAO().consultarColaboradorCorreo(model.getCorreoElectronico());
+		if(colaboradorBD != null && !colaboradorBD.getCurp().equals(model.getCurp()) && colaboradorBD.getCorreoElectronico().equals(model.getCorreoElectronico())) {
 			throw new PRISMAValidacionException(
-					"El correo del colaborador ya existe.", "MSG7",
-					new String[] { "El", "correo electrónico", model.getCorreoElectronico() },
-					"model.correoElectronico");
+					"El correo del colaborador ya existe.", "MSG7", 
+					new String[] { "El", "correo electrónico", model.getCorreoElectronico() }, "model.correoElectronico");
 		}
 		
 	}
@@ -184,7 +193,7 @@ public class ColaboradorBs {
 
 	public static void modificarColaborador(Colaborador model) throws Exception {
 		try {
-			validar(model);
+			validar(model, Constantes.VALIDACION_EDITAR);
 			new ColaboradorDAO().modificarColaborador(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {

@@ -44,7 +44,6 @@ ModelDriven<Colaborador>, SessionAware{
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-
 		} catch (PRISMAException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
@@ -55,7 +54,7 @@ ModelDriven<Colaborador>, SessionAware{
 	
 	public String editNew() throws Exception {
 
-		String resultado = null;
+		String resultado;
 		try {
 			resultado = EDITNEW;
 		} catch (PRISMAException pe) {
@@ -71,14 +70,13 @@ ModelDriven<Colaborador>, SessionAware{
 	}
 	
 	public String create() throws Exception {
-		String resultado = null;
+		String resultado;
 		try {
 			ColaboradorBs.registrarColaborador(model);
 			ColaboradorBs.enviarCorreo(model, null, null);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Persona", "registrada" }));
-
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 		} catch (PRISMAValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
