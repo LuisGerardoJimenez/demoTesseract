@@ -36,6 +36,10 @@ public final class Constantes {
 	//ERRORES
 	public static final String NUMERO_UNO_NEGATIVO_STRING = "-1";
 	
+	//BANDERAS DE VALIDACIONES
+	public static final String VALIDACION_REGISTRAR = "Registrar";
+	public static final String VALIDACION_EDITAR = "Editar";
+	
 	//DICCIONARIO
 	public static final String DICCIONARIO = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 	
@@ -48,6 +52,6 @@ public final class Constantes {
 	public static final String REGEX_CAMPO_NUMERICO_ENTERO = "^[0-9]+$";
 	public static final String REGEX_PRESUPUESTO = "^[0-9]{1,9}\\.[0-9]{1,2}$";
 	public static final String REGEX_CURP = "^([A-Z][AEIOUX][A-Z]{2}\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\\d])(\\d)$";
-	public static final String REGEX_CONTRASENIA = "^([a-zA-Z0-9\\(\\)\\-\\_\\!\\?\\&\\@\\%\\#]{8,20})$";
+	public static final String REGEX_CONTRASENIA = "^[a-zA-Z0-9\\(\\)\\-\\_\\!\\?\\&\\@\\%\\#]{8,20}$";
 
 }

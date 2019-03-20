@@ -38,6 +38,7 @@
 	<!-- Se habilita el DMI -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 
+	<!-- Se define el nombre del parámetro enviado por url -->
 	<constant name="struts.mapper.idParameterName" value="idSel" />
 
 	<package name="prisma" extends="rest-default,json-default">

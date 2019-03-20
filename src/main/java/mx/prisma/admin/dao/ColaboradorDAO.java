@@ -107,4 +107,25 @@ public class ColaboradorDAO extends GenericDAO {
 			return colaboradores.get(0);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Colaborador consultarColaboradorCURP(String curp) {
+		List<Colaborador> colaboradores = null;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("FROM Colaborador WHERE CURP = :curp");
+			query.setParameter("curp", curp);
+			colaboradores = query.list();
+			session.getTransaction().commit();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			session.getTransaction().rollback();
+			throw he;
+		}
+		if (colaboradores == null || colaboradores.isEmpty()) {
+			return null;
+		} else {
+			return colaboradores.get(0);
+		}
+	}
 }
