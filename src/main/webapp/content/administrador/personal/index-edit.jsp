@@ -36,7 +36,7 @@
 					</tr>
 					<tr>
 						<td class="label obligatorio"><s:text name="labelNombre" /></td>
-						<td><s:textfield name="model.nombre" maxlength="45"
+						<td><s:textfield name="model.nombre" maxlength="30"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 							<s:fielderror fieldName ="model.nombre" cssClass="error"
 								theme="jquery" /></td>
@@ -44,7 +44,7 @@
 					
 					<tr>
 						<td class="label obligatorio"><s:text name="labelPrimerApellido" /></td>
-						<td><s:textfield name="model.apellidoPaterno" maxlength="45"
+						<td><s:textfield name="model.apellidoPaterno" maxlength="30"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 							<s:fielderror fieldName ="model.apellidoPaterno" cssClass="error"
 								theme="jquery" /></td>
@@ -52,7 +52,7 @@
 					
 					<tr>
 						<td class="label"><s:text name="labelSegundoApellido" /></td>
-						<td><s:textfield name="model.apellidoMaterno" maxlength="45"
+						<td><s:textfield name="model.apellidoMaterno" maxlength="30"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 							<s:fielderror fieldName ="model.apellidoMaterno" cssClass="error"
 								theme="jquery" /></td>
@@ -60,7 +60,7 @@
 					
 					<tr>
 						<td class="label obligatorio"><s:text name="labelCorreo" /></td>
-						<td><s:textfield name="model.correoElectronico" maxlength="45"
+						<td><s:textfield name="model.correoElectronico" maxlength="30"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 							<s:fielderror fieldName ="model.correoElectronico" cssClass="error"
 								theme="jquery" /></td>
