@@ -30,30 +30,52 @@
 				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} para indicar que el registro fue exitoso.
 		\end{itemize}}
 		\UCitem{Destino}{Pantalla}
-		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que exista al menos una regla de negocio registrada en el proyecto actual.
+				\item Que exista al menos una entidad registrada en el proyecto actual.
+				\item Que exista al menos un atributo de una entidad registrada en el proyecto actual.
+				\item Que exista al menos un caso de uso registrado en el proyecto actual.
+				\item Que exista al menos una pantalla registrada en el proyecto actual.
+				\item Que exista al menos una acción de una pantalla registrada en el proyecto actual.
+				\item Que exista al menos un mensaje registrado en el proyecto actual.
+				\item Que exista al menos un actor registrado en el proyecto actual.
+				\item Que exista al menos un término de glosario registrado en el proyecto actual.
+			\end{itemize}
+		}
 		\UCitem{Postcondiciones}{
 		\begin{itemize}
 			\item Se registrará un nuevo caso de uso en el sistema con estado ''Edición''.
 		\end{itemize}
 		}
 		\UCitem{Errores}{\begin{itemize}
-		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU8.1}{Registrar Actor} cuando no se ha ingresado un dato marcado como obligatorio.
-		\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU8.1}{Registrar Actor} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
-		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU8.1}{Registrar Actor} cuando se ha excedido la longitud de alguno de los campos.
-		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU8.1}{Registrar Actor} cuando se registre un actor con un nombre que ya se encuentre registrado en el sistema.
-		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando no existe información base para el sistema.
-		\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU8.1}{Registrar Actor} cuando el nombre de un actor contiene un carácter no válido
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG5}{Formato de campo incorrecto}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Mensaje} cuando el número del caso de uso contiene un carácter no válido.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando se registre un actor con un nombre que ya se encuentre registrado en el sistema.
+		\item \cdtIdRef{MSG14}{Dato no registrado}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando un elemento referenciado no existe en el sistema.
+		\item \cdtIdRef{MSG19}{Token Incorrecto}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando el token ingresado se encuentra estructurado de forma incorrecta.
 		\end{itemize}.
 		}
-		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU10}{Gestionar Actores}.}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU11}{Gestionar Casos de uso}.}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
-		\UCpaso[\UCactor] Solicita registrar una actor oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU8}{Gestionar Actores}.
-		\UCpaso[\UCactor] Verifica que exista información referente a la Cardinalidad con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \Trayref{RACT-A}
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8.1}{Registrar Actor}.
-		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU10.1-P4}
-		\UCpaso[\UCactor] Solicita guardar la información del actor oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU8.1}{Registrar Actor}. \label{CU10.1-P5} \Trayref{RACT-B} 
+		\UCpaso[\UCactor] Solicita registrar un caso de uso oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+		\UCpaso[\UCsist] Obtiene las reglas de negocio del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene las entidades del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los atributos del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los casos de uso del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene las pantallas del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene las acciones de las pantallas del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los mensajes del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los actores del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los términos de glosario del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1}{Registrar Caso de uso}.
+		\UCpaso[\UCactor] Ingresa la información general del caso de uso.
+		\UCpaso[\UCactor] Ingresa los actores del caso de uso.
+		\UCpaso[\UCactor] Solicita guardar la información del actor oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso}. \label{CU10.1-P5} \Trayref{RACT-B} 
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RACT-C}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RACT-D} \Trayref{RACT-E}
 		\UCpaso[\UCsist] Verifica que el nombre del actor no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RACT-F} 
@@ -67,26 +89,31 @@
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RACT-B}{El actor desea cancelar la operación.}
-		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU8.1}{Registrar Actor}.
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores}.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RACT-C}{El actor no ingresó algún dato marcado como obligatorio.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU8.1}{Registrar Actor}, indicando al actor que el dato es obligatorio.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RACT-D}{El actor proporciona un dato que excede la longitud máxima.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU8.1}{Registrar Actor}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, para indicar que el dato excede el tamaño máximo permitido.
 		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RACT-E}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU8.1}{Registrar Actor}, para indicar que se ha ingresado un tipo de dato inválido.
+	\begin{UCtrayectoriaA}{RMSG-E}{El actor ingresó un número de mensaje con un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Formato de campo incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU10.1}{Registrar Mensaje}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RACT-F}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, para indicar que se ha ingresado un tipo de dato inválido.
 		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 	
-	\begin{UCtrayectoriaA}{RACT-F}{El actor ingresó un nombre de un actor repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU8.1}{Registrar Actor}, indicando al actor que existe un mensaje con el mismo nombre.
+	\begin{UCtrayectoriaA}{RACT-G}{El actor ingresó un nombre de un actor repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que existe un mensaje con el mismo nombre.
 		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
 	\end{UCtrayectoriaA}
