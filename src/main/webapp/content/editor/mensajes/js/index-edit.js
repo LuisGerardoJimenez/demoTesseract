@@ -109,6 +109,7 @@ function tablaToJson(idTable) {
 			}
 
 			var jsonParametros = JSON.stringify(arregloParametros);
+			console.log(jsonParametros);
 			document.getElementById("jsonParametros").value = jsonParametros;
 		}
 	} catch (err) {

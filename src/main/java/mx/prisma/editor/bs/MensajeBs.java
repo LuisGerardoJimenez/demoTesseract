@@ -13,7 +13,6 @@ import mx.prisma.editor.dao.MensajeDAO;
 import mx.prisma.editor.dao.ParametroDAO;
 import mx.prisma.editor.dao.ReferenciaParametroDAO;
 import mx.prisma.editor.dao.SalidaDAO;
-import mx.prisma.editor.model.Actualizacion;
 import mx.prisma.editor.model.CasoUso;
 import mx.prisma.editor.model.Mensaje;
 import mx.prisma.editor.model.MensajeParametro;
@@ -104,19 +103,60 @@ public class MensajeBs {
 	}
 
 	private static void validar(Mensaje model) {
-		//Validaciones del número
+		//Validaciones de Nularidad
 		if(Validador.esNuloOVacio(model.getNumero())) {
 			throw new PRISMAValidacionException("El usuario no ingresó el número del mensaje.", "MSG4", null, "model.numero");
 		}
-		if(!Pattern.matches("[1-9]+[0-9]*", model.getNumero())) {
-			throw new PRISMAValidacionException("El usuario no ingresó un número válido", "MSG5", new String[]{"un", "número entero"}, "model.numero");
+		if(Validador.esNuloOVacio(model.getNombre())) {
+			throw new PRISMAValidacionException("El usuario no ingresó el nombre del mensaje.", "MSG4", null, "model.nombre");
 		}
+		if(Validador.esNuloOVacio(model.getDescripcion())) {
+			throw new PRISMAValidacionException(
+					"El usuario no ingresó la desripción del mensaje.", "MSG4",
+					null, "model.descripcion");
+		}
+		if(Validador.esNuloOVacio(model.getRedaccion())) {
+			throw new PRISMAValidacionException("El usuario no ingresó la redaccion del mensaje.", "MSG4", null, "model.redaccion");
+		}
+		if(model.isParametrizado()) {
+			List<Parametro> parametros = obtenerParametros(model.getRedaccion(), model.getProyecto().getId());
+			if(parametros.size() != model.getParametros().size()) {
+				throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
+			}
+			//Validacion de las descripciones de los parámetros
+			for(MensajeParametro mp : model.getParametros()) {
+				if(Validador.esNuloOVacio(mp.getParametro().getDescripcion())) {
+					throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
+				}
+			}
+		}
+		//Validación de Longitud
 		if(Validador.validaLongitudMaxima(model.getNumero().toString(), 20)) {
 			throw new PRISMAValidacionException("El usuario ingreso un número muy largo.", "MSG6", new String[] { "20",
 			"números"}, "model.numero");
 		}
-		
-		//Se asegura la unicidad del nombre y del numero
+		if(Validador.validaLongitudMaxima(model.getNombre(), 200)) {
+			throw new PRISMAValidacionException("El usuario ingreso un nombre muy largo.", "MSG6", new String[] { "200",
+			"caracteres"}, "model.nombre");
+		}
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una descripcion muy larga.", "MSG6",
+					new String[] { "999", "caracteres" }, "model.descripcion");
+		}
+		if(model.getRedaccion() != null && Validador.validaLongitudMaxima(model.getRedaccion(), 999)) {
+			throw new PRISMAValidacionException("El usuario ingreso una redaccion muy larga.", "MSG6", new String[] { "999",
+			"caracteres"}, "model.redaccion");
+		}
+		//Validacion de Formato
+		if(Validador.contieneCaracterInvalido(model.getNombre())) {
+			throw new PRISMAValidacionException("El usuario ingreso un nombre con caracter inválido.", "MSG23", new String[] { "El",
+			"nombre"}, "model.nombre");
+		}
+		if(!Pattern.matches("[1-9]+[0-9]*", model.getNumero())) {
+			throw new PRISMAValidacionException("El usuario no ingresó un número válido", "MSG5", new String[]{"un", "número entero"}, "model.numero");
+		}
+		//Validacion de Negocio
 		List<Mensaje> mensajes = consultarMensajesProyecto(model.getProyecto());
 		for(Mensaje msj : mensajes) {
 			if(msj.getId() != model.getId()) {
@@ -130,53 +170,6 @@ public class MensajeBs {
 				}
 			}
 		}
-		
-		// Validaciones del nombre
-		if(Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException("El usuario no ingresó el nombre del mensaje.", "MSG4", null, "model.nombre");
-		}
-		if(Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException("El usuario ingreso un nombre muy largo.", "MSG6", new String[] { "200",
-			"caracteres"}, "model.nombre");
-		}
-		if(Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException("El usuario ingreso un nombre con caracter inválido.", "MSG23", new String[] { "El",
-			"nombre"}, "model.nombre");
-		}
-		// Validaciones de la Descripción
-		if(Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la desripción del mensaje.", "MSG4",
-					null, "model.descripcion");
-		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una descripcion muy larga.", "MSG6",
-					new String[] { "999", "caracteres" }, "model.descripcion");
-		}
-		//Validaciones de la Redacción
-		if(Validador.esNuloOVacio(model.getRedaccion())) {
-			throw new PRISMAValidacionException("El usuario no ingresó la redaccion del mensaje.", "MSG4", null, "model.redaccion");
-		}
-		if(model.getRedaccion() != null && Validador.validaLongitudMaxima(model.getRedaccion(), 999)) {
-			throw new PRISMAValidacionException("El usuario ingreso una redaccion muy larga.", "MSG6", new String[] { "999",
-			"caracteres"}, "model.redaccion");
-		}
-		
-		//Validaciones de mensaje parametrizado
-		if(model.isParametrizado()) {
-			List<Parametro> parametros = obtenerParametros(model.getRedaccion(), model.getProyecto().getId());
-			if(parametros.size() != model.getParametros().size()) {
-				throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
-			}
-			//Validacion de las descripciones de los parámetros
-			for(MensajeParametro mp : model.getParametros()) {
-				if(Validador.esNuloOVacio(mp.getParametro().getDescripcion())) {
-					throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
-				}
-			}
-		}
-		
 	}
 	
 	public static boolean esParametrizado(String redaccion) {

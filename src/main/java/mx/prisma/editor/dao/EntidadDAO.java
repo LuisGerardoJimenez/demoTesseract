@@ -6,7 +6,6 @@ import java.util.List;
 import mx.prisma.admin.model.Proyecto;
 import mx.prisma.bs.ReferenciaEnum;
 import mx.prisma.bs.ReferenciaEnum.TipoReferencia;
-import mx.prisma.editor.model.Actualizacion;
 import mx.prisma.editor.model.Elemento;
 import mx.prisma.editor.model.Entidad;
 
