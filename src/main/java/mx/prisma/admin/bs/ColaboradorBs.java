@@ -152,20 +152,17 @@ public class ColaboradorBs {
 			throw new PRISMAValidacionException(
 					"El correo que ingreso no es un correo valido", "MSG50", null, "model.correoElectronico");
 		}
-		if (!Validador.esCorreo(model.getCorreoElectronico())) {
+		if (!Validador.esInvalidaREGEX(model.getContrasenia(), Constantes.REGEX_CONTRASENIA)) {
 			throw new PRISMAValidacionException(
-					"El correo que ingreso no es un correo valido", "MSG50", null, "model.correoElectronico");
+					"La contraseña que ingreso no es valida", "MSG50", null, "model.contrasenia");
 		}
 		
-		
 		//Validaciones Negocio
-		
 		Colaborador colaboradorBD = new ColaboradorDAO().consultarColaboradorCorreo(model.getCorreoElectronico());
 		if(colaboradorBD != null && !colaboradorBD.getCurp().equals(model.getCurp())) {
 			throw new PRISMAValidacionException(
-					"El correo del colaborador ya existe.",
-					"MSG7",
-					new String[] { "El", "Correo electrónico", model.getCorreoElectronico() },
+					"El correo del colaborador ya existe.", "MSG7",
+					new String[] { "El", "correo electrónico", model.getCorreoElectronico() },
 					"model.correoElectronico");
 		}
 		
