@@ -61,3 +61,9 @@ Transparent: Yes
 
 Teseractor Tutorial
 https://aescripts.com/learn/create-an-animated-hypercube-using-shape-layers-in-after-effects/
+
+
+Cambio de colores de mensaje exito del css
+#fcefa1
+se cambia por 
+#7dad45
