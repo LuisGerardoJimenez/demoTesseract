@@ -1,0 +1,41 @@
+%=========================================================
+\chapter{Estado del Arte}
+
+
+	Es común que dentro del area de la ingenieria del software que se confundan los términos: "Caso de uso" y "Diagrama de caso de uso", sin embargo es importante resaltar las diferencias para comprender el objetivo del proyecto terminal.
+	
+	 \begin{itemize}
+		\item Un caso de uso es aquel que describe una  funcionalidad más una interacción entre un actor y un sistema en forma de secuencia de acciones.
+		
+		\item En cambio, un diagrama de casos de uso es la ilustración de un grafo con dos tipos de nodos (Actor y caso de uso) 
+	\end{itemize}
+
+	Por lo tanto, el diagrama no es más que una representación gráfica del caso de uso, más no es lo mismo ni reemplaza el documento de casos de uso, dado que en el diagrama no se describe la interacción detallada del sistema con los actores.\\
+	
+	
+	En la red hay una gran variedad de sistemas que permiten la generación de diagramas de casos de uso en UML, sin embargo no hay herramientas comerciales o gratuitas que posibiliten la generación del documento.
+	
+
+
+%---------------------------------------------------------
+\section{Antecedentes}
+
+	Existe una herramienta desarrollada en el Instituto Politécnico Nacional llamada prisma, 
+
+
+\begin{table}[htbp!]
+	\begin{requerimientosU}
+		\FRitem{RU1}{Control de vehículos}{El usuario requiere llevar un registro actualizado de los vehículos, sus características y su estado.}{1}{\DONE}
+		\FRitem{RU2}{Registro de ventas}{El usuario requiere llevar un registro actualizado de todas las ventas realizadas por mes y su status: pedido, entregado, pagado, etc..}{2}{\TODO}
+		\FRitem{RU3}{Registro de clientes}{El usuario requiere llevar un registro actualizado de todos los clientes para su seguimiento, atención y tareas de promoción y mercadotecnia.}{1}{\DONE}
+		\FRitem{RU4}{Planeación de entregas}{El usuario requiere una herramienta que le facilite la planeación de vehículos para que esta sea la más adecuada.}{-}{\DOING}
+		\FRitem{...}{...}{...}{...}{...}
+	\end{requerimientosU}
+    \caption{Requerimientos funcionales del sistema.}
+    {\footnotesize\em Para leer correctamente esta tabla vea la leyenda en la Tabla~\ref{tbl:leyendaRF} en la página~\pageref{tbl:leyendaRF}.}
+    \label{tbl:reqFunc}
+\end{table}
+
+
+
+

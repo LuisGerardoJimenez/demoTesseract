@@ -17,7 +17,7 @@
 		\end{itemize}
 		}
 		\UCitem{Errores}{\begin{itemize}
-		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} cuando la regla de negocio no se encuentra en un estado que permita la eliminación.
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} cuando el mensaje no se encuentra en un estado que permita la eliminación.
 		\end{itemize}
 		}
 		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU9}{Gestionar Mensajes}.}
@@ -25,7 +25,7 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar un mensaje oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU10}{Gestionar Mensajes}.
-		\UCpaso[\UCsist] Verifica que la regla de negocio pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EMSG-A}
+		\UCpaso[\UCsist] Verifica que el mensaje pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EMSG-A}
 		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado al mensaje. \Trayref{EMSG-B}
 		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU10}{Gestionar Mensajes}.
 		\UCpaso[\UCactor] Confirma la eliminación de la mensaje oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EMSG-C}

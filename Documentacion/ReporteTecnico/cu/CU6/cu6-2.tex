@@ -1,0 +1,76 @@
+	\begin{UseCase}{CU6.2}{Modificar Término}{
+		Este caso de uso permite al modificar la información de un término del glosario.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Modificar la información de un término.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{terminoGLSEntidad:nombreTGLS}{Nombre:} Se escribe desde el teclado.
+			\item \cdtRef{terminoGLSEntidad:descripcionTGLS}{Descripción:} Se escribe desde el teclado.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{terminoGLSEntidad:claveTGLS}{Clave:} Lo obtiene el sistema.
+				\item \cdtRef{terminoGLSEntidad:nombreTGLS}{Nombre:} Lo obtiene el sistema.
+				\item \cdtRef{terminoGLSEntidad:descripcionTGLS}{Descripción:} Lo obtiene el sistema
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU11}{Gestionar Términos de glosario} para indicar que la modificación fue exitosa.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Que el término no se encuentre asociado a un caso de uso en estado ''Liberado''.}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU11.2}{Modificar Término} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU11.2}{Modificar Término} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en
+		el campo.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU11.2}{Modificar Término} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU11.2}{Modificar Término} cuando se registre un término con un nombre que ya se encuentra registrado en el sistema.
+		\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU11.2}{Modificar Término} cuando el nombre del término contiene un carácter no válido.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU6}{Gestionar Términos}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar un módulo oprimiendo el botón \editar de la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
+		\UCpaso[\UCsist] Obtiene la información del término.
+		\UCpaso[\UCsist] Verifica que el término pueda modificarse con base en la regla de negocio \BRref{RN5}{Modificación de elementos asociados a casos de uso liberados}. \Trayref{MT-F}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11.2}{Modificar Término} con la información obtenida.
+		\UCpaso[\UCactor] Modifica el nombre y la descripción del término. \label{CU6.2-P5}
+		\UCpaso[\UCactor] Solicita modificar del término oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU11.2}{Modificar Término}. \Trayref{MT-A}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{MT-B}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{MT-C} \Trayref{MT-D}
+		\UCpaso[\UCsist] Verifica que el nombre del término no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{MT-E}
+		\UCpaso[\UCsist] Modifica la información del término en el sistema.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU11}{Gestionar Términos del glosario} para indicar al actor que el registro se ha modificado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{MT-A}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU11.2}{Modificar Término}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MT-B}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU11.2}{Modificar Término}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MT-C}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU11.2}{Modificar Término}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{MT-D}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU11.2}{Modificar Término}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{MT-E}{El actor ingresó un nombre de término repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU11.2}{Modificar Término}, indicando al actor que existe un término con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU6.2-P5} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MT-F}{El término no puede modificarse debido a que se encuentra asociado a casos de uso liberados.}
+		\UCpaso[\UCsist] Oculta el botón \editar del término que esta asociado a casos de uso liberados.
+	\end{UCtrayectoriaA}

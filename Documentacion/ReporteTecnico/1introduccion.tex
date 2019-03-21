@@ -1,0 +1,56 @@
+%=========================================================
+\chapter{Introducción}
+
+La etapa de mantenimiento de software requiere mayor tiempo y costo que sus fases complementarias, por lo que resulta ser también la etapa de mayor complejidad dentro del ciclo de vida de desarrollo de software. Se estima que aproximadamente dos tercios del costo total del software se dedican al mantenimiento [10]. Esta situación es causada por diversos problemas presentes durante las etapas precedentes, principalmente en la etapa de análisis, ya que es difícil contar con las bases sólidas de una documentación bien construida y estructurada que favorezca a la fase de  mantenimiento. Específicamente, el proceso de documentación de los casos de uso requiere una gran cantidad de esfuerzos humanos y es habitualmente propenso a errores, generando un impacto negativo en el desarrollo e implementación del sistema. [2]
+
+
+	
+
+%---------------------------------------------------------
+\section{Problemática}
+
+La obtención de requerimientos es crucial para la generación de casos de uso desde el punto de vista del analista.[11] La inadecuada especificación de requerimientos es una de las causas predominantes en el fracaso del desarrollo de los sistemas de software hoy en día. [1]. Del mismo modo, es común que el equipo de análisis se enfrente a situaciones que dificultan y prolongan la tarea de documentar casos de uso, algunos de los problemas más comunes son: La falta de consistencia en la utilización de los nombres de los actores, reglas de negocio y mensajes, la incorrecta agrupación de casos de uso en gestiones determinadas, la confusión entre escenarios. [4], la falta de adaptación a un estándar de escritura y redacción de los elementos del documento y la incorrecta descripción de derechos funcionales (permisos),  todos esto, resultado de la falta de experiencia de los analistas y el gran esfuerzo humano que requiere obtener un producto final óptimo. [3] 
+
+
+	
+%---------------------------------------------------------
+\section{Propuesta}
+
+	Se propone construir un sistema que asista a la generación de un documento de análisis basado en casos de uso,  que permita gestionar:
+	
+	Un catálogo de actores el cual explicará brevemente el objetivo del mismo, teniendo la siguiente estructura para definirlos: el nombre del actor, descripción del mismo y sus responsabilidades relacionadas con el sistema según aplique, con el fin de tener consistencia en la utilización de los nombres de los actores.
+	Un catálogo de Reglas de negocio especificando los siguiente: Identificador y nombre de la regla de negocio, de que tipo es, el nivel, una descripción explicando en qué consiste dicha regla, con el fin tener un control al momento de usarlas en diferentes casos de uso.
+	Un catálogo de Mensajes el cual explicará brevemente el objetivo del mismo, este catálogo documentará los mensajes de la siguiente manera: identificador y nombre del mensaje, el tipo de mensaje, propósito, la redacción del mismo y que parámetros deben cumplirse para que el mensaje aparezca esto ayudará a que el usuario pueda reutilizar mensajes en diferentes casos de uso evitando la confusión de los nombres de los mensajes.
+	La agrupación de casos uso dividiéndolos por módulos.
+	Un estándar de redacción y escritura definido para evitar confusiones en la descripción de los casos de uso.
+	Generar de manera automatizada documentos de casos de uso es un desafío que propone la idea de transformar la escritura del lenguaje natural (comúnmente empleado en la elaboración de dichos documentos) a un lenguaje formal y específico. De concretarse este desafío, el tiempo que actualmente toma solucionar los problemas que se presentan durante la elaboración del análisis y su documentación por el  personal de análisis será optimizado. Coadyuvará a adquirir experiencia al equipo para  disminuir errores, su uso representará una reducción de tiempo (el cual no podrá ser medido debido al tiempo con el que se cuenta para desarrollar el proyecto)  y en los recursos destinados al análisis. Lo anterior permitirá generar un documento de análisis  con mayor estructura y consistencia.
+	
+
+%---------------------------------------------------------
+\section{Objetivos}
+\subsection{Objetivo General}
+Desarrollar un sistema que asista en la generación de la documentación de casos de uso de un proyecto de software con base en una plantilla predefinida a fin de contribuir en el proceso de su creación.
+
+\subsection{Objetivos Específicos}
+Generar un módulo de gestión de usuarios encargado del control de acceso y la administración de los usuarios, en este módulo se asignan los roles y permisos a los diferentes usuarios que se registren.
+Generar un módulo de gestión proyectos encargado de la administración de proyectos, a partir de este módulo se hará el registro, lectura, modificación, eliminación de los componentes necesarios para la documentación del proyecto; contendrá un apartado para la asignación de usuarios al proyecto.
+Generar un módulo de gestión de casos de uso encargado de la creación, lectura, modificación y eliminación de casos de uso así como la asociación de analistas.
+Generar un módulo de gestión de elementos encargado de la definición y registro de todos los elementos necesarios para la creación de casos de uso, con el objeto de registrarlos en una base de datos y poder reutilizarlos al momento de escribir un caso de uso.
+Generar un módulo de revisión y validación de elementos de casos de uso encargado de mostrar los elementos que los conforman para su revisión y validación por usuarios permitidos.
+Generar un módulo de generación de documento de análisis encargado de la generación del documento final de casos de uso para el desarrollo de un sistema con base en la plantilla predefinida.
+
+%---------------------------------------------------------
+
+\section{Justificación}
+Un proyecto de software bien construido y formado es esencial para la competitividad de una organización, e incluso para su propia supervivencia, del mismo modo, la documentación es un elemento partícipe que determina la calidad del sistema dado que facilita su interpretación y comprensión, provee los antecedentes que permiten conocer cómo fué diseñado, que hace y cómo está operando, sirve de base para auditorias, elimina los riesgos de dependencia con respecto al personal, es fundamental para la capacitación de los usuarios del sistema facilitando la comunicación, provee antecedentes esenciales, concretos y permanentes para evaluar modificaciones a su funcionamiento y/o para decidir la sustitución de los mismos y aumenta la seguridad y eficiencia en su mantenimiento reduciendo su costo.
+
+El proceso de construcción del documento no es sencillo, al analista le toma tiempo aprender y hacer de manera entendible la redacción, la inclusión de elementos del caso de uso y la especificación correcta de las trayectorias. La curva de aprendizaje es extensa y es común que una persona inexperta en el tema tenga complicaciones y retrasos al realizar el documento.Una herramienta web capaz de recolectar, almacenar y procesar los elementos que integran un proyecto para generar el documento de análisis será de gran apoyo para los analistas, reduciendo de manera considerable el tiempo, costo y gastos de dicho documento. 
+
+Éste proyecto de trabajo terminal se considera un trabajo terminal porque coadyuvará a formación de los autores en áreas de investigación, autoaprendizaje, y resolución de problemas,  en la generación de este sistema se utilizarán conocimientos del área de Ingeniería de software, bases de datos, programación, tecnologías web, algoritmos y diseño orientado a objetos.
+
+%---------------------------------------------------------
+
+\section{Estructura del Documento}
+
+En el capítulo \ref{cap:reqUsr} ...
+En el capítulo \ref{cap:reqSist} ...
