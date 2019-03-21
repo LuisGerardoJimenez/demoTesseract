@@ -1,0 +1,192 @@
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Componente: cdtBusiness.sty
+%  Autor: Ulises Vélez Saldaña
+%  Fecha: 27 de Abril, 2017
+%  Versión: 1.1
+%  Biblioteca: cdt
+%  Capa: 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cdt/cdtBusiness}[2013/04/23, v1.0 CDT-ESCOM-IPN Paquete para escribir reglas de negocio]
+\RequirePackage{cdt/cdtControl}
+\RequirePackage{MnSymbol}
+
+%=====================================================================
+% Comando: glosario
+% Propósito: Definir el glosario de términos del negocio
+%
+%\begin{bGlosario}
+%	\bTerm{id}{Término} Descripción
+%	\bTerm{id}{Término} Descripción.
+%\end{bGlosario} 
+%=====================================================================
+\newenvironment{bGlosario}{
+	\begin{Cdescription}
+}{%
+	\end{Cdescription}
+}
+
+%=====================================================================
+% Comando:
+% Propósito:
+%=====================================================================
+\newcommand{\bTerm}[2]{%
+	\cdtAddElement{#1}{Termino}{#2}{NA}{NA}{NA}
+	\item[{\cdtLabel{#1}{#2}}] %
+}
+
+\def \varBusinessEntityId{}
+
+\newenvironment{cdtEntidad}[2]{%
+	\cdtAddElement{#1}{Entidad}{#2}{NA}{NA}{NA}
+	\def \varBusinessEntityId{#1}%
+	\hypertarget{#1}{\hspace{1pt}}%
+	\newline%
+	\noindent{\includegraphics[width=\textwidth]{cdt/uc/rules/classRule}}%
+	\vspace{-25pt}%
+	\subsection{Entidad: #2}%
+	\noindent\begin{longtable}{|p{.2\textwidth}| p{.15\textwidth} | p{.5\textwidth} |p{.04\textwidth} |}%
+	\hline%
+	\multicolumn{4}{|c|}{{\cellcolor{colorSecundario}\color{white}Atributos}}\\ \hline%
+	{\cellcolor{colorAgua}Nombre} &%
+	{\cellcolor{colorAgua}Tipo} &%
+	{\cellcolor{colorAgua}Descripción} &%
+	{\cellcolor{colorAgua}Req.}%
+	\\ \hline%
+	\endhead%
+}{%
+	\end{longtable}%
+}
+
+\newcommand{\brAttr}[5]{%
+	\def\idAttr{\varBusinessEntityId.#1}%
+	\cdtAddElement{\idAttr}{Atributo}{#2}{NA}{NA}{NA}%
+	{\bf\hypertarget{\varBusinessEntityId.#1}{#2}} & {\em{#3}} & {#4} & {#5} \\\hline%
+}
+
+\newcommand{\datRequerido}{Si}
+\newcommand{\datOpcional}{No}
+
+\newcommand{\cdtEntityRelSection}{%
+	\multicolumn{4}{|c|}{{\cellcolor{colorSecundario}\color{white}Relaciones}}\\ \hline%
+	{\cellcolor{colorAgua}Tipo de relación} &%
+	{\cellcolor{colorAgua}Entidad} &%
+	\multicolumn{2}{|c|}{{\cellcolor{colorAgua}Rol}}
+	\\ \hline%
+}
+
+\newcommand{\brRelComposition}{{\color{colorPrincipal}$\filleddiamond$\hspace{-1pt}---Composición}}
+\newcommand{\brRelAgregation}{{\color{colorPrincipal}$\Diamond$\hspace{-1pt}---Agregación}}
+\newcommand{\brRelGeneralization}{{\color{colorPrincipal}$\lhd$\hspace{-1pt}---Generalización}}
+
+\newcommand{\brRel}[3]{%
+	{\em{#1}} & {\bf{#2}} & \multicolumn{2}{p{0.54\textwidth}|}{#3}\\\hline
+}
+
+%----------------------------------------------------------------------
+% Comando para colocar una descripción de una regla de negocio
+% use:
+% \begin{BusinessRule}{id}{nombre}{clase y/o tipo}{fortaleza}
+%	\BRitem{Descripción}{Descripcion textual de la regla.}
+%	\BRitem{Caso correcto}{Un ejemplo en el que se cumple la regla.}
+%	\BRitem{Caso incorecto}{Un ejemplo en el que se cumple la regla.}
+%	\BRitem{Sentencia}{Expresion formal de la regla.}
+% \end{BusinessRule}
+% Clase: Condición, Restricción, Autorización, Inferencia.
+% Tipo(solo para las tres primeras clases): Habilitador, Cronometrado,  Ejecutivo
+% Fortaleza: Controla / Influye el comportamiento.
+% Como describir una regla:
+% CONDICION:
+% Regla Condicion-Habilitador: si M(OBJ) entonces Habilita/permite RN
+% Regla Condicion-Cronómetro: si M(OBJ) REL LIMITE entonces Habilita/Ejecuta RN
+% Regla Condicion-Ejecución:  si M(OBJ) entonces Ejecuta/Crea RN
+% RESTRICCION DE INTEGRIDAD
+% Regla Restriccion de Integridad-Habilitador:
+%	M(OBJ) Debe/Puede RN
+% Regla Restriccion de Integridad-Cronómetro:
+%	M(OBJ) Debe/Puede REL LIMITE RN
+% Regla Restriccion de Integridad-Ejecución:   
+% 	M(OBJ) Debe Ejecuta/Crea RN
+%
+%Ejemplos:
+%----------------------------------------------------------------------
+%\begin{BussinesRule}{BR7}{Edad actual}
+%	{Cálculo}
+%	{Controla.}
+%	\BRccitem{Versión}{0.1}
+%	\BRccitem{Autor}{Jessica Ramos.}
+%	\BRccitem{Evaluador}{Ulises Vélez Saldaña.}
+%	\BRccitem{Estado}{Terminada: 20 de Junio, 2012, Aprobada: 23 de Junio del 2012.}
+%	\BRitem{Descripción}{La ``Edad actual'' de una personal se presenta como números de años y meses, contando los años y meses completos transcurridos desde la Fecha de Nacimeinto de la persona hasta la Fecha Actual.}
+%	\BRitem{Sentencia}{$\forall p \in Persona \Rightarrow p.edadActual = fechaActual - p.fechaDeNacimiento$}
+%	\BRitem{Ejemplo}{Para la persona: Juan Pérez García, nacida en el Distrito Federal el 12 de Mayo del 2001 la ``Edad Actual'' al 15 de Abril del 2012 sería: {\bf 10 años y 11 meses}.}
+%	\BRitem{Referenciado por}{\refUC{CUCE3.1}, \refUC{CUCE3.2}, \refUC{CUCE3.4}, \refUC{CUCE5.1}, \refBR{BR9}{Edad al 31 de Diciembre}, \refUC{CUCE5}}
+%\end{BussinesRule}
+%
+%\begin{bRegla}{BR8}{Fecha de Nacimiento correcta}{Integridad/Operación/Inferencia}{Controla/Dirige}
+%	\bItem{Versión}{0.1}
+%	\bItem{Estado}{Aprobada, 29 de Junio del 2012}
+%	\bItem{Descripción}{
+%	Las Fechas de Nacimiento que se registrarn en el SINACEM para cualquier Persona debe ser mayores al día Primero de Enero del año 1900 y menor a la Fecha Actual.}
+%	\bItem{Sentencia}{$\forall p \in Persona \Rightarrow 01-Enero-1900~<~p.fechaDeNacimiento~<~fechaActual$}
+%	\bItem{Referenciado por}{\refUC{CUCE3.2}, \refUC{CUCE3.3}, \refUC{CUCE3.4}, \refUC{CUCE5.1}}
+%\end{bRegla}
+\newenvironment{BusinessRule}[5]
+{%
+	\cdtAddElement{#1}{Regla de Negocio}{#2}{NA}{NA}{NA}%
+	\vspace*{-\baselineskip}
+	\noindent{\includegraphics[width=\textwidth]{cdt/uc/rules/BRRule}}%
+	\vspace*{-\baselineskip}%
+	\hypertarget{#1}{\subsubsection{{#1} {#2}}}%
+	\begin{description}\addtolength{\itemsep}{-0.5\baselineskip}%
+	\item[Clase:] {#3}%
+	\item[Tipo:] {#4}%
+	\item[Nivel:] {#5}%
+}%
+{%
+	\end{description}%
+}
+
+%----------------------------------------------------------------------
+% Para colocar un elemento dentro de una regla de negocio.
+% use: \BRitem{Elemento}{Descripción}
+\newcommand{\BRItem}[1][]{%
+	\item[{#1}:]%
+}
+
+\newcommand{\bcCondition}{De condición. {\color{gray}\em Establece una condicionante para una operación.}}
+\newcommand{\bcIntegridad}{De Integridad. {\color{gray}\em Garantiza la integridad de la información.}}
+\newcommand{\bcAutorization}{De Autorización {\color{gray}\em Autoriza o restringe la ejecución de una operación.}}
+
+\newcommand{\bcDerivation}{De derivación {\color{gray}\em Explica como determinar una condición, estado o calcular un valor.}}
+
+\newcommand{\btEnabler}{Habilitadora. {\color{gray}\em Decisión de tipo Sí o No.}}
+\newcommand{\btTimer}{Cronometrada {\color{gray}\em Decisión que depende de un parámetro definido.}}
+\newcommand{\btExecutive}{Ejecutiva. {\color{gray}\em Decisión que depende de la autorización de un superior.}}
+
+\newcommand{\blControlling}{Controla. {\color{gray}\em La operación está restringida a que se cumpla siempre esta regla.}}
+\newcommand{\blInfluencing}{Motiva. {\color{gray}\em Debe motivarse este comportamiento, pero la operación no está restringida a que se cumpla siempre esta regla.}}
+
+%Entorno para la definición de una máquina de estados
+\newenvironment{Maquina}[4]{
+	\section{#2}
+	\hypertarget{#1}{}
+	\cdtAddElement{#1}{Maquina}{#2}{NA}{NA}{NA}
+	\subsection{Resumen}
+	%Resumen
+	#3
+	\begin{center}
+		\begin{figure}[hbtp!]
+			\fbox{\includegraphics[width=\textwidth]{#4}}
+			\caption{#2}
+			\label{fig:#1}
+		\end{figure}
+	\end{center}
+	\subsection{Descripción}
+}{}
+
+%Se usa de la siguiente forma
+%\begin{Maquina}{MA-01}{Modelo de Ciclo de Vida de ----}{Resumen}{img/src}
+%	Agrega la descripción aqui
+%\end{Maquina}
+

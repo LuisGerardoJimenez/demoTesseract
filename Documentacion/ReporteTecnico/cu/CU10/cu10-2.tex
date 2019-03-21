@@ -1,0 +1,85 @@
+	\begin{UseCase}{CU10.2}{Modificar Actor}{
+		Los actores son los roles que juega un usuario al utilizar un sistema. Este caso de uso permite al modificar la información de un actor.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Registrar la información de actor.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{actorEntidad:nombreACT}{Nombre:} Se escribe desde el teclado.
+			\item \cdtRef{actorEntidad:descripcionACT}{Descripción:} Se escribe desde el teclado.
+			\item \cdtRef{actorEntidad:oCardinalidadACT}{Cardinalidad:} Se selecciona de una lista.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{actorEntidad:nombreACT}{Nombre:} Lo obtiene el sistema.
+				\item \cdtRef{actorEntidad:descripcionACT}{Descripción:} Lo obtiene el sistema.
+				\item \cdtRef{actorEntidad:oCardinalidadACT}{Cardinalidad:} Lo obtiene el sistema.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} para indicar que la edición fue exitosa.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que el actor no se encuentre asociado a un caso de uso en estado ''Liberado''.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU8.2}{Modificar Actor} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU8.2}{Modificar Actor} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU8.2}{Modificar Actor} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU8.2}{Modificar Actor} cuando se registre un actor con un nombre que ya se encuentre registrado en el sistema.
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando no existe información base para el sistema.
+		\end{itemize}.
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU10}{Gestionar Actores}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita modificar una actor oprimiendo el botón \editar de la pantalla \IUref{IU8}{Gestionar Actores}.
+		\UCpaso[\UCsist] Obtiene la información del actor.
+		\UCpaso[\UCsist] Verifica que el actor pueda modificarse con base en la regla de negocio \BRref{RN5}{Modificación de elementos asociados a casos de uso liberados}. \Trayref{MACT-G}
+		\UCpaso[\UCactor] Verifica que exista información referente a la Cardinalidad con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \Trayref{MACT-A}
+		\UCpaso[\UCsist] Muestra la información encontrada en la  pantalla \IUref{IU8.2}{Modificar Actor}.
+		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU10.2-P6}
+		\UCpaso[\UCactor] Solicita guardar la información del actor oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU8.2}{Modificar Actor}. \Trayref{MACT-B} 
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{MACT-C}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{MACT-D} \Trayref{MACT-E}
+		\UCpaso[\UCsist] Verifica que el nombre del actor no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{MACT-F} 
+		\UCpaso[\UCsist] Actualiza la información del actor en el sistema.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar al actor que la modificación se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{MACT-A}{No existe información en los catálogos.}
+		\UCpaso[\UCactor] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU8}{Gestionar Actores}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MACT-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU8.2}{Modificar Actor}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MACT-C}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU8.2}{Modificar Actor}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU10.2-P6} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MACT-D}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU8.2}{Modificar Actor}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU10.2-P6} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MACT-E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU8.2}{Modificar Actor}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU10.2-P6} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{MACT-F}{El actor ingresó un nombre de un actor repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU8.2}{Modificar Actor}, indicando al actor que existe un mensaje con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU10.2-P6} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{MACT-G}{El término no puede modificarse debido a que se encuentra asociado a casos de uso liberados.}
+		\UCpaso[\UCsist] Oculta el botón \editar del actor que esta asociado a casos de uso liberados.
+	\end{UCtrayectoriaA}

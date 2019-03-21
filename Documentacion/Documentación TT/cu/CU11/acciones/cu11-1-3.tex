@@ -1,0 +1,47 @@
+	\begin{UseCase}{CU11.1.3}{Eliminar Acción}{
+		Este caso de uso permite al actor eliminar una acción perteneciente a una pantalla.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de una acción de la tabla de acciones.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla} para indicar que la acción fue eliminada correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará una acción de la tabla de acciones correspondientes.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla} cuando no se pueda eleiminar la acción debido a que está siendo referenciada en algún caso de uso.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del los casos de uso \UCref{CU11.1}{Registrar Pantalla} y \UCref{CU11.2}{Modificar Pantalla}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar un mensaje oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla}.
+		\UCpaso[\UCsist] Verifica que ningún caso de uso esté referenciando a la acción. \Trayref{EACC-A}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla}.
+		\UCpaso[\UCactor] Confirma la eliminación de la mensaje oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EACC-B}
+		\UCpaso[\UCsist] Elimina la acción de la tabla correspondiente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla}.
+	\end{UCtrayectoria}		
+%--------------------------------------
+
+	\begin{UCtrayectoriaA}{EACC-A}{El mensaje está siendo referenciado en un caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla} en una ventana emergente con la lista de los elementos que están referenciando a la acción.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU10}{Gestionar Mensajes}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EACC-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7.1}{Registrar Pantalla} o \IUref{IU7.2}{Modificar Pantalla}.
+	\end{UCtrayectoriaA}
+	
+

@@ -1,0 +1,353 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Componente: cdtProcesos.sty
+%  Autor: Ulises Vélez Saldaña, Jose Jaime López Rabadán
+%  Fecha: 4 de Diciembre, 2012
+%  Versión: 1.0
+%  Biblioteca: cdt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cdtProcesos}[2012/07/28, v2.2 CDT-ESCOM-IPN Paquete para describir Procesos]
+\RequirePackage{cdt/cdtBusiness}
+\RequirePackage{xcolor}
+
+
+\newcommand \itarea{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/task}}}
+\newcommand \PSubProceso{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/proc}}}
+\newcommand \Einicio{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/start}}}
+\newcommand \EinicioLink{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/start}}}
+\newcommand \EinicioTiempo{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/start}}}
+\newcommand \EinicioMsg{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/start}}}
+\newcommand \EmedComp{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/inter}}}
+\newcommand \EmedCondicion{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/inter}}}
+\newcommand \EmedLink{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/inter}}}
+\newcommand \EmedMsg{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/inter}}}
+\newcommand \EmedMult{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/inter}}}
+\newcommand \EmedTiempo{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/inter}}}
+\newcommand \Efin{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/end}}}
+\newcommand \EfinCancelar{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/end}}}
+\newcommand \EfinLink{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/end}}}
+\newcommand \EfinMensaje{\raisebox{-1mm}{\includegraphics[height=12pt]{cdt/procesos/end}}}
+\newcommand \iMessageEvent{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/start}}}
+\newcommand \iMultipleEvent{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/start}}}
+\newcommand \iConditionalEvent{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/inter}}}
+\newcommand\iCompuerta{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/ExclusiveGateway}}}
+\newcommand \msgError{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/error}}}
+\newcommand \msgNotif{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/alert}}}
+\newcommand \msgConfirm{\raisebox{-1mm}{\includegraphics[height=11pt]{cdt/procesos/confirmation}}}
+
+
+%-----------------------------------------------------------------------
+\newcounter{counterProc}
+
+%----------------------------------------------------------------------
+% Agregar un elemento a la descripción del Proceso
+\newcommand{\PRitem}[2]{{\bf {#1:}} & {#2} \\ \hline}%
+\newcommand{\PRccitem}[2]{{\bf {\color{colorGris}#1:}} & {\color{colorGris}#2} \\ \hline}%
+
+%----------------------------------------------------------------------
+% Agregar una sección en la descripción del Proceso
+% use \UCseccion[color]{descripción}
+% use \UCccseccion[color]{descripción} para gestión
+\newcommand{\PRsection}[1]{\multicolumn{2}{|c|}{{\bf \color{colorPrincipal}#1}}\\ \hline}
+\newcommand{\PRccsection}[1]{\multicolumn{2}{|c|}{{\bf \color{colorGris}#1}}\\ \hline}
+
+
+%---------------- PROCESO ------------------------------------------------------
+\newenvironment{Proceso}[5][iProceso]
+{\newpage%
+
+\ThisCenterWallPaper{0.81}{cdt/procesos/#1}%
+%\ThisLLCornerWallPaper{0.85}{cdt/procesos/#1}%
+%\ThisCenterWallPaper{0.7}{cdt/procesos/#1}%
+\addtocounter{counterProc}{1}%
+%\cdtLabel{#1}{}
+\cdtAddElement{{#2}}{Subproceso}{#2}{NA}{NA}{NA}%
+%\hypertarget{#1}{}
+\section{#2 #3}%
+%\noindent\hypertarget{#2}{}%
+\subsection{Resumen}%
+#4
+\subsection{Elementos del proceso}%
+\arrayrulecolor{gray}%
+\par\begin{longtable}{| p{.17\textwidth} | p{.75\textwidth} |}%
+	\arrayrulecolor{gray}%
+	\rowcolor{gray}%
+	\PRitem{\color{white}Elemento}{\color{white}#2 #3}%
+	\endhead%
+	\arrayrulecolor{gray}%
+}
+{\end{longtable}%
+\subsection{Descripción de Tareas}}
+
+
+
+
+
+
+% Descripción de los pasos del Proceso
+%----------------------------------------------------
+\newenvironment{PDescripcion}
+{%
+	\renewcommand{\labelenumi}{\textcolor{black}{\bf \theenumi}}%
+	\begin{enumerate}\addtolength{\itemsep}{-0.5\baselineskip}%
+}%
+{%
+	\item[- -] - - {\em Fin del proceso}. \end{enumerate}%
+	\renewcommand{\labelenumi}{\theenumi}%
+}
+
+\newcommand{\Ppaso}[1][]{\item {#1} }
+
+
+% Descripción de los factores críticos
+%----------------------------------------------------
+\newenvironment{FCDescripcion}
+{%
+	\subsubsection{Factores críticos}
+	\renewcommand{\labelenumi}{\textcolor{black}{\bf \theenumi}}%
+	\begin{itemize}\addtolength{\itemsep}{-0.5\baselineskip}%
+}%
+{%
+	\end{itemize}%
+	\renewcommand{\labelenumi}{\theenumi}%
+}
+
+\newcommand{\FCpaso}[1][]{\item {#1} }
+
+
+
+
+
+%------------------------------------------------------------------------
+% Referencia a un Proceso
+% use: \refPR{Id}
+\newcommand{\refPR}[1]{%
+	\hyperlink{#1}{#1}%
+}
+
+\newenvironment{actor}[3]
+{%
+	\cdtAddElement{{#1}}{Participante}{#2}{NA}{NA}{NA}%
+    \subsection{Participante #2}%
+	\hypertarget{#1}{}%
+	\noindent{\includegraphics[width=\textwidth]{cdt/uc/rules/ActorRule}}\\
+	\begin{description}%
+	\item[Descripción:] {#3}%
+}{%
+	\end{description}%
+}
+
+
+
+%=====================================================================
+%=====================================================================
+% David contrib.
+
+\newcounter{counterArq}
+
+%---------------- ARQUITECTURA DE PROCESO -----------------------------------------------
+% Agregado: 16 - mayo - 2017
+\newenvironment{Arquitectura}[5][iProceso]
+{%\newpage%
+	\ThisCenterWallPaper{0.81}{cdt/procesos/#1}%
+	\addtocounter{counterArq}{1}%
+	\cdtLabel{#1}{}
+	\section{#2 #3}%
+	\subsection{Resumen}%
+	#4
+}
+{\subsection{Descripción de la interacción}}
+
+
+%=====================================================================
+%Agregado el 16 de abril de 2017
+% Comando: \cdtRefImg{label}{caption}
+% Propósito: Producir un texto que referencía aigun elemento del documento, por ejemplo: Casos de Uso, Reglas de Negocio, Entidad, Actor, Interfaz, Mensaje, etc. Este comando genera como salida el ``nombre'' que referencía al elemento identificado por ``id''
+% Ejemplo: ...la \cdtLabel{coordinacion}{Coordinación} esta en ...
+%          se puede ver en la \cdtRef
+%=====================================================================
+\newcommand{\cdtRefImg}[2]{%
+  \hyperlink{#1}{\ref{#1}:{ #2}}%
+}
+
+%=====================================================================
+% Agregado el 7 de abril de 2017
+% Insertar un Diagrama de Proceso
+% use: \Pfig[width]{imagefile}{id}{Nombre del proceso}
+%=====================================================================
+\newcommand{\Pfig}[4][0.7]{%
+	\begin{figure}[htpb!]%
+		\begin{center}%
+			\hypertarget{#3}{\includegraphics[width=#1\textwidth]{#2}}%
+			\caption{#4}%
+			\label{#3}%
+		\end{center}%
+	\end{figure}%
+}
+
+%=====================================================================
+% Agregado el 7 de junio de 2017
+% Insertar un Diagrama de Proceso Página completa
+% use: \PfigFull[width]{imagefile}{id}{Nombre del proceso}
+%=====================================================================
+\newcommand{\PfigFull}[4][0.7]{%
+	\begin{figure}[htpb!]%
+		\begin{center}%
+			\hypertarget{#3}{\includegraphics[angle=90,height=#1\textheight]{#2}}%
+			\caption{#4}%
+			\label{#3}%
+		\end{center}%
+	\end{figure}%
+}
+
+%29 de mayo de 2017
+%----------------------------------------------------
+%Descripción de la interacción entre procesos de arquitectura
+
+\newenvironment{ADescripcion}
+{%
+	
+	%\bigskip\noindent {\large {\bf Descripción de subcdt/procesos y tareas}\\}%
+	% 	\begin{figure}[!h]
+	% 	\centering\noindent{\includegraphics[width=\textwidth, angle=#4]{cdt/procesos/#1}}%
+	% 	\caption{#2}
+	% 	\label{#3}
+	% 	\end{figure}
+	\renewcommand{\labelenumi}{\textcolor{black}{\bf \theenumi}}%
+	\begin{description}\addtolength{\itemsep}{-0.5\baselineskip}%
+	}%
+	{%
+	 \end{description}%
+	\renewcommand{\labelenumi}{\theenumi}%
+}
+
+%=====================================================================
+%Agregado el 16 de abril de 2017
+% Comando: \cdtLabel{id}{Texto}
+% Propósito: Producir una etiqueta en el documento. Para generar una etiqueta vacía utilice \cdtLabel{id}{\cdtEmpty}
+%=====================================================================
+\newcommand{\cdtLabelTask}[2]{
+    \label{#1} \hypertarget{#1}{#2}
+}
+
+%=====================================================================
+%Agregado el 16 de abril de 2017
+% Comando: \cdtRefTask{label}{caption}
+% Propósito: Producir un texto que referencía aigun elemento del documento, por ejemplo: Casos de Uso, Reglas de Negocio, Entidad, Actor, Interfaz, Mensaje, etc. Este comando genera como salida el ``nombre'' que referencía al elemento identificado por ``id''
+% Ejemplo: ...la \cdtLabel{coordinacion}{Coordinación} esta en ...
+%          se puede ver en la \cdtRef
+%=====================================================================
+\newcommand{\cdtRefTask}[2]{%
+  \hyperlink{#1}{\ref{#1} {#2}}%
+}
+
+%---------------- Proceso Genaral -----------------------------------------------
+% Agregado: 17 - enero - 2017
+\newenvironment{procesoGeneral}[5][iProceso]
+{\newpage%
+
+\ThisCenterWallPaper{0.81}{cdt/procesos/#1}%
+%\ThisLLCornerWallPaper{0.85}{cdt/procesos/#1}%
+%\ThisCenterWallPaper{0.7}{cdt/procesos/#1}%
+\addtocounter{counterProc}{1}%
+\cdtLabel{#5}{}
+\section{#2 #3}%
+%\noindent\hypertarget{#2}{}%
+\subsection{Resumen}%
+#4
+}
+{\subsection{Descripción de Subprocesos}}
+
+
+%==========================================================================
+% Para definir un mensaje. Agregado 14 de Junio, 2017
+% Use:
+%
+%\begin{mensaje}{MSGX}{Nombre del mensaje}{Operación/Notificación/Alerta/Error}
+%	\item[Redacción:] Redacción del mensaje.
+%	\item[Parámetros:] El mesaje se instancía con base en los siguientes parámetros:
+%		\begin{Citemize}
+% 			\item Nombre del parametro: Descripción del Parametro.
+%		\end{Citemize}
+%	\item[Ejemplo:] Uno o varios ejemplo del mensaje.
+%\end{mensaje}
+%==========================================================================
+\newenvironment{mensaje}[3]{%
+	\hypertarget{#1}{{\hspace{1pt}}}%
+	\subsection{{#1}~{}{#2}} %
+	\begin{Cdescription}%
+		\item[Tipo:] {#3} %Operación Realizada/Notificación/Alerta/Error
+}{%
+	\end{Cdescription}%
+}
+
+
+
+
+%Para referenciar un mensaje utiliza este comando
+% Recibe dos parámetros
+% \refMSG{MSGX}{MSG Con el parámetro}
+\newcommand \refMSG[2]{\hyperlink{#1}{#2}}
+
+
+%============================
+%Para definir un formulario: Agregado 17 de Junio de 2017
+
+%\begin{formulario}{FRM1}{Información de materia}
+%	\item[Descripción:] Descripción del formulario
+%	\item[Campos:]\cdtEmpty Campos que se deben llevar  %   y su descripción
+%	\begin{itemize}
+%		\item [Nombre:]
+%	\end{itemize}
+%\end{formulario}
+%
+\newenvironment{Documento}[3]{
+	\hypertarget{#1}{{\hspace{1pt}}}
+	\subsection{{#1}~{}{#2}}
+	%Imagen
+	\begin{figure}[hbtp!]
+		\begin{center}
+			\fbox{\includegraphics[width=.7\textwidth]{#3}}
+			\label{#1}
+			\caption{\textbf{#1} #2}
+		\end{center}
+	\end{figure}
+		\begin{Cdescription}}{
+			
+		\end{Cdescription}}
+
+\newcommand{\campo}[1]{\item{\textbf{\textcolor{Brown}{#1}}}}
+
+
+\newenvironment{LCampos}{
+	\item[Campos:]\cdtEmpty
+	\begin{itemize}
+		
+	}{\end{itemize}}
+
+
+
+\newenvironment{AreaOportunidad}[1]{%
+	\hrule
+	\cdtAddElement{{#1}}{AreaDeOportunidad}{#1}{NA}{NA}{NA}%
+	\hypertarget{#1}{}%
+	%\label{#1}
+	\subsection{Área de Oportunidad~{}{#1}}
+	\begin{Cdescription}%
+		
+	}{%
+	\end{Cdescription}%
+}
+
+%---------
+
+\renewcommand{\hideControlVersion}{%
+	\renewcommand{\rItem}[3]{}
+	\renewcommand{\cItem}[3]{}
+	\renewcommand{\tItem}[3]{}
+	\renewcommand{\PRccitem}[2]{}{}
+	\renewcommand{\PRccsection}[1]{}
+	\renewenvironment{revCard}[3]{}{}
+	\renewenvironment{techCard}[3]{}{}
+}
+

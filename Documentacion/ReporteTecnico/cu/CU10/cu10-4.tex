@@ -1,0 +1,37 @@
+	\begin{UseCase}{CU10.4}{Consultar Actor}{
+		Este caso de uso permite al analista consultar la información de un actor.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Consultar la información de un actor de un proyecto.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{
+			\begin{itemize}
+				\item \cdtRef{actorEntidad:nombreACT}{Nombre:} Se escribe desde el teclado.
+				\item \cdtRef{actorEntidad:descripcionACT}{Descripción:} Se escribe desde el teclado.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando el actor que se desea consultar no existe.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU10}{Gestionar Actores}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita consultar un actor oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} del registro que desea consultar de la pantalla \IUref{IU8}{Gestionar Actores} o la liga correspondiente a un mensaje en la pantalla \IUref{IU6.3}{Consultar caso de uso}.
+		\UCpaso[\UCsist] Obtiene la información del actor seleccionado. \Trayref{CACT-A}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8.3}{Consultar Actor} con la información del actor.
+		\UCpaso[\UCactor] Consulta la información del actor.
+		\UCpaso[\UCactor] Solicita finalizar oprimiendo el botón \IUref{Regresar} de la pantalla \IUref{IU8.3}{Consultar Actor}.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{CACT-A}{El mensaje que se desea consultar no existe.}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\end{UCtrayectoriaA}
+
+
+	
