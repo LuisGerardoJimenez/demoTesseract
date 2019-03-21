@@ -45,6 +45,7 @@
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RPE-B}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RPE-C} \Trayref{RPE-D} \Trayref{RPE-E} \Trayref{RPE-F}
 		\UCpaso[\UCsist] Verifica que la CURP de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RPE-G}
+		\UCpaso[\UCsist] Verifica que el correo de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN36}{Unicidad de correos}. \Trayref{RPE-H}
 		\UCpaso[\UCsist] Registra la información de la persona en el sistema
 		\UCpaso[\UCsist] Envía un correo con el mensaje \cdtIdRef{MSG25}{Datos de sesión} a la cuenta de correo electrónico proporcionada por el actor.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar al actor que el registro se ha realizado exitosamente.
@@ -84,6 +85,11 @@
 	
 	\begin{UCtrayectoriaA}{RPE-G}{El actor ingresó una CURP repetida.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que existe una persona con la misma CURP.
+		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPE-H}{El actor ingresó una correo repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que existe una persona con el mismo correo.
 		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 

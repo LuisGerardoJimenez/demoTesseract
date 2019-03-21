@@ -2,7 +2,6 @@ package mx.prisma.editor.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +13,6 @@ import mx.prisma.bs.AnalisisEnum.CU_Mensajes;
 import mx.prisma.editor.bs.ElementoBs;
 import mx.prisma.editor.bs.ElementoBs.Estado;
 import mx.prisma.editor.bs.MensajeBs;
-import mx.prisma.editor.model.Actualizacion;
 import mx.prisma.editor.model.Mensaje;
 import mx.prisma.editor.model.MensajeParametro;
 import mx.prisma.editor.model.Modulo;
@@ -158,10 +156,6 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 				System.out.println("entra al if");
 				model.setParametrizado(false);
 			}
-		
-			
-			
-			
 			MensajeBs.registrarMensaje(model);
 			resultado = SUCCESS;
 
@@ -366,7 +360,6 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 	}
 
 	private void agregarParametros() throws Exception {
-		int contador2=0;
 		model.setParametrizado(true);
 		/*while(model.getRedaccion().indexOf("PARAM")!=-1){
 			contador2++;
@@ -374,6 +367,8 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 		if(contador2==0){
 			model.setParametrizado(false);
 		}*/
+		System.err.println(jsonParametros);
+		System.err.println(jsonParametrosGuardados);
 		
 		if (jsonParametros != null && !jsonParametros.equals("")) {
 			Set<Parametro> parametros = JsonUtil.mapJSONToSet(jsonParametros,
@@ -385,6 +380,7 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 						.getId());
 				if (parametroAux != null) {
 					// Si existe, debe mantener los cambios hechos en la vista
+					System.err.println(parametroAux.getDescripcion());
 					parametroAux.setDescripcion(p.getDescripcion());
 					model.getParametros().add(
 							new MensajeParametro(model, parametroAux));

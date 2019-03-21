@@ -91,36 +91,18 @@ public class EntidadBs {
 
 	private static void validar(Entidad model) {
 
-		// Validaciones del nombre
+		// Validaciones de nularidad
 		if (Validador.esNuloOVacio(model.getNombre())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el nombre de la entidad.", "MSG4",
 					null, "model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { "200", "caracteres" }, "model.nombre");
-		}
-		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre con caracter inválido.",
-					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
-		}
-		// Validaciones de la Descripción
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la descripción de la entidad.",
 					"MSG4", null, "model.descripcion");
 		}
-
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una descripcion muy larga.", "MSG6",
-					new String[] { "999", "caracteres" }, "model.descripcion");
-		}
-
-		// Validaciones de los atributos
+		
 		if (Validador.esNuloOVacio(model.getAtributos())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó ningún atributo.", "MSG18",
@@ -177,6 +159,24 @@ public class EntidadBs {
 				}
 			}
 		}
+		//Validacion de Longitud
+		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre muy largo.", "MSG6",
+					new String[] { "200", "caracteres" }, "model.nombre");
+		}
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una descripcion muy larga.", "MSG6",
+					new String[] { "999", "caracteres" }, "model.descripcion");
+		}
+		//Validacion de Formato
+		if (Validador.contieneCaracterInvalido(model.getNombre())) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre con caracter inválido.",
+					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
+		}
+		
 	}
 
 	public static Entidad consultarEntidad(int idEntidad) {

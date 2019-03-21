@@ -64,8 +64,9 @@ public class ParametroDAO extends GenericDAO{
 		try {
 			session.beginTransaction();
 			Query query = session
-					.createQuery("from Parametro where Proyectoid = :idProyecto");
+					.createQuery("from Parametro where Proyectoid = :idProyecto order by id");
  			query.setParameter("idProyecto", idProyecto);
+ 			
 			results = query.list();
 			session.getTransaction().commit();
 		} catch (HibernateException he) {
