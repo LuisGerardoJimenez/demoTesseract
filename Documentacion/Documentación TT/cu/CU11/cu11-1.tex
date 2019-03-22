@@ -43,13 +43,13 @@
 		\UCpaso[\UCactor] Ingresa el número, el nombre y la descripción de la pantalla. \label{CU11.1-P3}
 		\UCpaso[\UCactor] Selecciona la imagen de sus archivos locales. \label{CU11.1-P4}
 		\UCpaso[\UCactor] Gestiona las acciones de la pantalla. \label{CU11.1-P5}
-		\UCpaso[\UCactor] Solicita guardar la información del actor oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU7.1}{Registrar Pantalla}.\Trayref{RIU-A} 
+		\UCpaso[\UCactor] Solicita guardar la información de la pantalla oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU7.1}{Registrar Pantalla}.\Trayref{RIU-A} 
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RIU-B}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RIU-C} \Trayref{RIU-D} \Trayref{RIU-E} \Trayref{RIU-F} \Trayref{RIU-G}
 		\UCpaso[\UCsist] Verifica que el número de la pantalla no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{RIU-H}
 		\UCpaso[\UCsist] Verifica que el nombre de la pantalla no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RIU-I} 
 		\UCpaso[\UCsist] Registra la información de la pantalla en el sistema.
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar al actor que el registro se ha realizado exitosamente.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 
@@ -90,12 +90,12 @@
 	
 	\begin{UCtrayectoriaA}{RIU-H}{El actor ingresó un número de pantalla repetido.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU7.1}{Registrar Pantalla}, indicando al actor que existe una pantalla con el mismo número.
-		\UCpaso Regresa al paso \ref{CU11.1-P4} de la trayectoria principal.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RIU-I}{El actor ingresó un nombre de una pantalla repetido.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU7.1}{Registrar Pantalla}, indicando al actor que existe una pantalla con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU11.1-P4} de la trayectoria principal.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
 

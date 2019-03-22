@@ -14,7 +14,7 @@
 			\end{itemize}
 			\item De la sección Descripción del caso de uso:
 			\begin{itemize}
-				\item \cdtRef{actoreEntidad}{Actores}: Se escribe una palabra y se selecciona una sugerencia de la lista.
+				\item \cdtRef{actorEntidad}{Actores}: Se escribe una palabra y se selecciona una sugerencia de la lista.
 				\item Entradas: Se escribe una palabra y se selecciona una sugerencia de la lista.
 				\item Salidas: Se escribe una palabra y se selecciona una sugerencia de la lista.
 				\item \cdtRef{BREntidad}{Reglas de Negocio}: Se escribe una palabra y se selecciona una sugerencia de la lista.
@@ -73,47 +73,129 @@
 		\UCpaso[\UCsist] Obtiene los actores del proyecto actual registradas en el sistema.
 		\UCpaso[\UCsist] Obtiene los términos de glosario del proyecto actual registradas en el sistema.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1}{Registrar Caso de uso}.
-		\UCpaso[\UCactor] Ingresa la información general del caso de uso.
-		\UCpaso[\UCactor] Ingresa los actores del caso de uso.
-		\UCpaso[\UCactor] Solicita guardar la información del actor oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso}. \label{CU10.1-P5} \Trayref{RACT-B} 
-		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RACT-C}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RACT-D} \Trayref{RACT-E}
-		\UCpaso[\UCsist] Verifica que el nombre del actor no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RACT-F} 
-		\UCpaso[\UCsist] Registra la información del actor en el sistema.
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar al actor que el registro se ha realizado exitosamente.
+		\UCpaso[\UCactor] Ingresa la información general del caso de uso. \label{CU12.1-P12}
+		\UCpaso[\UCactor] Ingresa los actores del caso de uso. \Trayref{RCU-A} \label{CU12.1-P13}
+		\UCpaso[\UCactor] Ingresa las entradas del caso de uso. \Trayref{RCU-B} \Trayref{RCU-C} \label{CU12.1-P14}
+		\UCpaso[\UCactor] Ingresa las salidas  del caso de uso.\Trayref{RCU-B} \Trayref{RCU-D} \label{CU12.1-P15}
+		\UCpaso[\UCactor] Ingresa las reglas de negocio del caso de uso. \Trayref{RCU-E} \label{CU12.1-P16}
+		\UCpaso[\UCactor] Gestiona las precondiciones. \label{CU12.1-P17}
+		\UCpaso[\UCactor] Gestiona las postcondiciones. \label{CU12.1-P18}
+		\UCpaso[\UCactor] Solicita guardar la información del caso de uso oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso}. \label{CU10.1-P5} \Trayref{RCU-F} 
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RCU-G}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RCU-H} \Trayref{RCU-I} \Trayref{RCU-J}
+		\UCpaso[\UCsist] Verifica que el número del caso de uso no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN29}{Unicidad de casos de uso}. \Trayref{RCU-K}
+		\UCpaso[\UCsist] Verifica que el nombre del caso de uso no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RCU-L}
+		\UCpaso[\UCsist] Verifica que los tokens utilizados se encuentren correctamente estructurados ,con base en la regla de negocio \BRref{RN31}{Estructura de tokens}. \Trayref{RCU-M}
+		\UCpaso[\UCsist] Verifica que los elementos referenciados existan en el sistema ,con base en la regla de negocio \BRref{RN10}{Referencia a elementos}. \Trayref{RCU-N}
+		\UCpaso[\UCsist] Registra el caso de uso en el sistema con estado ''Edición''.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6}{Gestionar Casos de uso} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
 	
-	\begin{UCtrayectoriaA}{RACT-A}{No existe información en los catálogos.}
-		\UCpaso[\UCactor] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU8}{Gestionar Actores}.
+	\begin{UCtrayectoriaA}{RCU-A}{El actor desea seleccionar un actor.}
+		\UCpaso[\UCactor] Ingresa el token {\em ACT·}.
+		\UCpaso[\UCsist] Obtiene los actores registrados en el proyecto. 
+		\UCpaso[\UCsist] Muestra una lista con los actores encontrados.
+		\UCpaso[\UCactor] Selecciona un actor de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del actor seleccionado no contenga espacios. \Trayref{RCU-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre del actor al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1-P13} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RACT-B}{El actor desea cancelar la operación.}
+	\begin{UCtrayectoriaA}{RCU-B}{El actor desea seleccionar un término del glosario.}
+		\UCpaso[\UCactor] Ingresa el token {\em GLS·}.
+		\UCpaso[\UCsist] Obtiene los términos del glosario registradas en el proyecto. 
+		\UCpaso[\UCsist] Muestra una lista con los términos del glosario encontrados.
+		\UCpaso[\UCactor] Selecciona un término del glosario de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del término seleccionado no contenga espacios. \Trayref{RCU-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre del término del glosario al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1-P14} o \ref{CU12.1-P15} de la trayectoria principal, según corresponda.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-C}{El actor desea seleccionar Atributo.}
+		\UCpaso[\UCactor] Ingresa el token {\em ATR·}. 
+		\UCpaso[\UCsist] Obtiene los atributos de las entidades registradas en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con los atributos encontrados.
+		\UCpaso[\UCactor] Selecciona un atributo de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la entidad a la que pertenece el atributo no contenga espacios. \Trayref{RCU-Ñ}
+		\UCpaso[\UCsist] Verifica que el nombre del atributo no contenga espacios. \Trayref{RCU-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre de la entidad a la que pertenece el atributo al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del atributo al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1-P14} o \ref{CU12.1-P15} de la trayectoria principal, según corresponda.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-D}{El actor desea seleccionar un mensaje.}
+		\UCpaso[\UCactor] Ingresa el token {\em MSG·}. 
+		\UCpaso[\UCsist] Obtiene los mensaje registrados en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con los mensajes encontrados.
+		\UCpaso[\UCactor] Selecciona un mensaje de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del mensaje seleccionado no contenga espacios. \Trayref{RCU-Ñ}
+		\UCpaso[\UCsist] Agrega el número del mensaje al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del mensaje al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1-P15} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-E}{El actor desea seleccionar una regla de negocio.}
+		\UCpaso[\UCactor] Ingresa el token {\em RN·}. 
+		\UCpaso[\UCsist] Obtiene las reglas de negocio registradas en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con las reglas de negocio encontradas.
+		\UCpaso[\UCactor] Selecciona una regla de negocio de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio seleccionada no contenga espacios. \Trayref{RCU-Ñ}
+		\UCpaso[\UCsist] Agrega el número de la regla de negocio al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre de la regla de negocio al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-F}{El actor desea cancelar la operación.}
 		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso}.
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso}.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RACT-C}{El actor no ingresó algún dato marcado como obligatorio.}
+	\begin{UCtrayectoriaA}{RCU-G}{El actor no ingresó algún dato marcado como obligatorio.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que el dato es obligatorio.
-		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RACT-D}{El actor proporciona un dato que excede la longitud máxima.}
+	\begin{UCtrayectoriaA}{RCU-H}{El actor proporciona un dato que excede la longitud máxima.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, para indicar que el dato excede el tamaño máximo permitido.
-		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RMSG-E}{El actor ingresó un número de mensaje con un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Formato de campo incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU10.1}{Registrar Mensaje}, para indicar que se ha ingresado un tipo de dato inválido.
-		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
+	\begin{UCtrayectoriaA}{RCU-I}{El actor ingresó un número de caso de uso con un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Formato de campo incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
-	\begin{UCtrayectoriaA}{RACT-F}{El actor ingresó un tipo de dato incorrecto.}
+	\begin{UCtrayectoriaA}{RCU-J}{El actor ingresó un tipo de dato incorrecto.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, para indicar que se ha ingresado un tipo de dato inválido.
-		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-K}{El actor ingresó un número de un caso de uso repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que existe un caso de uso con el mismo número.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 	
-	\begin{UCtrayectoriaA}{RACT-G}{El actor ingresó un nombre de un actor repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que existe un mensaje con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU10.1-P4} de la trayectoria principal.
+	\begin{UCtrayectoriaA}{RCU-L}{El actor ingresó un nombre de un caso de uso repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que existe un caso de uso con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
 	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-M}{El actor ingresó un token estructurado de manera incorrecta.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG19}{Token incorrecto} en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que el token utilizado no es correcto.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-N}{Alguno de los elementos referenciados no existe en el sistema.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG14}{Dato no registrado} en la pantalla \IUref{IU6.1}{Registrar Caso de uso}, indicando al actor que el elemento que no se encuentra registrado en el sistema.
+		\UCpaso Regresa al paso \ref{CU12.1-P12} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RCU-Ñ}{El texto contiene espacios.}
+		\UCpaso[\UCsist] Sustituye los espacios por guiones bajos.
+	\end{UCtrayectoriaA}
+
+\UCExtenssionPoint{El actor requiere registrar una precondición}{Paso \ref{CU12.1-P17} de la trayectoria principal.}{\UCref{CU11.1.2}{Registrar Precondición}}
+\UCExtenssionPoint{El actor requiere eliminar una precondición}{Paso \ref{CU12.1-P17} de la trayectoria principal.}{\UCref{CU11.1.3}{Modificar Precondición}}
+\UCExtenssionPoint{El actor requiere registrar una postcondición}{Paso \ref{CU12.1-P18} de la trayectoria principal.}{\UCref{CU11.1.4}{Registrar postcondición}}
+\UCExtenssionPoint{El actor requiere eliminar una postcondición}{Paso \ref{CU12.1-P18} de la trayectoria principal.}{\UCref{CU11.1.5}{Eliminar postcondición}}

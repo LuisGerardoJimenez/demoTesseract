@@ -17,7 +17,7 @@
 		\end{itemize}
 		}
 		\UCitem{Errores}{\begin{itemize}
-		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando la regla de negocio no se encuentra en un estado que permita la eliminación.
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando el actor no se encuentra en un estado que permita la eliminación.
 		\end{itemize}
 		}
 		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU10}{Gestionar Actores}.}
@@ -25,11 +25,11 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar un actor oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU8}{Gestionar Actores}.
-		\UCpaso[\UCsist] Verifica que la regla de negocio pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EACT-A}
-		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado al mensaje. \Trayref{EACT-B}
+		\UCpaso[\UCsist] Verifica que el actor pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EACT-A}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado al actor. \Trayref{EACT-B}
 		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU8}{Gestionar Actores}.
-		\UCpaso[\UCactor] Confirma la eliminación de la entidad oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EACT-C}
-		\UCpaso[\UCsist] Elimina la información referente al mensaje.
+		\UCpaso[\UCactor] Confirma la eliminación del actor oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EACT-C}
+		\UCpaso[\UCsist] Elimina la información referente al actor.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar al actor que el registro se ha eliminado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
@@ -39,9 +39,9 @@
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{EACT-B}{El actor está siendo referenciado en un caso de uso.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU8}{Gestionar Actores} en una pantalla emergente con la lista de casos de uso que están referenciando a la entidad.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU8}{Gestionar Actores} en una pantalla emergente con la lista de casos de uso que están referenciando al actor.
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU10}{Gestionar Mensajes}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores}.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{EACT-C}{El actor desea cancelar la operación.}
