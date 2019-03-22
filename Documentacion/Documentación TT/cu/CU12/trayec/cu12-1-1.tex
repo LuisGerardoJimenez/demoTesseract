@@ -1,0 +1,59 @@
+	\begin{UseCase}{CU12.1.1}{Gestionar Trayectorias}{
+	Este caso de uso permite al analista visualizar la trayectoria principal y las trayectorias alternativas del caso de uso. También permite al actor acceder a las operaciones de registro, modificación y eliminación de las trayectorias.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de las trayectorias de un caso de uso.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{moduloEntidad:claveModulo}{Clave del Módulo}: Lo obtiene el sistema.
+			\item \cdtRef{moduloEntidad:nombreModulo}{Nombre del Módulo}: Lo obtiene el sistema.
+			\item \cdtRef{casoUso:numeroCU}{Número} del caso de uso: Lo obtiene el sistema. 
+			\item \cdtRef{casoUso:nombreCU}{Nombre} del caso de uso: Lo obtiene el sistema.
+			\item \cdtRef{entidadTray}{Trayectoria}: Tabla que muestra \cdtRef{entidadTray:nombreTray}{nombre} y \cdtRef{entidadTray:condicionTray}{condición} de todos los registros de las trayectorias del caso de uso.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} cuando no existen trayectorias registradas.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{
+		\begin{itemize}
+			\item Que el caso de uso se encuentre en estado ''Edición'' o ''Pendiente de corrección''.
+		\end{itemize}
+	}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{
+		\begin{itemize}
+			\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando el estado del caso de uso sea inválido.
+		\end{itemize}
+	}
+	\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12}{Gestionar Casos de uso}.}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar las trayectorias de un caso de uso presionando el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/tray}} del caso de uso que desee de la pantalla \IUref{IU6}{Gestionar Casos de uso}
+	\UCpaso[\UCsist] Obtiene la información de las trayectorias del caso de uso. \Trayref{GTRAY-A}
+	\UCpaso[\UCsist] Verifica que el caso de uso se encuentre en estado ''Edición'' o en estado ''Pendiente de corrección''.\Trayref{GTRAY-C}
+	\UCpaso[\UCsist] Muestra la información de las trayectorias en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}. 
+	\UCpaso[\UCactor] Gestiona los casos de uso a través de los botones: \IUbutton{Registrar}, \editar, y \eliminar \Trayref{GTRAY-B} \label{CU12.1.1-P5}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GTRAY-A}{No existen registros de trayectorias.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para indicar que no hay registros de trayectorias para mostrar.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{GTRAY-B}{El actor desea regresar a la gestión de casos de uso.}
+	\UCpaso[\UCactor] Presiona el botón \IUbutton{Regresar}.
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{GTRAY-C}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU6}{Gestionar Casos de uso} indicando que no es posible gestionar las trayectorias debido a que el estado del caso de uso es inválido.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar una trayectoria.}{Paso \ref{CU12.1.1-P5} de la trayectoria principal.}{\UCref{CU12.1.1.1}{Registrar Trayectoria}}
+\UCExtenssionPoint{El actor requiere modificar una trayectoria.}{Paso \ref{CU12.1.1-P5} de la trayectoria principal.}{\UCref{CU12.1.1.2}{Modificar Trayectoria}}
+\UCExtenssionPoint{El actor requiere eliminar una trayectoria.}{Paso \ref{CU12.1.1-P5} de la trayectoria principal.}{\UCref{CU12.1.1.3}{Eliminar Trayectoria}}
