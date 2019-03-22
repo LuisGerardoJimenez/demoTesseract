@@ -19,7 +19,7 @@
 		\end{itemize}
 		}
 		\UCitem{Errores}{\begin{itemize}
-		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Adminstrador} cuando el proyecto no se encuentre en un estado que permita la eliminación.
+		\item \cdtIdRef{MSG32}{No es posible eliminar}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Adminstrador} cuando el proyecto tiene elementos asociados.
 		\end{itemize}
 		}
 		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU2}{Gestionar proyectos de Administrador}}
@@ -42,5 +42,5 @@
 
 %--------------------------------------
 		\begin{UCtrayectoriaA}{EP-B}{No es posible eliminar el proyecto.}
-			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con el mensaje \cdtIdRef{MSG13}{Eliminación no permitida}.
+			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con el mensaje \cdtIdRef{MSG32}{No es posible eliminar}.
 		\end{UCtrayectoriaA}
