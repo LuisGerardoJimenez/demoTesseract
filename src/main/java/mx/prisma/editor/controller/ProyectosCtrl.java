@@ -122,7 +122,6 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 	public String elegirColaboradores() throws Exception {
 		Map<String, Object> session = null;
 		String resultado = null;
-		Colaborador colaboradorSelf = null;
 		try {
 
 			colaborador = SessionManager.consultarColaboradorActivo();
@@ -132,12 +131,13 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 				return resultado;
 			}
 			resultado = "colaboradores";
-			listColaboradores = ColaboradorBs.consultarPersonal();
-			for (Colaborador colaboradori : listColaboradores) {
-				if (colaboradori.getCurp().equals(colaborador.getCurp()))
-					colaboradorSelf = colaboradori;
+			listColaboradores = new ArrayList<Colaborador>();
+			List<Colaborador> colaboradores = ColaboradorBs.consultarPersonal();
+			for (Colaborador colaboradorSel : colaboradores) {
+				if (!(colaboradorSel.getCurp().equals(colaborador.getCurp()) || 
+						colaboradorSel.isAdministrador()))
+					listColaboradores.add(colaboradorSel);
 			}
-			listColaboradores.remove(colaboradorSelf);
 
 			session = ActionContext.getContext().getSession();
 			session.put("idProyecto", idSel);
@@ -172,7 +172,7 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 
 			addActionMessage(getText("MSG1", new String[] { "Los", "Colaboradores",
 			"registrados" }));
-			ProyectoBs.modificarProyecto(model);
+			//ProyectoBs.modificarProyecto(model);
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 		} catch (PRISMAException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
