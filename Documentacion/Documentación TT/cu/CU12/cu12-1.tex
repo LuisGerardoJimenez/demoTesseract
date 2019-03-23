@@ -1,4 +1,4 @@
-	\begin{UseCase}{CU11.1}{Registrar Caso de uso}{
+	\begin{UseCase}{CU12.1}{Registrar Caso de uso}{
 			Este caso de uso permite al actor registrar un caso de uso. Al ingresar los datos, el actor podrá utilizar un token que le desplegará una lista de elementos disponibles para su utilización.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
@@ -53,12 +53,12 @@
 		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
 		\item \cdtIdRef{MSG5}{Formato de campo incorrecto}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Mensaje} cuando el número del caso de uso contiene un carácter no válido.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando se ha excedido la longitud de alguno de los campos.
-		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando se registre un actor con un nombre que ya se encuentre registrado en el sistema.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando se registre un caso de uso con un nombre que ya se encuentre registrado en el sistema.
 		\item \cdtIdRef{MSG14}{Dato no registrado}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando un elemento referenciado no existe en el sistema.
 		\item \cdtIdRef{MSG19}{Token Incorrecto}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} cuando el token ingresado se encuentra estructurado de forma incorrecta.
 		\end{itemize}.
 		}
-		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU11}{Gestionar Casos de uso}.}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12}{Gestionar Casos de uso}.}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
@@ -195,7 +195,7 @@
 		\UCpaso[\UCsist] Sustituye los espacios por guiones bajos.
 	\end{UCtrayectoriaA}
 
-\UCExtenssionPoint{El actor requiere registrar una precondición}{Paso \ref{CU12.1-P17} de la trayectoria principal.}{\UCref{CU11.1.2}{Registrar Precondición}}
-\UCExtenssionPoint{El actor requiere eliminar una precondición}{Paso \ref{CU12.1-P17} de la trayectoria principal.}{\UCref{CU11.1.3}{Modificar Precondición}}
-\UCExtenssionPoint{El actor requiere registrar una postcondición}{Paso \ref{CU12.1-P18} de la trayectoria principal.}{\UCref{CU11.1.4}{Registrar postcondición}}
-\UCExtenssionPoint{El actor requiere eliminar una postcondición}{Paso \ref{CU12.1-P18} de la trayectoria principal.}{\UCref{CU11.1.5}{Eliminar postcondición}}
+\UCExtenssionPoint{El actor requiere registrar una precondición}{Paso \ref{CU12.1-P17} de la trayectoria principal.}{\UCref{CU12.1.2}{Registrar Precondición}}
+\UCExtenssionPoint{El actor requiere eliminar una precondición}{Paso \ref{CU12.1-P17} de la trayectoria principal.}{\UCref{CU12.1.3}{Modificar Precondición}}
+\UCExtenssionPoint{El actor requiere registrar una postcondición}{Paso \ref{CU12.1-P18} de la trayectoria principal.}{\UCref{CU12.1.4}{Registrar postcondición}}
+\UCExtenssionPoint{El actor requiere eliminar una postcondición}{Paso \ref{CU12.1-P18} de la trayectoria principal.}{\UCref{CU12.1.5}{Eliminar postcondición}}
