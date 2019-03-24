@@ -172,7 +172,7 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 
 			addActionMessage(getText("MSG1", new String[] { "Los", "Colaboradores",
 			"registrados" }));
-			//ProyectoBs.modificarProyecto(model);
+			ProyectoBs.modificarColaboradoresProyecto(model);
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 		} catch (PRISMAException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
