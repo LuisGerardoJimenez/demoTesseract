@@ -205,6 +205,20 @@ public class ProyectoBs {
 					new String[] { "fecha de término programada", "fecha de inicio programada" }, "model.fechaTerminoProgramada");
 		}
 	}
+	
+	public static void modificarColaboradoresProyecto(Proyecto model) throws Exception {
+		try {
+			new ProyectoDAO().modificarProyecto(model);
+		} catch (JDBCException je) {
+			System.out.println("ERROR CODE " + je.getErrorCode());
+			je.printStackTrace();
+			throw new Exception();
+		} catch (HibernateException he) {
+			he.printStackTrace();
+			throw new Exception();
+		}
+		
+	}
 
 	public static List<EstadoProyecto> consultarEstadosProyecto() {
 		List<EstadoProyecto> estados = new EstadoProyectoDAO().consultarEstadosProyecto();
