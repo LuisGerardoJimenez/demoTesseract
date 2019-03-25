@@ -49,7 +49,7 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
-		\UCpaso[\UCactor] Solicita registrar una actor oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+		\UCpaso[\UCactor] Solicita registrar una trayectoria oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
 		\UCpaso[\UCactor] Verifica que el caso de uso se encuentre en estado ''Edición'' o en estado ''Pendiente de corrección''. \Trayref{RTRAY-J}
 		\UCpaso[\UCsist] Obtiene las reglas de negocio del proyecto actual registradas en el sistema.
 		\UCpaso[\UCsist] Obtiene las entidades del proyecto actual registradas en el sistema.
@@ -128,7 +128,6 @@
 
 	\begin{UCtrayectoriaA}{RTRAY-J}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU6}{Gestionar Casos de uso}, indicando que no es posible registrar una trayectoria debido a que el estado del caso de uso es inválido.
-		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
 

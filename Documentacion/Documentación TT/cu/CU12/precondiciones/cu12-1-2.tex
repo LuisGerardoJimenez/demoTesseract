@@ -1,0 +1,177 @@
+	\begin{UseCase}{CU12.1.2}{Registrar Precondición}{
+		Las precondiciones describen un conjunto de condiciones que deben cumplirse para poder ejecutar el caso de uso satisfactoriamente. Este caso de uso permite al analista registrar una precondición.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Registrar las precondiciones de un caso de uso.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{entidadPrecondicion:redaccionPrecondicion}{Redacción de la precondición}: Se escribe desde el teclado.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{Ninguna}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.2}{Registrar Precondición} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.2}{Registrar Precondición} cuando se ha excedido la longitud de alguno de los campos.
+		\end{itemize}.}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1}{Registrar Caso de uso} y \UCref{CU12.2}{Modificar Caso de uso}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar una precondición oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso} en la sección ''Precondiciones''.
+		\UCpaso[\UCsist] Muestra la pantalla emergente \IUref{IU6.1.2}{Registrar Precondición}.
+		\UCpaso[\UCactor] Ingresa la redacción de la precondición. \Trayref{RPRE-A} \Trayref{RPRE-B} \Trayref{RPRE-C} \Trayref{RPRE-D} \Trayref{RPRE-E} \Trayref{RPRE-F} \Trayref{RPRE-G} \Trayref{RPRE-H} \Trayref{RPRE-I} \Trayref{RPRE-J} \Trayref{RPRE-K} \label{CU12.1.2-P3}
+		\UCpaso[\UCactor] Solicita registrar la precondición oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1.2}{Registrar Precondición}. \Trayref{RPRE-L} 
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RPRE-M}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RPRE-N}
+		\UCpaso[\UCsist] Agrega la precondición en la tabla de la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}, en la sección''Precondiciones''.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{RPRE-A}{El actor desea seleccionar un actor.}
+		\UCpaso[\UCactor] Ingresa el token {\em ACT·}.
+		\UCpaso[\UCsist] Obtiene los actores registrados en el proyecto. 
+		\UCpaso[\UCsist] Muestra una lista con los actores encontrados.
+		\UCpaso[\UCactor] Selecciona un actor de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del actor seleccionado no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre del actor al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-B}{El actor desea seleccionar un término del glosario.}
+		\UCpaso[\UCactor] Ingresa el token {\em GLS·}.
+		\UCpaso[\UCsist] Obtiene los términos del glosario registradas en el proyecto. 
+		\UCpaso[\UCsist] Muestra una lista con los términos del glosario encontrados.
+		\UCpaso[\UCactor] Selecciona un término del glosario de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del término seleccionado no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre del término del glosario al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-C}{El actor desea seleccionar Atributo.}
+		\UCpaso[\UCactor] Ingresa el token {\em ATR·}. 
+		\UCpaso[\UCsist] Obtiene los atributos de las entidades registradas en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con los atributos encontrados.
+		\UCpaso[\UCactor] Selecciona un atributo de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la entidad a la que pertenece el atributo no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Verifica que el nombre del atributo no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre de la entidad a la que pertenece el atributo al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del atributo al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal, según corresponda.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-D}{El actor desea seleccionar un mensaje.}
+		\UCpaso[\UCactor] Ingresa el token {\em MSG·}. 
+		\UCpaso[\UCsist] Obtiene los mensaje registrados en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con los mensajes encontrados.
+		\UCpaso[\UCactor] Selecciona un mensaje de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del mensaje seleccionado no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el número del mensaje al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del mensaje al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-E}{El actor desea seleccionar una regla de negocio.}
+		\UCpaso[\UCactor] Ingresa el token {\em RN·}. 
+		\UCpaso[\UCsist] Obtiene las reglas de negocio registradas en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con las reglas de negocio encontradas.
+		\UCpaso[\UCactor] Selecciona una regla de negocio de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la regla de negocio seleccionada no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el número de la regla de negocio al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre de la regla de negocio al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-F}{El actor desea seleccionar una entidad.}
+		\UCpaso[\UCactor] Ingresa el token {\em ENT·}. 
+		\UCpaso[\UCsist] Obtiene las entidades registradas en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con las entidades encontradas.
+		\UCpaso[\UCactor] Selecciona una entidad de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la entidad seleccionada no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el nombre de la entidad al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-G}{El actor desea seleccionar un caso de uso.}
+		\UCpaso[\UCactor] Ingresa el token {\em CU·}. 
+		\UCpaso[\UCsist] Obtiene los casos de uso registrados en el proyecto.
+		\UCpaso[\UCsist] Muestra una lista con los casos de uso encontrados.
+		\UCpaso[\UCactor] Selecciona un caso de uso de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del caso de uso seleccionado no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el número del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del caso de uso al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-H}{El actor desea seleccionar una pantalla.}
+		\UCpaso[\UCactor] Ingresa el token {\em CU·}. 
+		\UCpaso[\UCsist] Obtiene las pantallas registradas del proyecto.
+		\UCpaso[\UCsist] Muestra una lista con las pantallas encontradas.
+		\UCpaso[\UCactor] Selecciona una pantalla de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la pantalla seleccionada no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega el número de la pantalla al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre de la pantalla al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-I}{El actor desea seleccionar un paso.}
+		\UCpaso[\UCactor] Ingresa el token {\em P·}. 
+		\UCpaso[\UCsist] Obtiene los pasos del caso de uso.
+		\UCpaso[\UCsist] Muestra una lista con los pasos encontradas.
+		\UCpaso[\UCactor] Selecciona un paso de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del caso de uso al que pertenece el paso no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega la clave del caso de uso al que pertenece el paso al texto, seguido del signo ''·''.
+		\UCpaso[\UCsist] Agrega el número del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega la clave de la trayectoria a la que pertenece el paso al texto, seguido del signo ''·''.
+		\UCpaso[\UCsist] Agrega el número del paso seleccionado al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-J}{El actor desea seleccionar una trayectoria.}
+		\UCpaso[\UCactor] Ingresa el token {\em TRAY·}. 
+		\UCpaso[\UCsist] Obtiene las trayectorias del caso de uso.
+		\UCpaso[\UCsist] Muestra una lista con las trayectorias encontradas.
+		\UCpaso[\UCactor] Selecciona una trayectoria de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del caso de uso al que pertenece la trayectoria no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega la clave del caso de uso al que pertenece la trayectoria al texto, seguido del signo ''·''.
+		\UCpaso[\UCsist] Agrega el número del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega la clave de la trayectoria seleccionada.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-K}{El actor desea seleccionar una acción.}
+		\UCpaso[\UCactor] Ingresa el token {\em ACC·}. 
+		\UCpaso[\UCsist] Obtiene las acciones de las pantallas del proyecto.
+		\UCpaso[\UCsist] Muestra una lista de las acciones encontradas.
+		\UCpaso[\UCactor] Selecciona una acción de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre de la pantalla a la que pertenece la acción no contenga espacios. \Trayref{RPRE-Ñ}
+		\UCpaso[\UCsist] Agrega la clave de la pantalla a la que pertenece la acción al texto, seguido del signo ''·''.
+		\UCpaso[\UCsist] Agrega el número de la pantalla al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre de la pantalla al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre de la acción seleccionada al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-L}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1.2}{Registrar Precondición}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}, según corresponda.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-M}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1.2}{Registrar Precondición}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-N}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1.2}{Registrar Precondición}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU12.1.2-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPRE-Ñ}{El texto contiene espacios.}
+		\UCpaso[\UCsist] Sustituye los espacios por guiones bajos.
+	\end{UCtrayectoriaA}

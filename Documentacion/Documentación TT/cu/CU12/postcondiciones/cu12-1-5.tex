@@ -1,0 +1,37 @@
+	\begin{UseCase}{CU12.1.5}{Eliminar Postcondición}{
+		Este caso de uso permite al actor eliminar un registro de la tabla de postcondiciones perteneciente a un trayectoria de un caso de uso.
+	}
+	\UCitem{Versión}{\color{Gray}0.1}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Eliminar una postcondición de un caso de uso.}
+	\UCitem{Entradas}{Ninguna.}
+	\UCitem{Salidas}{
+		\begin{itemize}
+			\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso} para que el actor confirme la eliminación.
+		\end{itemize}
+	}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará la postcondición de la tabla.
+		\end{itemize}
+	}
+	\UCitem{Errores}{Ninguno.}
+	\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1}{Registrar Caso de uso} y \UCref{CU12.2}{Modificar Caso de uso}.}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita eliminar una postcondición oprimiendo el botón \eliminar del registro que desea eliminar de la tabla de postcondiciones de la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}.
+	\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}.
+	\UCpaso[\UCactor] Confirma la eliminación del paso oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EPOST-A}
+	\UCpaso[\UCsist] Elimina la postcondición de la tabla correspondiente.
+\end{UCtrayectoria}		
+%-------------------------------------
+
+\begin{UCtrayectoriaA}{EPOST-A}{El actor desea cancelar la operación.}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}.
+\end{UCtrayectoriaA}
+
+
