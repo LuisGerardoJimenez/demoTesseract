@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import mx.prisma.admin.dao.ProyectoDAO;
 import mx.prisma.admin.model.Proyecto;
 import mx.prisma.editor.dao.CasoUsoActorDAO;
 import mx.prisma.editor.dao.ModuloDAO;
@@ -17,6 +18,7 @@ import mx.prisma.editor.model.Pantalla;
 import mx.prisma.editor.model.Paso;
 import mx.prisma.editor.model.PostPrecondicion;
 import mx.prisma.editor.model.ReferenciaParametro;
+import mx.prisma.util.Constantes;
 import mx.prisma.util.PRISMAException;
 import mx.prisma.util.PRISMAValidacionException;
 import mx.prisma.util.Validador;
@@ -28,7 +30,7 @@ public class ModuloBs {
 	public static void registrarModulo(Modulo model)
 			throws Exception {
 		try {
-			validar(model);
+			validar(model, Constantes.VALIDACION_REGISTRAR);
 			new ModuloDAO().registrarModulo(model);
 		} catch (JDBCException je) {
 			System.out.println("ERROR CODE " + je.getErrorCode());
@@ -52,49 +54,72 @@ public class ModuloBs {
 		return listModulos;
 	}
 
-	private static void validar(Modulo model) {
-
-		// Validaciones del nombre
-	
-		if (Validador.esNuloOVacio(model.getClave())) {
+	private static void validar(Modulo model, String bandera) {
+		// Validaciones campo obligatorio
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esNuloOVacio(model.getClave())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la clave del módulo.", "MSG4", null,
 					"model.clave");
 		}
-		if (Validador.validaLongitudMaxima(model.getClave(), 10)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { "200", "caracteres" }, "model.nombre");
-		}
-		
-		if (Validador.contieneCaracterInvalido(model.getClave())) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una clave con caracter inválido.",
-					"MSG23", new String[] { "La", "clave" }, "model.clave");
-		}
-		
 		if (Validador.esNuloOVacio(model.getNombre())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó el nombre del módulo.", "MSG4", null,
 					"model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { "200", "caracteres" }, "model.nombre");
-		}
-		
-		// Validaciones de la Descripción
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
 			throw new PRISMAValidacionException(
 					"El usuario no ingresó la descripción del módulo.", "MSG4",
 					null, "model.descripcion");
 		}
-
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
+		// Validaciones Longitud
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre muy largo.", "MSG6",
+					new String[] { Constantes.NUMERO_DIEZ.toString(), "caracteres" }, "model.clave");
+		}
+		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_CINCUENTA)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre muy largo.", "MSG6",
+					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" }, "model.nombre");
+		}
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una descripción muy larga.", "MSG6",
-					new String[] { "999", "caracteres" }, "model.descripcion");
+					new String[] { Constantes.NUMERO_MIL.toString(), "caracteres" }, "model.descripcion");
+		}
+		// Validaciones tipo de dato
+		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esInvalidaREGEX(model.getClave(), Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una clave inválida.", "MSG50", null, "model.clave");
+		}
+		if (Validador.esInvalidaREGEX(model.getNombre(), Constantes.REGEX_CAMPO_ALFABETICO)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso un nombre inválido.", "MSG50", null, "model.nombre");
+		}
+		if (Validador.esInvalidaREGEX(model.getDescripcion(), Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES)) {
+			throw new PRISMAValidacionException(
+					"El usuario ingreso una descripción inválida.", "MSG50", null, "model.descripcion");
+		}
+		//Validaciones Negocio
+		//Se asegura la unicidad del nombre y clave
+		List<Modulo> modulosBD = consultarModulosProyecto(model.getProyecto());
+		for(Modulo modulo : modulosBD) {
+			if(model.getId() != modulo.getId()) {
+				if(model.getClave().equals(modulo.getClave())) {
+					throw new PRISMAValidacionException(
+							"La clave del módulo ya existe.",
+							"MSG7",
+							new String[] { "El", "módulo", model.getClave() },
+							"model.clave");
+				}
+				if(model.getNombre().equals(modulo.getNombre())) {
+					throw new PRISMAValidacionException(
+							"El nombre del módulo ya existe.",
+							"MSG7",
+							new String[] { "El", "módulo", model.getNombre() },
+							"model.nombre");
+				}
+			}
 		}
 	}
 
@@ -130,7 +155,7 @@ public class ModuloBs {
 		try {
 			model.setNombre(model.getNombre().trim());
 			
-			validar(model);
+			validar(model, Constantes.VALIDACION_EDITAR);
 
 			new ModuloDAO().modificarModulo(model);
 
