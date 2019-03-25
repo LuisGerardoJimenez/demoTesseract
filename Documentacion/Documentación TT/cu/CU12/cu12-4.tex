@@ -1,0 +1,87 @@
+	\begin{UseCase}{CU12.4}{Consultar Caso de uso}{
+		Este caso de uso permite al analista consultar toda la información de un caso de uso, así mismo brindará la posibilidad de acceder a la consulta de cualquier elemento utilizado.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Consultar la información de un caso de uso de un proyecto.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{
+			\begin{itemize}
+				\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+				\item \cdtRef{moduloEntidad:claveModulo}{Clave del Módulo}: Lo obtiene el sistema.
+				\item \cdtRef{moduloEntidad:nombreModulo}{Nombre del Módulo}: Lo obtiene el sistema.
+				\item \cdtRef{casoUso:numeroCU}{Número}: Lo obtiene el sistema.
+				\item \cdtRef{casoUso:nombreCU}{Nombre}: Lo obtiene el sistema.
+				\item \cdtRef{casoUso:resumenCU}{Resumen}: Lo obtiene el sistema.
+				\item Estado: Lo obtiene el sistema.
+				\item De la sección \textbf{Información general del Caso de uso}: 
+					\begin{itemize}
+						\item \cdtRef{actorEntidad}{Actores}: Lo obtiene el sistema.
+						\item Entradas: Lo obtiene el sistema.
+						\item Salidas: Lo obtiene el sistema.
+						\item \cdtRef{BREntidad}{Reglas de Negocio}: Lo obtiene el sistema.
+						\item \cdtRef{entidadPrecondicion:redaccionPrecondicion}{Redacción de cada Precondición}: Lo obtiene el sistema.
+						\item \cdtRef{entidadPostcondicion:redaccionPostcondicion}{Redacción de cada Precondición}: Lo obtiene el sistema.
+					\end{itemize}
+				\item De la sección \textbf{Trayectorias}:
+					\begin{itemize}
+						\item Se muestra la siguiente información para cada \cdtRef{entidadTray}{Trayectoria}:
+							\begin{itemize}
+								\item \cdtRef{entidadTray:nombreTray}{Clave}: Lo obtiene el sistema.
+								\item \cdtRef{entidadTray:alternativaTray}{Tipo:} Lo obtiene el sistema.
+								\item \cdtRef{entidadTray:condicionTray}{Condición:} Lo obtiene el sistema.
+								\item Se muestra la siguiente información para cada \cdtRef{entidadPaso}{Paso}:
+									\begin{itemize}
+										\item \cdtRef{entidadPaso:numeroPaso}{Número del paso}: Lo obtiene el sistema.
+										\item \cdtRef{entidadPaso:realizaPaso}{Quien realiza el paso}: Lo obtiene el sistema.
+										\item \cdtRef{entidadPaso:redaccionPaso}{Redacción del paso:} Lo obtiene el sistema.
+									\end{itemize}
+								\item \cdtRef{entidadTray:finTray}{Fin del caso de uso:} Lo obtiene el sistema.
+							\end{itemize}
+						\item De la sección \textbf{Puntos de extensión}:
+							\begin{itemize}
+								\item Se muestra la siguiente información para cada \cdtRef{entidadExtension}{Punto de extensión}:
+									\begin{itemize}
+										\item \cdtRef{entidadExtension:observacionRevision}{Causa}: Lo obtiene el sistema.
+										\item Región de la trayectoria: Lo obtiene el sistema.
+										\item Caso de uso al que extiende: Lo obtiene el sistema.
+									\end{itemize}
+							\end{itemize}
+					\end{itemize}
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando el actor que se desea consultar no existe.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12}{Gestionar Casos de uso}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita consultar un caso de uso oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} del registro que desea consultar del caso de uso \IUref{IU6}{Gestionar Casos de uso}.
+		\UCpaso[\UCsist] Obtiene la información del caso de uso seleccionado. \Trayref{CCU-A}
+		\UCpaso[\UCsist] Muestra la información encontrada en la pantalla \IUref{IU6.3}{Consultar Caso de uso}.
+		\UCpaso[\UCactor] Consulta la información del caso de uso. \label{CU12.4-P4}
+		\UCpaso[\UCactor] Solicita finalizar oprimiendo el botón \IUref{Regresar} de la pantalla \IUref{IU6.3}{Consultar Caso de uso}.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{CCU-A}{El caso de uso que se desea consultar no existe.}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\end{UCtrayectoriaA}
+
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor desea consultar alguno de los actores mostrados en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU10.4}{Consultar Actor}}
+\UCExtenssionPoint{El actor desea consultar alguno de los atributos mostrados en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU7.4}{Consultar Entidad}}
+\UCExtenssionPoint{El actor desea consultar alguno de los términos de glosario mostrados en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU6.4}{Consultar Término}}
+\UCExtenssionPoint{El actor desea consultar alguno de los mensajes mostrados en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU9.4}{Consultar Mensaje}}
+\UCExtenssionPoint{El actor desea consultar alguna de las reglas de negocio mostradas en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU8.4}{Consultar Regla de negocio}}
+\UCExtenssionPoint{El actor desea consultar alguna de las pantallas mostradas en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU11.4}{Consultar Pantalla}}
+\UCExtenssionPoint{El actor desea consultar alguna de las acciones mostradas en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU11.4}{Consultar Pantalla}}
+\UCExtenssionPoint{El actor desea consultar alguna de las trayectorias mostradas en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU12.4}{Consultar Caso de uso}}
+\UCExtenssionPoint{El actor desea consultar alguno de los pasos mostrados en la pantalla.}{Paso \ref{CU12.4-P4} de la trayectoria principal.}{\UCref{CU12.4}{Consultar Caso de uso}}

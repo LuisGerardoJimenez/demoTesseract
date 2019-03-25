@@ -1,0 +1,46 @@
+	\begin{UseCase}{CU12.1.6.3}{Eliminar Punto de extensión}{
+		Este caso de uso permite al actor eliminar un punto de extensión del sistema.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar un punto de extensión del caso de uso.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión} para indicar que el punto de extensión fue eliminado correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Puntos de extensión} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que el caso de uso al que pertenece el punto de extensión se encuentre en estado ''Edición'' o ''Pendiente de corrección''.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará un punto de extensión de un caso de uso.
+		\end{itemize}
+		}
+		\UCitem{Errores}{Ninguno}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1.6}{Gestionar Puntos de extensión}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar un punto de extensión oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión}.
+		\UCpaso[\UCactor] Verifica que el caso de uso se encuentre en estado ''Edición'' o en estado ''Pendiente de corrección''. \Trayref{MPEXT-A}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión}.
+		\UCpaso[\UCactor] Confirma la eliminación de la pantalla oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EPEXT-B}
+		\UCpaso[\UCsist] Elimina la información referente al punto de extensión.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+
+	\begin{UCtrayectoriaA}{EPEXT-A}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
+		\UCpaso[\UCsist] Oculta el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/talt}} del caso de uso que no tiene como estado ''Edición'' o ''Pendiente de corrección''.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EPEXT-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión}.
+	\end{UCtrayectoriaA}
+	
+

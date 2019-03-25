@@ -14,17 +14,17 @@
 		\UCitem{Precondiciones}{Ninguna}
 		\UCitem{Postcondiciones}{Ninguna}
 		\UCitem{Errores}{\begin{itemize}
-		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.4}{Registrar Postcondición} cuando no se ha ingresado un dato marcado como obligatorio.
-		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.4}{Registrar Postcondición} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.3}{Registrar Postcondición} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.3}{Registrar Postcondición} cuando se ha excedido la longitud de alguno de los campos.
 		\end{itemize}.}
 		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1}{Registrar Caso de uso} y \UCref{CU12.2}{Modificar Caso de uso}.}
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita registrar una postcondición oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso} en la sección ''Postcondiciones''.
-		\UCpaso[\UCsist] Muestra la pantalla emergente \IUref{IU6.1.4}{Registrar Postcondición}.
+		\UCpaso[\UCsist] Muestra la pantalla emergente \IUref{IU6.1.3}{Registrar Postcondición}.
 		\UCpaso[\UCactor] Ingresa la redacción de la postcondición. \Trayref{RPOST-A} \Trayref{RPOST-B} \Trayref{RPOST-C} \Trayref{RPOST-D} \Trayref{RPOST-E} \Trayref{RPOST-F} \Trayref{RPOST-G} \Trayref{RPOST-H} \Trayref{RPOST-I} \Trayref{RPOST-J} \Trayref{RPOST-K} \label{CU12.1.4-P3}
-		\UCpaso[\UCactor] Solicita registrar la postcondición oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1.4}{Registrar Postcondición}. \Trayref{RPOST-L} 
+		\UCpaso[\UCactor] Solicita registrar la postcondición oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1.3}{Registrar Postcondición}. \Trayref{RPOST-L} 
 		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RPOST-M}
 		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RPOST-N}
 		\UCpaso[\UCsist] Agrega la postcondición en la tabla de la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}, en la sección''Postcondiciones''.
@@ -158,17 +158,17 @@
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RPOST-L}{El actor desea cancelar la operación.}
-		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1.4}{Registrar postcondición}.
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1.3}{Registrar postcondición}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1}{Registrar Caso de uso} o \IUref{IU6.2}{Modificar Caso de uso}, según corresponda.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{-M}{El actor no ingresó algún dato marcado como obligatorio.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1.4}{Registrar postcondición}, indicando al actor que el dato es obligatorio.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1.3}{Registrar postcondición}, indicando al actor que el dato es obligatorio.
 		\UCpaso Regresa al paso \ref{CU12.1.4-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{RPOST-N}{El actor proporciona un dato que excede la longitud máxima.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1.4}{Registrar postcondición}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1.3}{Registrar postcondición}, para indicar que el dato excede el tamaño máximo permitido.
 		\UCpaso Regresa al paso \ref{CU12.1.4-P3} de la trayectoria principal.
 	\end{UCtrayectoriaA}
 

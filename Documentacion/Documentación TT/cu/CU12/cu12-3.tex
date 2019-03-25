@@ -1,0 +1,70 @@
+	\begin{UseCase}{CU12.3}{Eliminar Caso de uso}{
+	Este caso de uso permite al actor eliminar del sistema un caso de uso.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de un caso de uso.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} para indicar que la pantalla fue eliminada correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que el caso de uso se encuentre en estado ''Edición'' o ''Pendiente de corrección''.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará una pantalla un caso de uso del sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando no se pueda eliminar el caso de uso debido a que está siendo referenciado en algún caso de uso.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12}{Gestionar Casos de uso}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar una pantalla oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU7}{Gestionar Pantallas}.
+		\UCpaso[\UCsist] Verifica que el caso de uso se encuentre en estado ''Edición'' o ''Pendiente de corrección''. \Trayref{ECU-A}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre referenciando al caso de uso. \Trayref{ECU-B}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre referenciando alguna trayectoria del caso de uso. \Trayref{ECU-C}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre referenciando algún paso de alguna trayectoria del caso de uso. \Trayref{ECU-D}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+		\UCpaso[\UCactor] Confirma la eliminación del caso de uso oprimiendo el botón \IUbutton{Aceptar}. \Trayref{ECU-E}
+		\UCpaso[\UCsist] Elimina la información referente al caso de uso.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6}{Gestionar Casos de uso} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{ECU-A}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
+		\UCpaso[\UCsist] Oculta el botón \eliminar del caso que no se encuentra en estado de ''Edición'' o ''Pendiente de corrección''.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{ECU-B}{El caso de uso está siendo referenciado en algún caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU6}{Gestionar Casos de uso} en una pantalla emergente con la lista de casos de uso que están referenciando al caso de uso.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{ECU-C}{Alguna trayectoria del caso de uso está siendo referenciada en algún caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU6}{Gestionar Casos de uso} en una pantalla emergente con la lista de casos de uso que están referenciando a la trayectoria.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{ECU-D}{Algún paso de alguna trayectoria del caso de uso está siendo referenciado en algún caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU6}{Gestionar Casos de uso} en una pantalla emergente con la lista de casos de uso que están referenciando al paso.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{ECU-E}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\end{UCtrayectoriaA}
+	
+

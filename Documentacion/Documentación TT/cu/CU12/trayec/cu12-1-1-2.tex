@@ -1,5 +1,5 @@
 	\begin{UseCase}{CU12.1.1.2}{Modificar Trayectoria}{
-		Las trayectorias describen los escenarios ideales y alternos de un sistema mediante una serie de pasos. Este caso de uso permite al analista modificar la trayectoria principal o una trayectoria alternativa de un caso de uso..
+		Las trayectorias describen los escenarios ideales y alternos de un sistema mediante una serie de pasos. Este caso de uso permite al analista modificar la trayectoria principal o una trayectoria alternativa de un caso de uso.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
@@ -132,7 +132,7 @@
 	\end{UCtrayectoriaA}
 
 	\begin{UCtrayectoriaA}{MTRAY-J}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU6}{Gestionar Casos de uso}, indicando que no es posible registrar una trayectoria debido a que el estado del caso de uso es inválido.
+		\UCpaso[\UCsist] Oculta el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/tray}} del caso de uso que no tiene como estado ''Edición'' o ''Pendiente de corrección''.
 	\end{UCtrayectoriaA}
 
 
