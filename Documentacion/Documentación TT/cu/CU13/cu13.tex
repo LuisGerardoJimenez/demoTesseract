@@ -1,0 +1,47 @@
+	\begin{UseCase}{CU13}{Descargar documento}{
+	Este caso de uso permite al actor descargar el documento de análisis de algún proyecto, este documento incluirá el glosario de términos, la descripción de las entidades, las reglas de negocio, los mensajes, los actores, los casos de uso y las pantallas, así como la información del proyecto.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Descargar el documento de análisis de algún proyecto.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{El documento de análisis con extensión {\em PDF} o {\em DOCX} con la siguiente información:
+		\begin{itemize}
+			\item \cdtRef{proyectoEntidad}{Proyecto}
+			\item \cdtRef{terminoGLSEntidad}{Glosario}
+			\item \cdtRef{entidadEntidad}{Entidades}
+			\item \cdtRef{BREntidad}{Reglas de Negocio}
+			\item \cdtRef{MSGEntidad}{Mensajes}
+			\item \cdtRef{actorEntidad}{Actores}
+			\item \cdtRef{moduloEntidad}{Módulos}
+			\item \cdtRef{pantalla}{Pantallas}
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{
+		\begin{itemize}
+			\item  \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador} cuando el documento no se creó correctamente.
+		\end{itemize}
+	}
+	\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU4}{Gestionar Proyectos de Colaborador}.}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita descargar el documento de análisis presionando el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pp}} o \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/word}} de algún proyecto de la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
+	\UCpaso[\UCsist] Obtiene la información del proyecto seleccionado.
+	\UCpaso[\UCsist] Obtiene los términos del glosario del proyecto seleccionado.
+	\UCpaso[\UCsist] Obtiene las entidades del proyecto seleccionado..
+	\UCpaso[\UCsist] Obtiene las reglas de negocio del proyecto seleccionado.
+	\UCpaso[\UCsist] Obtiene los mensajes del proyecto seleccionado.
+	\UCpaso[\UCsist] Obtiene los actores del proyecto seleccionado.
+	\UCpaso[\UCsist] Obtiene los módulos del proyecto seleccionado.
+	\UCpaso[\UCsist] Obtiene los casos de uso de los módulos.
+	\UCpaso[\UCsist] Obtiene las pantallas de los módulos.
+	\UCpaso[\UCsist] Crea el documento con base a la información encontrada. \Trayref{DD-A}
+	\UCpaso[\UCsist] Descarga el documento con extensión {\em PDF} o {\em DOCX}, según corresponda.
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{DD-A}{Ocurrió un error al crear el documento}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
+\end{UCtrayectoriaA}
+
