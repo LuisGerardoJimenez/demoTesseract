@@ -21,6 +21,7 @@ import mx.prisma.editor.model.Paso;
 import mx.prisma.editor.model.PostPrecondicion;
 import mx.prisma.editor.model.ReferenciaParametro;
 import mx.prisma.editor.model.Salida;
+import mx.prisma.util.Constantes;
 import mx.prisma.util.PRISMAException;
 import mx.prisma.util.PRISMAValidacionException;
 import mx.prisma.util.Validador;
@@ -47,12 +48,11 @@ public class MensajeBs {
 				model.setNombre(model.getNombre().trim());
 				new MensajeDAO().registrarMensaje(model);
 		} catch (JDBCException je) {
-				if(je.getErrorCode() == 1062)
+				if(je.getErrorCode() == Constantes.MYSQL_ERROR_1062)
 				{
 					throw new PRISMAValidacionException("El nombre del mensaje ya existe.", "MSG7",
 							new String[] { "El","Mensaje", model.getNombre()}, "model.nombre");
 				}
-				System.out.println("ERROR CODE " + je.getErrorCode());
 				je.printStackTrace();
 				throw new Exception();
 		} catch(HibernateException he) {
@@ -93,7 +93,6 @@ public class MensajeBs {
 				new MensajeDAO().modificarMensaje(model);
 		
 		} catch (JDBCException je) {
-			System.out.println("ERROR CODE " + je.getErrorCode());
 			je.printStackTrace();
 			throw new Exception();
 		} catch(HibernateException he) {
@@ -131,21 +130,21 @@ public class MensajeBs {
 			}
 		}
 		//Validación de Longitud
-		if(Validador.validaLongitudMaxima(model.getNumero().toString(), 20)) {
+		if(Validador.validaLongitudMaxima(model.getNumero().toString(), Constantes.NUMERO_VEINTE)) {
 			throw new PRISMAValidacionException("El usuario ingreso un número muy largo.", "MSG6", new String[] { "20",
 			"números"}, "model.numero");
 		}
-		if(Validador.validaLongitudMaxima(model.getNombre(), 200)) {
+		if(Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_DOSCIENTOS)) {
 			throw new PRISMAValidacionException("El usuario ingreso un nombre muy largo.", "MSG6", new String[] { "200",
 			"caracteres"}, "model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
-					new String[] { "999", "caracteres" }, "model.descripcion");
+					new String[] { "1000", "caracteres" }, "model.descripcion");
 		}
-		if(model.getRedaccion() != null && Validador.validaLongitudMaxima(model.getRedaccion(), 999)) {
-			throw new PRISMAValidacionException("El usuario ingreso una redaccion muy larga.", "MSG6", new String[] { "999",
+		if(model.getRedaccion() != null && Validador.validaLongitudMaxima(model.getRedaccion(), Constantes.NUMERO_MIL)) {
+			throw new PRISMAValidacionException("El usuario ingreso una redaccion muy larga.", "MSG6", new String[] { "1000",
 			"caracteres"}, "model.redaccion");
 		}
 		//Validacion de Formato
@@ -153,7 +152,7 @@ public class MensajeBs {
 			throw new PRISMAValidacionException("El usuario ingreso un nombre con caracter inválido.", "MSG23", new String[] { "El",
 			"nombre"}, "model.nombre");
 		}
-		if(!Pattern.matches("[1-9]+[0-9]*", model.getNumero())) {
+		if(!Pattern.matches(Constantes.REGEX_CAMPO_NUMERICO_ENTERO, model.getNumero())) {
 			throw new PRISMAValidacionException("El usuario no ingresó un número válido", "MSG5", new String[]{"un", "número entero"}, "model.numero");
 		}
 		//Validacion de Negocio
@@ -175,7 +174,7 @@ public class MensajeBs {
 	public static boolean esParametrizado(String redaccion) {
 		ArrayList<String> tokens = TokenBs.procesarTokenIpunt(redaccion);
 				
-		if(tokens.size() == 0) {
+		if(tokens.size() == Constantes.NUMERO_CERO) {
 			return false;
 		} else {
 			return true;
@@ -187,7 +186,7 @@ public class MensajeBs {
 		ArrayList<String> tokens = TokenBs.procesarTokenIpunt(redaccion);
 		ArrayList<Parametro> listParametros = new ArrayList<Parametro>();
 		Parametro parametroAux = null;
-		if(listParametros.size() > 10) {
+		if(listParametros.size() > Constantes.NUMERO_DIEZ) {
 			throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG6", new String[]{"10", "parámetros"}, 
 					"model.parametros");
 		}
@@ -195,10 +194,10 @@ public class MensajeBs {
 		for(String token : tokens) {
 			segmentos = TokenBs.segmentarToken(token);
 			//Se hace la consulta con base en el nombre
-			Parametro parametro = consultarParametro(segmentos.get(1), idProyecto);
+			Parametro parametro = consultarParametro(segmentos.get(Constantes.NUMERO_UNO), idProyecto);
 			if(parametro == null) {
 				//Si el parámetro existe en la bd
-				parametro = new Parametro(segmentos.get(1),"");
+				parametro = new Parametro(segmentos.get(Constantes.NUMERO_UNO),"");
 			}
 			if (!pertecene(parametro, listParametros)) {
 				parametroAux = new Parametro(parametro.getNombre(), parametro.getDescripcion());
@@ -242,7 +241,7 @@ public class MensajeBs {
 			ElementoBs.verificarEstado(model, CU_Mensajes.ELIMINARMENSAJE9_3);
 			new MensajeDAO().eliminarElemento(model);
 	} catch (JDBCException je) {
-			if(je.getErrorCode() == 1451)
+			if(je.getErrorCode() == Constantes.MYSQL_ERROR_1451)
 			{
 				throw new PRISMAException("No se puede eliminar el caso de uso", "MSG14");
 			}
@@ -328,7 +327,7 @@ public class MensajeBs {
 		List<Salida> referenciasSalida;
 
 		List<CasoUso> listReferenciasVista = new ArrayList<CasoUso>();
-		Set<CasoUso> setReferenciasVista = new HashSet<CasoUso>(0);
+		Set<CasoUso> setReferenciasVista = new HashSet<CasoUso>(Constantes.NUMERO_CERO);
 		PostPrecondicion postPrecondicion = null;
 		Paso paso = null;
 

@@ -23,6 +23,7 @@ import mx.prisma.editor.model.PostPrecondicion;
 import mx.prisma.editor.model.ReferenciaParametro;
 import mx.prisma.editor.model.TipoDato;
 import mx.prisma.editor.model.UnidadTamanio;
+import mx.prisma.util.Constantes;
 import mx.prisma.util.PRISMAException;
 import mx.prisma.util.PRISMAValidacionException;
 import mx.prisma.util.Validador;
@@ -44,13 +45,12 @@ public class EntidadBs {
 			model.setNombre(model.getNombre().trim());
 			new EntidadDAO().registrarEntidad(model);
 		} catch (JDBCException je) {
-			if (je.getErrorCode() == 1062) {
+			if (je.getErrorCode() == Constantes.MYSQL_ERROR_1062) {
 				throw new PRISMAValidacionException("La la entidad "
 						+ model.getNombre() + " ya existe.", "MSG7",
 						new String[] { "La", "entidad", model.getNombre() },
 						"model.nombre");
 			}
-			System.out.println("ERROR CODE " + je.getErrorCode());
 			je.printStackTrace();
 			throw new Exception();
 		} catch (HibernateException he) {
@@ -160,12 +160,12 @@ public class EntidadBs {
 			}
 		}
 		//Validacion de Longitud
-		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
+		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_DOSCIENTOS)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.descripcion");
@@ -229,7 +229,7 @@ public class EntidadBs {
 		List<ReferenciaParametro> referenciasParametro;
 
 		List<String> listReferenciasVista = new ArrayList<String>();
-		Set<String> setReferenciasVista = new HashSet<String>(0);
+		Set<String> setReferenciasVista = new HashSet<String>(Constantes.NUMERO_CERO);
 		PostPrecondicion postPrecondicion = null;
 		Paso paso = null;
 
@@ -288,7 +288,7 @@ public class EntidadBs {
 		List<ReferenciaParametro> referenciasParametro;
 
 		List<CasoUso> listReferenciasVista = new ArrayList<CasoUso>();
-		Set<CasoUso> setReferenciasVista = new HashSet<CasoUso>(0);
+		Set<CasoUso> setReferenciasVista = new HashSet<CasoUso>(Constantes.NUMERO_CERO);
 		PostPrecondicion postPrecondicion = null;
 		Paso paso = null;
 
@@ -365,7 +365,7 @@ public class EntidadBs {
 			ElementoBs.verificarEstado(model, CU_CasosUso.ELIMINARCASOUSO5_3);
 			new EntidadDAO().eliminarElemento(model);
 		} catch (JDBCException je) {
-			if (je.getErrorCode() == 1451) {
+			if (je.getErrorCode() == Constantes.MYSQL_ERROR_1451) {
 				throw new PRISMAException("No se puede eliminar la entidad",
 						"MSG14");
 			}

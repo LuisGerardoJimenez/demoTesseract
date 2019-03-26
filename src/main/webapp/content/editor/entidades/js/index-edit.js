@@ -73,7 +73,11 @@ function modificarAtributo() {
 	var unidadTamanioSelect = document.getElementById("atributo.unidadTamanio");
 	var obligatorio = document.getElementById("atributo.obligatorio").checked;
 	var tipoDato = tipoDatoSelect.options[tipoDatoSelect.selectedIndex].text;
-	var unidadTamanio = unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex].text;
+	var unidadTamanio = 0;
+	if(unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex] != undefined){
+		unidadTamanio = unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex].text;
+	}
+	//var unidadTamanio = unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex].text;
 	var indexFilaAtributo = document.getElementById("filaAtributo").value;
 
 	if (esValidoAtributo("tablaAtributo", nombre, descripcion, tipoDatoSelect,

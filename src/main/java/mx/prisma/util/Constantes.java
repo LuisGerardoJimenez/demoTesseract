@@ -24,6 +24,7 @@ public final class Constantes {
 	public static final Integer NUMERO_CUARENTA_Y_CINCO = 45;
 	public static final Integer NUMERO_CINCUENTA = 50;
 	public static final Integer NUMERO_CIEN = 100;
+	public static final Integer NUMERO_DOSCIENTOS = 100;
 	public static final Integer NUMERO_MIL = 1000;
 	
 	//NUMEROS CONSTATNES DOUBLES
@@ -35,6 +36,9 @@ public final class Constantes {
 	
 	//ERRORES
 	public static final String NUMERO_UNO_NEGATIVO_STRING = "-1";
+	//ERRORES MYSQL
+	public static final Integer MYSQL_ERROR_1451 = 1451;
+	public static final Integer MYSQL_ERROR_1062 = 1062;
 	
 	//BANDERAS DE VALIDACIONES
 	public static final String VALIDACION_REGISTRAR = "Registrar";
