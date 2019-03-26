@@ -153,7 +153,6 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 				break;
 			}
 			if(contador2==0){
-				System.out.println("entra al if");
 				model.setParametrizado(false);
 			}
 			MensajeBs.registrarMensaje(model);
