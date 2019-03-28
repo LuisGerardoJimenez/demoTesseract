@@ -59,6 +59,16 @@ public class Atributo implements java.io.Serializable {
 		this.obligatorio = obligatorio;
 		this.longitud = longitud;
 	}
+	
+	public Atributo(String nombre, Entidad entidad, String descripcion,
+			boolean obligatorio, int longitud, int id) {
+		this.nombre = nombre;
+		this.entidad = entidad;
+		this.descripcion = descripcion;
+		this.obligatorio = obligatorio;
+		this.longitud = longitud;
+		this.id = id;
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)

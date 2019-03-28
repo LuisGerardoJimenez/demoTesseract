@@ -203,6 +203,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 			atAux.setTamanioArchivo(atributo.getTamanioArchivo());
 			atAux.setTipoDato(atributo.getTipoDato());
 			atAux.setUnidadTamanio(atributo.getUnidadTamanio());
+			atAux.setId(atributo.getId());
 			listAtributos.add(atAux);
 		}
 		jsonAtributosTabla = JsonUtil.mapListToJSON(listAtributos);
@@ -322,7 +323,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 	private void agregarAtributos() {
 		Set<Atributo> atributosModelo = new HashSet<Atributo>(0);
 		Set<Atributo> atributosVista = new HashSet<Atributo>(0);
-
+		System.out.println(jsonAtributosTabla);
 		Atributo atributoBD = null;
 		if (jsonAtributosTabla != null && !jsonAtributosTabla.equals("")) {
 			atributosVista = JsonUtil.mapJSONToSet(jsonAtributosTabla,
