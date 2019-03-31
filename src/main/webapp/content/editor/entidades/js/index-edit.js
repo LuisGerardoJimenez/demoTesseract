@@ -20,7 +20,7 @@ $(document).ready(
 							item.tipoDato.nombre, item.otroTipoDato,
 							item.longitud, item.formatoArchivo,
 							item.tamanioArchivo, abreviatura, item.obligatorio,
-							item.id);
+							item.Id);
 					dataTableCDT.addRow("tablaAtributo", atributo);
 				});
 			}
@@ -332,7 +332,7 @@ function disablefromTipoDato() {
 	}
 }
 
-function prepararEnvio() {
+function preparaEnvio() {
 	try {
 		tablaToJson("tablaAtributo");
 		//$('#mensajeConfirmacion').dialog('open');
@@ -358,7 +358,7 @@ function tablaToJson(idTable) {
 		var formatoArchivo = table.fnGetData(i, 7);
 		var tamanioArchivo = table.fnGetData(i, 8);
 		var unidadTamanio = table.fnGetData(i, 9);
-		var id = table.fnGetData(i, 10);
+		var Id = table.fnGetData(i, 10);
 
 		if (obligatorio == 'Sí') {
 			obligatorio = true;
@@ -368,7 +368,7 @@ function tablaToJson(idTable) {
 
 		arregloAtributos.push(new Atributo(nombre, descripcion, obligatorio,
 				longitud, tipoDato, otroTipoDato, formatoArchivo,
-				tamanioArchivo, unidadTamanio, id));
+				tamanioArchivo, unidadTamanio, Id));
 	}
 	var jsonAtributos = JSON.stringify(arregloAtributos);
 	document.getElementById("jsonAtributosTabla").value = jsonAtributos;

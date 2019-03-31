@@ -79,7 +79,7 @@ function Atributo(nombre, descripcion, obligatorio, longitud, tipoDato, otroTipo
     this.tamanioArchivo = tamanioArchivo;
     this.unidadTamanio = new UnidadTamanio(unidadTamanio);
     this.otroTipoDato = otroTipoDato; 
-    this.id = id;
+    this.Id = id;
 }
 
 function TipoDato(nombre) {
