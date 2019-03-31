@@ -120,6 +120,7 @@
 				<!-- Realiza la validación de todos aquellos métodos para los que exista 
 					un correspondiente validate, siempre y cuando los primeros estén anotados -->
 				<interceptor-ref name="validation">
+					<!-- <param name="validateAnnotatedMethodOnly">true</param> -->
 					<!-- Se excluyen los métodos -->
 					<param name="excludeMethods">input,back,cancel,browse,show,edit,editNew,index,execute,deleteConfirm</param>
 				</interceptor-ref>

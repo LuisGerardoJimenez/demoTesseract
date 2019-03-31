@@ -36,6 +36,7 @@ public final class Constantes {
 	
 	//ERRORES
 	public static final String NUMERO_UNO_NEGATIVO_STRING = "-1";
+	
 	//ERRORES MYSQL
 	public static final Integer MYSQL_ERROR_1451 = 1451;
 	public static final Integer MYSQL_ERROR_1062 = 1062;
