@@ -1,22 +1,22 @@
 %--------------------------------------
 \subsection{IU 4.2 Modificar Módulo}
 
-\subsection{Objetivo}
+\subsubsection{Objetivo}
 	Esta pantalla permite al actor modificar la información de un módulo.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \ref{IU4.2} se muestra la pantalla ''Modificar módulo'' que permite al actor modificar la información de un módulo. En la esquina superior derecha de la pantalla, el sistema mostrará la clave y el nombre del proyecto en el cual se está realizando la modificación del módulo.
 	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y actualizará la información solo si se han cumplido todas las reglas de negocio establecidas.
 	
 	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación Exitosa} en la pantalla \IUref{IU4}{Gestionar Módulos}, para indicar que la información del módulo se ha modificado correctamente.
 
 \IUfig[1]{interfaces/IU4-2modificarModulo}{IU4.2}{Modificar Módulo}\label{IU4.2}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \IUbutton{Aceptar}: Permite al actor guardar los cambios del módulo, dirige a la pantalla \IUref{IU4}{Gestionar Módulos}.
 	\item \IUbutton{Cancelar}: Permite al actor cancelar los cambios del módulo, dirige a la pantalla \IUref{IU4}{Gestionar Módulos}.
 \end{itemize}
 
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU4}{Gestionar módulos} para indicar que el registro fue exitoso.
