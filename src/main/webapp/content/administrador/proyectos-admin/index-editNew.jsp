@@ -21,6 +21,7 @@
 
 	<s:actionmessage theme="jquery" />
 	<s:actionerror theme="jquery" />
+	<s:fielderror theme="jquery"/>
 	<br />
 
 	<p class="instrucciones">Ingrese la información solicitada.</p>

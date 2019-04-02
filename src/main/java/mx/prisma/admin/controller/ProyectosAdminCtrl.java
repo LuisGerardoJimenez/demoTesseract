@@ -25,6 +25,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.conversion.annotations.Conversion;
 import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/administrador/")
 @Results({ @Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
@@ -95,8 +96,9 @@ ModelDriven<Proyecto>, SessionAware{
 
 	public String create() throws Exception {
 		String resultado;
+		System.out.println("Entre al metodo");
 		try {
-			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
+			//ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "registrado" }));
@@ -180,6 +182,7 @@ ModelDriven<Proyecto>, SessionAware{
 		return resultado;
 	}
 	
+	@VisitorFieldValidator
 	public Proyecto getModel() {
 		return (model == null) ? model = new Proyecto() : model;
 	}
