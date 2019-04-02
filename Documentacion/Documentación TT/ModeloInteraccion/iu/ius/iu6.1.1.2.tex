@@ -1,16 +1,16 @@
 %--------------------------------------
 \subsection{IU 6.1.1.2 Modificar trayectoria}
 
-\subsection{Objetivo}
+\subsubsection{Objetivo}
 	Esta pantalla permite al actor modificar la información de una trayectoria, así como gestionar los pasos de la misma.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \IUref{IU6.1.1.2}{Modificar Trayectoria} se muestra la pantalla ''Modificar Trayectoria'' en la cual el actor deberá ingresar la nueva información y gestionar los pasos.
 	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y modificará la información solo si se han cumplido todas las reglas de negocio establecidas.
 	
 	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación Exitosa} en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}, para indicar que la información de la trayectoria se ha modificado correctamente.
 
 \IUfig[1]{interfaces/IU6-1-1-2modificarTray}{IU6.1.1.2}{Modificar Trayectoria}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de un paso, dirige a la pantalla \IUref{IU6.1.1.1.1}{Registrar Paso}.
 	\item \editar [Modificar]: Permite al actor solicitar la modificación de un paso, dirige a la pantalla \IUref{IU6.1.1.1.2}{Modificar Paso}.
@@ -19,7 +19,7 @@
 	\item \IUbutton{Cancelar}: Permite al actor cancelar el registro dela trayectoria, dirige a la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
 \end{itemize}
 
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para indicar que el registro fue exitoso.
