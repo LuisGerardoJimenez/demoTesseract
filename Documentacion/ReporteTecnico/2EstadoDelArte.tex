@@ -1,11 +1,14 @@
 %=========================================================
 \chapter{Estado del Arte}
 
-
-	Es común que dentro del area de la ingenieria del software, se confundan los términos: ''Caso de uso'' y ''Diagrama de caso de uso'', sin embargo es importante resaltar las diferencias entre ellos para comprender el objetivo principal del proyecto terminal.
+	Es común que dentro del area de la ingenieria del software, se confundan los elementos: ''Caso de uso'' y ''Diagrama de caso de uso'', sin embargo es importante resaltar las diferencias para comprender el objetivo principal del proyecto terminal.
 	
 	 \begin{itemize}
-		\item Un caso de uso es aquel que describe la interacción entre un actor y un sistema en forma de secuencia de acciones y circunstancias específicas.
+	 	
+	 	\item Un caso de uso narra una historia detallada sobre cómo interactúa un usuario final (con cierto número de roles posibles) con el sistema en circunstancias específicas. La historia puede ser un texto narrativo, un lineamiento de tareas o interacciones, una descripción basada en un formato o una representación diagramática. Sin importar su forma, un caso de uso ilustra el software o sistema desde el punto de vista del usuario final  \hyperlink{b07}{[7]}. 
+	 
+
+		En otras palabras, un caso de uso es aquel que describe la interacción entre un actor y un sistema en forma de secuencia de acciones y circunstancias específicas.
 		
 		\item En cambio, un diagrama de casos de uso es el modelo de un grafo con dos tipos de nodos (Actor y caso de uso), el cual ilustra el comportamiento del caso de uso.
 	\end{itemize}
@@ -26,9 +29,12 @@ Las herramientas CASE convencionales requieren una comprensión completa del neg
 \subsubsection{Objetivo}
 Este sistema presenta un enfoque basado en el procesamiento del lenguaje natural LESSA (Language Engineering System for semantic analysis) que se utiliza para comprender automáticamente el texto en lenguaje natural y extraer la información requerida. Esta información se utiliza para dibujar los diagramas de casos de uso. El usuario escribe sus preferencias basadas en la interfaz en inglés, en unos pocos párrafos y el sistema diseñado tiene una capacidad notable para analizar el script dado. Después del análisis compuesto y la extracción de información asociada, el sistema diseñado en realidad dibuja los diagramas de casos de uso. 
 
-\subsection{Generación automatizada de diagramas de casos de uso a partir de marcos de problemas mediante el análisis de conceptos formales}
+\subsection{Generación automatizada de diagramas de casos de uso a partir de requerimientos de usuarios}
 
+Con el estado actual de la tecnología de procesamiento de lenguaje natural (PNL), muchos investigadores han demostrado que automatizar el proceso de análisis de requisitos es posible, lo que ahorra una cantidad significativa de tiempo invertido por los analistas. Se han desarrollado numerosas herramientas semiautomáticas que ayudan al analista en este proceso. Sin embargo, una técnica comúnmente utilizada para usar la gramática en el texto obtenido como la base para identificar información útil, ha estado enfrentando problemas de escalabilidad debido a que el formato textual de los requisitos consiste en lenguaje natural no estructurado (NL). 
 
+Este proyecto aborda este problema utilizando una técnica probabilística para identificar actores y casos de uso. El resultado prometedor demuestra que las mejoras adicionales de este enfoque pueden automatizar completamente la fase de análisis, propone una metodología para la asistencia automática de análisis de requisitos a los analistas de software mediante la extracción de un diagrama de caso de uso del documento de requisitos del usuario.
+En contraste con investigaciones anteriores en esta dirección, este proyecto ha intentado con éxito extraer actores y usar casos utilizando un modelo de clasificación probabilística junto con una asistencia mínima de enfoque basado en reglas. Los casos de uso son nítidos y consistentes independientemente del tamaño del texto de los requisitos. Debido al pequeño tamaño de los datos utilizados, el rendimiento no se ha logrado precisar. Sin embargo, se pueden utilizar mejores modelos de clasificación con un conjunto de datos más grande que incluya otros dominios de software para mejorar los resultados. El desafío restante aquí se relaciona con abordar los requisitos no funcionales y también para incorporar funciones de inclusión y extensión al diagrama de casos de uso. Un gráfico bien diseñado.
 
 
 %
