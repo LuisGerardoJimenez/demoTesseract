@@ -1,5 +1,6 @@
 package mx.prisma.admin.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,12 @@ ModelDriven<Colaborador>, SessionAware{
 	
 	public String index() throws Exception {
 		try {
-			listPersonal = ColaboradorBs.consultarPersonal();
+			listPersonal = new ArrayList<Colaborador>();
+			for (Colaborador colaborador : ColaboradorBs.consultarPersonal()) {
+				if (!colaborador.isAdministrador()) {
+					listPersonal.add(colaborador);
+				}
+			}
 			@SuppressWarnings("unchecked")
 			Collection<String> msjs = (Collection<String>) SessionManager
 					.get("mensajesAccion");
