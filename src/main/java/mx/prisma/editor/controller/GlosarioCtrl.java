@@ -26,6 +26,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/editor/")
 @Results({
@@ -108,7 +109,9 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 		return resultado;
 	}
 
+	
 	public String create() throws Exception {
+		
 		String resultado = null;
 		try {
 			colaborador = SessionManager.consultarColaboradorActivo();
@@ -273,6 +276,7 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 		return "referencias";
 	}
 
+	@VisitorFieldValidator
 	public TerminoGlosario getModel() {
 		return (model == null) ? model = new TerminoGlosario() : model;
 	}

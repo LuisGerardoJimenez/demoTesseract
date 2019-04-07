@@ -18,6 +18,7 @@ import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 @ResultPath("/content/administrador/")
 @Results({ @Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
 		"actionName", "personal" }),
@@ -161,6 +162,7 @@ ModelDriven<Colaborador>, SessionAware{
 		return "referencias";
 	}
 	
+	@VisitorFieldValidator
 	public Colaborador getModel() {
 		return (model == null) ? model = new Colaborador() : model;
 	}
