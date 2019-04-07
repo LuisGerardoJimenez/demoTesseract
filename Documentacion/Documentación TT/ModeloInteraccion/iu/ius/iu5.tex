@@ -1,22 +1,22 @@
 %--------------------------------------
 \subsection{IU 5 Gestionar proyectos de Colaborador}
 
-\subsection{Objetivo}
+\subsubsection{Objetivo}
 	En esta pantalla el actor puede visualizar los proyectos en los que se encuentra colaborando, así como las operaciones correspondientes para cada uno.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \ref{IU5} se muestra la pantalla ''Gestionar proyectos de Colaborador'', por medio de la cual se podrán gestionar los proyectos a través de una tabla. El actor podrá gestionar: módulos, términos del glosario, entidades, reglas de negocio, mensajes y actores, para ello deberá oprimir el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/entrar}}. De igual forma, a través de esta pantalla el actor podrá descargar el documento de análisis a través de los botones 
 	\raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/word} } y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pp}}, según el formato deseado. En caso de que el actor sea el líder de algún proyecto,	esta pantalla le brindará la posibilidad de seleccionar el personal que colaborará en su proyecto, para ello deberá oprimir el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/colaboradores}}.
 	En la esquina superior derecha de la pantalla, el sistema mostrará la clave y el nombre del proyecto del cual se están gestionando los módulos.
 
 \IUfig[1]{interfaces/IU5gestionarproyectosColaborador}{IU5}{Gestionar proyectos de Colaborador}\label{IU5}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/colaboradores}} [Elegir Colaboradores]: Permite seleccionar el personal que colaborará en el proyecto, dirige a la pantalla \IUref{5.1}{Elegir Colaboradores}.
 	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/entrar}} [Entrar]: Es el punto de acceso para gestionar módulos, términos del glosario, entidades, reglas de negocio, mensajes y actores. Dirige a la pantalla \IUref{IU4}{Gestionar Módulos}
 	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/word}} [Descargar Documento]: Permite al actor descargar el documento de análisis con extensión {\em docx}.
 	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pp}} [Descargar Documento]: Permite al actor descargar el documento de análisis con extensión {\em pdf}.
 \end{itemize}
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU5}{Gestionar proyectos de Colaborador} cuando no existen proyectos registrados.

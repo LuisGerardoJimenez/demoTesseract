@@ -3,20 +3,20 @@
 
 \subsection{Objetivo}
 	En esta pantalla el actor puede visualizar algunos atributos de los términos y las operaciones disponibles de acuerdo a si está relacionado a un caso de uso liberado.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \IUref{IU11}{Gestionar Términos de Glosario} se muestra la pantalla ''Gestionar Términos de Glosario'', por medio de la cual se podrán gestionar los términos de un glosario de un proyecto a través de una tabla. El actor podrá solicitar el registro, la consulta, la modificación y la eliminación de un actor mediante los botones \IUbutton{Registrar}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}}, \editar y \eliminar, respectivamente.
 	
 	En la parte superior derecha, el sistema muestra el proyecto en el que se encuentra trabajando.
 
 \IUfig[1]{interfaces/IU11gestionarTerminos}{IU11}{Gestionar Términos de Glosario}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de un término, dirige a la pantalla \IUref{IU11.1}{Registrar Término}.
 	\item \editar [Modificar]: Permite al actor solicitar la modificación de un término, dirige a la pantalla \IUref{11.2}{Modificar Término}.
 	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de un término, dirige a una pantalla emergente.
 	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} [Consultar]: Permite al actor solicitar la consulta de un término, dirige a la pantalla  \IUref{IU11.3}{Consultar Actor}.
 \end{itemize}
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU11}{Gestionar Términos de Glosario} cuando no existen términos registradas.

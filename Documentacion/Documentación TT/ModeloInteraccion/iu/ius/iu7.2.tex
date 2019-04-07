@@ -1,9 +1,9 @@
 %--------------------------------------
 \subsection{IU 7.2 Modificar Pantalla}
 
-\subsection{Objetivo}
+\subsubsection{Objetivo}
 	Esta pantalla permite al actor Modificar la información de una pantalla nueva, así como gestionar las acciones que contiene.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \IUref{IU7.2}{Modificar Pantalla} se muestra la pantalla ''Modificar Pantalla'' en la cual el actor deberá ingresar la información solicitada y gestionar las acciones.
 	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y registrará la información solo si se han cumplido todas las reglas de negocio establecidas.
 	
@@ -11,7 +11,7 @@
 	En la parte superior derecha, el sistema muestra el proyecto y el módulo en el que actualmente se encuentra trabajando.
 
 \IUfig[.7]{interfaces/IU7-2modificarPantalla}{IU7.2}{Modificar Pantalla}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de una acción, dirige a la pantalla \IUref{IU7.1.1}{Registrar Acción}.
 	\item \editar [Modificar]: Permite al actor solicitar la modificación de una acción, dirige a la pantalla \IUref{IU7.1.2}{Modificar Acción}.
@@ -20,7 +20,7 @@
 	\item \IUbutton{Cancelar}: Permite al actor cancelar la modificación de la pantalla, dirige a la pantalla \IUref{IU7}{Gestionar Pantallas}
 \end{itemize}
 
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar que la edición fue exitosa.

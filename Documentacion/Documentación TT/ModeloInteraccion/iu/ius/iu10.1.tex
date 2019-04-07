@@ -1,9 +1,9 @@
 %--------------------------------------
 \subsection{IU 10.1 Registrar Mensaje}
 
-\subsection{Objetivo}
+\subsubsection{Objetivo}
 	Esta pantalla permite al actor registrar la información de un mensaje nuevo.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \IUref{IU10.1}{Registrar Mensaje} se muestra la pantalla ''Registrar Mensaje'' que permite registrar un mensaje.
 	El actor deberá ingresar la información solicitada y agregar parámetros con el token PARAM· en caso de ser necesario. Si el mensaje es parametrizado, el sistema mostrará la pantalla \IUref{IU10.1}{Registrar Mensaje: Parametrizado} y cuando el actor indique el uso de un parámetro el sistema agregará a la pantalla un campo para que el actor pueda ingresar la descripción del parámetro. Cuando un mensaje no es parametrizado, el sistema mostrará la pantalla de lafigura \IUref{IU10.1A}{Registrar Mensaje: No Parametrizado}.
 	
@@ -14,13 +14,13 @@
 
 \IUfig[1]{interfaces/IU10-1registrarMSG}{IU10.1}{Registrar Actor: Parametrizado}
 \IUfig[1]{interfaces/IU10-1AregistrarMSG}{IU10.1A}{Registrar Actor: No Parametrizado}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \IUbutton{Aceptar}: Permite al actor guardar el registro del mensaje, dirige a la pantalla \IUref{IU10}{Gestionar Mensajes}.
 	\item \IUbutton{Cancelar}: Permite al actor cancelar el registro del mensaje, dirige a la pantalla \IUref{IU10}{Gestionar Mensajes}.
 \end{itemize}
 
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} para indicar que el registro fue exitoso.

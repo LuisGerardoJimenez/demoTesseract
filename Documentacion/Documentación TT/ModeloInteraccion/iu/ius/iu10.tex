@@ -1,9 +1,9 @@
 %--------------------------------------
 \subsection{IU 10 Gestionar Mensajes}
 
-\subsection{Objetivo}
+\subsubsection{Objetivo}
 	En esta pantalla el actor puede visualizar algunos atributos de los mensajes y las operaciones disponibles de acuerdo a si el elemento está siendo editado.
-\subsection{Diseño}
+\subsubsection{Diseño}
 	En la figura \IUref{IU10}{Gestionar Mensajes} se muestra la pantalla ''Gestionar Actores'', por medio de la cual se podrán gestionar los mensajes de un proyecto a través de una tabla. El actor podrá solicitar el registro, la consulta, la modificación y la eliminación de un actor mediante los botones \IUbutton{Registrar}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}}, \editar y \eliminar respectivamente.
 	
 	Los botones correspondientes a las opciones mencionadas para cada uno de los registros aparecerán en la tabla dependiendo de si un analista está modificando el elemento. Cuando un elemento está siendo modificado, los demás analistas solamente podrán consultarlo. Cuando ninguno de los analistas este modificando el mensaje, los botones para modificar y eliminar
@@ -12,14 +12,14 @@
 	En la parte superior derecha, el sistema muestra el proyecto en el que se encuentra trabajando.
 
 \IUfig[1]{interfaces/IU10gestionarMSG}{IU10}{Gestionar Mensajes}
-\subsection{Comandos}
+\subsubsection{Comandos}
 \begin{itemize}
 	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de un mensaje, dirige a la pantalla \IUref{10.1}{Registrar Mensaje}.
 	\item \editar [Modificar]: Permite al actor solicitar la modificación de un mensaje, dirige a la pantalla \IUref{10.2}{Modificar Mensaje}.
 	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de un mensaje, dirige a una pantalla emergente.
 	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} [Consultar]: Permite al actor solicitar la consulta de un mensaje, dirige a la pantalla  \IUref{IU10.3}{Consultar Mensaje}.
 \end{itemize}
-\subsection{Mensajes}
+\subsubsection{Mensajes}
 
 \begin{Citemize}
 	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} cuando no existen mensajes registradas.
