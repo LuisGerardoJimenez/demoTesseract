@@ -66,97 +66,11 @@ public class ColaboradorBs {
 	}
 
 	private static void validar(Colaborador model, String bandera) {
-		//Validaciones campo obligatorio
-		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esNuloOVacio(model.getCurp())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la CURP del colaborador.", "MSG4",
-					null, "model.curp");
-		}
-		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó el nombre del colaborador.", "MSG4",
-					null, "model.nombre");
-		}
-		if (Validador.esNuloOVacio(model.getApellidoPaterno())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó el apellido paterno del colaborador.", "MSG4",
-					null, "model.apellidoPaterno");
-		}
-		if (Validador.esNuloOVacio(model.getCorreoElectronico())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó el correo del colaborador.", "MSG4",
-					null, "model.correoElectronico");
-		}
-		if (Validador.esNuloOVacio(model.getContrasenia())) {
-			throw new PRISMAValidacionException(
-					"El usuario no ingresó la contraseña del colaborador.", "MSG4",
-					null, "model.contrasenia");
-		}
-		//Validaciones Longitud
-		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.validaLongitudExacta(model.getCurp(), Constantes.NUMERO_DIECIOCHO)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una CURP muy larga.", "MSG51", null, "model.curp");
-		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_TREINTA)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.nombre");
-		}
-		if (Validador.validaLongitudMaxima(model.getApellidoPaterno(), Constantes.NUMERO_TREINTA)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un apellido paterno muy largo.", "MSG6",
-					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.apellidoPaterno");
-		}
-		if (!Validador.esNulo(model.getApellidoMaterno())) {
-			if (Validador.validaLongitudMaxima(model.getApellidoMaterno(), Constantes.NUMERO_TREINTA)) {
-				throw new PRISMAValidacionException(
-						"El usuario ingreso un apellido materno muy largo.", "MSG6",
-						new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.apellidoMaterno");
-			}
-		}
-		if (Validador.validaLongitudMaxima(model.getCorreoElectronico(), Constantes.NUMERO_TREINTA)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un correo muy largo.", "MSG6",
-					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres" }, "model.correoElectronico");
-		}
-		if (Validador.validaLongitudMinima(model.getContrasenia(), Constantes.NUMERO_OCHO)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una contraseña muy corta.", "MSG53",
-					new String[] { Constantes.NUMERO_OCHO.toString(), "caracteres" }, "model.contrasenia");
-		}
-		if (Validador.validaLongitudMaxima(model.getContrasenia(), Constantes.NUMERO_VEINTE)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso una contraseña muy larga.", "MSG6",
-					new String[] { Constantes.NUMERO_VEINTE.toString(), "caracteres" }, "model.contrasenia");
-		}
 		//Validaciones tipo de dato
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esInvalidoCurp(model.getCurp())) {
 			throw new PRISMAValidacionException(
 					"El usuario ingreso una CURP invalida.", "MSG52", null, "model.curp");
 		}
-		if (Validador.esInvalidaREGEX(model.getNombre(), Constantes.REGEX_CAMPO_ALFABETICO)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un nombre incorrecto.", "MSG50", null, "model.nombre");
-		}
-		if (Validador.esInvalidaREGEX(model.getApellidoPaterno(), Constantes.REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS)) {
-			throw new PRISMAValidacionException(
-					"El usuario ingreso un apellido paterno incorrecto.", "MSG50", null, "model.apellidoPaterno");
-		}
-		if (!Validador.esNulo(model.getApellidoMaterno())) {
-			if (Validador.esInvalidaREGEX(model.getApellidoMaterno(), Constantes.REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS)) {
-				throw new PRISMAValidacionException(
-						"El usuario ingreso un apellido materno incorrecto.", "MSG50", null, "model.apellidoMaterno");
-			}
-		}
-		if (!Validador.esCorreo(model.getCorreoElectronico())) {
-			throw new PRISMAValidacionException(
-					"El correo que ingreso no es un correo valido", "MSG50", null, "model.correoElectronico");
-		}
-		if (Validador.esInvalidaREGEX(model.getContrasenia(), Constantes.REGEX_CONTRASENIA)) {
-			throw new PRISMAValidacionException(
-					"La contraseña que ingreso no es valida", "MSG50", null, "model.contrasenia");
-		}
-		
 		//Validaciones Negocio
 		Colaborador colaboradorBD;
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR)) {

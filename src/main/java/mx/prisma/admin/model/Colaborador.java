@@ -15,6 +15,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.opensymphony.xwork2.validator.annotations.EmailValidator;
+import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RegexFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+
+import mx.prisma.util.Constantes;
+
 
 @Entity
 @Table(name = "Colaborador", catalog = "PRISMA")
@@ -48,6 +58,9 @@ public class Colaborador implements java.io.Serializable {
 		this.administrador = administrador;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
+	@StringLengthFieldValidator(message = "%{getText('MSG51')}", trim = true, minLength = "18", maxLength = "18", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG52')}", regex= Constantes.REGEX_CURP, shortCircuit = true)
 	@Id
 	@Column(name = "CURP", unique = true, nullable = false, length = 18)
 	public String getCurp() {
@@ -58,6 +71,9 @@ public class Colaborador implements java.io.Serializable {
 		this.curp = curp;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'30', 'caracteres'})}", trim = true, maxLength = "30", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFABETICO, shortCircuit = true)
 	@Column(name = "nombre", nullable = false, length = 45)
 	public String getNombre() {
 		return this.nombre;
@@ -67,6 +83,9 @@ public class Colaborador implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'30', 'caracteres'})}", trim = true, maxLength = "30", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS, shortCircuit = true)
 	@Column(name = "apellidoPaterno", nullable = false, length = 45)
 	public String getApellidoPaterno() {
 		return this.apellidoPaterno;
@@ -76,6 +95,8 @@ public class Colaborador implements java.io.Serializable {
 		this.apellidoPaterno = apellidoPaterno;
 	}
 
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'30', 'caracteres'})}", trim = true, maxLength = "30", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFABETICO_SIN_ESPACIOS, shortCircuit = true)
 	@Column(name = "apellidoMaterno", nullable = false, length = 45)
 	public String getApellidoMaterno() {
 		return this.apellidoMaterno;
@@ -85,6 +106,9 @@ public class Colaborador implements java.io.Serializable {
 		this.apellidoMaterno = apellidoMaterno;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'30', 'caracteres'})}", trim = true, maxLength = "30", shortCircuit= true)
+	@EmailValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", shortCircuit = true)
 	@Column(name = "correoElectronico", nullable = false, length = 45)
 	public String getCorreoElectronico() {
 		return this.correoElectronico;
@@ -94,6 +118,9 @@ public class Colaborador implements java.io.Serializable {
 		this.correoElectronico = correoElectronico;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'30', 'caracteres'})}", trim = true, maxLength = "30", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CONTRASENIA, shortCircuit = true)
 	@Column(name = "contrasenia", nullable = false, length = 20)
 	public String getContrasenia() {
 		return this.contrasenia;

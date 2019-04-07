@@ -1,7 +1,7 @@
 package mx.prisma.admin.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import java.util.Date;
@@ -91,9 +91,9 @@ public class Proyecto implements java.io.Serializable {
 		this.estadoProyecto = estadoProyecto;
 	}
 
-	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
-	@IntRangeFieldValidator(message = "%{getText('MSG14',{'El', 'identificador', '0', '2147483647'})}", shortCircuit = true, min = "0", max = "2147483647")
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'número'})}", regex = Constantes.REGEX_CAMPO_NUMERICO_ENTERO, shortCircuit = true)
+	//@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
+	//@IntRangeFieldValidator(message = "%{getText('MSG14',{'El', 'identificador', '0', '2147483647'})}", shortCircuit = true, min = "0", max = "2147483647")
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'número'})}", regex = Constantes.REGEX_CAMPO_NUMERICO_ENTERO, shortCircuit = true)
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -105,9 +105,9 @@ public class Proyecto implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
-	@StringLengthFieldValidator(message = "%{getText('MSG6',{'10', 'caracteres'})}", trim = true, maxLength = "10", shortCircuit= true)
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS, shortCircuit = true)
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'10', 'caracteres'})}", trim = true, maxLength = "10", shortCircuit= true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS, shortCircuit = true)
 	@Column(name = "clave", unique = true, nullable = false, length = 10)
 	public String getClave() {
 		return this.clave;
@@ -117,9 +117,9 @@ public class Proyecto implements java.io.Serializable {
 		this.clave = clave.trim();
 	}
 
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
-	@StringLengthFieldValidator(message = "%{getText('MSG6',{'50', 'caracteres'})}", trim = true, maxLength = "50", shortCircuit= true)
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'50', 'caracteres'})}", trim = true, maxLength = "50", shortCircuit= true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
 	@Column(name = "nombre", unique = true, nullable = false, length = 50)
 	public String getNombre() {
 		return this.nombre;
@@ -129,7 +129,7 @@ public class Proyecto implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaInicioProgramada", nullable = false, length = 10)
 	public Date getFechaInicioProgramada() {
@@ -140,7 +140,7 @@ public class Proyecto implements java.io.Serializable {
 		this.fechaInicioProgramada = fechaInicioProgramada;
 	}
 
-	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fechaTerminoProgramada", nullable = false, length = 10)
 	public Date getFechaTerminoProgramada() {
@@ -171,9 +171,9 @@ public class Proyecto implements java.io.Serializable {
 		this.fechaTermino = fechaTermino;
 	}
 
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
-	@StringLengthFieldValidator(message = "%{getText('MSG6',{'1000', 'caracteres'})}", trim = true, maxLength = "1000", shortCircuit= true)
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'1000', 'caracteres'})}", trim = true, maxLength = "1000", shortCircuit= true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
 	@Column(name = "descripcion", nullable = false, length = 1000)
 	public String getDescripcion() {
 		return this.descripcion;
@@ -192,9 +192,9 @@ public class Proyecto implements java.io.Serializable {
 		this.presupuesto = presupuesto;
 	}
 
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
-	@StringLengthFieldValidator(message = "%{getText('MSG6',{'100', 'caracteres'})}", trim = true, maxLength = "100", shortCircuit= true)
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES, shortCircuit = true)
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'100', 'caracteres'})}", trim = true, maxLength = "100", shortCircuit= true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES, shortCircuit = true)
 	@Column(name = "contraparte", nullable = false, length = 100)
 	public String getContraparte() {
 		return this.contraparte;
@@ -204,7 +204,7 @@ public class Proyecto implements java.io.Serializable {
 		this.contraparte = contraparte;
 	}
 	
-	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "EstadoProyectoid", nullable = false)
 	public EstadoProyecto getEstadoProyecto() {

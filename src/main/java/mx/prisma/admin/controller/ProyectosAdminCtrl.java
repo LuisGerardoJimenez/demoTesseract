@@ -98,7 +98,7 @@ ModelDriven<Proyecto>, SessionAware{
 		String resultado;
 		System.out.println("Entre al metodo");
 		try {
-			//ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
+			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
 			resultado = SUCCESS;
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "registrado" }));
