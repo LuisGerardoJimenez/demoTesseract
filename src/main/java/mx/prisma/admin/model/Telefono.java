@@ -1,6 +1,8 @@
 package mx.prisma.admin.model;
 
-// Generated 07-jun-2015 17:10:34 by Hibernate Tools 4.0.0
+/*
+ * Luis Gerardo Jiménez
+ */
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
