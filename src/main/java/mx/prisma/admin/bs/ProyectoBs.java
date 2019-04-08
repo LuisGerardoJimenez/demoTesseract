@@ -46,7 +46,7 @@ public class ProyectoBs {
 
 	public static void registrarProyecto(Proyecto model, String curpLider, int idEstadoProyecto, String presupuesto) throws Exception {
 		try {
-			validar(model, curpLider, idEstadoProyecto, presupuesto);
+			//validar(model, curpLider, idEstadoProyecto, presupuesto);
 			ProyectoBs.agregarEstado(model, idEstadoProyecto);
 			ProyectoBs.agregarLider(model, curpLider);
 			new ProyectoDAO().registrarProyecto(model);

@@ -1,5 +1,6 @@
 package mx.prisma.admin.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
+
 @ResultPath("/content/administrador/")
 @Results({ @Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
 		"actionName", "personal" }),
@@ -39,7 +41,12 @@ ModelDriven<Colaborador>, SessionAware{
 	
 	public String index() throws Exception {
 		try {
-			listPersonal = ColaboradorBs.consultarPersonal();
+			listPersonal = new ArrayList<Colaborador>();
+			for (Colaborador colaborador : ColaboradorBs.consultarPersonal()) {
+				if (!colaborador.isAdministrador()) {
+					listPersonal.add(colaborador);
+				}
+			}
 			@SuppressWarnings("unchecked")
 			Collection<String> msjs = (Collection<String>) SessionManager
 					.get("mensajesAccion");

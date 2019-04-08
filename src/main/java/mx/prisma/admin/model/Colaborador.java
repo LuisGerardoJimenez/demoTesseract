@@ -1,7 +1,7 @@
 package mx.prisma.admin.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import java.util.HashSet;
