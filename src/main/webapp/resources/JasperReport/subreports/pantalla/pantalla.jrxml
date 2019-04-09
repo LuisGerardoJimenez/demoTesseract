@@ -26,7 +26,7 @@ ORDER BY REPLACE(ele.numero,'.','') * 1 ASC;]]>
 	<field name="imagen" class="java.lang.Object"/>
 	<field name="Moduloid" class="java.lang.Integer"/>
 	<variable name="v_imagenB64" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.util.ImageConverterUtil.parseBytesToB64String($F{imagen})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.util.ImageConverterUtil.parseBytesToB64String($F{imagen})]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>

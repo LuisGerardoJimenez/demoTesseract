@@ -43,7 +43,7 @@
 
 	<package name="prisma" extends="rest-default,json-default">
 		<interceptors>
-			<interceptor class="mx.prisma.controller.AccessInterceptor" name="loginInterceptor"/>
+			<interceptor class="mx.tesseract.controller.AccessInterceptor" name="loginInterceptor"/>
 			<interceptor name="workflow" class="org.apache.struts2.rest.RestWorkflowInterceptor" />
 			
 			<interceptor name="breadCrumbs" class="org.softwareforge.struts2.breadcrumb.BreadCrumbInterceptor">

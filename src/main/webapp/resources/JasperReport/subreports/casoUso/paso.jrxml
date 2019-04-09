@@ -24,7 +24,7 @@ ORDER BY numero ASC;]]>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="Verboid" class="java.lang.Integer"/>
 	<variable name="v_redaccionPaso" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
 	</variable>
 	<variable name="v_actor" class="java.lang.String"/>
 	<variable name="v_verbo" class="java.lang.String">

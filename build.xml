@@ -212,7 +212,7 @@
 		<antcall target="build"/>
 	</target>
 	<target name="Test">
-		<java classname="mx.prisma.util.Test" failonerror="true" fork="yes">
+		<java classname="mx.tesseract.util.Test" failonerror="true" fork="yes">
 			<classpath refid="run.Test.classpath"/>
 		</java>
 	</target>
