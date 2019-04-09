@@ -53,7 +53,7 @@
 		</queryString>
 		<field name="redaccion" class="java.lang.String"/>
 		<variable name="v_redaccionPrecondicion" class="java.lang.String">
-			<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
+			<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
 		</variable>
 	</subDataset>
 	<subDataset name="Postcondiciones" uuid="246c8311-d3ee-4674-87a2-21654860f8b5">
@@ -63,7 +63,7 @@
 		</queryString>
 		<field name="redaccion" class="java.lang.String"/>
 		<variable name="v_redaccionPostcondicion" class="java.lang.String">
-			<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
+			<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
 		</variable>
 	</subDataset>
 	<subDataset name="Extensiones" uuid="e5bce348-d67e-4772-9477-ce3f1369c574">
@@ -103,19 +103,19 @@ ORDER BY REPLACE(ele.numero,'.','') * 1 ASC;]]>
 	<field name="redaccionReglasNegocio" class="java.lang.String"/>
 	<field name="estadoNombre" class="java.lang.String"/>
 	<variable name="v_redaccionActores" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionActores})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionActores})]]></variableExpression>
 	</variable>
 	<variable name="v_redaccionEntradas" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionEntradas})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionEntradas})]]></variableExpression>
 	</variable>
 	<variable name="v_redaccionSalidas" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionSalidas})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionSalidas})]]></variableExpression>
 	</variable>
 	<variable name="v_redaccionReglasNegocio" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionReglasNegocio})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccionReglasNegocio})]]></variableExpression>
 	</variable>
 	<variable name="v_redaccionTipo" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.CuBs.esPrimario($F{id}) ? "Primario" : "Secundario, extiende de:"]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.CuBs.esPrimario($F{id}) ? "Primario" : "Secundario, extiende de:"]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>

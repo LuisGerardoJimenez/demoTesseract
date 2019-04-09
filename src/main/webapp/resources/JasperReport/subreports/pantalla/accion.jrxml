@@ -26,7 +26,7 @@ WHERE acc.PantallaElementoid = $P{p_pantallaElementoId};]]>
 	<field name="numero" class="java.lang.String"/>
 	<field name="panDesNombre" class="java.lang.String"/>
 	<variable name="v_imagenB64" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.util.ImageConverterUtil.parseBytesToB64String((byte[])$F{imagen})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.util.ImageConverterUtil.parseBytesToB64String((byte[])$F{imagen})]]></variableExpression>
 	</variable>
 	<title>
 		<band height="25" splitType="Stretch">

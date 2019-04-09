@@ -9,7 +9,7 @@
 	</queryString>
 	<field name="redaccion" class="java.lang.String"/>
 	<variable name="v_redaccion" class="java.lang.String">
-		<variableExpression><![CDATA[mx.prisma.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
+		<variableExpression><![CDATA[mx.tesseract.editor.bs.TokenBs.decodificarCadenaSinToken($F{redaccion})]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>

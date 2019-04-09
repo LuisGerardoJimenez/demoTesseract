@@ -93,7 +93,7 @@
 								${blanks}	
 							</s:if>
 							
-							<s:set var="rol"><s:property value="@mx.prisma.controller.AccessCtrl@getRol()" /></s:set>
+							<s:set var="rol"><s:property value="@mx.tesseract.controller.AccessCtrl@getRol()" /></s:set>
 							<s:if test="%{#cu.estadoElemento.id == 4 and #rol == 1}">	
 							<!-- Liberar caso de uso -->			
 								<s:url var="urlLiberar" value="%{#pageContext.request.contextPath}/cu!prepararLiberacion?idSel=%{#cu.id}" method="post"/>
@@ -112,10 +112,10 @@
 							</s:if>
 							
 							<!-- Verificamos que el CU tenga entradas -->
-							<s:set var="verificarEntradas"><s:property value="@mx.prisma.gestorEntradas.controller.ConfigurarEntradasCtrl@tieneEntradas(#cu.id)"/></s:set>
+							<s:set var="verificarEntradas"><s:property value="@mx.tesseract.gestorEntradas.controller.ConfigurarEntradasCtrl@tieneEntradas(#cu.id)"/></s:set>
 							<s:if test="%{#verificarEntradas}">
 								<!-- Verificamos que las entradas ya estén configuradas -->
-								<s:set var="entradasConfiguradas"><s:property value="@mx.prisma.gestorEntradas.controller.ConfigurarEntradasCtrl@entradasConfiguradas(#cu.id)"/></s:set>
+								<s:set var="entradasConfiguradas"><s:property value="@mx.tesseract.gestorEntradas.controller.ConfigurarEntradasCtrl@entradasConfiguradas(#cu.id)"/></s:set>
 								<s:if test="%{#entradasConfiguradas}">
 									<s:url var="urlEntradas" value="%{#pageContext.request.contextPath}/configurar-entradas!prepararConfiguracion">
 										<s:param name="idCU" value="%{#cu.id}"/>
@@ -139,7 +139,7 @@
 							</s:if>
 
 								<!-- Pruebas de cu (Primero hay que verificar que existan entradas registradas)-->
-								<s:set var="configurable"><s:property value="@mx.prisma.generadorPruebas.controller.ConfiguracionGeneralCtrl@esConfigurable(#cu.id)"/></s:set>
+								<s:set var="configurable"><s:property value="@mx.tesseract.generadorPruebas.controller.ConfiguracionGeneralCtrl@esConfigurable(#cu.id)"/></s:set>
 								<s:if test="%{#configurable}">
 									<s:url var="urlConfiguracion" value="%{#pageContext.request.contextPath}/configuracion-general!prepararConfiguracion">
 										<s:param name="idCU" value="%{#cu.id}"/>

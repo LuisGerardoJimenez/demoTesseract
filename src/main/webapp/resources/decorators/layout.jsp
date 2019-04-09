@@ -42,7 +42,7 @@
 				<s:if test="#session.login == true">
 					<s:set name="id" value="#session.id"></s:set>
 					<s:set var="perfil">/content/<s:property
-							value="@mx.prisma.controller.AccessCtrl@getMenu()" />.jsp</s:set>
+							value="@mx.tesseract.controller.AccessCtrl@getMenu()" />.jsp</s:set>
 					<jsp:include page="${perfil}" />
 				</s:if>
 			</s:if>
