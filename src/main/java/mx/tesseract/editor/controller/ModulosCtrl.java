@@ -11,10 +11,10 @@ import mx.tesseract.bs.AccessBs;
 import mx.tesseract.editor.bs.ActorBs;
 import mx.tesseract.editor.bs.ModuloBs;
 import mx.tesseract.editor.model.Modulo;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -28,7 +28,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "modulos" }),
 		@Result(name = "proyectos", type = "redirectAction", params = {
 				"actionName", "proyectos" }),
@@ -40,7 +40,7 @@ import com.opensymphony.xwork2.ModelDriven;
 				"pantallas" })
 
 })
-public class ModulosCtrl extends ActionSupportPRISMA implements
+public class ModulosCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Modulo>, SessionAware {
 	/** 
 	 * 
@@ -78,7 +78,7 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,7 +101,7 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 			}
 			model.setProyecto(proyecto);
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -134,10 +134,10 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 					"registrado" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -166,7 +166,7 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Módulo",
 					"eliminado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -190,7 +190,7 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 				return resultado;
 			}
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -220,10 +220,10 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Módulo",
 					"modificado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -255,7 +255,7 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -285,7 +285,7 @@ public class ModulosCtrl extends ActionSupportPRISMA implements
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();

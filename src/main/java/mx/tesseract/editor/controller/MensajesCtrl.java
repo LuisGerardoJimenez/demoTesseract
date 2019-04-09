@@ -17,11 +17,11 @@ import mx.tesseract.editor.model.Mensaje;
 import mx.tesseract.editor.model.MensajeParametro;
 import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.Parametro;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -34,7 +34,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "mensajes" }),
 		@Result(name = "parametros", type = "json", params = { "root",
 				"listParametros" }),
@@ -42,7 +42,7 @@ import com.opensymphony.xwork2.ModelDriven;
 				"elementosReferencias" }),
 		@Result(name = "proyectos", type = "redirectAction", params = {
 				"actionName", "proyectos" }) })
-public class MensajesCtrl extends ActionSupportPRISMA implements
+public class MensajesCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Mensaje>, SessionAware {
 	private static final long serialVersionUID = 1L;
 
@@ -85,7 +85,7 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -110,10 +110,10 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 			buscarParametrosDisponibles(proyecto.getId());
 			model.setClave("MSG");
 			resultado = EDITNEW;
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -163,10 +163,10 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -195,10 +195,10 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 			prepararVista();
 
 			resultado = EDIT;
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -240,10 +240,10 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -270,7 +270,7 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 			this.existenParametros = model.getParametros().size() > 0 ? true
 					: false;
 			resultado = SHOW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			pe.setIdMensaje("MSG26");
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
@@ -300,7 +300,7 @@ public class MensajesCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Mensaje",
 					"eliminado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

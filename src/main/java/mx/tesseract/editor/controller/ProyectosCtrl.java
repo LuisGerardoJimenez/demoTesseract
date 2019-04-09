@@ -19,11 +19,11 @@ import mx.tesseract.admin.model.Rol;
 import mx.tesseract.bs.AccessBs;
 import mx.tesseract.bs.RolBs;
 import mx.tesseract.bs.RolBs.Rol_Enum;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.FileUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 import mx.tesseract.util.ReportUtil;
 import mx.tesseract.util.SessionManager;
 
@@ -37,7 +37,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "proyectos" }),
 		@Result(name = "modulos", type = "redirectAction", params = {
 				"actionName", "modulos" }),
@@ -48,7 +48,7 @@ import com.opensymphony.xwork2.ModelDriven;
 		        "bufferSize", "1024", 
 		        "contentDisposition", "attachment;filename=\"${filename}\""})
 		})
-public class ProyectosCtrl extends ActionSupportPRISMA implements
+public class ProyectosCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Proyecto>, SessionAware {
 	/** 
 	 * 
@@ -84,7 +84,7 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -111,7 +111,7 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -148,7 +148,7 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -174,7 +174,7 @@ public class ProyectosCtrl extends ActionSupportPRISMA implements
 			"registrados" }));
 			ProyectoBs.modificarColaboradoresProyecto(model);
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);

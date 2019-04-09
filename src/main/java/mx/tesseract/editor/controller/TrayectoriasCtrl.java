@@ -35,11 +35,11 @@ import mx.tesseract.editor.model.ReglaNegocio;
 import mx.tesseract.editor.model.Revision;
 import mx.tesseract.editor.model.TerminoGlosario;
 import mx.tesseract.editor.model.Trayectoria;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -53,13 +53,13 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "trayectorias" }),
 		@Result(name = "referencias", type = "json", params = { "root",
 				"elementosReferencias" }),
 		@Result(name = "cu", type = "redirectAction", params = { "actionName",
 				"cu" }) })
-public class TrayectoriasCtrl extends ActionSupportPRISMA implements
+public class TrayectoriasCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Trayectoria>, SessionAware {
 	/**
 	 * 
@@ -149,7 +149,7 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -182,7 +182,7 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 			buscaCatalogos();
 
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -216,7 +216,7 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 			} else if (alternativaPrincipal.equals("Principal")) {
 				model.setAlternativa(false);
 			} else {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no seleccionó el tipo de la trayectoria.",
 						"MSG4", null, "alternativaPrincipal");
 			}
@@ -233,10 +233,10 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 					"Trayectoria", "registrada" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -292,7 +292,7 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 			prepararVista();
 
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -327,7 +327,7 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 			} else if (alternativaPrincipal.equals("Principal")) {
 				model.setAlternativa(false);
 			} else {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no seleccionó el tipo de la trayectoria.",
 						"MSG4", null, "alternativaPrincipal");
 			}
@@ -349,10 +349,10 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 					"Trayectoria", "modificada" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -383,7 +383,7 @@ public class TrayectoriasCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"trayectoria", "eliminada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

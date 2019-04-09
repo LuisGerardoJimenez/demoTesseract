@@ -1,21 +1,21 @@
 package mx.tesseract.util;
 
-public class PRISMAValidacionException extends PRISMAException{
+public class TESSERACTValidacionException extends TESSERACTException{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String campo;
-	public PRISMAValidacionException(String message, String idMensaje,
+	public TESSERACTValidacionException(String message, String idMensaje,
 			String[] parametros) {
 		super(message, idMensaje, parametros);
 	}
-	public PRISMAValidacionException(String message, String idMensaje,
+	public TESSERACTValidacionException(String message, String idMensaje,
 			String[] parametros, String campo) {
 		super(message, idMensaje, parametros);
 		this.campo = campo;
 	}
-	public PRISMAValidacionException(String message, String idMensaje) {
+	public TESSERACTValidacionException(String message, String idMensaje) {
 		super(message, idMensaje);
 	}
 	public String getCampo() {

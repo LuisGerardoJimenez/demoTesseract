@@ -16,7 +16,7 @@ import mx.tesseract.generadorPruebas.dao.ValorEntradaTrayectoriaDAO;
 import mx.tesseract.generadorPruebas.dao.ValorPantallaTrayectoriaDAO;
 import mx.tesseract.generadorPruebas.model.ValorEntradaTrayectoria;
 import mx.tesseract.generadorPruebas.model.ValorPantallaTrayectoria;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 public class ValorPantallaTrayectoriaBs {
@@ -28,12 +28,12 @@ public class ValorPantallaTrayectoriaBs {
 			
 		
 		if (validarObligatorios && Validador.esNuloOVacio(patron)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó algún patrón de pantalla.", "MSG38", null,
 					"campos");
 		}
 		if (Validador.validaLongitudMaxima(patron, 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un patrón de pantalla muy largo.", "MSG39",
 					new String[] { "999", "caracteres", "el patrón de la pantalla "}, "campos");
 		}

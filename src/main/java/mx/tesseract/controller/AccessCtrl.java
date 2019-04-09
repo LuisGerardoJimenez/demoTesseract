@@ -8,10 +8,10 @@ import mx.tesseract.admin.model.ColaboradorProyecto;
 import mx.tesseract.admin.model.Proyecto;
 import mx.tesseract.bs.AccessBs;
 import mx.tesseract.editor.model.Modulo;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -28,7 +28,7 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "colaborador", type = "redirectAction", params = {
 				"actionName", "proyectos" }),
 		@Result(name = "recover", type = "dispatcher", location = "recover.jsp") })
-public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
+public class AccessCtrl extends ActionSupportTESSERACT implements SessionAware {
 	/** 
 	 * 
 	 */ 
@@ -55,7 +55,7 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,12 +82,12 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 			} else {
 				resultado = "colaborador";
 			}
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			System.out.println("Uno");
 			ErrorManager.agregaMensajeError(this, pve);
 			System.out.println("Pve: "+pve);
 			return index();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.out.println("dos");
 			System.out.println("Pe: "+pe);
 			ErrorManager.agregaMensajeError(this, pe);
@@ -110,10 +110,10 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 		String resultado = null;
 		try {
 			resultado = "recover";
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = recover();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -132,10 +132,10 @@ public class AccessCtrl extends ActionSupportPRISMA implements SessionAware {
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = recover();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

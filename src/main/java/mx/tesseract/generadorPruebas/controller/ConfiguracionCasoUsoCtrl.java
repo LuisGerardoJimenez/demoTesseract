@@ -55,13 +55,13 @@ import mx.tesseract.generadorPruebas.model.Query;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametro;
 import mx.tesseract.guionPruebas.bs.GuionPruebasBs;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.FileUtil;
 import mx.tesseract.util.ImageConverterUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -86,7 +86,7 @@ import com.opensymphony.xwork2.Action;
 	        "bufferSize", "1024", 
 	        "contentDisposition", "attachment;filename=\"${filename}\""})})
 
-public class ConfiguracionCasoUsoCtrl extends ActionSupportPRISMA {
+public class ConfiguracionCasoUsoCtrl extends ActionSupportTESSERACT {
 	/**
 	 * 
 	 */
@@ -196,11 +196,11 @@ public class ConfiguracionCasoUsoCtrl extends ActionSupportPRISMA {
 			"configurada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			resultado = "cu";
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -234,11 +234,11 @@ public class ConfiguracionCasoUsoCtrl extends ActionSupportPRISMA {
 			"guardada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";

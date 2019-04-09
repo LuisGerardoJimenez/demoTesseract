@@ -24,11 +24,11 @@ import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.Revision;
 import mx.tesseract.editor.model.Trayectoria;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -42,11 +42,11 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "extensiones"}),
 		@Result(name = "cu", type = "redirectAction", params = { "actionName",
 				"cu" }) })
-public class ExtensionesCtrl extends ActionSupportPRISMA implements
+public class ExtensionesCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Extension>, SessionAware {
 	/**
 	 * 
@@ -119,7 +119,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -147,7 +147,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 			buscaElementos();
 			buscaCatalogos();
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
 		} catch (Exception e) {
@@ -175,7 +175,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 			}
 
 			if (idCasoUsoDestino == -1) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no seleccionó el caso de uso destino.",
 						"MSG4", null, "claveCasoUsoDestino");
 			} else {
@@ -191,10 +191,10 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 					"Punto de extensión", "registrado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -227,7 +227,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 			buscaCatalogos();
 			prepararVista();
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
 		} catch (Exception e) {
@@ -270,7 +270,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 			}
 
 			if (idCasoUsoDestino == -1) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no seleccionó el caso de uso destino.",
 						"MSG4", null, "claveCasoUsoDestino");
 			} else {
@@ -287,10 +287,10 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 					"Punto de extensión", "modificado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -308,7 +308,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Punto de extensión", "eliminado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -374,7 +374,7 @@ public class ExtensionesCtrl extends ActionSupportPRISMA implements
 		}
 
 		if (catalogoCasoUso.isEmpty()) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No hay casos de uso para seleccionar como punto de extensión.",
 					"MSG22", new String[] { "Casos de uso para extender."});
 		}

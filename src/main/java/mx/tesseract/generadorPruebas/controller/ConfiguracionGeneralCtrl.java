@@ -23,10 +23,10 @@ import mx.tesseract.generadorPruebas.bs.ConfiguracionGeneralBs;
 import mx.tesseract.generadorPruebas.model.ConfiguracionBaseDatos;
 import mx.tesseract.generadorPruebas.model.ConfiguracionHttp;
 import mx.tesseract.generadorPruebas.model.ConfiguracionTrayectoria;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -38,7 +38,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 @ResultPath("/content/generadorPruebas/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = { "actionName",
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = { "actionName",
 				"configuracion-general" }),
 		@Result(name = "cu", type = "redirectAction", params = { "actionName", "cu" }),
 		@Result(name = "modulos", type = "redirectAction", params = { "actionName", "modulos" }),
@@ -48,7 +48,7 @@ import com.opensymphony.xwork2.ActionContext;
 		@Result(name = "conexion", type = "json", params = { "root", "resultadoConexion" }),
 		@Result(name = "siguiente", type = "redirectAction", params = { "actionName",
 				"configuracion-casos-uso-previos!prepararConfiguracion" }) })
-public class ConfiguracionGeneralCtrl extends ActionSupportPRISMA {
+public class ConfiguracionGeneralCtrl extends ActionSupportTESSERACT {
 	private static final long serialVersionUID = 1L;
 	private ConfiguracionBaseDatos cbd;
 	private ConfiguracionHttp chttp;
@@ -167,11 +167,11 @@ public class ConfiguracionGeneralCtrl extends ActionSupportPRISMA {
 			addActionMessage(getText("MSG1", new String[] { "La", "Configuración general", "registrada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -230,11 +230,11 @@ public class ConfiguracionGeneralCtrl extends ActionSupportPRISMA {
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
 			resultado = prepararConfiguracion();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -254,7 +254,7 @@ public class ConfiguracionGeneralCtrl extends ActionSupportPRISMA {
 				ElementoBs.verificarEstado(previo, CU_CasosUso.CONFIGURARPRUEBA5_7);
 			}
 			return true;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			return false;
 		}
 	}

@@ -9,7 +9,7 @@ import mx.tesseract.editor.dao.MensajeParametroDAO;
 import mx.tesseract.editor.model.MensajeParametro;
 import mx.tesseract.generadorPruebas.dao.ValorMensajeParametroDAO;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametro;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 
 public class MensajeParametroBs {
 
@@ -27,7 +27,7 @@ public class MensajeParametroBs {
 			e.printStackTrace();
 		}
 		if (listMensajeParametro == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los pasos por el id.", "MSG16",
 					new String[] { "La", "trayectoria" });
 		}

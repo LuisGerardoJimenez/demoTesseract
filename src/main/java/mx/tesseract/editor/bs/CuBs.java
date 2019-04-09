@@ -49,8 +49,8 @@ import mx.tesseract.editor.model.Revision;
 import mx.tesseract.editor.model.Salida;
 import mx.tesseract.editor.model.TerminoGlosario;
 import mx.tesseract.editor.model.Trayectoria;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -64,7 +64,7 @@ public class CuBs {
 	public static List<CasoUso> consultarCasosUsoModulo(Modulo modulo) {
 		List<CasoUso> cus = new CasoUsoDAO().consultarCasosUso(modulo);
 		if (cus == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los casos de uso del modulo",
 					"MSG13");
 		}
@@ -76,7 +76,7 @@ public class CuBs {
 
 		Modulo modulo = new ModuloDAO().consultarModulo(claveModulo, proyecto);
 		if (modulo == null) {
-			throw new PRISMAException("No se puede consultar el modulo",
+			throw new TESSERACTException("No se puede consultar el modulo",
 					"MSG13");
 		}
 		return modulo;
@@ -85,7 +85,7 @@ public class CuBs {
 	public static Proyecto consultarProyecto(String claveProy) throws Exception {
 		Proyecto proyecto = new ProyectoDAO().consultarProyecto(claveProy);
 		if (proyecto == null) {
-			throw new PRISMAException("No se puede consultar el proyecto",
+			throw new TESSERACTException("No se puede consultar el proyecto",
 					"MSG13");
 		}
 
@@ -176,15 +176,15 @@ public class CuBs {
 		}
 	}
 
-	private static void validar(CasoUso cu) throws PRISMAValidacionException {
+	private static void validar(CasoUso cu) throws TESSERACTValidacionException {
 		// Validaciones del número
 		if (Validador.esNuloOVacio(cu.getNumero())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el número del cu.", "MSG4", null,
 					"model.numero");
 		}
 		if (!Pattern.matches("[0-9]+(\\.[0-9]+)*", cu.getNumero())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el número del cu.", "MSG5",
 					new String[] { "un", "número" }, "model.numero");
 		}
@@ -194,14 +194,14 @@ public class CuBs {
 		for (CasoUso c : casosUso) {
 			if (c.getId() != cu.getId()) {
 				if (c.getNombre().equals(cu.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El nombre del caso de uso ya existe.",
 							"MSG7",
 							new String[] { "El", "Caso de uso", cu.getNombre() },
 							"model.nombre");
 				}
 				if (c.getNumero().equals(cu.getNumero())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El número del caso de uso ya existe.",
 							"MSG7",
 							new String[] { "El", "Caso de uso", cu.getNumero() },
@@ -212,24 +212,24 @@ public class CuBs {
 
 		// Validaciones del nombre
 		if (Validador.esNuloOVacio(cu.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre del cu.", "MSG4", null,
 					"model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(cu.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
 		if (Validador.contieneCaracterInvalido(cu.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
 		}
 		// Validaciones de la Descripción
 		if (cu.getDescripcion() != null
 				&& Validador.validaLongitudMaxima(cu.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.descripcion");
 		}
@@ -237,7 +237,7 @@ public class CuBs {
 		if (cu.getRedaccionActores() != null
 				&& Validador
 						.validaLongitudMaxima(cu.getRedaccionActores(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso muchos caracteres en actores.", "MSG6",
 					new String[] { "999", "caracteres" },
 					"model.redaccionActores");
@@ -246,7 +246,7 @@ public class CuBs {
 		if (cu.getRedaccionEntradas() != null
 				&& Validador.validaLongitudMaxima(cu.getRedaccionEntradas(),
 						999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso muchos caracteres en entradas.",
 					"MSG6", new String[] { "999", "caracteres" },
 					"model.redaccionEntradas");
@@ -255,7 +255,7 @@ public class CuBs {
 		if (cu.getRedaccionSalidas() != null
 				&& Validador
 						.validaLongitudMaxima(cu.getRedaccionSalidas(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso muchos caracteres en salidas.", "MSG6",
 					new String[] { "999", "caracteres" },
 					"model.redaccionSalidas");
@@ -264,7 +264,7 @@ public class CuBs {
 		if (cu.getRedaccionReglasNegocio() != null
 				&& Validador.validaLongitudMaxima(
 						cu.getRedaccionReglasNegocio(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso muchos caracteres en rn.", "MSG6",
 					new String[] { "999", "caracteres" },
 					"model.redaccionReglasNegocio");
@@ -275,18 +275,18 @@ public class CuBs {
 			// Si existen pre o postoncidiones
 			for (PostPrecondicion pp : cu.getPostprecondiciones()) {
 				if (Validador.esNuloOVacio(pp.getRedaccion())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó la redacción de una precondicion o postcondicion.",
 							"MSG4");
 				}
 				if (Validador.validaLongitudMaxima(pp.getRedaccion(), 999)) {
 					if (pp.isPrecondicion()) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario rebaso la longitud de alguna de las precondiciones.",
 								"MSG17", new String[] { "las",
 										"precondiciones", "a" }, "model.pasos");
 					} else {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario rebaso la longitud de alguna de las postcondiciones.",
 								"MSG17", new String[] { "las",
 										"postcondiciones", "a" }, "model.pasos");
@@ -308,7 +308,7 @@ public class CuBs {
 			e.printStackTrace();
 		}
 		if (cu == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el caso de uso por el id.", "MSG16",
 					new String[] { "El", "caso de uso" });
 		}
@@ -323,7 +323,7 @@ public class CuBs {
 			e.printStackTrace();
 		}
 		if (cu == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el caso de uso por el id.", "MSG16",
 					new String[] { "El", "caso de uso" });
 		}
@@ -499,7 +499,7 @@ public class CuBs {
 			new CasoUsoDAO().eliminarElemento(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1451) {
-				throw new PRISMAException(
+				throw new TESSERACTException(
 						"No se puede eliminar el caso de uso", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
@@ -885,7 +885,7 @@ public class CuBs {
 				}
 			}
 		} else {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la respuesta", "MSG4", null,
 					"esCorrectoResumen");
 		}
@@ -911,7 +911,7 @@ public class CuBs {
 				}
 			}
 		} else {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la respuesta", "MSG4", null,
 					"esCorrectoTrayectoria");
 		}
@@ -938,7 +938,7 @@ public class CuBs {
 					}
 				}
 			} else {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no ingresó la respuesta", "MSG4", null,
 						"esCorrectoPuntosExt");
 			}
@@ -950,12 +950,12 @@ public class CuBs {
 	
 	private static void validarObservacionRevision(String observacionesResumen, String campo) throws Exception{
 		if (Validador.esNuloOVacio(observacionesResumen)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó las observaciones", "MSG4",
 					null, campo);
 		}
 		if (Validador.validaLongitudMaxima(observacionesResumen, 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso observaciones muy largas", "MSG6",
 					new String[] { "999", "caracteres" },
 					campo);

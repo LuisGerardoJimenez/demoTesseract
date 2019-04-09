@@ -14,10 +14,10 @@ import mx.tesseract.editor.bs.ElementoBs;
 import mx.tesseract.editor.model.Actor;
 import mx.tesseract.editor.model.Cardinalidad;
 import mx.tesseract.editor.model.Modulo;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -30,14 +30,14 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "actores" }),
 		@Result(name = "referencias", type = "json", params = { "root",
 				"elementosReferencias" }),
 		@Result(name = "proyectos", type = "redirectAction", params = {
 				"actionName", "proyectos" })		
 })
-public class ActoresCtrl extends ActionSupportPRISMA implements
+public class ActoresCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Actor>, SessionAware {
 	/** 
 	 * 
@@ -78,7 +78,7 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +103,7 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 			model.setProyecto(proyecto);
 			buscaCatalogos();
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -119,7 +119,7 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 		listCardinalidad = ActorBs.consultarCardinalidades();
 
 		if (listCardinalidad == null || listCardinalidad.isEmpty()) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No hay cardinalidades para registrar el atributo.",
 					"MSG13");
 		}
@@ -145,10 +145,10 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 					"registrado" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -174,7 +174,7 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 			model = ActorBs.consultarActor(idSel);
 			model.setProyecto(proyecto);
 			resultado = SHOW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			pe.setIdMensaje("MSG26");
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
@@ -204,7 +204,7 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Actor",
 					"eliminado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -233,7 +233,7 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 			buscaCatalogos();
 
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -268,10 +268,10 @@ public class ActoresCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Actor",
 					"modificado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

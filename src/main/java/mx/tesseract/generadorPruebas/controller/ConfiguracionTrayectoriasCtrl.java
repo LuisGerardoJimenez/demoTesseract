@@ -39,12 +39,12 @@ import mx.tesseract.generadorPruebas.bs.CuPruebasBs;
 import mx.tesseract.generadorPruebas.bs.ValorEntradaBs;
 import mx.tesseract.generadorPruebas.model.ConfiguracionTrayectoria;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.ImageConverterUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 @ResultPath("/content/generadorPruebas/")
@@ -57,7 +57,7 @@ import mx.tesseract.util.SessionManager;
 @Result(name = "siguiente", type = "redirectAction", params = {
 		"actionName", "cu"})})
 	
-public class ConfiguracionTrayectoriasCtrl extends ActionSupportPRISMA{
+public class ConfiguracionTrayectoriasCtrl extends ActionSupportTESSERACT{
 
 	private static final long serialVersionUID = 1L;
 	private CasoUso casoUso;
@@ -130,7 +130,7 @@ public class ConfiguracionTrayectoriasCtrl extends ActionSupportPRISMA{
 			if(listCU != null) {
 				for(CasoUso cu : listCU) {
 					if (cu.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.CONFIGURADO) && cu.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PRECONFIGURADO)){
-						throw new PRISMAValidacionException("Falta configurar un caso de uso.", "MSG37");
+						throw new TESSERACTValidacionException("Falta configurar un caso de uso.", "MSG37");
 					}
 				}
 			}
@@ -138,7 +138,7 @@ public class ConfiguracionTrayectoriasCtrl extends ActionSupportPRISMA{
 			if(listTrayectoria !=null){
 				for(Trayectoria tray: listTrayectoria){
 					if(tray.getEstado().equals("No Configurado")){
-						throw new PRISMAValidacionException("Falta configurar una trayectoria.", "MSG41");
+						throw new TESSERACTValidacionException("Falta configurar una trayectoria.", "MSG41");
 					}
 				}
 			}
@@ -146,11 +146,11 @@ public class ConfiguracionTrayectoriasCtrl extends ActionSupportPRISMA{
 			ElementoBs.modificarEstadoElemento(casoUso, Estado.CONFIGURADO);
 			//Pasar id caso de uso y clave de la trayectoria a ConfiguracionTrayectoriaCtrl.
 			resultado = "siguiente";
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "pantallaConfiguracionCasosUsoPrevios";
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -222,11 +222,11 @@ public class ConfiguracionTrayectoriasCtrl extends ActionSupportPRISMA{
 			"registrada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			return prepararConfiguracion();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracionCasoUso();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -251,11 +251,11 @@ public class ConfiguracionTrayectoriasCtrl extends ActionSupportPRISMA{
 			"guardada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			return prepararConfiguracionCasoUso();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracionCasoUso();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";

@@ -13,8 +13,8 @@ import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 public class AccionBs {
@@ -107,7 +107,7 @@ public class AccionBs {
 	public static Accion consultarAccion(Integer id) {
 		Accion accion = new AccionDAO().consultarAccion(id);
 		if (accion == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar la acción por el id.");
 		}
 		return accion;
@@ -122,24 +122,24 @@ public class AccionBs {
 	private static void validar(Accion accion, boolean validarObligatorios) {
 		String valor = accion.getUrlDestino();
 		if (validarObligatorios && Validador.esNuloOVacio(valor)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la url destino.", "MSG38", null,
 					"campos");
 		}
 		if (Validador.validaLongitudMaxima(valor, 2000)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una url destino muy larga.", "MSG39",
 					new String[] { "2000", "caracteres", "la Url destino de la Acción " + accion.getNombre() }, "campos");
 		}
 		
 		valor = accion.getMetodo();
 		if (validarObligatorios && Validador.esNuloOVacio(valor)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el valor del método.", "MSG38", null,
 					"campos");
 		}
 		if (Validador.validaLongitudMaxima(valor, 10)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un método muy largo.", "MSG39",
 					new String[] { "10", "caracteres", "el Método de la Acción " + accion.getNombre() }, "campos");
 		}

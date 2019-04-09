@@ -10,7 +10,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ActionSupportPRISMA extends ActionSupport {
+public class ActionSupportTESSERACT extends ActionSupport {
 	/**
 	 * 
 	 */
@@ -23,7 +23,7 @@ public class ActionSupportPRISMA extends ActionSupport {
 	protected static final String DELETE = "delete";
 	protected String urlPrev;
 	protected HttpServletRequest request = ServletActionContext.getRequest();
-	public ActionSupportPRISMA() {
+	public ActionSupportTESSERACT() {
 		super();
 		try {
 			SessionManager.pushURL(request);

@@ -19,11 +19,11 @@ import mx.tesseract.editor.model.Entidad;
 import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.TipoDato;
 import mx.tesseract.editor.model.UnidadTamanio;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -36,7 +36,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "entidades" }),
 		@Result(name = "referencias", type = "json", params = { "root",
 				"elementosReferencias" }),
@@ -44,7 +44,7 @@ import com.opensymphony.xwork2.ModelDriven;
 						"actionName", "proyectos" })
 })
 
-public class EntidadesCtrl extends ActionSupportPRISMA implements
+public class EntidadesCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Entidad>, SessionAware {
 	/** 
 	 * 
@@ -86,7 +86,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 			model.setProyecto(proyecto);
 			buscaCatalogos();
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -146,10 +146,10 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 					"registrada" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -177,7 +177,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 			prepararVista();
 			buscaCatalogos();
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -238,10 +238,10 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 					"modificada" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -267,7 +267,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 			}
 			model.setProyecto(proyecto);
 			resultado = SHOW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			pe.setIdMensaje("MSG26");
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
@@ -297,7 +297,7 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "La", "Entidad",
 					"eliminada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -311,11 +311,11 @@ public class EntidadesCtrl extends ActionSupportPRISMA implements
 		listTipoDato = EntidadBs.consultarTiposDato();
 		listUnidadTamanio = EntidadBs.consultarUnidadesTamanio();
 		if (listUnidadTamanio == null || listUnidadTamanio.isEmpty()) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No hay unidades para registrar el atributo.", "MSG13");
 		}
 		if (listTipoDato == null || listTipoDato.isEmpty()) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No hay tipos de dato para registrar el atributo.", "MSG13");
 		}
 	}

@@ -33,7 +33,7 @@ import mx.tesseract.generadorPruebas.model.ConfiguracionBaseDatos;
 import mx.tesseract.generadorPruebas.model.ConfiguracionHttp;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
 import mx.tesseract.guionPruebas.bs.ValorEntradaBs;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.SessionManager;
 
@@ -53,7 +53,7 @@ import mx.tesseract.util.SessionManager;
 	        "inputName", "fileInputStream", 
 	        "bufferSize", "1024", 
 	        "contentDisposition", "attachment;filename=\"${filename}\""})})
-public class ConfiguracionEntradasCtrl extends ActionSupportPRISMA{
+public class ConfiguracionEntradasCtrl extends ActionSupportTESSERACT{
 	
 	private static final long serialVersionUID = 1L;
 	

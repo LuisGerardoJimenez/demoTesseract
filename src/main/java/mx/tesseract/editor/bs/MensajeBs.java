@@ -22,8 +22,8 @@ import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.Salida;
 import mx.tesseract.util.Constantes;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -35,7 +35,7 @@ public class MensajeBs {
 	public static List<Mensaje> consultarMensajesProyecto(Proyecto proyecto) {
 		List<Mensaje> listMensajes = new MensajeDAO().consultarMensajes(proyecto.getId());
 		if(listMensajes == null) {
-			throw new PRISMAException("No se pueden consultar los mensajes.", "MSG13");
+			throw new TESSERACTException("No se pueden consultar los mensajes.", "MSG13");
 		}
 		return listMensajes;
 	}
@@ -50,7 +50,7 @@ public class MensajeBs {
 		} catch (JDBCException je) {
 				if(je.getErrorCode() == Constantes.MYSQL_ERROR_1062)
 				{
-					throw new PRISMAValidacionException("El nombre del mensaje ya existe.", "MSG7",
+					throw new TESSERACTValidacionException("El nombre del mensaje ya existe.", "MSG7",
 							new String[] { "El","Mensaje", model.getNombre()}, "model.nombre");
 				}
 				je.printStackTrace();
@@ -104,67 +104,67 @@ public class MensajeBs {
 	private static void validar(Mensaje model) {
 		//Validaciones de Nularidad
 		if(Validador.esNuloOVacio(model.getNumero())) {
-			throw new PRISMAValidacionException("El usuario no ingresó el número del mensaje.", "MSG4", null, "model.numero");
+			throw new TESSERACTValidacionException("El usuario no ingresó el número del mensaje.", "MSG4", null, "model.numero");
 		}
 		if(Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException("El usuario no ingresó el nombre del mensaje.", "MSG4", null, "model.nombre");
+			throw new TESSERACTValidacionException("El usuario no ingresó el nombre del mensaje.", "MSG4", null, "model.nombre");
 		}
 		if(Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la desripción del mensaje.", "MSG4",
 					null, "model.descripcion");
 		}
 		if(Validador.esNuloOVacio(model.getRedaccion())) {
-			throw new PRISMAValidacionException("El usuario no ingresó la redaccion del mensaje.", "MSG4", null, "model.redaccion");
+			throw new TESSERACTValidacionException("El usuario no ingresó la redaccion del mensaje.", "MSG4", null, "model.redaccion");
 		}
 		if(model.isParametrizado()) {
 			List<Parametro> parametros = obtenerParametros(model.getRedaccion(), model.getProyecto().getId());
 			if(parametros.size() != model.getParametros().size()) {
-				throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
+				throw new TESSERACTValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
 			}
 			//Validacion de las descripciones de los parámetros
 			for(MensajeParametro mp : model.getParametros()) {
 				if(Validador.esNuloOVacio(mp.getParametro().getDescripcion())) {
-					throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
+					throw new TESSERACTValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG24", null, "model.parametros");
 				}
 			}
 		}
 		//Validación de Longitud
 		if(Validador.validaLongitudMaxima(model.getNumero().toString(), Constantes.NUMERO_VEINTE)) {
-			throw new PRISMAValidacionException("El usuario ingreso un número muy largo.", "MSG6", new String[] { "20",
+			throw new TESSERACTValidacionException("El usuario ingreso un número muy largo.", "MSG6", new String[] { "20",
 			"números"}, "model.numero");
 		}
 		if(Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_DOSCIENTOS)) {
-			throw new PRISMAValidacionException("El usuario ingreso un nombre muy largo.", "MSG6", new String[] { "200",
+			throw new TESSERACTValidacionException("El usuario ingreso un nombre muy largo.", "MSG6", new String[] { "200",
 			"caracteres"}, "model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
 					new String[] { "1000", "caracteres" }, "model.descripcion");
 		}
 		if(model.getRedaccion() != null && Validador.validaLongitudMaxima(model.getRedaccion(), Constantes.NUMERO_MIL)) {
-			throw new PRISMAValidacionException("El usuario ingreso una redaccion muy larga.", "MSG6", new String[] { "1000",
+			throw new TESSERACTValidacionException("El usuario ingreso una redaccion muy larga.", "MSG6", new String[] { "1000",
 			"caracteres"}, "model.redaccion");
 		}
 		//Validacion de Formato
 		if(Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException("El usuario ingreso un nombre con caracter inválido.", "MSG23", new String[] { "El",
+			throw new TESSERACTValidacionException("El usuario ingreso un nombre con caracter inválido.", "MSG23", new String[] { "El",
 			"nombre"}, "model.nombre");
 		}
 		if(!Pattern.matches(Constantes.REGEX_CAMPO_NUMERICO_ENTERO, model.getNumero())) {
-			throw new PRISMAValidacionException("El usuario no ingresó un número válido", "MSG5", new String[]{"un", "número entero"}, "model.numero");
+			throw new TESSERACTValidacionException("El usuario no ingresó un número válido", "MSG5", new String[]{"un", "número entero"}, "model.numero");
 		}
 		//Validacion de Negocio
 		List<Mensaje> mensajes = consultarMensajesProyecto(model.getProyecto());
 		for(Mensaje msj : mensajes) {
 			if(msj.getId() != model.getId()) {
 				if(msj.getNombre().equals(model.getNombre())) {
-					throw new PRISMAValidacionException("El nombre del mensaje ya existe.", "MSG7",
+					throw new TESSERACTValidacionException("El nombre del mensaje ya existe.", "MSG7",
 							new String[] { "El","Mensaje", msj.getNombre()}, "model.nombre");
 				}
 				if(msj.getNumero().equals(model.getNumero())) {
-					throw new PRISMAValidacionException("El numero del mensaje ya existe.", "MSG7",
+					throw new TESSERACTValidacionException("El numero del mensaje ya existe.", "MSG7",
 							new String[] { "El","Mensaje", msj.getNumero()}, "model.numero");
 				}
 			}
@@ -187,7 +187,7 @@ public class MensajeBs {
 		ArrayList<Parametro> listParametros = new ArrayList<Parametro>();
 		Parametro parametroAux = null;
 		if(listParametros.size() > Constantes.NUMERO_DIEZ) {
-			throw new PRISMAValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG6", new String[]{"10", "parámetros"}, 
+			throw new TESSERACTValidacionException("El usuario no ingresó la descripcion de algun parametros del mensaje.", "MSG6", new String[]{"10", "parámetros"}, 
 					"model.parametros");
 		}
 		ArrayList<String> segmentos;
@@ -231,7 +231,7 @@ public class MensajeBs {
 	public static Mensaje consultarMensaje(Integer id) {
 		Mensaje mensaje = new MensajeDAO().consultarMensaje(id);
 		if(mensaje == null) {
-			throw new PRISMAException("No se puede consultar el mensaje.", "MSG13");
+			throw new TESSERACTException("No se puede consultar el mensaje.", "MSG13");
 		}
 		return mensaje;
 	}
@@ -243,7 +243,7 @@ public class MensajeBs {
 	} catch (JDBCException je) {
 			if(je.getErrorCode() == Constantes.MYSQL_ERROR_1451)
 			{
-				throw new PRISMAException("No se puede eliminar el caso de uso", "MSG14");
+				throw new TESSERACTException("No se puede eliminar el caso de uso", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
 			je.printStackTrace();

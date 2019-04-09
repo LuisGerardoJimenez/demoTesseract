@@ -28,8 +28,8 @@ import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.ReglaNegocio;
 import mx.tesseract.editor.model.TipoReglaNegocio;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -43,7 +43,7 @@ public class ReglaNegocioBs {
 		List<ReglaNegocio> listReglasNegocio = new ReglaNegocioDAO()
 				.consultarReglasNegocio(proyecto.getId());
 		if (listReglasNegocio == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar las reglas de negocio.", "MSG13");
 		}
 		return listReglasNegocio;
@@ -53,7 +53,7 @@ public class ReglaNegocioBs {
 		List<TipoReglaNegocio> listTipoRN = new TipoReglaNegocioDAO()
 				.consultarTiposReglaNegocio();
 		if (listTipoRN == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los tipos de regla de negocio.",
 					"MSG13");
 		}
@@ -71,7 +71,7 @@ public class ReglaNegocioBs {
 			new ReglaNegocioDAO().registrarReglaNegocio(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El nombre de la regla de negocio ya existe.", "MSG7",
 						new String[] { "La", "Regla de negocio",
 								model.getNombre() }, "model.nombre");
@@ -89,12 +89,12 @@ public class ReglaNegocioBs {
 	private static void validar(ReglaNegocio model) {
 		// Validaciones del número
 		if (Validador.esNuloOVacio(model.getNumero())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el número de la regla de negocio.",
 					"MSG4", null, "model.numero");
 		}
 		if (!Pattern.matches("[1-9]+[0-9]*", model.getNumero())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el número de la regla de negocio.",
 					"MSG5", new String[] { "un", "número entero" },
 					"model.numero");
@@ -106,13 +106,13 @@ public class ReglaNegocioBs {
 		for (ReglaNegocio rn : reglasNegocio) {
 			if (rn.getId() != model.getId()) {
 				if (rn.getNombre().equals(model.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El nombre de la regla de negocio ya existe.",
 							"MSG7", new String[] { "La", "Regla de negocio",
 									rn.getNombre() }, "model.nombre");
 				}
 				if (rn.getNumero().equals(model.getNumero())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El numero de la regla de negocio ya existe.",
 							"MSG7", new String[] { "La", "Regla de negocio",
 									rn.getNumero() }, "model.numero");
@@ -122,35 +122,35 @@ public class ReglaNegocioBs {
 
 		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre de la regla de negocio.",
 					"MSG4", null, "model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
 		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
 		}
 		
 		// Validaciones de la Redacción
 		if (Validador.esNuloOVacio(model.getRedaccion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la redaccion de la regla de negocio.", "MSG4",
 					null, "model.redaccion");
 		}
 		if (Validador.validaLongitudMaxima(model.getRedaccion(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una redaccion muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.redaccion");
 		}
 		if(TipoReglaNegocioEnum.getTipoReglaNegocio(model.getTipoReglaNegocio()).equals(TipoReglaNegocioEnum.TipoReglaNegocioENUM.FORMATOCAMPO)) {
 			if(Validador.esNuloOVacio(model.getExpresionRegular())) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no ingresó la expresión regular.", "MSG4",
 						null, "model.expresionRegular");
 			}
@@ -161,7 +161,7 @@ public class ReglaNegocioBs {
 		TipoReglaNegocio tipoRN = new TipoReglaNegocioDAO()
 				.consultarTipoReglaNegocio(idTipoRN);
 		if (tipoRN == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consulta la regla de negocio.", "MSG13");
 		}
 		return tipoRN;
@@ -170,7 +170,7 @@ public class ReglaNegocioBs {
 	public static List<Operador> consultarOperadores() {
 		List<Operador> listOperadores = new OperadorDAO().consultarOperadores();
 		if (listOperadores == null) {
-			throw new PRISMAException("No se pueden consultar los operadores.",
+			throw new TESSERACTException("No se pueden consultar los operadores.",
 					"MSG13");
 		}
 		return listOperadores;
@@ -180,13 +180,13 @@ public class ReglaNegocioBs {
 			int idEntidad, int idAtributo) {
 		Entidad entidad = new EntidadDAO().consultarEntidad(idEntidad);
 		if (entidad == null) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó la entidad.", "MSG4", null,
 					"idEntidad");
 		}
 		Set<Atributo> atributos = entidad.getAtributos();
 		if (idAtributo == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el nombre del atributo.", "MSG4",
 					null, "idAtributo");
 		}
@@ -218,7 +218,7 @@ public class ReglaNegocioBs {
 	private static Operador consultarOperadorSimbolo(String simbolo) {
 		Operador operador = new OperadorDAO().consultarOperadorSimbolo(simbolo);
 		if (operador == null) {
-			throw new PRISMAException("No se puede consultar el operador.",
+			throw new TESSERACTException("No se puede consultar el operador.",
 					"MSG13");
 		}
 		return operador;
@@ -304,7 +304,7 @@ public class ReglaNegocioBs {
 	public static ReglaNegocio agregarElementosComparacion(ReglaNegocio model,
 			int idAtributo1, int idOperador, int idAtributo2) {
 		if(idAtributo1 == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el atributo 1 de la comparación.",
 					"MSG4", null, "model.numero");
 		}
@@ -318,7 +318,7 @@ public class ReglaNegocioBs {
 	private static Operador consultarOperador(int idOperador) {
 		Operador operador = new OperadorDAO().consultarOperador(idOperador);
 		if (operador == null) {
-			throw new PRISMAException("No se puede consultar el operador.",
+			throw new TESSERACTException("No se puede consultar el operador.",
 					"MSG13");
 		}
 		return operador;
@@ -334,7 +334,7 @@ public class ReglaNegocioBs {
 		ReglaNegocio reglaNegocio = new ReglaNegocioDAO()
 				.consultarReglaNegocio(id);
 		if (reglaNegocio == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar la regla de negocio.", "MSG13");
 		}
 		return reglaNegocio;
@@ -353,7 +353,7 @@ public class ReglaNegocioBs {
 //			new ReglaNegocioDAO().modificarReglaNegocio(model, actualizacion);
 //		} catch (JDBCException je) {
 //			if (je.getErrorCode() == 1062) {
-//				throw new PRISMAValidacionException(
+//				throw new TESSERACTValidacionException(
 //						"El nombre de la regla de negocio ya existe.", "MSG7",
 //						new String[] { "La", "Regla de negocio",
 //								model.getNombre() }, "model.nombre");
@@ -380,7 +380,7 @@ public class ReglaNegocioBs {
 			new ReglaNegocioDAO().modificarReglaNegocio(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El nombre de la regla de negocio ya existe.", "MSG7",
 						new String[] { "La", "Regla de negocio",
 								model.getNombre() }, "model.nombre");
@@ -403,7 +403,7 @@ public class ReglaNegocioBs {
 			new ReglaNegocioDAO().eliminarElemento(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1451) {
-				throw new PRISMAException(
+				throw new TESSERACTException(
 						"No se puede eliminar la regla de negocio.", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
@@ -521,27 +521,27 @@ public class ReglaNegocioBs {
 	public static void validarReglaCompAtributos(int idEntidad1, int idAtributo1,
 			int idOperador, int idEntidad2, int idAtributo2) {
 		if(idEntidad1 == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó la entidad 1 de la comparación.", "MSG4",
 					null, "idEntidad1");
 		}
 		if(idAtributo1 == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el atributo 1 de la comparación.", "MSG4",
 					null, "idAtributo1");
 		}
 		if(idOperador == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el operador de la comparación.", "MSG4",
 					null, "idOperador");
 		}
 		if(idEntidad1 == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó la entidad 2 de la comparación.", "MSG4",
 					null, "idEntidad2");
 		}
 		if(idEntidad1 == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el atributo 2 de la comparación.", "MSG4",
 					null, "idAtributo2");
 		}
@@ -552,12 +552,12 @@ public class ReglaNegocioBs {
 	public static void validarReglaNegocioFormatoCampo(int idEntidadFormato,
 			int idAtributoFormato) {
 		if(idEntidadFormato == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó la entidad del formato correcto.", "MSG4",
 					null, "idEntidadFormato");
 		}
 		if(idAtributoFormato == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el atributo del formato correcto.", "MSG4",
 					null, "idAtributoFormato");
 		}
@@ -567,12 +567,12 @@ public class ReglaNegocioBs {
 	public static void validarReglaNegocioUnicidad(int idEntidadUnicidad,
 			int idAtributoUnicidad) {
 		if(idEntidadUnicidad == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó la entidad de la unicidad.", "MSG4",
 					null, "idEntidadUnicidad");
 		}
 		if(idAtributoUnicidad == -1) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó el atributo de la unicidad.", "MSG4",
 					null, "idAtributoUnicidad");
 		}

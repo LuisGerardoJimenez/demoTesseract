@@ -11,7 +11,7 @@ import mx.tesseract.admin.model.ColaboradorProyecto;
 import mx.tesseract.admin.model.Proyecto;
 import mx.tesseract.util.Constantes;
 import mx.tesseract.util.Correo;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 public class AccessBs {
@@ -19,23 +19,23 @@ public class AccessBs {
 	public static Colaborador verificarLogin(String userName, String password) {
 		Colaborador colaborador = null;
 		if (Validador.esNuloOVacio(userName)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el correo electrónico", "MSG4", null,
 					"userName");
 		}
 		if (Validador.esNuloOVacio(password)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la contraseña.", "MSG4", null,
 					"password");
 		}
 		if (Validador.validaLongitudMaxima(userName, Constantes.NUMERO_TREINTA)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el correo electrónico", "MSG6", 
 					new String[] { Constantes.NUMERO_TREINTA.toString(), "caracteres"},
 					"userName");
 		}
 		if (Validador.validaLongitudMaxima(password, Constantes.NUMERO_VEINTE)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la contraseña.", "MSG6", 
 					new String[] { Constantes.NUMERO_VEINTE.toString(), "caracteres"},
 					"password");
@@ -46,7 +46,7 @@ public class AccessBs {
 			e.printStackTrace();
 		}
 		if (colaborador == null || !colaborador.getContrasenia().equals(password)) {
-			throw new PRISMAValidacionException("Colaborador no encontrado o contraseña incorrecta", "MSG31");
+			throw new TESSERACTValidacionException("Colaborador no encontrado o contraseña incorrecta", "MSG31");
 		}
 		return colaborador;
 	}
@@ -66,12 +66,12 @@ public class AccessBs {
 	public static void recuperarContrasenia(String userName) throws AddressException, MessagingException {
 		Colaborador colaborador = null;
 		if (Validador.esNuloOVacio(userName)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el correo electrónico", "MSG4", null,
 					"userName");
 		}
 		if (!Validador.esCorreo(userName)) {
-			throw new PRISMAValidacionException("Colaborador no encontrado", "MSG33");
+			throw new TESSERACTValidacionException("Colaborador no encontrado", "MSG33");
 
 		}
 		try {
@@ -80,7 +80,7 @@ public class AccessBs {
 			e.printStackTrace();
 		}
 		if (colaborador == null) {
-			throw new PRISMAValidacionException("Colaborador no encontrado", "MSG33");
+			throw new TESSERACTValidacionException("Colaborador no encontrado", "MSG33");
 		}
 		Correo.enviarCorreo(colaborador, 1);
 		

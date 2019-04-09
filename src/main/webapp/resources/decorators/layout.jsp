@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<title>PRISMA | <decorator:title default="Bienvenido" /></title>
+<title>TESSERACT | <decorator:title default="Bienvenido" /></title>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/estilo.css" />

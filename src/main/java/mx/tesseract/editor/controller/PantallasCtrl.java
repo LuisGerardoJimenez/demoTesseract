@@ -20,12 +20,12 @@ import mx.tesseract.editor.model.Accion;
 import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.Pantalla;
 import mx.tesseract.editor.model.TipoAccion;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.ImageConverterUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -37,11 +37,11 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
-@Results({ @Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+@Results({ @Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 		"actionName", "pantallas" }),
 		@Result(name = "referencias", type = "json", params = { "root",
 		"elementosReferencias" }) })
-public class PantallasCtrl extends ActionSupportPRISMA implements
+public class PantallasCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Pantalla>, SessionAware {
 	/** 
 	 * 
@@ -94,7 +94,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -122,7 +122,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 			model.setClave("IU" + modulo.getClave());
 			buscaCatalogos();
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -173,7 +173,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 					}
 
 					if(imagenesAccionesTexto.get(i) != null && !imagenesAccionesTexto.get(i).isEmpty() &&!imagenesAccionesTexto.get(i).contains("image/png")) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario seleccionó una imagen que no es PNG.", "MSG36");
 					}
 					byte[] imgDecodificada = ImageConverterUtil.parsePNGB64StringToBytes(imagenesAccionesTexto.get(i));
@@ -231,10 +231,10 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 					"Pantalla", "registrada" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -246,7 +246,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 	
 	private void agregarImagen() throws IOException {
 		if(pantallaB64 != null && !pantallaB64.isEmpty() && !pantallaB64.contains("image/png")) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario seleccionó una imagen que no es PNG.", "MSG36", null,
 					"pantallaB64");
 		}
@@ -276,7 +276,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 			prepararVista();
 			
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -318,10 +318,10 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Pantalla", "modificada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -353,7 +353,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 					"Pantalla", "eliminada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -390,7 +390,7 @@ public class PantallasCtrl extends ActionSupportPRISMA implements
 			
 			
 			resultado = SHOW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			pe.setIdMensaje("MSG26");
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();

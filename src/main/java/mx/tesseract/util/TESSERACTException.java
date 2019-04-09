@@ -1,6 +1,6 @@
 package mx.tesseract.util;
 
-public class PRISMAException extends RuntimeException {
+public class TESSERACTException extends RuntimeException {
 
 	/**
 	 * 
@@ -9,26 +9,26 @@ public class PRISMAException extends RuntimeException {
 	private String[] parametros;
 	private static final long serialVersionUID = 1L;
 
-	public PRISMAException(String message, String idMensaje) {
+	public TESSERACTException(String message, String idMensaje) {
 		super(message);
 		this.idMensaje = idMensaje;
 	}
 
-	public PRISMAException(String message, String idMensaje, String[] parametros) {
+	public TESSERACTException(String message, String idMensaje, String[] parametros) {
 		super(message);
 		this.idMensaje = idMensaje;
 		this.parametros = parametros;
 	}
 
-	public PRISMAException(String message) {
+	public TESSERACTException(String message) {
 		super(message);
 	}
 
-	public PRISMAException(Throwable cause) {
+	public TESSERACTException(Throwable cause) {
 		super(cause);
 	}
 
-	public PRISMAException(String message, Throwable cause) {
+	public TESSERACTException(String message, Throwable cause) {
 		super(message, cause);
 	}
 

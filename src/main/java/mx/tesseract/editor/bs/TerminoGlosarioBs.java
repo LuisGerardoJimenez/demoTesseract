@@ -19,8 +19,8 @@ import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.Salida;
 import mx.tesseract.editor.model.TerminoGlosario;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -41,7 +41,7 @@ public class TerminoGlosarioBs {
 			new TerminoGlosarioDAO().registrarTerminoGlosario(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException("El termino "
+				throw new TESSERACTValidacionException("El termino "
 						+ model.getNombre() + " ya existe.", "MSG7",
 						new String[] { "El", "termino", model.getNombre() },
 						"model.nombre");
@@ -60,7 +60,7 @@ public class TerminoGlosarioBs {
 		List<TerminoGlosario> listTerminosGlosario = new TerminoGlosarioDAO()
 				.consultarTerminosGlosario(proyecto.getId());
 		if (listTerminosGlosario == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los terminos del glosario.",
 					"MSG13");
 		}
@@ -71,17 +71,17 @@ public class TerminoGlosarioBs {
 
 		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre del término.", "MSG4", null,
 					"model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
 		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
 		}
@@ -90,7 +90,7 @@ public class TerminoGlosarioBs {
 		for(TerminoGlosario termino : terminos) {
 			if(termino.getId() != model.getId()) {
 				if(termino.getNombre().equals(model.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El nombre del caso de uso ya existe.",
 							"MSG7",
 							new String[] { "El", "Término", model.getNombre() },
@@ -100,13 +100,13 @@ public class TerminoGlosarioBs {
 		}
 		// Validaciones de la Descripción
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la descripción del término.", "MSG4",
 					null, "model.descripcion");
 		}
 
 		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.descripcion");
 		}
@@ -117,7 +117,7 @@ public class TerminoGlosarioBs {
 		terminoGlosario = new TerminoGlosarioDAO()
 				.consultarTerminoGlosario(idActor);
 		if (terminoGlosario == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los terminos del glosario.",
 					"MSG13");
 		}
@@ -130,7 +130,7 @@ public class TerminoGlosarioBs {
 			new TerminoGlosarioDAO().eliminarElemento(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1451) {
-				throw new PRISMAException(
+				throw new TESSERACTException(
 						"No se puede eliminar el término.", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());

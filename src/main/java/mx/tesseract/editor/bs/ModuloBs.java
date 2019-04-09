@@ -19,8 +19,8 @@ import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.util.Constantes;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -47,7 +47,7 @@ public class ModuloBs {
 		List<Modulo> listModulos = new ModuloDAO()
 				.consultarModulos(proyecto.getId());
 		if (listModulos == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los módulos.",
 					"MSG13");
 		}
@@ -57,47 +57,47 @@ public class ModuloBs {
 	private static void validar(Modulo model, String bandera) {
 		// Validaciones campo obligatorio
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esNuloOVacio(model.getClave())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la clave del módulo.", "MSG4", null,
 					"model.clave");
 		}
 		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre del módulo.", "MSG4", null,
 					"model.nombre");
 		}
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la descripción del módulo.", "MSG4",
 					null, "model.descripcion");
 		}
 		// Validaciones Longitud
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.validaLongitudMaxima(model.getClave(), Constantes.NUMERO_DIEZ)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { Constantes.NUMERO_DIEZ.toString(), "caracteres" }, "model.clave");
 		}
 		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_CINCUENTA)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" }, "model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripción muy larga.", "MSG6",
 					new String[] { Constantes.NUMERO_MIL.toString(), "caracteres" }, "model.descripcion");
 		}
 		// Validaciones tipo de dato
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esInvalidaREGEX(model.getClave(), Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una clave inválida.", "MSG50", null, "model.clave");
 		}
 		if (Validador.esInvalidaREGEX(model.getNombre(), Constantes.REGEX_CAMPO_ALFABETICO)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre inválido.", "MSG50", null, "model.nombre");
 		}
 		if (Validador.esInvalidaREGEX(model.getDescripcion(), Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripción inválida.", "MSG50", null, "model.descripcion");
 		}
 		//Validaciones Negocio
@@ -106,14 +106,14 @@ public class ModuloBs {
 		for(Modulo modulo : modulosBD) {
 			if(model.getId() != modulo.getId()) {
 				if(model.getClave().equals(modulo.getClave())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"La clave del módulo ya existe.",
 							"MSG7",
 							new String[] { "El", "módulo", model.getClave() },
 							"model.clave");
 				}
 				if(model.getNombre().equals(modulo.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El nombre del módulo ya existe.",
 							"MSG7",
 							new String[] { "El", "módulo", model.getNombre() },
@@ -128,7 +128,7 @@ public class ModuloBs {
 		modulo = new ModuloDAO()
 				.consultarModulo(idActor);
 		if (modulo == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los módulos.",
 					"MSG13");
 		}

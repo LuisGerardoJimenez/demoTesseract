@@ -14,7 +14,7 @@ import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.Trayectoria;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 
 public class PasoBs {
 	public static List<String> verificarReferencias(Paso model, Modulo modulo) {
@@ -93,7 +93,7 @@ public class PasoBs {
 			e.printStackTrace();
 		}
 		if (paso == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el paso por el id.", "MSG16",
 					new String[] { "El", "paso" });
 		}
@@ -108,7 +108,7 @@ public class PasoBs {
 			e.printStackTrace();
 		}
 		if (listReferenciaParametro == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los pasos por el id.", "MSG16",
 					new String[] { "La", "trayectoria" });
 		}

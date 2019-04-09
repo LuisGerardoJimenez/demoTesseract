@@ -13,10 +13,10 @@ import mx.tesseract.editor.bs.ElementoBs;
 import mx.tesseract.editor.bs.TerminoGlosarioBs;
 import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.TerminoGlosario;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -30,13 +30,13 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "glosario" }),
 		@Result(name = "referencias", type = "json", params = { "root",
 				"elementosReferencias" }),
 		@Result(name = "proyectos", type = "redirectAction", params = {
 				"actionName", "proyectos" }) })
-public class GlosarioCtrl extends ActionSupportPRISMA implements
+public class GlosarioCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<TerminoGlosario>, SessionAware {
 	/** 
 	 * 
@@ -74,7 +74,7 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 			}
 			model.setProyecto(proyecto);
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -132,10 +132,10 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 					"registrado" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -161,7 +161,7 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 			}
 			model.setProyecto(proyecto);
 			resultado = SHOW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			pe.setIdMensaje("MSG26");
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
@@ -191,7 +191,7 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Término",
 					"eliminado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -218,7 +218,7 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 			ElementoBs.verificarEstado(model, CU_Glosario.MODIFICARTERMINO10_2);
 
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -251,10 +251,10 @@ public class GlosarioCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "El", "Término",
 					"modificado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
