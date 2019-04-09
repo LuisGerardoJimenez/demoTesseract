@@ -7,10 +7,10 @@ import java.util.Map;
 
 import mx.tesseract.admin.bs.ColaboradorBs;
 import mx.tesseract.admin.model.Colaborador;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -22,13 +22,13 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/administrador/")
-@Results({ @Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+@Results({ @Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 		"actionName", "personal" }),
 		@Result(name = "referencias", type = "json", params = {
 				"root",
 				"proyectosLider"})
 })
-public class PersonalCtrl extends ActionSupportPRISMA implements
+public class PersonalCtrl extends ActionSupportTESSERACT implements
 ModelDriven<Colaborador>, SessionAware{
 	private Colaborador model;
 	private static final long serialVersionUID = 1L;
@@ -52,7 +52,7 @@ ModelDriven<Colaborador>, SessionAware{
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ ModelDriven<Colaborador>, SessionAware{
 		String resultado;
 		try {
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -86,10 +86,10 @@ ModelDriven<Colaborador>, SessionAware{
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Persona", "registrada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -106,7 +106,7 @@ ModelDriven<Colaborador>, SessionAware{
 			contrasenaAnterior = model.getContrasenia();
 			correoAnterior = model.getCorreoElectronico();
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			System.err.println(pe.getMessage());
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
@@ -128,10 +128,10 @@ ModelDriven<Colaborador>, SessionAware{
 					"Persona", "modificada" }));
 
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -149,7 +149,7 @@ ModelDriven<Colaborador>, SessionAware{
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Persona", "eliminada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

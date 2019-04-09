@@ -23,8 +23,8 @@ import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.TipoAccion;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -38,7 +38,7 @@ public class PantallaBs {
 		List<Pantalla> listPantallas = new PantallaDAO()
 				.consultarPantallasModulo(modulo);
 		if (listPantallas == null) {
-			throw new PRISMAException("No se pueden consultar las pantallas.",
+			throw new TESSERACTException("No se pueden consultar las pantallas.",
 					"MSG13");
 		}
 		return listPantallas;
@@ -54,7 +54,7 @@ public class PantallaBs {
 			new PantallaDAO().registrarElemento(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException("La pantalla "
+				throw new TESSERACTValidacionException("La pantalla "
 						+ model.getNombre() + " ya existe.", "MSG7",
 						new String[] { "La", "Pantalla", model.getNombre() },
 						"model.nombre");
@@ -72,12 +72,12 @@ public class PantallaBs {
 	private static void validar(Pantalla model) {
 		// Validaciones del número
 		if (Validador.esNuloOVacio(model.getNumero())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el número de la pantalla.", "MSG4", null,
 					"model.numero");
 		}
 		if (!Pattern.matches("[0-9]+(\\.[0-9]+)*", model.getNumero())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el número de la pantalla.", "MSG5",
 					new String[] { "un", "número" }, "model.numero");
 		}
@@ -86,13 +86,13 @@ public class PantallaBs {
 		for (Pantalla p : pantallas) {
 			if (p.getId() != model.getId()) {
 				if (p.getNombre().equals(model.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El nombre de la pantalla ya existe.", "MSG7",
 							new String[] { "La", "Pantalla",
 									model.getNombre() }, "model.nombre");
 				}
 				if (p.getNumero().equals(model.getNumero())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El numero de la pantalla ya existe.", "MSG7",
 							new String[] { "La", "Pantalla",
 									model.getNumero() }, "model.numero");
@@ -102,28 +102,28 @@ public class PantallaBs {
 
 		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre de la pantalla.", "MSG4", null,
 					"model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
 		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
 		}
 		// Validaciones de la Descripción
 		if(Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la descripción de la pantalla.", "MSG4", null,
 					"model.descripcion");
 		}
 		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripción muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.descripcion");
 		}
@@ -138,7 +138,7 @@ public class PantallaBs {
 			e.printStackTrace();
 		}
 		if (p == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar la pantalla por el id.", "MSG16",
 					new String[] { "La", "pantalla" });
 		}
@@ -149,7 +149,7 @@ public class PantallaBs {
 		List<TipoAccion> listTiposAccion = new TipoAccionDAO()
 				.consultarTiposAccion();
 		if (listTiposAccion == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los tipos de acción.", "MSG13");
 		}
 		return listTiposAccion;
@@ -160,7 +160,7 @@ public class PantallaBs {
 				ReferenciaEnum.TipoReferencia.PANTALLA, proyecto.getId());
 		List<Pantalla> listPantallas = new ArrayList<Pantalla>();
 		if (listPantallasAux == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar las pantallas por proyecto.",
 					"MSG13");
 		}
@@ -174,7 +174,7 @@ public class PantallaBs {
 	public static TipoAccion consultarTipoAccion(Integer id) {
 		TipoAccion ta = new TipoAccionDAO().consultarTipoAccion(id);
 		if (ta == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el tipo de accion por el id.",
 					"MSG13");
 		}
@@ -187,7 +187,7 @@ public class PantallaBs {
 			new PantallaDAO().eliminarElemento(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1451) {
-				throw new PRISMAException("No se puede eliminar la pantalla",
+				throw new TESSERACTException("No se puede eliminar la pantalla",
 						"MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
@@ -371,12 +371,12 @@ public class PantallaBs {
 	public static void modificarPatronPantalla(Pantalla pantalla, boolean validarObligatorios) {
 		String patron = pantalla.getPatron();
 		if (validarObligatorios && Validador.esNuloOVacio(patron)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó algún patrón de pantalla.", "MSG38", null,
 					"campos");
 		}
 		if (Validador.validaLongitudMaxima(patron, 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un patrón de pantalla muy largo.", "MSG39",
 					new String[] { "999", "caracteres", "el patrón de la pantalla " + pantalla.getClave() + pantalla.getNumero() + " " + pantalla.getNombre() }, "campos");
 		}

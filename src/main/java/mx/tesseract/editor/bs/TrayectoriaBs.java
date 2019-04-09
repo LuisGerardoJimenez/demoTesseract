@@ -20,8 +20,8 @@ import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.Trayectoria;
 import mx.tesseract.editor.model.Verbo;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 import mx.tesseract.util.Validador;
 
@@ -37,7 +37,7 @@ public class TrayectoriaBs {
 			new TrayectoriaDAO().registrarTrayectoria(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"La clave de la trayectoria ya existe.", "MSG7",
 						new String[] { "La", "Trayectoria", model.getClave() },
 						"model.clave");
@@ -64,7 +64,7 @@ public class TrayectoriaBs {
 //			new TrayectoriaDAO().modificarTrayectoria(model, actualizacion);
 //		} catch (JDBCException je) {
 //			if (je.getErrorCode() == 1062) {
-//				throw new PRISMAValidacionException(
+//				throw new TESSERACTValidacionException(
 //						"La clave de la trayectoria ya existe.", "MSG7",
 //						new String[] { "La", "Trayectoria", model.getClave() },
 //						"model.clave");
@@ -90,7 +90,7 @@ public class TrayectoriaBs {
 			new TrayectoriaDAO().modificarTrayectoria(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"La clave de la trayectoria ya existe.", "MSG7",
 						new String[] { "La", "Trayectoria", model.getClave() },
 						"model.clave");
@@ -111,7 +111,7 @@ public class TrayectoriaBs {
 			new TrayectoriaDAO().eliminarTrayectoria(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1451) {
-				throw new PRISMAException(
+				throw new TESSERACTException(
 						"No se puede eliminar el caso de uso", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
@@ -127,21 +127,21 @@ public class TrayectoriaBs {
 	private static void validar(Trayectoria model) {
 		// Validaciones de la clave
 		if (Validador.esNuloOVacio(model.getClave())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la clave de la trayectoria.",
 					"MSG4", null, "model.clave");
 		}
 		if (Validador.validaLongitudMaxima(model.getClave(), 5)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una clave larga.", "MSG6",
 					new String[] { "5", "caracteres" }, "model.clave");
 		}
 		if (model.getClave().contains(" ")) {
-			throw new PRISMAValidacionException("La clave contiene espacios.",
+			throw new TESSERACTValidacionException("La clave contiene espacios.",
 					"MSG19", new String[] { "La", "clave" }, "model.clave");
 		}
 		if (Validador.contieneCaracterInvalido(model.getClave())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una clave con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.clave");
 		}
@@ -153,7 +153,7 @@ public class TrayectoriaBs {
 					.getTrayectorias();
 			for (Trayectoria t : trayectorias) {
 				if (!t.isAlternativa() && t.getId() != model.getId()) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"Ya existe una trayectoria principal registrada.",
 							"MSG20", null, "alternativaPrincipal");
 				}
@@ -162,31 +162,31 @@ public class TrayectoriaBs {
 		// Validaciones de la condición
 		if (model.isAlternativa()
 				&& Validador.esNuloOVacio(model.getCondicion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la condición.", "MSG4", null,
 					"model.condicion");
 		}
 		if (Validador.validaLongitudMaxima(model.getCondicion(), 500)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una condición muy larga.", "MSG6",
 					new String[] { "500", "caracteres" }, "model.condicion");
 		}
 
 		// Validaciones de los pasos
 		if (Validador.esNuloOVacio(model.getPasos())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó ningún paso.", "MSG18",
 					new String[] { "un", "paso" }, "model.pasos");
 		} else {
 			// Si hay pasos registrados, se valida cada uno de ellos
 			for (Paso p : model.getPasos()) {
 				if (Validador.esNuloOVacio(p.getRedaccion())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó la redacción de un paso.",
 							"MSG4");
 				}
 				if (Validador.validaLongitudMaxima(p.getRedaccion(), 999)) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario rebaso la longitud de alguno de los pasos.",
 							"MSG17", new String[] { "los", "pasos", "o" },
 							"model.pasos");
@@ -205,7 +205,7 @@ public class TrayectoriaBs {
 		}
 
 		if (verbo == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el verbo por nombre.", "MSG16",
 					new String[] { "El", "verbo" });
 		}
@@ -215,7 +215,7 @@ public class TrayectoriaBs {
 	public static List<String> consultarVerbos() {
 		List<Verbo> lv = new VerboDAO().consultarVerbos();
 		if (lv == null) {
-			throw new PRISMAException("No se pueden consultar los verbos.",
+			throw new TESSERACTException("No se pueden consultar los verbos.",
 					"MSG13");
 		}
 		CatalogoBs.opcionOtro(lv, TipoCatalogo.VERBO);
@@ -261,7 +261,7 @@ public class TrayectoriaBs {
 			e.printStackTrace();
 		}
 		if (trayectoria == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar la trayectoria por el id.", "MSG16",
 					new String[] { "La", "trayectoria" });
 		}
@@ -372,7 +372,7 @@ public class TrayectoriaBs {
 			e.printStackTrace();
 		}
 		if (listTrayectoria == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar la trayectoria por el id.", "MSG16",
 					new String[] { "La", "trayectoria" });
 		}
@@ -389,7 +389,7 @@ public class TrayectoriaBs {
 			e.printStackTrace();
 		}
 		if (listPasos == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los pasos por el id.", "MSG16",
 					new String[] { "La", "trayectoria" });
 		}
@@ -406,7 +406,7 @@ public class TrayectoriaBs {
 			e.printStackTrace();
 		}
 		if (listPasos == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los pasos por el id.", "MSG16",
 					new String[] { "La", "trayectoria" });
 		}

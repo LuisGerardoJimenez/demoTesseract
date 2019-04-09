@@ -31,7 +31,7 @@ import mx.tesseract.generadorPruebas.model.EscenarioValorEntrada;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
 import mx.tesseract.generadorPruebas.model.ValorEntradaTrayectoria;
 import mx.tesseract.util.GeneradorCadenasUtil;
-import mx.tesseract.util.PRISMARandomUtil;
+import mx.tesseract.util.TESSERACTRandomUtil;
 
 public class CuPruebasBs {
 	
@@ -474,7 +474,7 @@ public static Set<ValorEntrada> generarValoresIncorectos(Set<Entrada> entradas,
 			cadenaValida = null;
 			break;
 		case BOOLEANO:
-			if(PRISMARandomUtil.generarRandomBooleano() || atributo.isObligatorio()) {
+			if(TESSERACTRandomUtil.generarRandomBooleano() || atributo.isObligatorio()) {
 				cadenaValida = "true";
 			} else {
 				cadenaValida = "false";

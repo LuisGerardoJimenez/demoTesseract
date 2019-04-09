@@ -30,7 +30,7 @@ public class GeneradorCadenasUtil {
 	}
 	
 	public static String generarEnteroAleatorio(int limite) {
-		int numero = PRISMARandomUtil.generarRandomEntero(1, limite);
+		int numero = TESSERACTRandomUtil.generarRandomEntero(1, limite);
 		return numero + "";
 	}
 	
@@ -51,13 +51,13 @@ public class GeneradorCadenasUtil {
 	}
 
 	public static String generarFechaAleatoria() {
-		int anio = PRISMARandomUtil.generarRandomEntero(1990, 2020);
-		int mes = PRISMARandomUtil.generarRandomEntero(1, 12);
+		int anio = TESSERACTRandomUtil.generarRandomEntero(1990, 2020);
+		int mes = TESSERACTRandomUtil.generarRandomEntero(1, 12);
 		
 		Calendar c = new GregorianCalendar(anio, mes, 1);
 		int maxDias = c.getActualMaximum(Calendar.DAY_OF_MONTH);
 		
-		int dia = PRISMARandomUtil.generarRandomEntero(1, maxDias);
+		int dia = TESSERACTRandomUtil.generarRandomEntero(1, maxDias);
 		
 		String diaCadena = dia + "";
 		String mesCadena = mes + "";
@@ -75,7 +75,7 @@ public class GeneradorCadenasUtil {
 	}
 
 	public static String generarFlotanteAleatorio(Integer limite) {
-		float numero = PRISMARandomUtil.generarRandomFlotante(1, limite);
+		float numero = TESSERACTRandomUtil.generarRandomFlotante(1, limite);
 		return numero + "";
 	}
 }

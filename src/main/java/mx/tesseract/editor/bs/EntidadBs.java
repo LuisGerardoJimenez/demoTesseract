@@ -24,8 +24,8 @@ import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.TipoDato;
 import mx.tesseract.editor.model.UnidadTamanio;
 import mx.tesseract.util.Constantes;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -46,7 +46,7 @@ public class EntidadBs {
 			new EntidadDAO().registrarEntidad(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == Constantes.MYSQL_ERROR_1062) {
-				throw new PRISMAValidacionException("La la entidad "
+				throw new TESSERACTValidacionException("La la entidad "
 						+ model.getNombre() + " ya existe.", "MSG7",
 						new String[] { "La", "entidad", model.getNombre() },
 						"model.nombre");
@@ -63,7 +63,7 @@ public class EntidadBs {
 		List<Entidad> listEntidades = new EntidadDAO()
 				.consultarEntidades(proyecto.getId());
 		if (listEntidades == null) {
-			throw new PRISMAException("No se pueden consultar las entidades.",
+			throw new TESSERACTException("No se pueden consultar las entidades.",
 					"MSG13");
 		}
 		return listEntidades;
@@ -72,7 +72,7 @@ public class EntidadBs {
 	public static List<TipoDato> consultarTiposDato() {
 		List<TipoDato> listTiposDato = new TipoDatoDAO().consultarTiposDato();
 		if (listTiposDato == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar los tipos de dato.", "MSG13");
 		}
 		CatalogoBs.opcionOtro(listTiposDato, TipoCatalogo.TIPODATO);
@@ -83,7 +83,7 @@ public class EntidadBs {
 		List<UnidadTamanio> listUnidadTamanio = new UnidadTamanioDAO()
 				.consultarUnidadesTamanio();
 		if (listUnidadTamanio == null) {
-			throw new PRISMAException("No se pueden consultar las unidades.",
+			throw new TESSERACTException("No se pueden consultar las unidades.",
 					"MSG13");
 		}
 		return listUnidadTamanio;
@@ -93,51 +93,51 @@ public class EntidadBs {
 
 		// Validaciones de nularidad
 		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre de la entidad.", "MSG4",
 					null, "model.nombre");
 		}
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la descripción de la entidad.",
 					"MSG4", null, "model.descripcion");
 		}
 		
 		if (Validador.esNuloOVacio(model.getAtributos())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó ningún atributo.", "MSG18",
 					new String[] { "un", "atributo" }, "model.atributos");
 		} else {
 			for (Atributo atributo : model.getAtributos()) {
 				if (Validador.esNuloOVacio(atributo.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó el nombre del atributo.",
 							"MSG4", null, "model.atributos");
 				}
 				if (Validador.esNuloOVacio(atributo.getDescripcion())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó la descripción.", "MSG4",
 							null, "model.atributos");
 				}
 				if (Validador.esNulo(atributo.getTipoDato())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó el tipo de dato.", "MSG4",
 							null, "model.atributos");
 				}
 
 				if (atributo.getTipoDato().getNombre().equals("Archivo")) {
 					if (Validador.esNulo(atributo.getUnidadTamanio())) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario no ingresó la unidad.", "MSG4",
 								null, "model.atributos");
 					}
 					if (Validador.esNuloOVacio(atributo.getFormatoArchivo())) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario no ingresó el formato del archivo.",
 								"MSG4", null, "model.atributos");
 					}
 					if (Validador.esNulo(atributo.getTamanioArchivo())) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario no ingresó el tamaño del archivo.",
 								"MSG4", null, "model.atributos");
 					}
@@ -146,13 +146,13 @@ public class EntidadBs {
 						&& !atributo.getTipoDato().getNombre().equals("Fecha")
 						&& !atributo.getTipoDato().getNombre().equals("Otro")) {
 					if (Validador.esNulo(atributo.getLongitud())) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario no ingresó la longitud.", "MSG4",
 								null, "model.atributos");
 					}
 				} else if (atributo.getTipoDato().getNombre().equals("Otro")) {
 					if (Validador.esNuloOVacio(atributo.getOtroTipoDato())) {
-						throw new PRISMAValidacionException(
+						throw new TESSERACTValidacionException(
 								"El usuario no especificó el tipo de dato.",
 								"MSG4", null, "model.atributos");
 					}
@@ -161,18 +161,18 @@ public class EntidadBs {
 		}
 		//Validacion de Longitud
 		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_DOSCIENTOS)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.descripcion");
 		}
 		//Validacion de Formato
 		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
 		}
@@ -183,7 +183,7 @@ public class EntidadBs {
 		Entidad entidad = null;
 		entidad = new EntidadDAO().consultarEntidad(idEntidad);
 		if (entidad == null) {
-			throw new PRISMAException("No se puede consultar la entidad.",
+			throw new TESSERACTException("No se puede consultar la entidad.",
 					"MSG13");
 		}
 		return entidad;
@@ -366,7 +366,7 @@ public class EntidadBs {
 			new EntidadDAO().eliminarElemento(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == Constantes.MYSQL_ERROR_1451) {
-				throw new PRISMAException("No se puede eliminar la entidad",
+				throw new TESSERACTException("No se puede eliminar la entidad",
 						"MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());

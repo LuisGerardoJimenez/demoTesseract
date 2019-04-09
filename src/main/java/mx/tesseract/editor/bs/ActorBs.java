@@ -22,8 +22,8 @@ import mx.tesseract.editor.model.CasoUsoActor;
 import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -45,7 +45,7 @@ public class ActorBs {
 			new ActualizacionDAO();
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException("El actor "
+				throw new TESSERACTValidacionException("El actor "
 						+ model.getNombre() + " ya existe.", "MSG7",
 						new String[] { "El", "actor", model.getNombre() },
 						"model.nombre");
@@ -63,7 +63,7 @@ public class ActorBs {
 		List<Actor> listActores = new ActorDAO()
 				.consultarActores(proyecto.getId());
 		if (listActores == null) {
-			throw new PRISMAException("No se pueden consultar los actores.",
+			throw new TESSERACTException("No se pueden consultar los actores.",
 					"MSG13");
 		}
 		return listActores;
@@ -72,7 +72,7 @@ public class ActorBs {
 	public static List<Cardinalidad> consultarCardinalidades() {
 		List<Cardinalidad> listCardinalidad = new CardinalidadDAO().consultarCardinalidades();
 		if (listCardinalidad == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se pueden consultar las cardinalidades.", "MSG13");
 		}
 		
@@ -83,17 +83,17 @@ public class ActorBs {
 	private static void validar(Actor model) {
 		// Validaciones del nombre
 		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó el nombre del actor.", "MSG4",
 					null, "model.nombre");
 		}
 		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { "200", "caracteres" }, "model.nombre");
 		}
 		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre con caracter inválido.",
 					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
 		}
@@ -101,7 +101,7 @@ public class ActorBs {
 		for(Actor actor : actoresBD) {
 			if(actor.getId() != model.getId()) {
 				if(actor.getNombre().equals(model.getNombre())) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El nombre del actor ya existe.",
 							"MSG7",
 							new String[] { "El", "Actor", model.getNombre() },
@@ -111,26 +111,26 @@ public class ActorBs {
 		}
 		// Validaciones de la Descripción
 		if (Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la descripción del actor.",
 					"MSG4", null, "model.descripcion");
 		}
 
 		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripcion muy larga.", "MSG6",
 					new String[] { "999", "caracteres" }, "model.descripcion");
 		}	
 		
 		if (Validador.esNulo(model.getCardinalidad())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no seleccionó la cardinalidad del actor",
 					"MSG4", null, "model.cardinalidad.id");
 		}
 		
 		if (model.getCardinalidad().getNombre().equals("Otra")) {
 			if (Validador.esNuloOVacio(model.getOtraCardinalidad())) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no ingresó la cardinalidad del actor",
 						"MSG4", null, "model.otraCardinalidad");
 			}
@@ -143,7 +143,7 @@ public class ActorBs {
 		Actor actor = null;
 		actor = new ActorDAO().consultarActor(idActor);
 		if (actor == null) {
-			throw new PRISMAException("No se puede consultar el actor.",
+			throw new TESSERACTException("No se puede consultar el actor.",
 					"MSG13");
 		}
 		return actor;
@@ -156,7 +156,7 @@ public class ActorBs {
 		} catch (JDBCException je) {
 				if(je.getErrorCode() == 1451)
 				{
-					throw new PRISMAException("No se puede eliminar el actor.", "MSG14");
+					throw new TESSERACTException("No se puede eliminar el actor.", "MSG14");
 				}
 				System.out.println("ERROR CODE " + je.getErrorCode());
 				je.printStackTrace();

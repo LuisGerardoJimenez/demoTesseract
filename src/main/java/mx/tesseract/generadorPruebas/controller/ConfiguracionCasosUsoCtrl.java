@@ -37,7 +37,7 @@ import mx.tesseract.generadorPruebas.model.ErroresPrueba;
 import mx.tesseract.generadorPruebas.model.Prueba;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametro;
 import mx.tesseract.guionPruebas.bs.GuionPruebasBs;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.FileUtil;
 import mx.tesseract.util.SessionManager;
@@ -60,7 +60,7 @@ import mx.tesseract.util.SessionManager;
 	@Result(name = "error", type = "redirectAction", params = {
 		"actionName", "cu" })})
 
-public class ConfiguracionCasosUsoCtrl extends ActionSupportPRISMA{
+public class ConfiguracionCasosUsoCtrl extends ActionSupportTESSERACT{
 	private static final long serialVersionUID = 1L;
 	private Integer idCU;
 	private CasoUso casoUso;

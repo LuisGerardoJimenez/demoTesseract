@@ -10,10 +10,10 @@ import mx.tesseract.admin.bs.ProyectoBs;
 import mx.tesseract.admin.model.Colaborador;
 import mx.tesseract.admin.model.EstadoProyecto;
 import mx.tesseract.admin.model.Proyecto;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 import mx.tesseract.util.Validador;
 
@@ -28,7 +28,7 @@ import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/administrador/")
-@Results({ @Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+@Results({ @Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 		"actionName", "proyectos-admin" })
 })
 @Conversion(
@@ -40,7 +40,7 @@ import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 	         @TypeConversion(key = "model.fechaTerminoProgramada", converter = "mx.tesseract.util.StrutsDateConverter")
 	    }
 	)
-public class ProyectosAdminCtrl extends ActionSupportPRISMA implements
+public class ProyectosAdminCtrl extends ActionSupportTESSERACT implements
 ModelDriven<Proyecto>, SessionAware{
 	private Proyecto model;
 	private static final long serialVersionUID = 1L;
@@ -61,7 +61,7 @@ ModelDriven<Proyecto>, SessionAware{
 					.get("mensajesAccion");
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -74,7 +74,7 @@ ModelDriven<Proyecto>, SessionAware{
 		try {
 			buscarCatalogos();
 			resultado = EDITNEW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -103,10 +103,10 @@ ModelDriven<Proyecto>, SessionAware{
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "registrado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -123,7 +123,7 @@ ModelDriven<Proyecto>, SessionAware{
 			buscarCatalogosModificacion();
 			prepararVista();
 			resultado = EDIT;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -151,10 +151,10 @@ ModelDriven<Proyecto>, SessionAware{
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "modificado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -172,7 +172,7 @@ ModelDriven<Proyecto>, SessionAware{
 			addActionMessage(getText("MSG1", new String[] { "El",
 					"Proyecto", "eliminado" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

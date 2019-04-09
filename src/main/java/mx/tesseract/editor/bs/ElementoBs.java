@@ -14,7 +14,7 @@ import mx.tesseract.editor.model.Elemento;
 import mx.tesseract.editor.model.Entidad;
 import mx.tesseract.editor.model.EstadoElemento;
 import mx.tesseract.editor.model.TerminoGlosario;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 
 public class ElementoBs {
 	
@@ -57,7 +57,7 @@ public class ElementoBs {
 			break;
 		}
 		if(estadoElemento == null) {
-			throw new PRISMAException("No se puede consultar el estado del elemento", "MSG13");
+			throw new TESSERACTException("No se puede consultar el estado del elemento", "MSG13");
 		}
 		return estadoElemento;
 	}
@@ -87,32 +87,32 @@ public class ElementoBs {
 		switch(casoUsoAnalisis) {
 		case MODIFICARCASOUSO5_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PENDIENTECORRECCION)) {
-					throw new PRISMAException("El estado del caso de uso es inválido.", "MSG13");
+					throw new TESSERACTException("El estado del caso de uso es inválido.", "MSG13");
 			}
 			
 		case ELIMINARCASOUSO5_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PENDIENTECORRECCION)) {
-				throw new PRISMAException("El estado del caso de uso es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del caso de uso es inválido.", "MSG13");
 		}			break;
 		case REVISARCASOUSO5_5:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.REVISION)) {
-				throw new PRISMAException("El estado del caso de uso es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del caso de uso es inválido.", "MSG13");
 		}
 			break;
 		case TERMINARCASOUSO5_6:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PENDIENTECORRECCION)) {
-				throw new PRISMAException("El estado del caso de uso es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del caso de uso es inválido.", "MSG13");
 		}
 			break;
 		case LIBERARCASOUSO4_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PORLIBERAR) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.LIBERADO)
 					&& elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.CONFIGURADO) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PRECONFIGURADO)) {
-				throw new PRISMAException("El estado del caso de uso es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del caso de uso es inválido.", "MSG13");
 		}
 			break;
 		case CONFIGURARPRUEBA5_7:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.LIBERADO) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PRECONFIGURADO) && elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.CONFIGURADO)) {
-				throw new PRISMAException("El estado del caso de uso es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del caso de uso es inválido.", "MSG13");
 			}
 			break;
 		default:
@@ -126,12 +126,12 @@ public class ElementoBs {
 		switch(reglaNegocioAnalisis) {
 		case MODIFICARREGLANEGOCIO8_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado de la regla de negocio es inválido.", "MSG13");
+				throw new TESSERACTException("El estado de la regla de negocio es inválido.", "MSG13");
 			}
 			break;
 		case ELIMINARREGLANEGOCIO8_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado de la regla de negocio es inválido.", "MSG13");
+				throw new TESSERACTException("El estado de la regla de negocio es inválido.", "MSG13");
 			}
 			break;
 		default:
@@ -145,12 +145,12 @@ public class ElementoBs {
 		switch(mensajeAnalisis) {
 		case MODIFICARMENSAJE9_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado de la regla de negocio es inválido.", "MSG13");
+				throw new TESSERACTException("El estado de la regla de negocio es inválido.", "MSG13");
 			}
 			break;
 		case ELIMINARMENSAJE9_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado de la regla de negocio es inválido.", "MSG13");
+				throw new TESSERACTException("El estado de la regla de negocio es inválido.", "MSG13");
 			}
 			break;
 		default:
@@ -164,12 +164,12 @@ public class ElementoBs {
 		switch(pantallaAnalisis) {
 		case MODIFICARPANTALLA6_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado de la pantalla es inválido.", "MSG13");
+				throw new TESSERACTException("El estado de la pantalla es inválido.", "MSG13");
 			}
 			break;
 		case ELIMINARPANTALLA6_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado de la pantalla es inválido.", "MSG13");
+				throw new TESSERACTException("El estado de la pantalla es inválido.", "MSG13");
 			}
 			break;
 		default:
@@ -182,12 +182,12 @@ public class ElementoBs {
 		switch(actorAnalisis) {
 		case MODIFICARACTOR7_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado del actor es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del actor es inválido.", "MSG13");
 			}
 			break;
 		case ELIMINARACTOR7_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado del actor es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del actor es inválido.", "MSG13");
 			}
 			break;
 		default:
@@ -200,12 +200,12 @@ public class ElementoBs {
 		switch(glosarioAnalisis) {
 		case MODIFICARTERMINO10_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado del término es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del término es inválido.", "MSG13");
 			}
 			break;
 		case ELIMINARTERMINO10_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado del término es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del término es inválido.", "MSG13");
 			}
 			break;
 		default:
@@ -218,12 +218,12 @@ public class ElementoBs {
 		switch(entidadAnalisis) {
 		case MODIFICARENTIDAD11_2:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado del término es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del término es inválido.", "MSG13");
 			}
 			break;
 		case ELIMINARENTIDAD11_3:
 			if (elemento.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.EDICION)) {
-				throw new PRISMAException("El estado del término es inválido.", "MSG13");
+				throw new TESSERACTException("El estado del término es inválido.", "MSG13");
 			}
 			break;
 		default:

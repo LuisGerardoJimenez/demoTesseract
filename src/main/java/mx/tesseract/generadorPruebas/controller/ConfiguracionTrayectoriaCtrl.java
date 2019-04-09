@@ -59,13 +59,13 @@ import mx.tesseract.generadorPruebas.model.ValorEntradaTrayectoria;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametro;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametroTrayectoria;
 import mx.tesseract.generadorPruebas.model.ValorPantallaTrayectoria;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.FileUtil;
 import mx.tesseract.util.ImageConverterUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -93,7 +93,7 @@ import com.opensymphony.xwork2.ActionContext;
 	        "bufferSize", "1024", 
 	        "contentDisposition", "attachment;filename=\"${filename}\""})})
 
-public class ConfiguracionTrayectoriaCtrl extends ActionSupportPRISMA {
+public class ConfiguracionTrayectoriaCtrl extends ActionSupportTESSERACT {
 	/**
 	 * 
 	 */
@@ -344,11 +344,11 @@ public class ConfiguracionTrayectoriaCtrl extends ActionSupportPRISMA {
 			"configurada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			resultado = "cu";
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -391,11 +391,11 @@ public class ConfiguracionTrayectoriaCtrl extends ActionSupportPRISMA {
 			"guardada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			resultado = cargarConfiguracion();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracion();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";

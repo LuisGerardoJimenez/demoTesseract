@@ -33,10 +33,10 @@ import mx.tesseract.generadorPruebas.model.ConfiguracionBaseDatos;
 import mx.tesseract.generadorPruebas.model.ConfiguracionHttp;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
 import mx.tesseract.guionPruebas.bs.ValorEntradaBs;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 import mx.tesseract.util.SessionManager;
 import net.sf.json.JSONObject;
 
@@ -56,7 +56,7 @@ import net.sf.json.JSONObject;
 	        "bufferSize", "1024", 
 	        "contentDisposition", "attachment;filename=\"${filename}\""})})
 
-public class ConfigurarEntradasCtrl extends ActionSupportPRISMA {
+public class ConfigurarEntradasCtrl extends ActionSupportTESSERACT {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -199,7 +199,7 @@ public class ConfigurarEntradasCtrl extends ActionSupportPRISMA {
 			}else{
 				return false;
 			}
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			return false;
 		}
 	}

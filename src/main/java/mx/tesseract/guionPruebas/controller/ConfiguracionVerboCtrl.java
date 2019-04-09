@@ -38,9 +38,9 @@ import mx.tesseract.generadorPruebas.model.ConfiguracionHttp;
 import mx.tesseract.guionPruebas.bs.GuionPruebasBs;
 import mx.tesseract.guionPruebas.bs.ValorEntradaBs;
 import mx.tesseract.guionPruebas.bs.VerboSinonimoBs;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 @ResultPath("/content/guionPruebas/")
@@ -61,7 +61,7 @@ import mx.tesseract.util.SessionManager;
 	        "inputName", "fileInputStream", 
 	        "bufferSize", "1024", 
 	        "contentDisposition", "attachment;filename=\"${filename}\""})})
-public class ConfiguracionVerboCtrl extends ActionSupportPRISMA{
+public class ConfiguracionVerboCtrl extends ActionSupportTESSERACT{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -194,7 +194,7 @@ public class ConfiguracionVerboCtrl extends ActionSupportPRISMA{
 					resultado="pantallaGuionPruebas";
 				}
 			} else {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no ingresó la respuesta", "MSG4", null,
 						"esCorrectoResumen");
 			}	

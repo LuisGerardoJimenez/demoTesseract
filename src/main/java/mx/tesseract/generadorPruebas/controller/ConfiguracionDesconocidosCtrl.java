@@ -20,7 +20,7 @@ import mx.tesseract.editor.model.Entrada;
 import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.Trayectoria;
 import mx.tesseract.generadorPruebas.bs.ValorDesconocidoBs;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.SessionManager;
 
@@ -43,7 +43,7 @@ import mx.tesseract.util.SessionManager;
 	        "inputName", "fileInputStream", 
 	        "bufferSize", "1024", 
 	        "contentDisposition", "attachment;filename=\"${filename}\""})})
-public class ConfiguracionDesconocidosCtrl extends ActionSupportPRISMA{
+public class ConfiguracionDesconocidosCtrl extends ActionSupportTESSERACT{
 	
 	private static final long serialVersionUID = 1L;
 	private Colaborador colaborador;

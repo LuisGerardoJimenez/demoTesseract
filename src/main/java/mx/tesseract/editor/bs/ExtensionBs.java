@@ -10,8 +10,8 @@ import mx.tesseract.editor.dao.VerboDAO;
 import mx.tesseract.editor.model.CasoUso;
 import mx.tesseract.editor.model.Extension;
 import mx.tesseract.editor.model.Verbo;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -40,26 +40,26 @@ public class ExtensionBs {
 			if(ex.getId() != extension.getId()) {
 				if(ex.getCasoUsoDestino().getId() == extension.getCasoUsoDestino().getId()) {
 					CasoUso cu = extension.getCasoUsoDestino();
-					throw new PRISMAValidacionException("El punto de extensión ya existe.", "MSG7",
+					throw new TESSERACTValidacionException("El punto de extensión ya existe.", "MSG7",
 							new String[] { "El","Punto de extensión a", cu.getClave() + cu.getNumero() + " " + cu.getNombre()}, "claveCasoUsoDestino");
 				}
 			}
 		}
 		//Validaciones de la causa
 		if(Validador.esNuloOVacio(extension.getCausa())) {
-			throw new PRISMAValidacionException("El usuario no ingresó la causa.", "MSG4", null, "causa");
+			throw new TESSERACTValidacionException("El usuario no ingresó la causa.", "MSG4", null, "causa");
 		}
 		if(Validador.validaLongitudMaxima(extension.getCausa(), 999)) {
-			throw new PRISMAValidacionException("El usuario ingreso una causa muy larga.", "MSG6", new String[] { "999",
+			throw new TESSERACTValidacionException("El usuario ingreso una causa muy larga.", "MSG6", new String[] { "999",
 			"caracteres"}, "causa");
 		}
 		
 		//Validaciones de la Región de la Trayectoria
 		if(Validador.esNuloOVacio(extension.getRegion())) {
-			throw new PRISMAValidacionException("El usuario no ingresó la región.", "MSG4", null, "region");
+			throw new TESSERACTValidacionException("El usuario no ingresó la región.", "MSG4", null, "region");
 		}
 		if(Validador.validaLongitudMaxima(extension.getCausa(), 499)) {
-			throw new PRISMAValidacionException("El usuario ingreso una región muy larga.", "MSG6", new String[] { "499",
+			throw new TESSERACTValidacionException("El usuario ingreso una región muy larga.", "MSG6", new String[] { "499",
 			"caracteres"}, "causa");
 		}
 		return true;
@@ -75,7 +75,7 @@ public class ExtensionBs {
 		}
 		
 		if(verbo == null) {
-			throw new PRISMAException("No se puede consultar el verbo por nombre.", "MSG16", new String[] { "El",
+			throw new TESSERACTException("No se puede consultar el verbo por nombre.", "MSG16", new String[] { "El",
 					"verbo"});
 		}
 		return verbo;
@@ -85,7 +85,7 @@ public class ExtensionBs {
 		Extension extension = new ExtensionDAO().consultarExtension(idSel);
 
 		if (extension == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el punto de extensión por el id.", "MSG16",
 					new String[] { "El", "Punto de extensión" });
 		}
@@ -110,7 +110,7 @@ public class ExtensionBs {
 		} catch (JDBCException je) {
 			if(je.getErrorCode() == 1451)
 			{
-				throw new PRISMAException("No se puede eliminar el Punto de extensión.", "MSG14");
+				throw new TESSERACTException("No se puede eliminar el Punto de extensión.", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
 			je.printStackTrace();

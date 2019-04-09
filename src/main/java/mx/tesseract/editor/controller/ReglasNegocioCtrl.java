@@ -21,11 +21,11 @@ import mx.tesseract.editor.model.Modulo;
 import mx.tesseract.editor.model.Operador;
 import mx.tesseract.editor.model.ReglaNegocio;
 import mx.tesseract.editor.model.TipoReglaNegocio;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -38,7 +38,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @ResultPath("/content/editor/")
 @Results({
-		@Result(name = ActionSupportPRISMA.SUCCESS, type = "redirectAction", params = {
+		@Result(name = ActionSupportTESSERACT.SUCCESS, type = "redirectAction", params = {
 				"actionName", "reglas-negocio" }),
 		@Result(name = "atributos", type = "json", params = { "root",
 				"listAtributos" }),
@@ -50,7 +50,7 @@ import com.opensymphony.xwork2.ModelDriven;
 				"elementosReferencias" }),
 		@Result(name = "proyectos", type = "redirectAction", params = {
 				"actionName", "proyectos" }) })
-public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
+public class ReglasNegocioCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<ReglaNegocio>, SessionAware {
 	/**
 	 * 
@@ -120,7 +120,7 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			this.setActionMessages(msjs);
 			SessionManager.delete("mensajesAccion");
 
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 		} catch (Exception e) {
 			ErrorManager.agregaMensajeError(this, e);
@@ -145,10 +145,10 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			model.setClave("RN");
 			buscaCatalogos();
 			resultado = EDITNEW;
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -174,7 +174,7 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			}
 			model.setProyecto(proyecto);
 			if (idTipoRN == -1) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no seleccionó el tipo de regla de negocio.",
 						"MSG4", null, "idTipoRN");
 			}
@@ -223,10 +223,10 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			// Se agrega el mensaje a la sesión
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = editNew();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -260,10 +260,10 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			
 
 			resultado = EDIT;
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -447,7 +447,7 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			model.setProyecto(proyecto);
 
 			if (idTipoRN == -1) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El usuario no seleccionó el tipo de regla de negocio.",
 						"MSG4", null, "idTipoRN");
 			}
@@ -488,10 +488,10 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 					"Regla de negocio", "modificada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			resultado = edit();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {
@@ -516,7 +516,7 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			}
 			model.setProyecto(proyecto);
 			resultado = SHOW;
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			pe.setIdMensaje("MSG26");
 			ErrorManager.agregaMensajeError(this, pe);
 			return index();
@@ -546,7 +546,7 @@ public class ReglasNegocioCtrl extends ActionSupportPRISMA implements
 			addActionMessage(getText("MSG1", new String[] { "La",
 					"Regla de negocio", "eliminada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			resultado = index();
 		} catch (Exception e) {

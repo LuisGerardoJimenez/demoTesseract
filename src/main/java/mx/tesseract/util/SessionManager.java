@@ -109,7 +109,7 @@ public class SessionManager {
 
 		colaboradorProyecto = new ColaboradorProyectoDAO().consultarColaboradorProyecto(idColaboradorProyecto);
 		if(colaboradorProyecto == null) {
-			throw new PRISMAException("No se puede consultar el colaborador", "MSG13");
+			throw new TESSERACTException("No se puede consultar el colaborador", "MSG13");
 		}
 		return colaboradorProyecto;
 	}

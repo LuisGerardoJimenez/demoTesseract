@@ -31,12 +31,12 @@ import mx.tesseract.generadorPruebas.bs.CuPruebasBs;
 import mx.tesseract.generadorPruebas.bs.ValorEntradaBs;
 import mx.tesseract.generadorPruebas.model.ConfiguracionTrayectoria;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.ImageConverterUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.SessionManager;
 
 import org.apache.struts2.convention.annotation.Result;
@@ -56,7 +56,7 @@ import com.opensymphony.xwork2.ActionContext;
 			//"actionName", "configuracion-caso-uso!prepararConfiguracion"})})
 	//@Result(name = "siguiente", type = "redirectAction", params = {
 			"actionName", "configuracion-trayectorias!prepararConfiguracion"})})
-public class ConfiguracionCasosUsoPreviosCtrl extends ActionSupportPRISMA {
+public class ConfiguracionCasosUsoPreviosCtrl extends ActionSupportTESSERACT {
 	/**
 	 * 
 	 */
@@ -131,16 +131,16 @@ public class ConfiguracionCasosUsoPreviosCtrl extends ActionSupportPRISMA {
 			if(listCU != null) {
 				for(CasoUso cu : listCU) {
 					if (cu.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.CONFIGURADO) && cu.getEstadoElemento().getId() != ElementoBs.getIdEstado(Estado.PRECONFIGURADO)){
-						throw new PRISMAValidacionException("Falta configurar un caso de uso.", "MSG37");
+						throw new TESSERACTValidacionException("Falta configurar un caso de uso.", "MSG37");
 					}
 				}
 			}
 			resultado = "siguiente";
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "pantallaConfiguracionCasosUsoPrevios";
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -216,11 +216,11 @@ public class ConfiguracionCasosUsoPreviosCtrl extends ActionSupportPRISMA {
 			"registrada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			return prepararConfiguracion();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracionCasoUso();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";
@@ -248,11 +248,11 @@ public class ConfiguracionCasosUsoPreviosCtrl extends ActionSupportPRISMA {
 			"guardada" }));
 			SessionManager.set(this.getActionMessages(), "mensajesAccion");
 			return prepararConfiguracionCasoUso();
-		} catch (PRISMAValidacionException pve) {
+		} catch (TESSERACTValidacionException pve) {
 			ErrorManager.agregaMensajeError(this, pve);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = prepararConfiguracionCasoUso();
-		} catch (PRISMAException pe) {
+		} catch (TESSERACTException pe) {
 			ErrorManager.agregaMensajeError(this, pe);
 			SessionManager.set(this.getActionErrors(), "mensajesError");
 			resultado = "cu";

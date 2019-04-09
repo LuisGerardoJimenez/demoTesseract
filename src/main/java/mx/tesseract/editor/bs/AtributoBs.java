@@ -20,7 +20,7 @@ import mx.tesseract.editor.model.PostPrecondicion;
 import mx.tesseract.editor.model.ReferenciaParametro;
 import mx.tesseract.editor.model.ReglaNegocio;
 import mx.tesseract.editor.model.Salida;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 
 public class AtributoBs {
 	
@@ -138,7 +138,7 @@ public class AtributoBs {
 			e.printStackTrace();
 		}
 		if (paso == null) {
-			throw new PRISMAException(
+			throw new TESSERACTException(
 					"No se puede consultar el paso por el id.", "MSG16",
 					new String[] { "El", "paso" });
 		}

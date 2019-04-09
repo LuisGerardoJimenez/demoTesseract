@@ -54,11 +54,11 @@ import mx.tesseract.guionPruebas.dao.GuionPruebaDAO;
 import mx.tesseract.guionPruebas.dao.InstruccionDAO;
 import mx.tesseract.guionPruebas.model.GuionPrueba;
 import mx.tesseract.guionPruebas.model.Instruccion;
-import mx.tesseract.util.ActionSupportPRISMA;
+import mx.tesseract.util.ActionSupportTESSERACT;
 import mx.tesseract.util.ErrorManager;
 import mx.tesseract.util.FileUtil;
 import mx.tesseract.util.JsonUtil;
-import mx.tesseract.util.PRISMAException;
+import mx.tesseract.util.TESSERACTException;
 import mx.tesseract.util.ReportUtil;
 import mx.tesseract.util.SessionManager;
 
@@ -77,7 +77,7 @@ import mx.tesseract.util.SessionManager;
 	        "contentDisposition", "attachment;filename=\"${filename}\""})
 })
 //Clase que contrala las acciones para la generación del guión de pruebas
-public class GuionPruebasCtrl extends ActionSupportPRISMA{
+public class GuionPruebasCtrl extends ActionSupportTESSERACT{
 	
 	//Declaración de variables
 	private static final long serialVersionUID = 1L;

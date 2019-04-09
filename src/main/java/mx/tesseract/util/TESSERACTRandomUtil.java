@@ -2,7 +2,7 @@ package mx.tesseract.util;
 
 import java.util.Random;
 
-public class PRISMARandomUtil {
+public class TESSERACTRandomUtil {
 	private static int MAX_RANDOM = 100;
 	public static int generarRandomEntero() {
 		Random r = new Random(System.currentTimeMillis());

@@ -16,8 +16,8 @@ import mx.tesseract.bs.RolBs;
 import mx.tesseract.bs.RolBs.Rol_Enum;
 import mx.tesseract.util.Constantes;
 import mx.tesseract.util.Correo;
-import mx.tesseract.util.PRISMAException;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 import org.hibernate.HibernateException;
@@ -28,7 +28,7 @@ public class ColaboradorBs {
 	public static Colaborador consultarPersona(String idSel) {
 		Colaborador col = new ColaboradorDAO().consultarColaborador(idSel);
 		if(col == null) {
-			throw new PRISMAException("No se puede consultar el colaborador.",
+			throw new TESSERACTException("No se puede consultar el colaborador.",
 					"MSG13");
 		}
 		return col;
@@ -37,7 +37,7 @@ public class ColaboradorBs {
 	public static List<Colaborador> consultarPersonal() {
 		List<Colaborador> colaboradores = new ColaboradorDAO().consultarColaboradores();
 		if(colaboradores == null) {
-			throw new PRISMAException("No se pueden consultar los colaboradores.",
+			throw new TESSERACTException("No se pueden consultar los colaboradores.",
 					"MSG13");
 		}
 		return colaboradores;
@@ -49,7 +49,7 @@ public class ColaboradorBs {
 			new ColaboradorDAO().registrarColaborador(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException("La Persona con CURP"
+				throw new TESSERACTValidacionException("La Persona con CURP"
 						+ model.getCurp() + " ya existe.", "MSG7",
 						new String[] { "La", "persona con CURP", model.getCurp() },
 						"model.curp");
@@ -68,7 +68,7 @@ public class ColaboradorBs {
 	private static void validar(Colaborador model, String bandera) {
 		//Validaciones tipo de dato
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esInvalidoCurp(model.getCurp())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una CURP invalida.", "MSG52", null, "model.curp");
 		}
 		//Validaciones Negocio
@@ -76,14 +76,14 @@ public class ColaboradorBs {
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR)) {
 			colaboradorBD = new ColaboradorDAO().consultarColaboradorCURP(model.getCurp());
 			if(colaboradorBD != null && colaboradorBD.getCurp().equals(model.getCurp())) {
-				throw new PRISMAValidacionException(
+				throw new TESSERACTValidacionException(
 						"El CURP ya existe.", "MSG7", new String[] { "El", "CURP", model.getCurp() }, "model.curp");
 			}
 		}
 		
 		colaboradorBD = new ColaboradorDAO().consultarColaboradorCorreo(model.getCorreoElectronico());
 		if(colaboradorBD != null && !colaboradorBD.getCurp().equals(model.getCurp()) && colaboradorBD.getCorreoElectronico().equals(model.getCorreoElectronico())) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El correo del colaborador ya existe.", "MSG7", 
 					new String[] { "El", "correo electrónico", model.getCorreoElectronico() }, "model.correoElectronico");
 		}
@@ -110,7 +110,7 @@ public class ColaboradorBs {
 			new ColaboradorDAO().modificarColaborador(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
-				throw new PRISMAValidacionException("La Persona con CURP"
+				throw new TESSERACTValidacionException("La Persona con CURP"
 						+ model.getCurp() + " ya existe.", "MSG7",
 						new String[] { "La", "persona con CURP", model.getCurp() },
 						"model.curp");
@@ -130,13 +130,13 @@ public class ColaboradorBs {
 			if(!esLiderProyecto(model)) {
 				new ColaboradorDAO().eliminarColaborador(model);
 			} else {
-				throw new PRISMAException("No se puede eliminar la persona.", "MSG13");
+				throw new TESSERACTException("No se puede eliminar la persona.", "MSG13");
 			}
 			
 		} catch (JDBCException je) {
 			if(je.getErrorCode() == 1451)
 			{
-				throw new PRISMAException("No se puede eliminar la persona.", "MSG14");
+				throw new TESSERACTException("No se puede eliminar la persona.", "MSG14");
 			}
 			System.out.println("ERROR CODE " + je.getErrorCode());
 			je.printStackTrace();

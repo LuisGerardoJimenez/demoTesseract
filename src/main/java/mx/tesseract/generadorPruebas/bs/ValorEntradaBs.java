@@ -9,7 +9,7 @@ import mx.tesseract.editor.model.Entrada;
 import mx.tesseract.editor.model.ReglaNegocio;
 import mx.tesseract.generadorPruebas.dao.ValorEntradaDAO;
 import mx.tesseract.generadorPruebas.model.ValorEntrada;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 public class ValorEntradaBs {
@@ -49,12 +49,12 @@ public class ValorEntradaBs {
 			if(valor.getValido()) {
 				String valor2 = valor.getValor();
 				if (validarObligatorios && Validador.esNuloOVacio(valor2)) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó el valor de una entrada", "MSG38", null,
 							"campos");
 				}
 				if (Validador.validaLongitudMaxima(valor2, 2000)) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario ingreso un valor muy largo.", "MSG39",
 							new String[] { "2000", "caracteres", "el valor de " + entrada.getAtributo().getNombre() }, "campos");
 				}
@@ -62,12 +62,12 @@ public class ValorEntradaBs {
 		
 		String etiqueta = entrada.getNombreHTML();
 		if (validarObligatorios && Validador.esNuloOVacio(etiqueta)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario no ingresó la etiqueta de una entrada.", "MSG38", null,
 					"campos");
 		}
 		if (Validador.validaLongitudMaxima(etiqueta, 200)) {
-			throw new PRISMAValidacionException(
+			throw new TESSERACTValidacionException(
 					"El usuario ingreso una etiqueta muy larga.", "MSG39",
 					new String[] { "200", "caracteres", "la etiqueta de " + entrada.getAtributo().getNombre() }, "campos");
 		}

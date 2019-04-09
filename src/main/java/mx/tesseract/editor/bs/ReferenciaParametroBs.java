@@ -13,7 +13,7 @@ import mx.tesseract.generadorPruebas.dao.ValorMensajeParametroDAO;
 import mx.tesseract.generadorPruebas.model.Query;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametro;
 import mx.tesseract.generadorPruebas.model.ValorMensajeParametroTrayectoria;
-import mx.tesseract.util.PRISMAValidacionException;
+import mx.tesseract.util.TESSERACTValidacionException;
 import mx.tesseract.util.Validador;
 
 public class ReferenciaParametroBs {
@@ -99,12 +99,12 @@ public class ReferenciaParametroBs {
 			for(Query query : referencia.getQueries()) {
 				String queryCadena = query.getQuery();
 				if (validarObligatorios && Validador.esNuloOVacio(queryCadena)) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario no ingresó alguna query.", "MSG38", null,
 							"campos");
 				}
 				if (Validador.validaLongitudMaxima(queryCadena, 999)) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario ingreso una query muy larga.", "MSG39",
 							new String[] { "999", "caracteres", "la Query de " + referencia.getElementoDestino().getClave()
 									+ referencia.getElementoDestino().getNumero() + " " + referencia.getElementoDestino().getNombre()}, "campos");
@@ -114,7 +114,7 @@ public class ReferenciaParametroBs {
 			for(ValorMensajeParametro valor : referencia.getValoresMensajeParametro()) {
 				String valorCadena = valor.getValor();
 				if (Validador.validaLongitudMaxima(valorCadena, 2000)) {
-					throw new PRISMAValidacionException(
+					throw new TESSERACTValidacionException(
 							"El usuario ingreso parámetro muy largo.", "MSG39",
 							new String[] { "2000", "caracteres", "el Parámetro de " + referencia.getElementoDestino().getClave()
 									+ referencia.getElementoDestino().getNumero() + " " + referencia.getElementoDestino().getNombre()}, "campos");
