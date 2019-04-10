@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="prisma">
+<project basedir="." default="build" name="tesseract">
 	<property environment="env"/>
 	<property name="ECLIPSE_HOME" value="../../../../usr/local/eclipse/"/>
 	<property name="debuglevel" value="source,lines,vars"/>
@@ -115,19 +115,19 @@
 		<pathelement location="../../../../usr/local/tomcat7/lib/tomcat-api.jar"/>
 		<pathelement location="../../../../usr/local/tomcat7/lib/tomcat-i18n-ja.jar"/>
 	</path>
-	<path id="prisma.classpath">
+	<path id="tesseract.classpath">
 		<pathelement location="target/classes"/>
 		<pathelement location="target/test-classes"/>
 		<path refid="Maven Dependencies.libraryclasspath"/>
 		<path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
 	</path>
 	<path id="run.Test.classpath">
-		<path refid="prisma.classpath"/>
+		<path refid="tesseract.classpath"/>
 		<path refid="Maven Dependencies.libraryclasspath"/>
 	</path>
 	
 	<taskdef name="jrc" classname="net.sf.jasperreports.ant.JRAntCompileTask"> 
-	  <classpath refid="prisma.classpath"/>
+	  <classpath refid="tesseract.classpath"/>
 	</taskdef>
 	<target name="compile1"> 
 	  <mkdir dir="./src/main/webapp/resources/JasperReport"/> 
@@ -137,7 +137,7 @@
 	    tempdir="./src/main/webapp/resources/JasperReport"
 	    keepjava="true"
 	    xmlvalidation="true">
-	   <classpath refid="prisma.classpath"/>
+	   <classpath refid="tesseract.classpath"/>
 	   <include name="**/*.jrxml"/>
 	  </jrc>
 	</target> 
@@ -153,7 +153,7 @@
 	     <include name="**/*.jrxml"/>
 	    </fileset>
 	   </src>
-	   <classpath refid="prisma.classpath"/>
+	   <classpath refid="tesseract.classpath"/>
 	  </jrc> 
 	</target> 
 	
@@ -190,11 +190,11 @@
 			<src path="src/main/java"/>
 			<src path="src/main/resources"/>
 			<exclude name="**"/>
-			<classpath refid="prisma.classpath"/>
+			<classpath refid="tesseract.classpath"/>
 		</javac>
 		<javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
 			<src path="src/test/java"/>
-			<classpath refid="prisma.classpath"/>
+			<classpath refid="tesseract.classpath"/>
 		</javac>
 	</target>
 	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>

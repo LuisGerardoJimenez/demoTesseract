@@ -30,7 +30,7 @@
 	<constant name="struts.convention.action.mapAllMatches" value="true" />
 
 	<constant name="struts.convention.default.parent.package"
-		value="prisma" />
+		value="tesseract" />
 
 	<!-- Ruta donde buscara los resultados -->
 	<constant name="struts.convention.result.path" value="/content" />
@@ -41,7 +41,7 @@
 	<!-- Se define el nombre del parámetro enviado por url -->
 	<constant name="struts.mapper.idParameterName" value="idSel" />
 
-	<package name="prisma" extends="rest-default,json-default">
+	<package name="tesseract" extends="rest-default,json-default">
 		<interceptors>
 			<interceptor class="mx.tesseract.controller.AccessInterceptor" name="loginInterceptor"/>
 			<interceptor name="workflow" class="org.apache.struts2.rest.RestWorkflowInterceptor" />
