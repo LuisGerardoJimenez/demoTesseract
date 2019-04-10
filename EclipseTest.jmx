@@ -41,7 +41,7 @@
           <boolProp name="keepAlive">true</boolProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="checkQuery">Select 1</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://localhost:3306/PRISMA</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://localhost:3306/TESSERACT</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <stringProp name="username">root</stringProp>
           <stringProp name="password"></stringProp>
@@ -72,7 +72,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">prisma/access!login</stringProp>
+          <stringProp name="HTTPSampler.path">tesseract/access!login</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -108,7 +108,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">prisma/access!login</stringProp>
+          <stringProp name="HTTPSampler.path">tesseract/access!login</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
