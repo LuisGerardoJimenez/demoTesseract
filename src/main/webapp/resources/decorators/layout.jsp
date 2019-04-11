@@ -8,6 +8,7 @@
 		contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" />
 	<html>
 <head>
+<link rel="shortcut icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/LogoBlanco.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>TESSERACT | <decorator:title default="Bienvenido" /></title>
