@@ -35,14 +35,14 @@
 				</tr>
 				<tr>
 					<td class="label obligatorio"><s:text name="labelNombre" /></td>
-					<td><s:textfield name="model.nombre" maxlength="50"
+					<td><s:textfield name="model.nombre" maxlength="45"
 							cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 						<s:fielderror fieldName ="model.nombre" cssClass="error"
 							theme="jquery" /></td>
 				</tr>
 				<tr>
 					<td class="label obligatorio"><s:text name="labelDescripcion" /></td>
-					<td><s:textarea name="model.descripcion" maxlength="1000"
+					<td><s:textarea name="model.descripcion" maxlength="999"
 							cssErrorClass="input-error" cssClass="inputFormularioExtraGrande ui-widget" />
 						<s:fielderror fieldName ="model.descripcion" cssClass="error"
 							theme="jquery" /></td>

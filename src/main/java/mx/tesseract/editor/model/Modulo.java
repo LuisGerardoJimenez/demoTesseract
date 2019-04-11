@@ -20,7 +20,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RegexFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+
 import mx.tesseract.admin.model.Proyecto;
+import mx.tesseract.util.Constantes;
 
 @Entity
 @Table(name = "Modulo", catalog = "PRISMA", uniqueConstraints = {
@@ -51,6 +59,9 @@ public class Modulo implements java.io.Serializable {
 		this.proyecto = proyecto;
 	}
 
+	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
+	@IntRangeFieldValidator(message = "%{getText('MSG14',{'El', 'identificador', '0', '9999999'})}", shortCircuit = true, min = "0", max = "9999999")
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'número'})}", regex = Constantes.REGEX_CAMPO_NUMERICO_ENTERO, shortCircuit = true)
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -62,6 +73,9 @@ public class Modulo implements java.io.Serializable {
 		this.id = id;
 	} 
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'45', 'caracteres'})}", trim = true, maxLength = "45", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex= Constantes.REGEX_CURP, shortCircuit = true)
 	@Column(name = "clave", unique = true, nullable = false, length = 10)
 	public String getClave() {
 		return this.clave;

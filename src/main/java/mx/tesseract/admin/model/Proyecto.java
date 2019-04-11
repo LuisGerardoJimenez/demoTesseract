@@ -107,7 +107,7 @@ public class Proyecto implements java.io.Serializable {
 
 	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'10', 'caracteres'})}", trim = true, maxLength = "10", shortCircuit= true)
-	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS, shortCircuit = true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS, shortCircuit = true)
 	@Column(name = "clave", unique = true, nullable = false, length = 10)
 	public String getClave() {
 		return this.clave;
@@ -119,7 +119,7 @@ public class Proyecto implements java.io.Serializable {
 
 	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'50', 'caracteres'})}", trim = true, maxLength = "50", shortCircuit= true)
-	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
 	@Column(name = "nombre", unique = true, nullable = false, length = 50)
 	public String getNombre() {
 		return this.nombre;
@@ -172,8 +172,8 @@ public class Proyecto implements java.io.Serializable {
 	}
 
 	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
-	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'1000', 'caracteres'})}", trim = true, maxLength = "1000", shortCircuit= true)
-	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO, shortCircuit = true)
+	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'999', 'caracteres'})}", trim = true, maxLength = "999", shortCircuit= true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES, shortCircuit = true)
 	@Column(name = "descripcion", nullable = false, length = 1000)
 	public String getDescripcion() {
 		return this.descripcion;
@@ -193,8 +193,8 @@ public class Proyecto implements java.io.Serializable {
 	}
 
 	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
-	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'100', 'caracteres'})}", trim = true, maxLength = "100", shortCircuit= true)
-	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'caracter'})}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES, shortCircuit = true)
+	//@StringLengthFieldValidator(message = "%{getText('MSG6',{'45', 'caracteres'})}", trim = true, maxLength = "45", shortCircuit= true)
+	//@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES, shortCircuit = true)
 	@Column(name = "contraparte", nullable = false, length = 100)
 	public String getContraparte() {
 		return this.contraparte;

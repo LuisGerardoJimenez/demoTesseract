@@ -96,7 +96,6 @@ ModelDriven<Proyecto>, SessionAware{
 
 	public String create() throws Exception {
 		String resultado;
-		System.out.println("Entre al metodo");
 		try {
 			ProyectoBs.registrarProyecto(model, curpLider, idEstadoProyecto, presupuestoString);
 			resultado = SUCCESS;
@@ -182,7 +181,7 @@ ModelDriven<Proyecto>, SessionAware{
 		return resultado;
 	}
 	
-	@VisitorFieldValidator
+	//@VisitorFieldValidator
 	public Proyecto getModel() {
 		return (model == null) ? model = new Proyecto() : model;
 	}

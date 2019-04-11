@@ -77,15 +77,15 @@ public class ModuloBs {
 					"El usuario ingreso un nombre muy largo.", "MSG6",
 					new String[] { Constantes.NUMERO_DIEZ.toString(), "caracteres" }, "model.clave");
 		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_CINCUENTA)) {
+		if (Validador.validaLongitudMaxima(model.getNombre(), Constantes.NUMERO_CUARENTA_Y_CINCO)) {
 			throw new TESSERACTValidacionException(
 					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" }, "model.nombre");
+					new String[] { Constantes.NUMERO_CUARENTA_Y_CINCO.toString(), "caracteres" }, "model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE)) {
 			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripción muy larga.", "MSG6",
-					new String[] { Constantes.NUMERO_MIL.toString(), "caracteres" }, "model.descripcion");
+					new String[] { Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE.toString(), "caracteres" }, "model.descripcion");
 		}
 		// Validaciones tipo de dato
 		if (bandera.equals(Constantes.VALIDACION_REGISTRAR) && Validador.esInvalidaREGEX(model.getClave(), Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS)) {
