@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 import java.util.HashSet;
 import java.util.Set;
@@ -59,9 +59,6 @@ public class Modulo implements java.io.Serializable {
 		this.proyecto = proyecto;
 	}
 
-	@RequiredFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
-	@IntRangeFieldValidator(message = "%{getText('MSG14',{'El', 'identificador', '0', '9999999'})}", shortCircuit = true, min = "0", max = "9999999")
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG5',{'un', 'número'})}", regex = Constantes.REGEX_CAMPO_NUMERICO_ENTERO, shortCircuit = true)
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
@@ -74,8 +71,8 @@ public class Modulo implements java.io.Serializable {
 	} 
 
 	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
-	@StringLengthFieldValidator(message = "%{getText('MSG6',{'45', 'caracteres'})}", trim = true, maxLength = "45", shortCircuit= true)
-	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex= Constantes.REGEX_CURP, shortCircuit = true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'10', 'caracteres'})}", trim = true, maxLength = "10", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex= Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS, shortCircuit = true)
 	@Column(name = "clave", unique = true, nullable = false, length = 10)
 	public String getClave() {
 		return this.clave;
@@ -85,6 +82,9 @@ public class Modulo implements java.io.Serializable {
 		this.clave = clave;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'45', 'caracteres'})}", trim = true, maxLength = "45", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex= Constantes.REGEX_CAMPO_ALFABETICO, shortCircuit = true)
 	@Column(name = "nombre", nullable = false, length = 45)
 	public String getNombre() {
 		return this.nombre;
@@ -94,6 +94,9 @@ public class Modulo implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit = true)
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'999', 'caracteres'})}", trim = true, maxLength = "999", shortCircuit= true)
+	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex= Constantes.REGEX_CAMPO_ALFANUMERICO_CARACTERES_ESPECIALES, shortCircuit = true)
 	@Column(name = "descripcion", nullable = false, length = 999)
 	public String getDescripcion() {
 		return this.descripcion;
@@ -113,7 +116,6 @@ public class Modulo implements java.io.Serializable {
 		this.proyecto = proyecto;
 	}
 	
-	//Cambio131015
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "modulo", orphanRemoval = true)
 	public Set<CasoUso> getCasosdeuso() {
 		return casosdeuso;
@@ -123,7 +125,6 @@ public class Modulo implements java.io.Serializable {
 		this.casosdeuso = casosdeuso;
 	}
 	
-	//Cambio131015
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "modulo", orphanRemoval = true)
 	public Set<Pantalla> getPantallas() {
 		return pantallas;

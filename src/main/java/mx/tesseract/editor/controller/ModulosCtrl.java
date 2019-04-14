@@ -25,6 +25,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/editor/")
 @Results({
@@ -42,9 +43,7 @@ import com.opensymphony.xwork2.ModelDriven;
 })
 public class ModulosCtrl extends ActionSupportTESSERACT implements
 		ModelDriven<Modulo>, SessionAware {
-	/** 
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> userSession;
 	private Proyecto proyecto;
@@ -304,6 +303,7 @@ public class ModulosCtrl extends ActionSupportTESSERACT implements
 		return "referencias";
 	}
 
+	@VisitorFieldValidator
 	public Modulo getModel() {
 		return (model == null) ? model = new Modulo() : model;
 	}
