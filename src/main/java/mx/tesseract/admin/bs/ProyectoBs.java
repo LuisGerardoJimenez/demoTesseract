@@ -46,7 +46,7 @@ public class ProyectoBs {
 
 	public static void registrarProyecto(Proyecto model, String curpLider, int idEstadoProyecto, String presupuesto) throws Exception {
 		try {
-			//validar(model, curpLider, idEstadoProyecto, presupuesto);
+			validar(model, curpLider, idEstadoProyecto, presupuesto);
 			ProyectoBs.agregarEstado(model, idEstadoProyecto);
 			ProyectoBs.agregarLider(model, curpLider);
 			new ProyectoDAO().registrarProyecto(model);
@@ -133,15 +133,15 @@ public class ProyectoBs {
 					new String[] { Constantes.NUMERO_CINCUENTA.toString(), "caracteres" },
 					"model.nombre");
 		}
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_MIL)) {
+		if (Validador.validaLongitudMaxima(model.getDescripcion(), Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE)) {
 			throw new TESSERACTValidacionException(
 					"El usuario ingreso una descripción muy larga.", "MSG6",
-					new String[] { Constantes.NUMERO_MIL.toString(), "caracteres" }, "model.descripcion");
+					new String[] { Constantes.NUMERO_NOVECIENTOS_NOVENTA_Y_NUEVE.toString(), "caracteres" }, "model.descripcion");
 		}
-		if (Validador.validaLongitudMaxima(model.getContraparte(), Constantes.NUMERO_CIEN)) {
+		if (Validador.validaLongitudMaxima(model.getContraparte(), Constantes.NUMERO_CUARENTA_Y_CINCO)) {
 			throw new TESSERACTValidacionException(
 					"El usuario ingreso una contraparte muy larga.", "MSG6",
-					new String[] { Constantes.NUMERO_CIEN.toString(), "caracteres" }, "model.contraparte");
+					new String[] { Constantes.NUMERO_CUARENTA_Y_CINCO.toString(), "caracteres" }, "model.contraparte");
 		}
 		//Validaciones tipo de dato
 		if (Validador.esInvalidaREGEX(model.getClave(), Constantes.REGEX_CAMPO_ALFANUMERICO_MAYUSCULAS_SIN_ESPACIOS)) {

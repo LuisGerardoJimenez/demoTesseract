@@ -41,14 +41,14 @@ public class Correo {
             String contenido;
             if (sub == 0) {
 
-                message.setSubject("PRISMA: Información de la cuenta");
+                message.setSubject("TESSERACT: Información de la cuenta");
                 contenido = "<center>"
                 			//+ "<div style=\"color: #084B8A; border: 1px dotted black;\">"
                 			+ "<div style=\"color: #750e35; border: 1px dotted black;\">"
                 				+ "<table>"
 			                		+ "<tr>"
 										+ "<td>"
-												+ "<h2><b>Bienvenido(a) a PRISMA</b></h2>"
+												+ "<h2><b>Bienvenido(a) a TESSERACT</b></h2>"
 											
 										+ "</td>" + "</tr>"
 								+ "</table>"
@@ -77,7 +77,7 @@ public class Correo {
 
             }
             if (sub == 1) {
-                message.setSubject("PRISMA: Recuperación de contraseña");
+                message.setSubject("TESSERACT: Recuperación de contraseña");
                 contenido = //"<center><div style=\"color: #084B8A; border: 1px dotted black;\"><table>"
                 		"<center><div style=\"color: #084B8A; border: 1px dotted black;\"><table>"
                         + "<tr>"
@@ -85,8 +85,8 @@ public class Correo {
                         + "<h2><b>Hola "
                         + obj.getNombre()
                         + "</td>" + "</tr>"
-                        //+ "<div style=\"color: #FFFFFF;background-color: #084B8A;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>PRISMA</i>."
-                        + "<div style=\"color: #FFFFFF;background-color: #750e35;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>PRISMA</i>."
+                        //+ "<div style=\"color: #FFFFFF;background-color: #084B8A;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>TESSERACT</i>."
+                        + "<div style=\"color: #FFFFFF;background-color: #750e35;opacity: .85;\">Recientemente ha solicitado recuperar la contraseña de su cuenta del sistema <i>TESSERACT</i>."
                         + "<tr>" + "<td>"
                         + "Contraseña: " + obj.getContrasenia()
                         + "</td>" + "</tr>"
