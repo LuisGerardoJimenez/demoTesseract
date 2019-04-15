@@ -92,7 +92,6 @@ public class ModuloBs {
 
 	public static void eliminarTermino(Modulo model) throws Exception {
 		try {
-			
 			new ModuloDAO().eliminarModulo(model);
 		} catch (JDBCException je) {
 			System.out.println("ERROR CODE " + je.getErrorCode());
@@ -128,13 +127,13 @@ public class ModuloBs {
 
 	public static List<String> verificarReferencias(Modulo model) {
 
-
+		System.out.println("entramos a verificar Referencias");
 		List<String> listReferenciasVista = new ArrayList<String>();
 		Set<String> setReferenciasVista = new HashSet<String>(0);
 		
 		List<CasoUso> casosUso = CuBs.consultarCasosUsoModulo(model);
 		List<Pantalla> pantallas = PantallaBs.consultarPantallasModulo(model);
-		
+		System.out.println("Se buscan los CU y pantallas");
 		for(CasoUso casoUso : casosUso) {
 			setReferenciasVista.addAll(CuBs.verificarReferencias(casoUso, model));
 		}

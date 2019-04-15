@@ -32,7 +32,7 @@ function verificarEliminacionElemento(idElemento) {
 		url : rutaVerificarReferencias,
 		type: "POST",
 		data : {
-			idSel : idElemento
+			idSel : parseInt(idElemento, 10)
 		},
 		success : function(data) {
 			ocultarMensajeCargando();

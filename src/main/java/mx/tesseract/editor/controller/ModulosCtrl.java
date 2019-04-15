@@ -293,10 +293,13 @@ public class ModulosCtrl extends ActionSupportTESSERACT implements
 	}
 	
 	public String verificarElementosReferencias() {
+		System.out.println("Entre a buscar referencias");
+		elementosReferencias = new ArrayList<String>();
 		try {
-			elementosReferencias = new ArrayList<String>();
+			System.out.println("Entre a buscar referencias");
 			elementosReferencias = ModuloBs.verificarReferencias(model);
-
+			System.out.println("elementosReferenciasSize: "+elementosReferencias.size());
+			System.out.println("elementosReferencias: "+elementosReferencias);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -305,6 +308,7 @@ public class ModulosCtrl extends ActionSupportTESSERACT implements
 
 	@VisitorFieldValidator
 	public Modulo getModel() {
+		System.out.println("Entre al GetModel");
 		return (model == null) ? model = new Modulo() : model;
 	}
 
