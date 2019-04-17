@@ -1,0 +1,24 @@
+%--------------------------------------
+\subsection{IU 6.4 Revisar caso de uso}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor revisar la información de un caso de uso y determinar si es correcto o no.
+\subsubsection{Diseño}
+	En la figura \IUref{IU6.4}{Revisar caso de uso} se muestra la pantalla ''Revisar Caso de uso'' en la cual el actor podrá revisar el caso de uso y decidir si es correcto o no. Cada uno de los elementos utilizados contará con un enlace a su respectiva consulta. En caso de que alguna de las secciones no cuente con información se mostrará la leyenda ''Sin información''.
+	
+	Una vez que el actor ha consultado la información mostrada, deberá seleccionar para cada sección si esta es correcta o no. Para las secciones marcadas como incorrectas el sistema solicitará que se ingresen las correspondientes observaciones. Finalmente el actor deberá oprimir el botón \IUbutton{Aceptar} , el sistema realizará las validaciones correspondientes y determinará el nuevo estado del caso de uso.
+
+\IUfig[.6]{interfaces/IU6-4revisarCU}{IU6.4}{Revisar Caso de uso}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor concluir la revisión, dirige a la pantalla \IUref{IU6}{Gestionar casos de uso}
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} para indicar que la revisión se ha realizado exitosamente.
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.4}{Revisar Caso de uso} cuando no se ha ingresado un dato marcado como obligatorio..
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.4}{Revisar Caso de uso} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla donde se solicitó la operación cuando el caso de uso que se desea revisar no se encuentra en estado ''Revisión''.
+\end{Citemize}

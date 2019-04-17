@@ -39,20 +39,20 @@
 									value="%{#pageContext.request.contextPath}/pantallas/%{#pantalla.id}" />
 								${blanks} <s:a href="%{urlConsultar}">
 									<img id="" class="button" title="Consultar Pantalla"
-										src="${pageContext.request.contextPath}/resources/images/icons/ver.png" />
+										src="${pageContext.request.contextPath}/resources/images/icons/Ver.svg" />
 
 								</s:a> ${blanks} <s:if test="%{#pantalla.estadoElemento.id == 1}">
 									<s:url var="urlEditar"
 										value="%{#pageContext.request.contextPath}/pantallas/%{#pantalla.id}/edit" />
 									<s:a href="%{urlEditar}">
 										<img id="" class="button" title="Modificar Pantalla"
-											src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+											src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 									</s:a>
 									${blanks}
 									<s:a
 										onclick="return verificarEliminacionElemento(%{#pantalla.id});">
 										<img id="" class="button" title="Eliminar Pantalla"
-											src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" />
+											src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" />
 									</s:a>
 								</s:if></td>
 						</tr>

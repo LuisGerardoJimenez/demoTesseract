@@ -1,0 +1,47 @@
+	\begin{UseCase}{CU12.1.1.3}{Eliminar Trayectoria}{
+		Este caso de uso permite al actor eliminar del sistema una trayectoria.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de una trayectoria.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para indicar que la trayectoria fue eliminada correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará la trayectoria seleccionada del sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Traycetorias} cuando no se pueda eliminar la trayectoria debido a que está siendo referenciada en algún caso de uso.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1.1}{Gestionar Trayectorias}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar una pantalla oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+		\UCpaso[\UCsist] Verifica que ningún elemento se encuentre referenciando a la trayectoria \Trayref{ETRAY-A}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+		\UCpaso[\UCactor] Confirma la eliminación de la pantalla oprimiendo el botón \IUbutton{Aceptar}. \Trayref{ETRAY-B}
+		\UCpaso[\UCsist] Elimina la información referente a la trayectoria.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+
+	\begin{UCtrayectoriaA}{ETRAY-A}{La trayectoria está siendo referenciada en algún elemento.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} en una pantalla emergente con la lista de elementos que están referenciando a la trayectoria.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{ETRAY-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+	\end{UCtrayectoriaA}
+	
+

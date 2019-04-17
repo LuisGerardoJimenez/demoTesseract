@@ -1,0 +1,16 @@
+\begin{BusinessEntity}{proyectoColEntidad}{Colaborador de Proyecto}
+	\item Esta entidad es auxiliar. Sirve para corresponder el proyecto y sus colaboradores.
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{rolRelColProyecto}{Rol}
+	\BRitem{\textbf{Descripción: }}{Un colaborador tiene un Rol que define si es un analista o un líder de análisis.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{actualizacionRelColProyecto}{Actualización}
+	\BRitem{\textbf{Descripción: }}{Cuando un colaborador realiza cambios en los elementos se guardan las Actualizaciones.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

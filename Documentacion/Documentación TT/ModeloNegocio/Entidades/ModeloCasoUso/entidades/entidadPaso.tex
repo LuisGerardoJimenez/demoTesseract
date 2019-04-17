@@ -1,0 +1,21 @@
+\begin{BusinessEntity}{entidadPaso}{Paso}
+		
+	\Battr{numeroPaso}{Número: }{Número del paso en la Trayectoria. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{realizaPaso}{Realiza: }{Badera que especifica quién realiza el paso, el Actor o el Sistema. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{redaccionPaso}{Redacción: }{Redacción del Paso. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{pasoRelPaso}{Paso}
+	\BRitem{\textbf{Descripción: }}{Un Paso de la Trayectoria puede continuar con otro Paso de alguna Trayectoria.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{vParamRelPaso}{Valor del Parámetro en Paso}
+	\BRitem{\textbf{Descripción: }}{Valor de los parámetros ocupados al definir el Paso.}
+	\BRitem{\textbf{Tipo: }}{\relAgregacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

@@ -1,0 +1,103 @@
+#Mensajes
+MSG1 = {0} {1} ha sido {2} exitosamente.
+#MSG1 = El caso de uso ha sido registrado exitosamente. 
+MSG4 = Dato obligatorio.
+MSG5 = Dato incorrecto, ingrese {0} {1}.
+#MSG5 = Dato incorrecto, ingrese una cadena.
+MSG6 = Escriba menos de {0} {1}.
+#MSG6 = Escriba menos de 999 caracteres.
+MSG7 ={0} {1} {2} ya existe.
+#MSG7 = El caso de uso Registrar usuario ya existe.
+MSG11 = ¿Está seguro de que quiere eliminar este registro?
+MSG13 = Ha ocurrido un error.
+MSG14 = Este elemento no se puede eliminar debido a que está siendo referenciado.
+MSG15 = Datos incorrectos, {0} {1} {2} no se encuentra {3} en el sistema.
+#MSG15 = Datos incorrectos, el actor Alumno no se encuentra registrado en el sistema.
+MSG16 = {0} {1} que intenta actualizar no existe.
+#MSG16 = El caso de uso que intenta actualizar no existe.
+MSG17 = Algun{2} de {0} {1} no es correct{2}.
+#MSG17 = Alguno de los pasos no es correcto.
+MSG18 = Ingrese al menos {0} {1}.
+#MSG18 = Ingrese al menos un paso.
+MSG19 = {0} {1} no debe contener espacios.
+#MSG19 = La clave no debe contener espacios.
+MSG20 = Ya existe una Trayectoria principal registrada.
+MSG21 = Alguno de los datos ingresados no es correcto.
+MSG22 = No es posible realizar la operación debido a que no ha registrado {0}.
+MSG23 = {0} {1} no puede contener coma, punto, punto medio, dos puntos o guión bajo.
+MSG24 = Ingrese la descripción de todos los parámetros.
+MSG25 = No es posible realizar la operación debido a la falta de información necesaria para el sistema.
+MSG26 = No se puede consultar el elemento solicitado.
+MSG27 = El token ingresado para {0} {1} es incorrecto.
+MSG31 = Correo electrónico y/o contraseña incorrectos.
+MSG32 = Se ha enviado un correo electrónico con su contraseña, favor de verificarlo.
+MSG33 = El correo electrónico ingresado es incorrecto.
+MSG34 = ¿Está seguro de que quiere terminar este Caso de uso? 
+MSG35 = La {0} debe ser posterior a la {1}.
+MSG36 = Solo se admiten imágenes en formato PNG.
+MSG37 = Es necesario que configure todos los Casos de uso.
+MSG38 = Agregue todos los campos obligatorios.
+MSG39 = Escriba menos de {0} {1} en {2}.
+MSG40 = Este Módulo no puede ser eliminado debido a que está siendo referenciado por algún elemento de otro Módulo. 
+MSG41 = {0} archivos {1} para {2} se han {3} correctamente. Por favor continue configurando la prueba del {4}.
+MSG42 = {0} se ha {1} ningún {2}.
+MSG43 = La {0} no puede ser {1} por lo siguiente:
+MSG44 = El Caso de Uso {0} {1} ha sido {2} aún.
+MSG45 = La {0} ha sido {1} con éxito.
+
+
+
+//NUEVOS MENSAJES
+
+
+#Mensajes
+MSG1 = {0} {1} ha sido {2} exitosamente.
+MSG2 = No se encontraron registros.
+MSG3 = El caso de uso ha sido registrado exitosamente. Ahora el caso de uso puede ser revisado.
+MSG4 = Dato obligatorio.
+MSG5 = Dato incorrecto, ingrese {0} {1}.
+MSG6 = Escriba menos de {0} {1}.
+MSG7 ={0} {1} {2} ya existe.
+MSG8 = ¿Está seguro de marcar como terminado este elemento? La información será enviada a revisión y no podrá realizar ningún cambio.
+MSG9 = Hay elementos que no están siendo utilizados en las trayectorias.
+MSG10 = ¿Está seguro de que quiere eliminar este registro?
+MSG11 = Hay elementos que están siendo utilizados en las trayectorias pero no están en la descripción del caso de uso.
+MSG12 = Ha ocurrido un error.
+#VERIFICAR MSG13 DE ACUERDO AL DOCUMENTO
+MSG13 = Este elemento no se puede eliminar debido a que está siendo referenciado en: {0}
+#MSG13 = Este elemento no se puede eliminar debido a que está siendo referenciado.
+MSG14 = Datos incorrectos, {0} {1} {2} no se encuentra registrado en el sistema.
+#MSG14 = Datos incorrectos, {0} {1} {2} no se encuentra {3} en el sistema.
+MSG15 = {0} de {1} {2} no es correcto.
+#MSG15 = Datos incorrectos, el actor Alumno no se encuentra registrado en el sistema.
+MSG16 = Ingrese al menos {0} {1}.
+#MSG16 = {0} {1} que intenta actualizar no existe.
+MSG17 = No es posible realizar la operación debido a que no ha registrado {0}.
+#MSG17 = Algun{2} de {0} {1} no es correct{2}.
+MSG18 = {0} {1} no puede contener coma, punto, punto medio, dos puntos o guión bajo.
+#MSG18 = Ingrese al menos {0} {1}.
+MSG19 = El token ingresado para {0} {1} es incorrecto.
+#MSG19 = {0} {1} no debe contener espacios.
+MSG20 = Ya existe una Trayectoria principal registrada.
+MSG21 = Alguno de los datos ingresados no es correcto.
+MSG22 = No es posible realizar la operación debido a que no ha registrado {0}.
+MSG23 = {0} {1} no puede contener coma, punto, punto medio, dos puntos o guión bajo.
+MSG24 = Ingrese la descripción de todos los parámetros.
+MSG25 = No es posible realizar la operación debido a la falta de información necesaria para el sistema.
+MSG26 = No se puede consultar el elemento solicitado.
+MSG27 = El token ingresado para {0} {1} es incorrecto.
+MSG31 = Correo electrónico y/o contraseña incorrectos.
+MSG32 = Se ha enviado un correo electrónico con su contraseña, favor de verificarlo.
+MSG33 = El correo electrónico ingresado es incorrecto.
+MSG34 = ¿Está seguro de que quiere terminar este Caso de uso? 
+MSG35 = La {0} debe ser posterior a la {1}.
+MSG36 = Solo se admiten imágenes en formato PNG.
+MSG37 = Es necesario que configure todos los Casos de uso.
+MSG38 = Agregue todos los campos obligatorios.
+MSG39 = Escriba menos de {0} {1} en {2}.
+MSG40 = Este Módulo no puede ser eliminado debido a que está siendo referenciado por algún elemento de otro Módulo. 
+MSG41 = {0} archivos {1} para {2} se han {3} correctamente. Por favor continue configurando la prueba del {4}.
+MSG42 = {0} se ha {1} ningún {2}.
+MSG43 = La {0} no puede ser {1} por lo siguiente:
+MSG44 = El Caso de Uso {0} {1} ha sido {2} aún.
+MSG45 = La {0} ha sido {1} con éxito.

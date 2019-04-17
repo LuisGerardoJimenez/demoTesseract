@@ -40,7 +40,7 @@
 							<s:url var="urlConsultar" value="%{#pageContext.request.contextPath}/cu/%{#cu.id}"/>
 							<s:a href="%{urlConsultar}">
 								<img id="" class="button" title="Consultar Caso de uso"
-										src="${pageContext.request.contextPath}/resources/images/icons/ver.png" />
+										src="${pageContext.request.contextPath}/resources/images/icons/Ver.svg" />
 							</s:a>	
 							${blanks}
 							<s:if test="%{#cu.estadoElemento.id == 1 || #cu.estadoElemento.id == 3}">
@@ -48,7 +48,7 @@
 								<s:url var="urlEditar" value="%{#pageContext.request.contextPath}/cu/%{#cu.id}/edit"/>			
 								<s:a href="%{urlEditar}">
 									<img id="" class="button" title="Modificar Caso de uso"
-											src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+											src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 								</s:a>	
 								
 								${blanks}	
@@ -59,7 +59,7 @@
 								<s:a href="%{urlGestionarTrayectorias}"><img
 											id="" class="button"
 											title="Gestionar Trayectorias"
-											src="${pageContext.request.contextPath}/resources/images/icons/T.png" /></s:a>	
+											src="${pageContext.request.contextPath}/resources/images/icons/T.svg" /></s:a>	
 								${blanks}		
 								<!-- Gestionar puntos de extensión -->				
 								<s:url var="urlGestionarPuntosExtension" value="%{#pageContext.request.contextPath}/extensiones">
@@ -68,20 +68,20 @@
 								<s:a href="%{urlGestionarPuntosExtension}"><img
 											id="" class="button"
 											title="Gestionar Puntos de extensión" 
-											src="${pageContext.request.contextPath}/resources/images/icons/P.png" /></s:a>	
+											src="${pageContext.request.contextPath}/resources/images/icons/P.svg" /></s:a>	
 								${blanks}	
 															
 								<!-- Terminar caso de uso -->			
 								<s:a onclick="return verificarTerminarCasoUso(%{#cu.id});">
 								<img id="" class="button" title="Terminar Caso de uso"
-										src="${pageContext.request.contextPath}/resources/images/icons/terminar.png" /></s:a>	
+										src="${pageContext.request.contextPath}/resources/images/icons/Terminar.svg" /></s:a>	
 										
 								${blanks}	
 									
 								<!-- Eliminar caso de uso -->
 								<s:a onclick="return verificarEliminacionElemento(%{#cu.id});">
 								<img id="" class="button" title="Eliminar Caso de uso"
-										src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" /></s:a>	
+										src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" /></s:a>	
 								${blanks}
 							</s:if>				
 							<s:if test="%{#cu.estadoElemento.id == 2}">	
@@ -89,17 +89,17 @@
 								<s:url var="urlRevisar" value="%{#pageContext.request.contextPath}/cu!prepararRevision?idSel=%{#cu.id}" method="post"/>
 								<s:a href="%{urlRevisar}">
 								<img id="" class="button" title="Revisar Caso de uso"
-										src="${pageContext.request.contextPath}/resources/images/icons/revisar.png" /></s:a>	
+										src="${pageContext.request.contextPath}/resources/images/icons/Revisar.svg" /></s:a>	
 								${blanks}	
 							</s:if>
 							
-							<s:set var="rol"><s:property value="@mx.prisma.controller.AccessCtrl@getRol()" /></s:set>
+							<s:set var="rol"><s:property value="@mx.tesseract.controller.AccessCtrl@getRol()" /></s:set>
 							<s:if test="%{#cu.estadoElemento.id == 4 and #rol == 1}">	
 							<!-- Liberar caso de uso -->			
 								<s:url var="urlLiberar" value="%{#pageContext.request.contextPath}/cu!prepararLiberacion?idSel=%{#cu.id}" method="post"/>
 								<s:a href="%{urlLiberar}">
 								<img id="" class="button" title="Liberar Caso de uso"
-										src="${pageContext.request.contextPath}/resources/images/icons/liberar.png" /></s:a>	
+										src="${pageContext.request.contextPath}/resources/images/icons/Liberar.svg" /></s:a>	
 								${blanks}		
 							</s:if>
 							<s:if test="%{(#cu.estadoElemento.id == 5 or #cu.estadoElemento.id == 6 or #cu.estadoElemento.id == 7) and #rol == 1}">
@@ -107,22 +107,22 @@
 								<s:url var="urlDesbloquear" value="%{#pageContext.request.contextPath}/cu!prepararLiberacion?idSel=%{#cu.id}" method="post"/>
 								<s:a href="%{urlDesbloquear}">
 								<img id="" class="button" title="Solicitar correcciones del Caso de uso"
-										src="${pageContext.request.contextPath}/resources/images/icons/solicitarCorrecciones.png" /></s:a>	
+										src="${pageContext.request.contextPath}/resources/images/icons/SolicitarCorrecciones.svg" /></s:a>	
 								${blanks}
 							</s:if>
 							
 							<!-- Verificamos que el CU tenga entradas -->
-							<s:set var="verificarEntradas"><s:property value="@mx.prisma.gestorEntradas.controller.ConfigurarEntradasCtrl@tieneEntradas(#cu.id)"/></s:set>
+							<s:set var="verificarEntradas"><s:property value="@mx.tesseract.gestorEntradas.controller.ConfigurarEntradasCtrl@tieneEntradas(#cu.id)"/></s:set>
 							<s:if test="%{#verificarEntradas}">
 								<!-- Verificamos que las entradas ya estén configuradas -->
-								<s:set var="entradasConfiguradas"><s:property value="@mx.prisma.gestorEntradas.controller.ConfigurarEntradasCtrl@entradasConfiguradas(#cu.id)"/></s:set>
+								<s:set var="entradasConfiguradas"><s:property value="@mx.tesseract.gestorEntradas.controller.ConfigurarEntradasCtrl@entradasConfiguradas(#cu.id)"/></s:set>
 								<s:if test="%{#entradasConfiguradas}">
 									<s:url var="urlEntradas" value="%{#pageContext.request.contextPath}/configurar-entradas!prepararConfiguracion">
 										<s:param name="idCU" value="%{#cu.id}"/>
 									</s:url>
 									<s:a href="%{urlEntradas}">
 										<img id="" class="button" title="Gestor de entradas"
-												src="${pageContext.request.contextPath}/resources/images/icons/entrada.png" />
+												src="${pageContext.request.contextPath}/resources/images/icons/Entrada.svg" />
 										${blanks}
 									</s:a>
 									${blanks}
@@ -134,19 +134,19 @@
 								<s:url var="urlGenerarReporte" value="%{#pageContext.request.contextPath}/configuracion-caso-uso!generarReporte?idCU=%{#cu.id}" method="post"/>
 								<s:a href="%{urlGenerarReporte}" onclick="mostrarMensajeCargando();">
 								<img id="" class="button" title="Visualizar reporte individual"
-										src="${pageContext.request.contextPath}/resources/images/icons/bar-chart.png" /></s:a>	
+										src="${pageContext.request.contextPath}/resources/images/icons/Bar-chart.svg" /></s:a>	
 								${blanks}
 							</s:if>
 
 								<!-- Pruebas de cu (Primero hay que verificar que existan entradas registradas)-->
-								<s:set var="configurable"><s:property value="@mx.prisma.generadorPruebas.controller.ConfiguracionGeneralCtrl@esConfigurable(#cu.id)"/></s:set>
+								<s:set var="configurable"><s:property value="@mx.tesseract.generadorPruebas.controller.ConfiguracionGeneralCtrl@esConfigurable(#cu.id)"/></s:set>
 								<s:if test="%{#configurable}">
 									<s:url var="urlConfiguracion" value="%{#pageContext.request.contextPath}/configuracion-general!prepararConfiguracion">
 										<s:param name="idCU" value="%{#cu.id}"/>
 									</s:url>
 									<s:a href="%{urlConfiguracion}">
 										<img id="" class="button" title="Configurar Prueba"
-												src="${pageContext.request.contextPath}/resources/images/icons/configurar.png" />
+												src="${pageContext.request.contextPath}/resources/images/icons/Configurar.svg" />
 										${blanks}
 									</s:a>
 									${blanks}
@@ -156,7 +156,7 @@
 									</s:url>
 									<s:a href="%{urlGuionPrueba}" onclick="mostrarMensajeCargando();">
 										<img id="" class="button" title="Guion de Prueba"
-												src="${pageContext.request.contextPath}/resources/images/icons/guion.png" />
+												src="${pageContext.request.contextPath}/resources/images/icons/Guion.svg" />
 										${blanks}
 									</s:a>
 								</s:if>
@@ -165,7 +165,7 @@
 									<s:url var="urlDescargarPrueba" value="%{#pageContext.request.contextPath}/configuracion-caso-uso!generarPrueba?idCU=%{#cu.id}" method="post"/>
 									<s:a href="%{urlDescargarPrueba}" onclick="mostrarMensajeCargando();">
 									<img id="" class="button" title="Generar Prueba"
-											src="${pageContext.request.contextPath}/resources/images/icons/pruebas.png" /></s:a>	
+											src="${pageContext.request.contextPath}/resources/images/icons/Pruebas.svg" /></s:a>	
 									${blanks}
 								</s:if>
 					</td>

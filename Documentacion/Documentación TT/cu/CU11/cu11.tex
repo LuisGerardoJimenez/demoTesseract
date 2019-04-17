@@ -1,0 +1,40 @@
+	\begin{UseCase}{CU11}{Gestionar Pantallas}{
+	Este caso de uso permite al analista visualizar los registros de las pantallas registradas en el sistema. También permite al actor acceder a las operaciones de registro, consulta, modificación y eliminación de una pantalla.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de las pantallas de un módulo de un proyecto.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{moduloEntidad:claveModulo}{Clave del Módulo}: Lo obtiene el sistema.
+			\item \cdtRef{moduloEntidad:nombreModulo}{Nombre del Módulo}: Lo obtiene el sistema.
+			\item \cdtRef{pantalla}{Pantalla}: Tabla que muestra \cdtRef{pantalla:claveIU}{Clave}, \cdtRef{pantalla:numeroIU}{Número} y el \cdtRef{pantalla:nombreIU}{Nombre} de todas las pantallas registradas en un módulo de un proyecto.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} cuando no existen pantallas registradas.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU5}{Gestionar Módulos}.}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar las pantallas presionando el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pantalla}} de un módulo de la pantalla \IUref{IU4}{Gestionar Módulos}.
+	\UCpaso[\UCsist] Obtiene la información de las pantallas registradas en el módulo seleccionado. \Trayref{GIU-A}
+	\UCpaso[\UCsist] Muestra la información de las pantallas en la pantalla \IUref{IU7}{Gestionar Pantallas} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
+	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar, \eliminar y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}}. \label{CU11-P4}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GIU-A}{No existen registros de pantallas.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar que no hay registros de actores para mostrar.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar una pantalla}{Paso \ref{CU11-P4} de la trayectoria principal.}{\UCref{CU11.1}{Registrar Pantalla}}
+\UCExtenssionPoint{El actor requiere modificar una pantalla}{Paso \ref{CU11-P4} de la trayectoria principal.}{\UCref{CU11.2}{Modificar Pantalla}}
+\UCExtenssionPoint{El actor requiere eliminar una pantalla}{Paso \ref{CU11-P4} de la trayectoria principal.}{\UCref{CU11.3}{Eliminar Pantalla}}
+\UCExtenssionPoint{El actor requiere consultar una pantalla}{Paso \ref{CU11-P4} de la trayectoria principal.}{\UCref{CU11.4}{Consultar Pantalla}}

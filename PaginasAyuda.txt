@@ -1,0 +1,69 @@
+Paginas que sirven para TT
+
+Regargar pagina eliminando caché y volviendo a cargar JS
+https://www.redeszone.net/2017/04/22/borra-cache-google-chrome-recargar-web/
+
+Problema Gitbash con los retornos de carro en Windows
+https://stackoverflow.com/questions/5834014/lf-will-be-replaced-by-crlf-in-git-what-is-that-and-is-it-important
+
+Convenciones Struts 2
+https://struts.apache.org/plugins/convention/#action-annotation
+
+Result Path Configuration
+https://www.journaldev.com/2160/struts-2-result-path-configuration-with-examples
+
+Form Validation Struts 2
+https://struts.apache.org/getting-started/form-validation.html
+
+Global Properties Struts 2
+https://struts.apache.org/getting-started/message-resource-files.html#global-properties
+
+Get Global Properties in code in Struts 2
+https://stackoverflow.com/questions/711093/how-do-you-get-a-struts2-value-from-the-properties-file-programatically
+
+Dynamic Method Invocation
+https://struts.apache.org/core-developers/action-configuration.html
+
+Struts2: Malformed OGNL expression
+https://stackoverflow.com/questions/9487462/struts2-malformed-ognl-expression
+
+struts 2 ognl error
+https://stackoverflow.com/questions/13234870/struts-2-ognl-error
+
+Redirect Action Result Struts 2
+https://struts.apache.org/core-developers/redirect-action-result.html
+
+Using Tags Struts 2
+https://struts.apache.org/getting-started/using-tags.html
+
+What's the difference between # , % and $ signs in Struts tags?
+https://stackoverflow.com/questions/8007858/whats-the-difference-between-and-signs-in-struts-tags
+
+Atajos Eclipse
+http://jjcoellov.es/2009/02/07/tips-de-supervivencia-atajos-de-teclado-en-eclipse/
+
+Shorcuts Eclipse
+https://dzone.com/articles/effective-eclipse-shortcut-key
+https://gist.github.com/bertocq/7785603
+
+
+Gif cargando
+https://loading.io/spinner/eclipse/-ring-loading-gif
+Usuario: q760483@nwytg.net
+Contrasenia: gifPrisma
+Color: #446872
+radius: 40
+Thickness: 2
+Background: rgba(100%,100%,100%,0)
+Speed: 1
+Size: 200
+Transparent: Yes
+
+Teseractor Tutorial
+https://aescripts.com/learn/create-an-animated-hypercube-using-shape-layers-in-after-effects/
+
+
+Cambio de colores de mensaje exito del css
+#fcefa1
+se cambia por 
+#7dad45

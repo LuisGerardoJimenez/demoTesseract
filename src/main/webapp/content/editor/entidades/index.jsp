@@ -32,7 +32,7 @@
 						<s:url var="urlConsultar" value="%{#pageContext.request.contextPath}/entidades/%{#entidad.id}"/>
 							<s:a href="%{urlConsultar}">
 								<img id="" class="button" title="Consultar Entidad"
-										src="${pageContext.request.contextPath}/resources/images/icons/ver.png" />
+										src="${pageContext.request.contextPath}/resources/images/icons/Ver.svg" />
 							</s:a>
 						${blanks}
 						<s:if test="%{#entidad.estadoElemento.id == 1}">
@@ -40,7 +40,7 @@
 							<s:url var="urlEditar" value="%{#pageContext.request.contextPath}/entidades/%{#entidad.id}/edit"/>			
 								<s:a href="%{urlEditar}">
 								<img id="" class="button" title="Modificar Entidad"
-										src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+										src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 							</s:a>
 							
 							
@@ -49,7 +49,7 @@
 							<!--<s:url var="urlEliminar" value="%{#pageContext.request.contextPath}/entidades/%{#entidad.id}?_method=delete" method="post"/>-->
 							<s:a onclick="return verificarEliminacionElemento(%{#entidad.id});">
 							<img id="" class="button" title="Eliminar Caso de uso"
-									src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" /></s:a>	
+									src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" /></s:a>	
 						${blanks}	
 						</s:if>
 					</td>

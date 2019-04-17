@@ -50,7 +50,7 @@
 										value="%{#pageContext.request.contextPath}/trayectorias/%{#tray.id}/edit" />
 									<s:a href="%{urlModificar}">
 										<img id="" class="button" title="Modificar Trayectoria"
-											src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+											src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 									</s:a> ${blanks} 
 									<!-- Eliminar caso de uso -->
 									 <s:url
@@ -59,7 +59,7 @@
 										method="post" /> <s:a
 										onclick="return verificarEliminacionTrayectoria(%{#tray.id});">
 										<img id="" class="button" title="Eliminar Trayectoria"
-											src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" />
+											src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" />
 									</s:a>
 								</td>
 							</tr>
@@ -75,7 +75,7 @@
 									value="%{#pageContext.request.contextPath}/trayectorias/%{#tray.id}/edit" />
 								<s:a href="%{urlModificar}">
 									<img id="" class="button" title="Modificar Trayectoria"
-										src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+										src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 								</s:a> ${blanks} 
 								<!-- Eliminar caso de uso --> 
 								<s:url
@@ -84,7 +84,7 @@
 									method="post" /> <s:a
 									onclick="return verificarEliminacionTrayectoria(%{#tray.id});">
 									<img id="" class="button" title="Eliminar Trayectoria"
-										src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" />
+										src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" />
 								</s:a>
 							</td>
 						</s:else>

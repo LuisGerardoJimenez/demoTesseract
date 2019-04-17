@@ -1,0 +1,59 @@
+	\begin{UseCase}{CU11.3}{Eliminar Pantalla}{
+		Este caso de uso permite al actor eliminar del sistema una pantalla.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de una pantalla.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar que la pantalla fue eliminada correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará una pantalla de un módulo perteneciente a un proyecto del sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} cuando la pantalla no se encuentra en un estado que permita la eliminación.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU11}{Gestionar Pantallas}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar una pantalla oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU7}{Gestionar Pantallas}.
+		\UCpaso[\UCsist] Verifica que la pantalla pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EIU-A}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a la pantalla. \Trayref{EIU-B}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado a alguna acción de la pantalla. \Trayref{EIU-C}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU7}{Gestionar Pantallas}.
+		\UCpaso[\UCactor] Confirma la eliminación de la pantalla oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EIU-D}
+		\UCpaso[\UCsist] Elimina la información referente a la pantalla.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{EIU-A}{La pantalla esta asociado a un caso de uso liberado.}
+		\UCpaso[\UCsist] Oculta el botón \eliminar de la pantalla que esta asociado a casos de uso liberados.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EIU-B}{La pantalla está siendo referenciada en un caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU7}{Gestionar Pantallas} en una pantalla emergente con la lista de casos de uso que están referenciando a la pantalla.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7}{Gestionar Pantallas}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EIU-C}{Algunas acciones de la pantalla están siendo referenciadas en algún caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU7}{Gestionar Pantallas} en una pantalla emergente con la lista de casos de uso que están referenciando a la acción o acciones.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7}{Gestionar Pantallas}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EIU-D}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7}{Gestionar Pantallas}.
+	\end{UCtrayectoriaA}
+	
+

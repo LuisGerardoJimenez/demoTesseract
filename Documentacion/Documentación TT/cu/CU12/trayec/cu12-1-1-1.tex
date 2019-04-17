@@ -1,0 +1,138 @@
+	\begin{UseCase}{CU12.1.1.1}{Registrar Trayectoria}{
+		Las trayectorias describen los escenarios ideales y alternos de un sistema mediante una serie de pasos. Este caso de uso permite al analista registrar la trayectoria principal o una trayectoria alternativa de un caso de uso.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Registrar la información de una trayectoria principal o alternativa.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{entidadTray:nombreTray}{Clave}: Se escribe desde el teclado.
+			\item \cdtRef{entidadTray:alternativaTray}{Tipo:} Se escribe desde el teclado.
+			\item \cdtRef{entidadTray:condicionTray}{Condición:} Se escribe desde el teclado.
+			\item \cdtRef{entidadTray:finTray}{Fin del caso de uso:} Se selecciona de una lista.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+				\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+				\item \cdtRef{moduloEntidad:claveModulo}{Clave del Módulo}: Lo obtiene el sistema.
+				\item \cdtRef{moduloEntidad:nombreModulo}{Nombre del Módulo}: Lo obtiene el sistema.
+				\item \cdtRef{moduloEntidad:nombreModulo}{Nombre del Módulo}: Lo obtiene el sistema.
+				\item \cdtRef{casoUso:numeroCU}{Número} del caso de uso: Lo obtiene el sistema. 
+				\item \cdtRef{casoUso:nombreCU}{Nombre} del caso de uso: Lo obtiene el sistema.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para indicar que el registro fue exitoso.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que el caso de uso al que pertenece la trayectoria se encuentre en estado ''Edición'' o ''Pendiente de corrección''.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se registrará una nueva trayectoria para un caso de uso en el sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando se registre un caso de uso con un nombre que ya se encuentre registrado en el sistema.
+		\item \cdtIdRef{MSG14}{Dato no registrado}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando un elemento referenciado no existe en el sistema.
+		\item \cdtIdRef{MSG19}{Token Incorrecto}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando el token ingresado se encuentra estructurado de forma incorrecta.
+		\item \cdtIdRef{MSG16}{Registro necesario}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando el actor no registro ningún paso de la trayectoria.
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando el estado del caso de uso no sea ''Edición" o ''Pendiente
+		de corección''.
+		\end{itemize}.
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1.1}{Gestionar Trayectorias}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar una trayectoria oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+		\UCpaso[\UCactor] Verifica que el caso de uso se encuentre en estado ''Edición'' o en estado ''Pendiente de corrección''. \Trayref{RTRAY-J}
+		\UCpaso[\UCsist] Obtiene las reglas de negocio del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene las entidades del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los atributos del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los casos de uso del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene las trayectorias del caso de uso registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los pasos de las trayectorias del caso de uso registrados en el sistema
+		\UCpaso[\UCsist] Obtiene las pantallas del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene las acciones de las pantallas del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los mensajes del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los actores del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Obtiene los términos de glosario del proyecto actual registradas en el sistema.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}.
+		\UCpaso[\UCactor] Ingresa la clave de la trayectoria. 
+		\UCpaso[\UCactor] Selecciona la opción ''Principal'' del campo ''Tipo''. \Trayref{RTRAY-A} \label{CU12.1.1.1-P16}
+		\UCpaso[\UCsist] Marca la casilla del campo ''Fin del caso de uso''.
+		\UCpaso[\UCactor] Gestiona los pasos de la trayectoria. \label{CU12.1.1.1-P18}
+		\UCpaso[\UCactor] Solicita guardar la información de la trayectoria oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}. \Trayref{RTRAY-B} 
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RTRAY-C}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RTRAY-D} \Trayref{RTRAY-E} 
+		\UCpaso[\UCsist] Verifica que la clave de la trayectoria no se encuentre registrada en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RTRAY-F} 
+		\UCpaso[\UCsist] Verifica que el actor haya ingresado al menos un paso, con base en la regla de negocio \BRref{RN32}{Pasos en la Trayectoria}. \Trayref{RTRAY-G}
+		\UCpaso[\UCsist] Verifica que los tokens utilizados se encuentren correctamente estructurados ,con base en la regla de negocio \BRref{RN31}{Estructura de tokens}. \Trayref{RTRAY-H}
+		\UCpaso[\UCsist] Verifica que los elementos referenciados existan en el sistema ,con base en la regla de negocio \BRref{RN10}{Referencia a elementos}. \Trayref{RTRAY-I}
+		\UCpaso[\UCsist] Registra la información de la trayectoria en el sistema.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias} para indicar al actor que el registro se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{RTRAY-A}{El actor desea registrar una trayectoria alternativa.}
+		\UCpaso[\UCsist] Muestra el campo de condición.
+		\UCpaso[\UCactor] Ingresa la condición de la trayectoria.
+		\UCpaso[\UCactor] Selecciona si en la trayectoria se termina el caso de uso.
+		\UCpaso Continúa con el paso \ref{CU12.1.1.1-P18} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.1}{Gestionar Trayectorias}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-C}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-D}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RTRAY-F}{El actor ingresó un nombre de una trayectoria repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}, indicando al actor que existe un actor con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-G}{El actor no registró ningún paso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG16}{Registro necesario} en la sección de pasos de la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-H}{El actor ingresó un token estructurado de manera incorrecta.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG19}{Token incorrecto} en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}, indicando al actor que el token utilizado no es correcto.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RTRAY-I}{Alguno de los elementos referenciados no existe en el sistema.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG14}{Dato no registrado} en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria}, indicando al actor que el elemento que no se encuentra registrado en el sistema.
+		\UCpaso Regresa al paso \ref{CU12.1.1.1-P16} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RTRAY-J}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU6}{Gestionar Casos de uso}, indicando que no es posible registrar una trayectoria debido a que el estado del caso de uso es inválido.
+	\end{UCtrayectoriaA}
+
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar un paso de la trayectoria.}{Paso \ref{CU12.1.1.1-P18} de la trayectoria principal.}{\UCref{CU12.1.1.1.1}{Registrar Paso}}
+\UCExtenssionPoint{El actor requiere modificar un paso de la trayectoria.}{Paso \ref{CU12.1.1.1-P18} de la trayectoria principal.}{\UCref{CU12.1.1.1.2}{Modificar Paso}}
+\UCExtenssionPoint{El actor requiere eliminar un paso de la trayectoria.}{Paso \ref{CU12.1.1.1-P18} de la trayectoria principal.}{\UCref{CU12.1.1.1.3}{Eliminar Paso}}

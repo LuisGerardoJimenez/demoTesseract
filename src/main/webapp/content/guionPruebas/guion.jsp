@@ -50,7 +50,7 @@
 						<s:iterator value="instrucciones" status="incr">
 							<tr>
 								<td>${incr.index+1}</td>
-								<s:set var="pregunta"><s:property value="@mx.prisma.guionPruebas.controller.GuionPruebasCtrl@esInstruccion(instrucciones[#incr.index])"/></s:set>
+								<s:set var="pregunta"><s:property value="@mx.tesseract.guionPruebas.controller.GuionPruebasCtrl@esInstruccion(instrucciones[#incr.index])"/></s:set>
 								<s:if test="%{pregunta}">
 									<td colspan="4" class="ui-widget">
 										${instrucciones[incr.index]}

@@ -1,0 +1,44 @@
+\begin{BusinessEntity}{BREntidad}{Regla de Negocio}
+		
+	\Battr{claveBR}{Clave: }{Clave que permitirá distinguir que el elemento es una Regla de Negocio. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+
+	\Battr{numeroBR}{Número: }{Número de Regla de Negocio. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{nombreBR}{Nombre: }{Nombre que identificará a la Regla de Negocio. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{redaccionBR}{Redacción: }{Redacción de la Regla de Negocio. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{descripcionBR}{Descripción: }{Texto que describirá al a la regla de negocio. Descrita en uno o más párrafos y este dato es \hyperlink{tOpcional}{opcional} {\em (se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{tipodRelBR}{Tipo de Regla de Negocio}
+	\BRitem{\textbf{Descripción: }}{Una Regla de Negocio es de un tipo específico.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{operadorRelBR}{Operador}
+	\BRitem{\textbf{Descripción: }}{El operador que se utiliza en una comparación de atributos.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+
+\begin{BusinessFact}{atributoRelBR}{Atributo}
+	\BRitem{\textbf{Descripción: }}{Una regla de negocio debe especificar el atributo que hace única a una entidad.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{atributoCompRelABR}{Atributo (Comparación)}
+	\BRitem{\textbf{Descripción: }}{Una regla de negocio debe especificar los atributos a comparar.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{atributoERRelABR}{Atributo (Expresión regular)}
+	\BRitem{\textbf{Descripción: }}{Una regla de negocio debe especificar el atributo que se desea validar con la expresión regular.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}

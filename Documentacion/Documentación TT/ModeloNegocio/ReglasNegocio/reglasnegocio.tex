@@ -1,0 +1,427 @@
+\section{Modelado de Reglas de negocio}
+
+
+\begin{BussinesRule}{RN1}{Unicidad de números}
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Controla la operación. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El número de los elementos del mismo tipo no pueden repetirse.
+	\BRitem[Referenciado por:] \UCref{}{}.
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN2}{Nombres de los elementos}
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Controla la operación. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los nombres de los elementos no pueden contener coma, punto, punto medio, dos puntos o guión bajo.
+	\BRitem[Referenciado por:] \UCref{}{}.
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN3}{Líder de análisis}
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Controla la operación. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los proyectos deben tener asignado solamente un líder de análisis.
+	\BRitem[Referenciado por:] \UCref{}{}.
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN5}{Modificación de elementos asociados a casos de uso liberados}
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Controla la operación. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] No es posible modificar entidades, reglas de negocio, actores, términos del glosario, pantallas y/o mensajes que se encuentren asociados a casos de uso con estado ''Liberado''.
+	\BRitem[Referenciado por:] \UCref{}{}.
+\end{BussinesRule}
+
+
+
+\begin{BussinesRule}{RN6}{Unicidad de nombres}
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Controla la operación. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El nombre de los elementos del mismo tipo no puede repetirse.
+	\BRitem[Referenciado por:] \UCref{}{}.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN7}{Información correcta}
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Controla la operación. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:]	Todos los datos proporcionados al sistema deben pertenecer al tipo de dato especificado en el modelo de información y respetar el formato con base en lo definido en la entidad del diccionario de datos.
+	\BRitem[Referenciado por:] \UCref{CU1}{Iniciar Sesión}.
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN8}{Datos Obligatorios} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los datos proporcionados al sistema que son marcados como requeridos con el carácter *,no se deben omitir.
+	\BRitem[Referenciado por:] \UCref{CU1}{Iniciar Sesión}. 
+\end{BussinesRule}
+
+
+
+\begin{BussinesRule}{RN9}{Operaciones disponibles de casos de uso} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los estados de los casos de uso y el rol del actor determinan las operaciones que pueden solicitarse sobre un caso de uso desde la gestión:
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|p{5cm}| p{5cm}| p{5cm}|}
+			\hline
+			\rowcolor{blue} \textcolor{white}{\textbf{Estado}} & \textcolor{white}{\textbf{Operaciones Analista}} & \textcolor{white}{\textbf{Operaciones Líder de Análisis}} \\
+			\hline
+			Edición & Consultar, editar, gestionar trayectorias, gestionar puntos de extensión, terminar y eliminar & Consultar, editar, gestionar trayectorias, gestionar puntos de extensión, terminar y eliminar \\
+			\hline
+			Revisión & Consultar y revisar & Consultar y revisar\\
+			\hline
+			Por liberar & Consultar & Consultar y Liberar\\
+			\hline
+			Pendiente de correción & Consultar, editar, gestionar trayectorias, gestionar puntos de extensión, terminar y eliminar & Consultar, editar, gestionar trayectorias, gestionar puntos de extensión, terminar y eliminar\\
+			\hline
+			Liberado & Consultar & Consultar, solicitar correciones\\
+			\hline
+			Configurado & Consultar & Consultar, solicitar correciones\\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\BRitem[Referenciado por:] \UCref{}{}.
+	
+\end{BussinesRule}
+	
+	\begin{BussinesRule}{RN10}{Referencias a elementos} 
+		\BRitem[Tipo:] Restricción de operación. 
+		\BRitem[Clase:] Habilitadora. 
+		\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+		\BRitem[Descripción:] Los elementos que podrán ser referenciados desde los casos de uso son aquellos que se encuentren registrados en el sistema.
+		\BRitem[Referenciado por:] \UCref{}{}. 
+	\end{BussinesRule} 
+
+
+	\begin{BussinesRule}{RN11}{Registro de trayectorias} 
+		\BRitem[Tipo:] Restricción de operación. 
+		\BRitem[Clase:] Habilitadora. 
+		\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+		\BRitem[Descripción:] Al menos una de las trayectorias registradas debe ser marcada como principal.
+		\BRitem[Referenciado por:] \UCref{}{}. 
+	\end{BussinesRule}
+
+\begin{BussinesRule}{RN12}{Identificador de elemento} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El identificador de cada elemento se compone de un nombre, número y una clave. Donde el nombre es el que le asigna el usuario, el número es secuencial y la clave define el tipo de elemento: ''ENT'' para las entidades, ''ACT'' para los actores, ''CU'' para los casos de uso, ''IU'' para las pantallas, ''MSG'' para los mensajes, ''RN'' para las reglas de negocio y ''GLS'' para los términos del glosario.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN13}{Modificación del identificador} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Una vez registrado un elemento no se podrá modificar el nombre, el número o la clave del identificador.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN14}{Salidas del casos de uso} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] En las salidas del caso de uso podrán enlistarse mensajes y atributos de las entidades.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN15}{Operaciones disponibles} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Cuando una entidad, regla de negocio, actor, término del glosario, pantalla y/o mensaje, están en estado ''Edición'' es posible solicitar su consulta, modificación y eliminación. Cuando alguno de estos elementos se encuentre asociado a un caso de uso con estado ''Liberado'' solamente estará disponible la operación de consulta.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN16}{Nombres de las trayectorias} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los nombres de las trayectorias no pueden contener espacio, coma, punto, punto medio, dos puntos o guión bajo.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN17}{Unicidad de puntos de extensión} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] No puede existir más de un punto de extensión con el mismo caso de uso origen y el mismo caso de uso destino.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN18}{Eliminación de elemento} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] No es posible eliminar entidades, reglas de negocio, actores, términos del glosario, pantallas y/o mensajes que se encuentren asociados a casos de uso con estado ''Liberado''.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN19}{Formato de correo electrónico} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El correo electrónico debe ser una cadena de caracteres con la siguiente estructura ordenada:
+	\begin{enumerate}
+		\item Cadena de caracteres
+		\item ''@''
+		\item Cadena de caracteres
+		\item ''.''
+		\item Cadena de caracteres
+	\end{enumerate}
+	\BRitem[Ejemplo]: cadena1@cadena2.cadena3
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN20}{Verificación de catálogos} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Es necesario que exista información registrada en los catálogos al momento de solicitar una operación que requiera de estos.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN21}{Estados para iniciar un proyecto} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Se podrán registrar proyectos con estado ''En Negociación'' o ''Iniciado''.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN22}{Unicidad de la clave del proyecto} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La clave de los proyectos debe ser única en todo el sistema.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN23}{Unicidad de la clave del módulo} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La clave de los módulos debe ser única en un proyecto.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN24}{Unicidad de la clave de la trayectoria} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La clave de las trayectorias debe ser única en un caso de uso.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN25}{Relación entre fechas del proyecto} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La fecha de término del proyecto debe ser posterior a la fecha de inicio.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN26}{Relación entre fechas programadas del proyecto} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La fecha de término programada del proyecto debe ser posterior a la fecha de inicio programada.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN27}{Eliminación de personas} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] No es posible eliminar una persona, si esta es líder de al menos un proyecto.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN28}{Eliminación de módulos} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] No es posible eliminar un módulo, si algún elemento de otro módulo, tiene referencias a al menos un elemento del módulo que desea eliminarse.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN29}{Unicidad de casos de uso} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Diferentes casos de uso pueden tener el mismo nombre y/o número, únicamente si cada uno de estos pertenecen a diferentes módulos.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN30}{Unicidad de pantallas} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Diferentes pantallas pueden tener el mismo nombre y/o número, únicamente si cada una de estas pertenecen a diferentes módulos.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN31}{Estructura de tokens} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Los tokens utilizados para referenciar elementos deben mantener una estructura determinada de acuerdo al tipo de elemento referenciado:
+	\begin{itemize}
+		\item Regla de negocio: {\em RN·Número:Nombre}
+		\begin{itemize}
+			\item ''RN'': cadena que indica que el tipo de elemento referenciado es una regla de negocio.
+			\item ''·'': símbolo para separar las partes del token (punto medio).
+			\item ''Número'': número de la regla de negocio referenciada.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''Nombre'': nombre de la regla de negocio referenciada.
+		\end{itemize}
+		\item Entidad: {\em ENT·Nombre}
+		\begin{itemize}
+			\item ''ENT'': cadena que indica que el tipo de elemento referenciado es una entidad.
+			\item ''·'': símbolo para separar las partes del token (punto medio).
+			\item ''Nombre'': nombre de la entidad referenciada.
+		\end{itemize}
+		\item Caso de uso: {\em CU·ClaveMódulo·Número:Nombre}
+		\begin{itemize}
+			\item ''CU'': cadena que indica que el tipo de elemento referenciado es un caso de uso.
+			\item ''·'': símbolo para separar las partes del token (punto medio).
+			\item ''ClaveMódulo'': clave del módulo a la que pertenece el caso de uso referenciado.
+			\item ''Número'': número del caso de uso referenciado.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''Nombre'': nombre del caso de uso referenciado.
+		\end{itemize}
+		\item Pantalla: {\em IU·ClaveMódulo·Número:Nombre}
+		\begin{itemize}
+			\item ''IU'': cadena que indica que el tipo de elemento referenciado es una pantalla.
+			\item ''·'': símbolo para separar las partes del token (punto medio).
+			\item ''ClaveMódulo'': clave del módulo a la que pertenece la pantalla referenciada.
+			\item ''Número'': número de la pantalla referenciada.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''Nombre'': nombre de la pantalla referenciada.
+		\end{itemize}
+		\item Mensaje: {\em MSG·Número:Nombre}
+		\begin{itemize}
+			\item ''MSG'': cadena que indica que el tipo de elemento referenciado es un mensaje.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''Número'': número del mensaje referenciado.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''Nombre'': nombre del mensaje referenciado.
+		\end{itemize}
+	\item Actor: {\em ACT·Nombre}
+		\begin{itemize}
+			\item ''ACT'': cadena que indica que el tipo de elemento referenciado es un actor.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''Nombre'': nombre del actor referenciado.
+		\end{itemize}
+	\item Término de glosario: {\em GLS·Nombre}
+		\begin{itemize}
+			\item ''GLS'': cadena que indica que el tipo de elemento referenciado es un témino del glosario.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''Nombre'': nombre del término del glosario referenciado.
+		\end{itemize}
+	\item Atributo: {\em ATR·Entidad:Nombre}
+		\begin{itemize}
+			\item ''ATR'': cadena que indica que el tipo de elemento referenciado es un atributo.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''Entidad'': nombre de la entidad a la que pertenece el atributo referenciado.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''Nombre'': nombre del atributo referenciado.
+		\end{itemize}
+	\item Trayectoria: {\em TRAY·ClaveCasoUso·NúmeroCasoUso:NombreCasoUso:Clave}
+		\begin{itemize}
+			\item ''TRAY'': cadena que indica que el tipo de elemento referenciado es una trayectoria.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''ClaveCasoUso'': clave del caso de uso al que pertenece la trayectoria referenciada.
+			\item ''NúmeroCasoUso'': número del caso de uso al que pertenece la trayectoria referenciada.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''NombreCasoUso'': nombre del caso de uso al que pertenece la trayectoria referenciada.
+			\item ''Clave'': clave de la trayectoria referenciada.
+		\end{itemize}
+	\item Paso: {\em P·ClaveCasoUso·NúmeroCasoUso:NombreCasoUso:ClaveTrayectoria·Número}
+		\begin{itemize}
+			\item ''P'': cadena que indica que el tipo de elemento referenciado es un paso.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''ClaveCasoUso'': clave del caso de uso al que pertenece el paso referenciado.
+			\item ''NúmeroCasoUso'': número del caso de uso al que pertenece el paso referenciado.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''NombreCasoUso'': nombre del caso de uso al que pertenece el paso referenciado.
+			\item ''ClaveTrayectoria'': clave de la trayectoria a la que pertenece el paso referenciado.
+			\item ''Número'': número del paso referenciado.
+		\end{itemize}
+	\item Acción: {\em ACC·ClavePantalla·NúmeroPantalla:NombrePantalla:Nombre}
+		\begin{itemize}
+			\item ''ACC'': cadena que indica que el tipo de elemento referenciado es una acción.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''ClavePantalla'': clave de la pantalla a la que pertenece la acción referenciada.
+			\item ''NúmeroPantalla'': número de la pantalla a la que pertenece la acción referenciada.
+			\item '':'': símbolo para separar las partes del token (dos puntos).
+			\item ''NombrePantalla'': nombre de la pantalla a la que pertenece la acción referenciada.
+			\item ''Nombre'': nombre de la acción referenciada.
+		\end{itemize}
+	\item Parámetro (Mensajes): {\em PARAM·Nombre}
+		\begin{itemize}
+			\item ''PARAM'': cadena que indica que se está realizando una referencia a un parámetro en un mensaje.
+			\item ''·'':  símbolo para separar las partes del token (punto medio).
+			\item ''Nombre'': nombre del parámentro referenciado.
+		\end{itemize}
+	\end{itemize}
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN32}{Pasos en la trayectoria} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Una trayectoria debe debe contar al menos con un paso.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+\begin{BussinesRule}{RN33}{Longitud de la CURP} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] La CURP de un colaborador debe tener exactamente 18 caracteres alfanuméricos.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN34}{Eliminación de proyectos} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] No es posible eliminar un proyecto, si este tiene elementos asociados.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN35}{Validar Fecha} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Para registrar la duración de un proyecto, la fecha de termino programada debe ser posterior a la fecha de inicio programada.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN36}{Unicidad de correos} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El correo de un colaborador debe ser único en todo el sistema.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}

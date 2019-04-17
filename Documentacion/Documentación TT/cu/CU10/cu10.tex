@@ -1,0 +1,38 @@
+	\begin{UseCase}{CU10}{Gestionar Actores}{
+	Este caso de uso permite al analista visualizar los registros de los actores registrados en el sistema. También permite al actor acceder a las operaciones de registro, consulta, modificación, y eliminación de un actor.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de los actores de un proyecto.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{actorEntidad}{Actor}: Tabla que muestra \cdtRef{actorEntidad:nombreEntidad}{nombre} de todos los actores registrados de un proyecto.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} cuando no existen mensajes registradas.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Tipo}{Primario}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar los términos seleccionando la opción ''Actores'' del menú \IUref{MN3}{Menú de Proyecto}.
+	\UCpaso[\UCsist] Obtiene la información de los mensajes registrados del proyecto seleccionado. \Trayref{GMSG-A}
+	\UCpaso[\UCsist] Muestra la información de los mensajes en la pantalla \IUref{IU8}{Gestionar Actores} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
+	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar y \eliminar. \label{CU10-P4}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GMSG-A}{No existen registros de actores.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar que no hay registros de actores para mostrar.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar un actor.}{Paso \ref{CU10-P4} de la trayectoria principal.}{\UCref{CU10.1}{Registrar Actor}}
+\UCExtenssionPoint{El actor requiere modificar un actor.}{Paso \ref{CU10-P4} de la trayectoria principal.}{\UCref{CU10.2}{Modificar Actor}}
+\UCExtenssionPoint{El actor requiere eliminar un actor.}{Paso \ref{CU10-P4} de la trayectoria principal.}{\UCref{CU10.3}{Eliminar Actor}}
+\UCExtenssionPoint{El actor requiere consultar un actor.}{Paso \ref{CU10-P4} de la trayectoria principal.}{\UCref{CU10.4}{Consultar Actor}}

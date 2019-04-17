@@ -48,11 +48,11 @@
 						<s:url var="urlEditar" value="%{#pageContext.request.contextPath}/extensiones/%{#ext.id}/edit"/>			
 						<s:a href="%{urlEditar}">
 							<img id="" class="button" title="Modificar Punto de extensión"
-									src="${pageContext.request.contextPath}/resources/images/icons/editar.png" />
+									src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" />
 						</s:a>
 						<s:a onclick="return mostrarMensajeEliminacion(%{#ext.id});">
 							<img id="" class="button" title="Eliminar Punto de extensión"
-									src="${pageContext.request.contextPath}/resources/images/icons/eliminar.png" />
+									src="${pageContext.request.contextPath}/resources/images/icons/Eliminar.svg" />
 						</s:a>
 					</td>	
 				</tr>

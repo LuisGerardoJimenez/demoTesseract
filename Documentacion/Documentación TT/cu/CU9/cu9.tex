@@ -1,0 +1,38 @@
+	\begin{UseCase}{CU9}{Gestionar Mensajes}{
+	Este caso de uso permite al analista visualizar los registros de los mensajes del sistema. También permite al actor acceder a las operaciones de registro, modificación y eliminación de un mensaje.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de los mensajes de un proyecto.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{MSGEntidad}{Mensaje}: Tabla que muestra \cdtRef{MSGEntidad:nombreMSG}{nombre} de todos los mensajes registrados de un proyecto.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU10}{Gestionar Mensajes} cuando no existen mensajes registradas.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Tipo}{Primario}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar los términos seleccionando la opción ''Mensajes'' del menú \IUref{MN3}{Menú de Proyecto}.
+	\UCpaso[\UCsist] Obtiene la información de los mensajes registrados del proyecto seleccionado. \Trayref{GMSG-A}
+	\UCpaso[\UCsist] Muestra la información de los mensajes en la pantalla \IUref{IU10}{Gestionar Mensajes} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
+	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar y \eliminar. \label{CU9-P4}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GMSG-A}{No existen registros de mensajes.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU10}{Gestionar Mensajes} para indicar que no hay registros de mensajes para mostrar.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar un mensaje.}{Paso \ref{CU9-P4} de la trayectoria principal.}{\UCref{CU9.1}{Registrar Mensaje}}
+\UCExtenssionPoint{El actor requiere modificar un mensaje.}{Paso \ref{CU9-P4} de la trayectoria principal.}{\UCref{CU9.2}{Modificar Mensaje}}
+\UCExtenssionPoint{El actor requiere eliminar un mensae.}{Paso \ref{CU9-P4} de la trayectoria principal.}{\UCref{CU9.3}{Eliminar Mensaje}}
+\UCExtenssionPoint{El actor requiere consultar un mensaje.}{Paso \ref{CU9-P4} de la trayectoria principal.}{\UCref{CU9.4}{Consultar Mensaje}}

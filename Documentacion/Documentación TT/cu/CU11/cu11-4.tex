@@ -1,0 +1,49 @@
+	\begin{UseCase}{CU11.4}{Consultar Pantalla}{
+		Este caso de uso permite al analista consultar la información de una pantalla y la lista de acciones que contiene.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Consultar la información de una pantalla perteneciente a un módulo de un proyecto.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{
+			\begin{itemize}
+				\item De la sección ''Información general de la pantalla'':
+					\begin{itemize}
+						\item \cdtRef{pantalla:claveIU}{Clave}: Lo obtiene el sistema.
+						\item \cdtRef{pantalla:numeroIU}{Número}: Lo obtiene el sistema.
+						\item \cdtRef{pantalla:nombreIU}{Nombre}: Lo obtiene el sistema.
+						\item \cdtRef{pantalla:descripcionIU}{Descripción}: Lo obtiene el sistema.
+						\item \cdtRef{pantalla:imagenIU}{Imagen}: Lo obtiene el sistema.
+					\end{itemize}
+				\item De la sección ''Acciones'':
+					\begin{itemize}
+						\item \cdtRef{accion:nombreACC}{Nombre}: Lo obtiene el sistema.
+						\item \cdtRef{accion:descripcionACC}{Descripción}: Lo obtiene el sistema.
+						\item \cdtRef{accion:imagenACC}{Imagen}: Lo obtiene el sistema.
+					\end{itemize}
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{Ninguna}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} cuando la pantalla que se desea consultar no existe.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU11}{Gestionar Pantallas}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita consultar una pantalla oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} del registro que desea consultar de la pantalla \IUref{IU7}{Gestionar Pantalla} o la liga correspondiente a una pantalla en la pantalla \IUref{IU6.3}{Consultar caso de uso}.
+		\UCpaso[\UCsist] Obtiene la información de la pantalla seleccionada. \Trayref{CIU-A}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7.3}{Consultar Pantalla} con la información de la pantalla.
+		\UCpaso[\UCactor] Consulta la información de la pantalla.
+		\UCpaso[\UCactor] Solicita finalizar la consulta oprimiendo el botón \IUref{Regresar} de la pantalla \IUref{IU7.3}{Consultar Pantalla}.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{CIU-A}{La pantalla que se desea consultar no existe.}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7}{Gestionar Pantallas} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\end{UCtrayectoriaA}
+
+
+	

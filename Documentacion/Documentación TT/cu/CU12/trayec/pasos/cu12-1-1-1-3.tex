@@ -1,0 +1,47 @@
+	\begin{UseCase}{CU12.1.1.1.3}{Eliminar Paso}{
+		Este caso de uso permite al actor eliminar un registro de la tabla de pasos perteneciente a un trayectoria de un caso de uso.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar un paso perteneciente a una trayectoria.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{
+			\begin{itemize}
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o \IUref{IU6.1.1.2}{Modificar Trayectoria} para que el actor confirme la eliminación.
+			\end{itemize}
+		}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará un paso de la tabla de la trayectoria.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} cuando no se pueda eliminar el paso debido a que está siendo utilizado por otro elemento.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1.1.1}{Registrar Trayectoria} o \UCref{CU12.1.1.2}{Modificar Trayectoria}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar un paso oprimiendo el botón \eliminar del registro que desea eliminar de la tabla de pasos de la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o \IUref{IU6.1.1.2}{Modificar Trayectoria}.
+		\UCpaso[\UCsist] Verifica que ningún elemento se encuentre referenciando al paso. \Trayref{EPA-A}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o \IUref{IU6.1.1.2}{Modificar Trayectoria}.
+		\UCpaso[\UCactor] Confirma la eliminación del paso oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EPA-B}
+		\UCpaso[\UCsist] Elimina el paso de la tabla correspondiente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+
+	\begin{UCtrayectoriaA}{EPA-A}{Existen elementos referenciando al paso que se desea eliminar.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o \IUref{IU6.1.1.2}{Modificar Trayectoria} en una pantalla emergente con la lista elementos que están referenciando al paso.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o \IUref{IU6.1.1.2}{Modificar Trayectoria}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EPA-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o \IUref{IU6.1.1.2}{Modificar Trayectoria}.
+	\end{UCtrayectoriaA}
+	
+

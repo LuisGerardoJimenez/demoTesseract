@@ -1,0 +1,34 @@
+%--------------------------------------
+\subsection{IU 7.2 Modificar Pantalla}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor Modificar la información de una pantalla nueva, así como gestionar las acciones que contiene.
+\subsubsection{Diseño}
+	En la figura \IUref{IU7.2}{Modificar Pantalla} se muestra la pantalla ''Modificar Pantalla'' en la cual el actor deberá ingresar la información solicitada y gestionar las acciones.
+	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y registrará la información solo si se han cumplido todas las reglas de negocio establecidas.
+	
+	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación Exitosa} en la pantalla \IUref{IU7}{Gestionar Pantallas}, para indicar que la información de la pantalla se ha modificado correctamente.
+	En la parte superior derecha, el sistema muestra el proyecto y el módulo en el que actualmente se encuentra trabajando.
+
+\IUfig[.7]{interfaces/IU7-2modificarPantalla}{IU7.2}{Modificar Pantalla}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de una acción, dirige a la pantalla \IUref{IU7.1.1}{Registrar Acción}.
+	\item \editar [Modificar]: Permite al actor solicitar la modificación de una acción, dirige a la pantalla \IUref{IU7.1.2}{Modificar Acción}.
+	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de una acción, dirige a una pantalla emergente.
+	\item \IUbutton{Aceptar}: Permite al actor guardar la modificación de la pantalla, dirige a la pantalla \IUref{IU7}{Gestionar Pantallas}.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar la modificación de la pantalla, dirige a la pantalla \IUref{IU7}{Gestionar Pantallas}
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar que la edición fue exitosa.
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU7.2}{Modificar Pantalla} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU7.2}{Modificar Pantalla} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU7.2}{Modificar Pantalla} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU7.2}{Modificar Pantalla} cuando se registre una pantalla con un nombre o número que ya se encuentre registrado.
+	\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU7.2}{Modificar Pantalla} cuando el nombre dela pantalla contiene un carácter no válido.
+	\item \cdtIdRef{MSG20}{Formato de archivo incorrecto}: Se muestra en la pantalla \IUref{IU7.2}{Modificar Pantalla} cuando la imagen de la pantalla no cumpla con el formato especificado.
+	\item \cdtIdRef{MSG22}{Se ha excedido el tamaño del archivo}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantalla} cuando la pantalla que se desea modificar se encuentra asociada a casos de uso liberados.
+\end{Citemize}

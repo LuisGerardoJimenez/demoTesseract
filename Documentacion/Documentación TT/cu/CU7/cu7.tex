@@ -1,0 +1,38 @@
+	\begin{UseCase}{CU7}{Gestionar entidades}{
+	Este caso de uso permite al analista visualizar los registros de las entidades del sistema. También permite al actor acceder a las operaciones de registro, modificación y eliminación de una entidad.
+	}
+	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{analista}{Analista}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control de las entidades de un proyecto.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item \cdtRef{proyectoEntidad:claveProyecto}{Clave del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{proyectoEntidad:nombreProyecto}{Nombre del proyecto}: Lo obtiene el sistema.
+			\item \cdtRef{entidadEntidad}{Entidad}: Tabla que muestra \cdtRef{entidadEntidad:nombreEntidad}{nombre} de todos los términos registrados de un proyecto.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU12}{Gestionar Entidades} cuando no existen entidades registradas.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Tipo}{Primario}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar los términos seleccionando la opción ''Entidades'' del menú \IUref{MN3}{Menú de Proyecto}.
+	\UCpaso[\UCsist] Obtiene la información de las entidades registradas del proyecto seleccionado. \Trayref{GENT-A}
+	\UCpaso[\UCsist] Muestra la información de las entidades en la pantalla \IUref{IU12}{Gestionar Entidades} y las operaciones disponibles de acuerdo a la regla de negocio \BRref{RN15}{Operaciones disponibles}.
+	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar y \eliminar. \label{CU7-P4}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GENT-A}{No existen registros de entidades.}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU12}{Gestionar Entidades} para indicar que no hay registros de entidades para mostrar.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar una entidad.}{Paso \ref{CU7-P4} de la trayectoria principal.}{\UCref{CU7.1}{Registrar Entidad}}
+\UCExtenssionPoint{El actor requiere modificar una entidad.}{Paso \ref{CU7-P4} de la trayectoria principal.}{\UCref{CU7.2}{Modificar Entidad}}
+\UCExtenssionPoint{El actor requiere eliminar una entidad.}{Paso \ref{CU7-P4} de la trayectoria principal.}{\UCref{CU7.3}{Eliminar Entidad}}
+\UCExtenssionPoint{El actor requiere consultar una entidad.}{Paso \ref{CU7-P4} de la trayectoria principal.}{\UCref{CU7.4}{Consultar Entidad}}

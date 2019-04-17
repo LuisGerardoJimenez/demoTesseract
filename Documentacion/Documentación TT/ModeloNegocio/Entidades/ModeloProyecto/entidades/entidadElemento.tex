@@ -1,0 +1,84 @@
+\begin{BusinessEntity}{elementoEntidad}{Elemento}
+	\Battr{claveElemento}{Clave: }{Clave que permitirá distinguir el tipo de Elemento. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}. }
+		
+	\Battr{numeroElemento}{Número: }{Número del Elemento del tipo denido por la Clave. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+		
+	\Battr{nombreElemento}{Nombre: }{Nombre que identificará al Elemento. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{pantallaRelElemento}{Pantalla}
+	\BRitem{\textbf{Descripción: }}{Pantalla es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{actorRelElemento}{Actor}
+	\BRitem{\textbf{Descripción: }}{Actor es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{BrRelElemento}{Reglas de Negocio}
+	\BRitem{\textbf{Descripción: }}{Regla de Negocio es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{MensajeRelElemento}{Mensaje}
+	\BRitem{\textbf{Descripción: }}{Mensaje es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{terminoRelElemento}{Término (Glosario)}
+	\BRitem{\textbf{Descripción: }}{Término (Glosario) es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{entidadRelElemento}{Entidad}
+	\BRitem{\textbf{Descripción: }}{Entidad es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{CURelElemento}{Caso de Uso}
+	\BRitem{\textbf{Descripción: }}{Caso de Uso es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{entidadRelElemento}{Entidad}
+	\BRitem{\textbf{Descripción: }}{Entidad es un tipo de Elemento.}
+	\BRitem{\textbf{Tipo: }}{\relHerencia}
+\end{BusinessFact}
+
+\begin{BusinessFact}{actualizacionRelElemento}{Actualización}
+	\BRitem{\textbf{Descripción: }}{Un elemento ha pasado por un conjunto de actualizaciones.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{estadoRelElemento}{Estado del Elemento}
+	\BRitem{\textbf{Descripción: }}{Un Elemento se encuentra en un Estado.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{proyectoRelElemento}{Proyecto}
+	\BRitem{\textbf{Descripción: }}{Un Proyecto se compone de elementos.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}
+
+\begin{BusinessFact}{valorParamPasoRelElemento}{Valor Parámetro en Paso}
+	\BRitem{\textbf{Descripción: }}{Un Elemento puede ser el valor de algún parámetro en un paso de la Trayectoria.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{valorParamMensajeRelElemento}{Valor Parámetro en Mensaje}
+	\BRitem{\textbf{Descripción: }}{Un Elemento puede ser el valor de algún parámetro en un Mensaje.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{valorParamBRRelElemento}{Valor Parámetro en Regla de Negocio}
+	\BRitem{\textbf{Descripción: }}{Un Elemento puede ser el valor de algún parámetro en una Regla de Negocio.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

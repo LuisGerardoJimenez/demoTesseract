@@ -1,0 +1,36 @@
+	\begin{UseCase}{CU3}{Gestionar Personal}{
+		Este caso de uso permite al actor visualizar todas las personas de la organización, así como solicitar el registro, consulta, modificación y eliminación de una persona.
+	}
+	\UCitem{Versión}{\color{Gray}0.1}
+	\UCitem{Actor}{\hyperlink{admin}{Administrador}}
+	\UCitem{Propósito}{Proporcionar al actor un mecanismo para llevar el control del personal.}
+	\UCitem{Entradas}{Ninguna}
+	\UCitem{Salidas}{\begin{itemize}
+			\item : \cdtRef{colaboradorEntidad}{Colaborador}: Tabla que muestra \cdtRef{colaboradorEntidad:curpColaborador}{CURP}, \cdtRef{colaboradorEntidad:nombreColaborador}{Nombre}, \cdtRef{colaboradorEntidad:pApellidoColaborador}{Primer Apellido}, \cdtRef{colaboradorEntidad:sApellidoColaborador}{Segundo Apellido} de todos los registros de las personas.
+			\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} cuando no existe personal registrado.
+	\end{itemize}}
+	\UCitem{Destino}{Pantalla}
+	\UCitem{Precondiciones}{Ninguna}
+	\UCitem{Postcondiciones}{Ninguna}
+	\UCitem{Errores}{Ninguno}
+	\UCitem{Tipo}{Caso de uso primario}
+\end{UseCase}
+%--------------------------------------
+\begin{UCtrayectoria}
+	\UCpaso[\UCactor] Solicita gestionar al personal presionando la opción ''Personal'' del menú \IUref{MN1}{Menú de Administrador}.
+	\UCpaso[\UCsist] Obtiene la información del personal registrado. \Trayref{GP-A}
+	\UCpaso[\UCsist] Muestra la información del personal en la pantalla \IUref{IU3}{Gestionar Personal}.
+	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar  y \eliminar. \label{CU3-P4}
+\end{UCtrayectoria}		
+%--------------------------------------
+\begin{UCtrayectoriaA}{GP-A}{No existen registros de personas}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar que no hay registros de personas para mostrar.
+\end{UCtrayectoriaA}
+
+%--------------------------------------
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar una persona.}{Paso \ref{CU3-P4} de la trayectoria principal.}{\UCref{CU3.1}{Registrar Persona}}
+\UCExtenssionPoint{El actor requiere modificar una persona.}{Paso \ref{CU3-P4} de la trayectoria principal.}{\UCref{CU3.2}{Modificar Persona}}
+\UCExtenssionPoint{El actor requiere eliminar una persona.}{Paso \ref{CU3-P4} de la trayectoria principal.}{\UCref{CU3.3}{Eliminar Persona}}

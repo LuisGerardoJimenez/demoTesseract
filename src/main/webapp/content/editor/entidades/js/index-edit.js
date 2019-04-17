@@ -20,7 +20,7 @@ $(document).ready(
 							item.tipoDato.nombre, item.otroTipoDato,
 							item.longitud, item.formatoArchivo,
 							item.tamanioArchivo, abreviatura, item.obligatorio,
-							item.id);
+							item.Id);
 					dataTableCDT.addRow("tablaAtributo", atributo);
 				});
 			}
@@ -73,7 +73,11 @@ function modificarAtributo() {
 	var unidadTamanioSelect = document.getElementById("atributo.unidadTamanio");
 	var obligatorio = document.getElementById("atributo.obligatorio").checked;
 	var tipoDato = tipoDatoSelect.options[tipoDatoSelect.selectedIndex].text;
-	var unidadTamanio = unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex].text;
+	var unidadTamanio = 0;
+	if(unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex] != undefined){
+		unidadTamanio = unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex].text;
+	}
+	//var unidadTamanio = unidadTamanioSelect.options[unidadTamanioSelect.selectedIndex].text;
 	var indexFilaAtributo = document.getElementById("filaAtributo").value;
 
 	if (esValidoAtributo("tablaAtributo", nombre, descripcion, tipoDatoSelect,
@@ -132,11 +136,11 @@ function construirFila(nombre, descripcion, tipoDato, otroTipoDato, longitud,
 					+ "<a button='true' onclick='solicitarModificacionAtributo(this);'>"
 					+ "<img class='icon'  id='icon' src='"
 					+ window.contextPath
-					+ "/resources/images/icons/editar.png' title='Modificar Atributo'/></a>"
+					+ "/resources/images/icons/Editar.svg' title='Modificar Atributo'/></a>"
 					+ "<a onclick='dataTableCDT.deleteRow(tablaAtributo, this);' button='true'>"
 					+ "<img class='icon'  id='icon' src='"
 					+ window.contextPath
-					+ "/resources/images/icons/eliminar.png' title='Eliminar Atributo'/></a>"
+					+ "/resources/images/icons/Eliminar.svg' title='Eliminar Atributo'/></a>"
 					+ "</center>" ];
 	return row;
 }
@@ -328,7 +332,7 @@ function disablefromTipoDato() {
 	}
 }
 
-function prepararEnvio() {
+function preparaEnvio() {
 	try {
 		tablaToJson("tablaAtributo");
 		//$('#mensajeConfirmacion').dialog('open');
@@ -354,7 +358,7 @@ function tablaToJson(idTable) {
 		var formatoArchivo = table.fnGetData(i, 7);
 		var tamanioArchivo = table.fnGetData(i, 8);
 		var unidadTamanio = table.fnGetData(i, 9);
-		var id = table.fnGetData(i, 10);
+		var Id = table.fnGetData(i, 10);
 
 		if (obligatorio == 'Sí') {
 			obligatorio = true;
@@ -364,7 +368,7 @@ function tablaToJson(idTable) {
 
 		arregloAtributos.push(new Atributo(nombre, descripcion, obligatorio,
 				longitud, tipoDato, otroTipoDato, formatoArchivo,
-				tamanioArchivo, unidadTamanio, id));
+				tamanioArchivo, unidadTamanio, Id));
 	}
 	var jsonAtributos = JSON.stringify(arregloAtributos);
 	document.getElementById("jsonAtributosTabla").value = jsonAtributos;

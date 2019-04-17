@@ -1,0 +1,106 @@
+	\begin{UseCase}{CU11.1}{Registrar Pantalla}{
+		Las pantallas son la interfaz del sistema con el usuario, permiten solicitar o mostrarle información. Este caso de uso permite al analista registrar la información de una pantalla.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Registrar la información de una pantalla.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{pantalla:numeroIU}{Número}: Se escribe desde el teclado.
+			\item \cdtRef{pantalla:nombreIU}{Nombre}: Se escribe desde el teclado.
+			\item \cdtRef{pantalla:descripcionIU}{Descripción}: Se escribe desde el teclado.
+			\item \cdtRef{pantalla:imagenIU}{Imagen}: Se selecciona de los archivos locales.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{pantalla:claveIU}{Clave:} Lo calcula el sistema mediante la regla de negocio \BRref{RN12}{Identifcador de elemento}.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar que el registro fue exitoso.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se registrará una pantalla en el módulo de un proyecto en el sistema.
+			\item La pantalla podrá ser referenciada en casos de uso.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG5}{Formato de campo incorrecto}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando el número de la pantalla contiene un carácter no válido.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando se registre un actor con un nombre que ya se encuentre registrado en el sistema.
+		\item \cdtIdRef{MSG20}{Formato de archivo incorrecto}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando la imagen de la pantalla no cumpla con el formato especificado.
+		\item \cdtIdRef{MSG21}{Se ha excedido el tamaño del archivo}: Se muestra en la pantalla \IUref{IU7.1}{Registrar Pantalla} cuando la imagen de la pantalla exceda el tamaño especificado.
+		\end{itemize}.
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU11}{Gestionar Pantallas}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar una pantalla oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU7}{Gestionar Pantallas}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7.1}{Registrar Pantalla}.
+		\UCpaso[\UCactor] Ingresa el número, el nombre y la descripción de la pantalla. \label{CU11.1-P3}
+		\UCpaso[\UCactor] Selecciona la imagen de sus archivos locales. \label{CU11.1-P4}
+		\UCpaso[\UCactor] Gestiona las acciones de la pantalla. \label{CU11.1-P5}
+		\UCpaso[\UCactor] Solicita guardar la información de la pantalla oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU7.1}{Registrar Pantalla}.\Trayref{RIU-A} 
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RIU-B}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RIU-C} \Trayref{RIU-D} \Trayref{RIU-E} \Trayref{RIU-F} \Trayref{RIU-G}
+		\UCpaso[\UCsist] Verifica que el número de la pantalla no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN1}{Unicidad de números}. \Trayref{RIU-H}
+		\UCpaso[\UCsist] Verifica que el nombre de la pantalla no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RIU-I} 
+		\UCpaso[\UCsist] Registra la información de la pantalla en el sistema.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU7}{Gestionar Pantallas} para indicar al actor que el registro se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+
+	\begin{UCtrayectoriaA}{RIU-A}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU7.1}{Registrar Pantalla}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU7}{Gestionar Pantallas}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RIU-B}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU7.1}{Registrar Pantalla}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RIU-C}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU7.1}{Registrar Pantalla}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RIU-D}{El actor ingresó un número de pantalla con un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG5}{Formato de campo incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU7.1}{Registrar Pantalla}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RIU-E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU7.1}{Registrar Pantalla}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RIU-F}{El actor proporciona una imagen de formato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG20}{Formato de archivo incorrecto} y señala el campo donde se solicita la imagen en la pantalla \IUref{IU7.1}{Registrar Pantalla}, para indicar que el formato es incorrecto.
+		\UCpaso Regresa al paso \ref{CU11.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RIU-G}{El actor proporciona una imagen que excede el tamaño máximo.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG21}{Se ha excedido el tamaño del archivo} y señala el campo donde se solicita la imagen en la pantalla \IUref{IU7.1}{Registrar Pantalla}, para indicar que el tamaño máximo ha sido rebasado.
+		\UCpaso Regresa al paso \ref{CU11.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RIU-H}{El actor ingresó un número de pantalla repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU7.1}{Registrar Pantalla}, indicando al actor que existe una pantalla con el mismo número.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RIU-I}{El actor ingresó un nombre de una pantalla repetido.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU7.1}{Registrar Pantalla}, indicando al actor que existe una pantalla con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU11.1-P3} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+
+\subsubsection{Puntos de extensión}
+
+\UCExtenssionPoint{El actor requiere registrar una acción}{Paso \ref{CU11.1-P5} de la trayectoria principal.}{\UCref{CU11.1.1}{Registrar Acción}}
+\UCExtenssionPoint{El actor requiere modificar una acción}{Paso \ref{CU11.1-P5} de la trayectoria principal.}{\UCref{CU11.1.2}{Modificar Acción}}
+\UCExtenssionPoint{El actor requiere eliminar una acción}{Paso \ref{CU11.1-P5} de la trayectoria principal.}{\UCref{CU11.1.3}{Eliminar Acción}}

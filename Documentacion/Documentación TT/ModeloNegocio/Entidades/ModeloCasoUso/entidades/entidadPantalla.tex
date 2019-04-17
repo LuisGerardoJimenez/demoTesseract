@@ -1,0 +1,18 @@
+\begin{BusinessEntity}{pantalla}{Pantalla}
+	\Battr{claveIU}{Clave: }{Clave que permitirá distinguir que el elemento es una Pantalla. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}. }
+		
+	\Battr{numeroIU}{Número: }{Número de la Pantalla. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+		
+	\Battr{nombreIU}{Nombre: }{Nombre que identificará a la Pantalla. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+
+	\Battr{imagenIU}{Imagen: }{Es un archivo en formato PNG o JPG. Imágen que ilustrará la interfaz gráfica del sistema. y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{patronIU}{Patrón: }{Texto que contiene la pantalla para su identificación. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{accionRelIU}{Acción}
+	\BRitem{\textbf{Descripción: }}{Una pantalla puede tener un conjunto de acciones.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

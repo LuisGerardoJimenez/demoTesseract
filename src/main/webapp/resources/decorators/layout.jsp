@@ -8,9 +8,10 @@
 		contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" />
 	<html>
 <head>
+<link rel="shortcut icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/LogoBlanco.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<title>PRISMA | <decorator:title default="Bienvenido" /></title>
+<title>TESSERACT | <decorator:title default="Bienvenido" /></title>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/estilo.css" />
@@ -42,14 +43,14 @@
 				<s:if test="#session.login == true">
 					<s:set name="id" value="#session.id"></s:set>
 					<s:set var="perfil">/content/<s:property
-							value="@mx.prisma.controller.AccessCtrl@getMenu()" />.jsp</s:set>
+							value="@mx.tesseract.controller.AccessCtrl@getMenu()" />.jsp</s:set>
 					<jsp:include page="${perfil}" />
 				</s:if>
 			</s:if>
 		</div>
-		<div class="menuSecundario">
-			<!--  -->
-		</div>
+		<!--  <div class="menuSecundario">
+			
+		</div>-->
 
 		<div class="areaTrabajo" id="idAreaTrabajo">
 				<s:if test="#session.idProyecto != null">

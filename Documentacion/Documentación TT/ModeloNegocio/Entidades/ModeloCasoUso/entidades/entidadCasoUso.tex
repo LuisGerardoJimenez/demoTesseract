@@ -1,0 +1,76 @@
+\begin{BusinessEntity}{casoUso}{Caso de Uso}
+	\Battr{claveCU}{Clave: }{Clave que permitirá distinguir que el elemento es un Caso de Uso. Es una palabra corta y este dato es requerido {\em (no se puede omitir)}. }
+		
+	\Battr{numeroCU}{Número: }{Número del Caso de Uso. Es un valor numérico entero y este dato es requerido {\em (no se puede omitir)}.}
+		
+	\Battr{nombreCU}{Nombre: }{Nombre que identificará al Caso de Uso. Es una frase o enunciado y este dato es requerido {\em (no se puede omitir)}.}
+
+	\Battr{resumenCU}{Resumen: }{Breve descripción del contenido del caso de uso. Descrita en uno o más párrafos y este dato es requerido {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{pantallaRelCU}{Pantalla}
+	\BRitem{\textbf{Descripción: }}{Un Caso de Uso utiliza diferentes pantallas.}
+	\BRitem{\textbf{Tipo: }}{\relAgregacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{actorRelCU}{Actor}
+	\BRitem{\textbf{Descripción: }}{Un Caso de Uso puede ser realizado por diferentes actores.}
+	\BRitem{\textbf{Tipo: }}{\relAgregacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{BrRelCU}{Reglas de Negocio}
+	\BRitem{\textbf{Descripción: }}{Un Caso de Uso puede utilizar diferentes relgas de negocio.}
+	\BRitem{\textbf{Tipo: }}{\relAgregacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{salidaRelCU}{Salida}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso tiene diferentes salidas.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{entradaRelCU}{Entrada}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso tiene diferentes entradas.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{trayRelCU}{Trayectoria}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso se compone de trayectorias.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{revRelCU}{Revisión}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso puede ser revisado.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{extRelCU}{Extensión}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso puede tener puntos de extensión.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{incluRelCU}{Inclusión}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso puede incluir otros casos de uso.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{precRelCU}{Precondición}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso puede tener diferentes precondiciones.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}
+
+\begin{BusinessFact}{postcRelCU}{Postcondición}
+	\BRitem{\textbf{Descripción: }}{Un caso de uso puede tener diferentes postcondiciones.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

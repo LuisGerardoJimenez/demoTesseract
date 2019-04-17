@@ -1,0 +1,50 @@
+	\begin{UseCase}{CU4.1}{Elegir Colaboradores}{
+	Este caso de uso permite al actor elegir las personas que colaborarán en el proyecto que él lidera.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}}
+		\UCitem{Propósito}{Elegir las personas que colaborarán en un proyecto.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{colaboradorEntidad}{Colaborador}: Tabla que muestra \cdtRef{colaboradorEntidad:curpColaborador}{CURP}, \cdtRef{colaboradorEntidad:nombreColaborador}{Nombre}, \cdtRef{colaboradorEntidad:pApellidoColaborador}{Primer Apellido} y \cdtRef{colaboradorEntidad:pApellidoColaborador}{Segundo Apellido} de todos los registros de las personas. Se selecciona de una lista.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtRef{colaboradorEntidad}{Colaborador}: Tabla que muestra \cdtRef{colaboradorEntidad:curpColaborador}{CURP}, \cdtRef{colaboradorEntidad:nombreColaborador}{Nombre}, \cdtRef{colaboradorEntidad:pApellidoColaborador}{Primer Apellido} y \cdtRef{colaboradorEntidad:pApellidoColaborador}{Segundo Apellido} de todos los registros de las personas.
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU5}{Gestionar Proyectos de colaborador} para indicar que se han actualizado los participantes exitosamente.
+				\item  \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU5.1}{Elegir Colaboradores} cuando no hay personal registrado.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Los colaboradores seleccionados podrán entrar al proyecto en cuestión.
+		\end{itemize}
+		}
+		\UCitem{Errores}{
+			\begin{itemize}
+				\item  \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU5.1}{Elegir Colaboradores} cuando la asignación del colaborador a un proyecto no se realizó correctamente.
+			\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU4}{Gestionar Proyectos de Colaborador}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita elegir los colaboradores oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/colaboradores}} del proyecto que desee de la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
+		\UCpaso[\UCsist] Obtiene la información del personal de la organización. \Trayref{EC-A}
+		\UCpaso[\UCsist] Muestra el personal encontrado en la pantalla \IUref{IU5.1}{Elegir Colaboradores}
+		\UCpaso[\UCactor] Selecciona los colaboradores que participarán en el proyecto, marcando o desmarcando las casillas de la columna ''Elegir''.
+		\UCpaso[\UCactor] Solicita guardar la selección de colaboradores, oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU5.1}{Elegir Colaboradores}
+		\UCpaso[\UCsist] Actualiza el personal asociado al proyecto en cuestión. \Trayref{EC-B}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador} para indicar al actor que el personal del proyecto ha sido actualizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+		\begin{UCtrayectoriaA}{EC-A}{No existe personal.}
+			\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador} para indicar que no hay registros para mostrar.
+		\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EC-B}{La asociación del colaborador falló.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurido un error} en la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador} para indicar que ocurrió un error al asociar a los colaboradores.
+	\end{UCtrayectoriaA}
+	
+%--------------------------------------

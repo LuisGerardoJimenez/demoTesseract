@@ -39,7 +39,7 @@
 					</tr>
 					<tr>
 						<td class="label obligatorio"><s:text name="labelNombre" /></td>
-						<td><s:textfield name="model.nombre" maxlength="45"
+						<td><s:textfield name="model.nombre" maxlength="50"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 							<s:fielderror fieldName ="model.nombre" cssClass="error"
 								theme="jquery" /></td>
@@ -118,9 +118,9 @@
 					
 					<tr>
 						<td class="label"><s:text name="labelPresupuesto" /></td>
-						<td><s:textfield name="model.presupuesto"
+						<td><s:textfield name="presupuestoString" maxlength="12"
 								cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
-							<s:fielderror fieldName ="model.presupuesto" cssClass="error"
+							<s:fielderror fieldName ="presupuestoString" cssClass="error"
 								theme="jquery" /></td>
 					</tr>
 					

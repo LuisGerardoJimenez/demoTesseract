@@ -73,7 +73,7 @@
 							<sj:a onclick="habilitarEdicionRedaccion();">
 							<img class="button"
 							title="Redefinir Mensaje"
-							src="${pageContext.request.contextPath}/resources/images/icons/editar.png" onclick="habilitarEdicionRedaccion();"/>
+							src="${pageContext.request.contextPath}/resources/images/icons/Editar.svg" onclick="habilitarEdicionRedaccion();"/>
 							</sj:a></td>
 				</tr>
 				
@@ -104,6 +104,7 @@
 				onclick="location.href='${pageContext.request.contextPath}/mensajes'"
 				value="Cancelar" />
 		</div>
+		
 		<s:hidden value="%{cambioRedaccion}" name="cambioRedaccion" id="cambioRedaccion"/>
 		<s:hidden value="%{parametrizado}" name="parametrizado" id="parametrizado"/>
 		<s:hidden value="%{jsonParametros}" name="jsonParametros" id="jsonParametros"/>

@@ -1,0 +1,47 @@
+\documentclass[10pt]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage{cdtUsecases}
+\usepackage{hyperref}
+\usepackage{txfonts}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumerate} 
+\title{Trabajo Terminal I\bigskip\\TESSERACT}
+\subtitle{Sistema generador de documentos de casos de uso}
+\author{\textcolor{black}{Integrantes:} \\\textcolor{blue}{Jiménez Chávez Luis Gerardo}\\ \textcolor{blue}{López Orozco Diego Efrain}\\ \textcolor{blue}{Martínez Ibáñez Esteban Pablo}\\ \textcolor{blue}{Olvera Neria Yamile Giselle}\\
+\\Directores: M. en C. José Jaime López Rabadán, M. en C. Hermes Francisco Montes Casiano
+}
+
+\organization{\\Escuela Superior de Cómputo, IPN}
+\showInstrucciones
+\date{\today}
+%\date{\color{green}Version 1.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\ThisLRCornerWallPaper{1}{theme/FooterPortadaTesseract}
+\maketitle
+\thispagestyle{empty}
+
+
+\frontmatter
+\tableofcontents
+\listoffigures
+\listoftables
+
+
+\mainmatter
+\LRCornerWallPaper{1}{theme/LineaLogo}
+
+%=========================================================
+\include{ModeloDelNegocio}
+
+%=========================================================
+\include{ModeloComportamiento}
+
+%=========================================================
+\include{ModeloDeInteraccion}
+
+\end{document}

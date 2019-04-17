@@ -1,0 +1,17 @@
+\begin{BusinessEntity}{entidadTray}{Trayectoria}
+		
+	\Battr{alternativaTray}{Alternativa: }{Bandera que especifica si la Trayectoria es alternativa o principal. Indica ''si'' o ''no'' y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{nombreTray}{Clave: }{Nombre o clave que identificará a la Trayectroria. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{condicionTray}{Condición: }{Texto que determina la circunstancia con la que se ejecuta la Trayectoria en caso de ser alternativa. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{finTray}{Fin del Caso de Uso: }{Bandera que especifica si la Trayectoria concluye el Caso de uso. Indica ''si'' o ''no'' y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{pasoRelTray}{Paso}
+	\BRitem{\textbf{Descripción: }}{Una trayectoria está compuesta por un conjunto de pasos.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Uno a muchos}
+\end{BusinessFact}

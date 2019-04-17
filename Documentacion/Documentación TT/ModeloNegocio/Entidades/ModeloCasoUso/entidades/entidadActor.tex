@@ -1,0 +1,18 @@
+\begin{BusinessEntity}{actorEntidad}{Actor}
+		
+	\Battr{claveACT}{Clave: }{Clave que permitirá distinguir que el elemento es un Actor. Es una palabra corta y este dato
+		es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+
+	\Battr{nombreACT}{Nombre: }{Nombre que identificará al Actor. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{descripcionACT}{Descripción: }{Texto que describirá al Actor. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{oCardinalidadACC}{Otra cardinalidad: }{En caso de seleccionar la opción ''Otra'' como cardinalidad, este campo permitirá describirla. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{cardinalidadRelACT}{Cardinalidad}
+	\BRitem{\textbf{Descripción: }}{Un negocio cuenta con un número definido o aproximado de algún Actor.}
+	\BRitem{\textbf{Tipo: }}{\relComposicion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}

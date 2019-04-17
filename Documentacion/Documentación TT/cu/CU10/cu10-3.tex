@@ -1,0 +1,52 @@
+	\begin{UseCase}{CU10.3}{Eliminar Actor}{
+		Este caso de uso permite al actor eliminar del sistema un actor.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Eliminar la información de un actor.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} para indicar que el actor fue eliminado correctamente.
+				\item \cdtIdRef{MSG10}{Confirmar eliminación}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} para que el actor confirme la eliminación.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{Ninguna}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se eliminará un actor de un proyecto del sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG13}{Eliminación no permitida}: Se muestra en la pantalla \IUref{IU8}{Gestionar Actores} cuando el actor no se encuentra en un estado que permita la eliminación.
+		\end{itemize}
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU10}{Gestionar Actores}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita eliminar un actor oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU8}{Gestionar Actores}.
+		\UCpaso[\UCsist] Verifica que el actor pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{EACT-A}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado al actor. \Trayref{EACT-B}
+		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU8}{Gestionar Actores}.
+		\UCpaso[\UCactor] Confirma la eliminación del actor oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EACT-C}
+		\UCpaso[\UCsist] Elimina la información referente al actor.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU8}{Gestionar Actores} para indicar al actor que el registro se ha eliminado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{EACT-A}{El actor esta asociado a un caso de uso liberado.}
+		\UCpaso[\UCsist] Oculta el botón \eliminar del actor que esta asociado a casos de uso liberados.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EACT-B}{El actor está siendo referenciado en un caso de uso.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU8}{Gestionar Actores} en una pantalla emergente con la lista de casos de uso que están referenciando al actor.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{EACT-C}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU8}{Gestionar Actores}.
+	\end{UCtrayectoriaA}
+	
+

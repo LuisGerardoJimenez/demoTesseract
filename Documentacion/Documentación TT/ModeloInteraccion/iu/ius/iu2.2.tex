@@ -1,0 +1,31 @@
+%--------------------------------------
+\subsection{IU 2.2 Modificar Proyecto}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor modificar la información de un proyecto.
+\subsubsection{Diseño}
+	En la figura \ref{IU2.2} se muestra la pantalla ''Modificar proyecto'' que permite al actor modificar un proyecto.
+	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y actualizará la información solo si se han cumplido todas las reglas de negocio establecidas.
+	
+	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación Exitosa} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}, para indicar que la información del proyecto se ha modificado correctamente.
+
+\IUfig[1]{interfaces/IU2-2ModificarProyecto}{IU2.2}{Modificar Proyecto}\label{IU2.2}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar los cambios del proyecto, dirige a la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}
+	\item \IUbutton{Cancelar}: Permite al actor cancelar los cambios del proyecto, dirige a la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que la modificación fue exitosa.
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando se registre un proyecto con un nombre que ya exista.
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} cuando no exista información de los estados con los que puede iniciar un proyecto.
+	\item \cdtIdRef{MSG17}{Falta información}: Se muestra en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} cuando no existan
+	colaboradores registrados.
+	\item \cdtIdRef{MSG26}{Orden de fechas}: Se muestra en la pantalla \IUref{IU2.2}{Modificar proyecto} cuando el actor ingrese fechas de término que no son posteriores a las fechas de inicio correspondientes.
+\end{Citemize}

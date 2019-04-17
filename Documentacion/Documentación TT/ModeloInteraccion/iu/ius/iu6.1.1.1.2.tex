@@ -1,0 +1,24 @@
+%--------------------------------------
+\subsection{IU 6.1.1.1.2 Modificar Paso}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor modificar la información de un paso.
+\subsubsection{Diseño}
+	En la figura \IUref{IU6.1.1.1.2}{Modificar Paso} se muestra la pantalla ''Modificar Paso'' que permite modificar un paso. El actor deberá ingresar la información solicitada, esto incluye indicar quién realiza la acción, el verbo y la redacción del paso.
+	Cuando el actor requiera un verbo que no está en la lista podrá seleccionar la opción ''Otro'' y el sistema mostrará un campo para que especifique el verbo que requiera como se muestra en la figura \IUref{IU6.1.1.1.2b}{Modificar Paso: Otro verbo}
+	Una vez ingresada la información solicitada, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y modificará el paso a la trayectoria solo si se han cumplido todas las reglas de negocio establecidas.
+
+\IUfig[1]{interfaces/IU6-1-1-1-2modificarPaso}{IU6.1.1.1.2}{Modificar Paso}
+\IUfig[1]{interfaces/IU6-1-1-1-2bmodificarPaso}{IU6.1.1.1.2}{Modificar Paso: Otro verbo}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor modificar el paso, dirige a la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o a la pantalla \IUref{IU6.1.1.2}{Modificar Trayectoria}, según corresponda.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar la modificación del paso, dirige a la pantalla \IUref{IU6.1.1.1}{Registrar Trayectoria} o a la pantalla \IUref{IU6.1.1.2}{Modificar Trayectoria}, según corresponda.
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.1.1.2}{Modificar Paso} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.1.1.2}{Modificar Paso} cuando se ha excedido la longitud de alguno de los campos.
+\end{Citemize}

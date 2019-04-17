@@ -1,0 +1,21 @@
+%--------------------------------------
+\subsection{IU 6.1.2 Registrar Precondición}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor registrar una precondición.
+\subsubsection{Diseño}
+	En la figura \IUref{IU6.1.2}{Registrar Precondición} se muestra la pantalla ''Registrar Precondición'' que permite registrar una precondición. Una vez ingresada la redacción solicitada en la pantalla, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y agregará la precondición a la tabla de ''Precondiciones'' solo si se han cumplido todas las reglas de negocio establecidas.
+
+\IUfig[1]{interfaces/IU6-1-2registrarPrecondicion}{IU6.1.2}{Registrar Precondición}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar el registro de la precondición, dirige a la pantalla \IUref{IU6.1}{Registrar Caso de uso} o a la pantalla \IUref{IU6.2}{Modificar Caso de uso}, según corresponda.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar el registro de la precondición, dirige a la pantalla \IUref{IU6.1}{Registrar Caso de uso} o a la pantalla \IUref{IU6.2}{Modificar Caso de uso}, según corresponda
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.2}{Registrar precondición} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.2}{Registrar precondición} cuando se ha excedido la longitud de alguno de los campos.
+\end{Citemize}

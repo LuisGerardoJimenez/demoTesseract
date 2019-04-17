@@ -1,0 +1,17 @@
+\begin{BusinessEntity}{atributoEntidad}{Atributo}
+	
+	\Battr{nombreATR}{Nombre: }{Nombre que identificará al Atributo en la Entidad. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}. Este atributo debe de contener como máximo 50 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [á-é-í-ó-ú] $|$ []}
+	
+	\Battr{descripcionATR}{Descripción: }{Texto que describirá al Atributo. Descrita en uno o más párrafos y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}. Este atributo debe de contener como máximo 1000 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [0-9] $|$ [  ] $|$ [-] $|$ [,] $|$ [á-é-í-ó-ú]}
+	
+	\Battr{obligatorioATR}{Obligatorio: }{Bandera que indicará si el Atributo es obligatorio. Indica ''si'' o ''no''. y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+	
+	\Battr{longitudATR}{Longitud: }{Número que describirá la longitud máxima del Atributo. Es un valor numérico entero y este dato es \hyperlink{tRequerido}{requerido} {\em (no se puede omitir)}.}
+\end{BusinessEntity}
+
+\subsubsection{Relaciones}
+\begin{BusinessFact}{tipoRelATR}{Tipo de Dato}
+	\BRitem{\textbf{Descripción: }}{Un Atributo es de un tipo específico.}
+	\BRitem{\textbf{Tipo: }}{\relAsociacion}
+	\BRitem{\textbf{Cardinalidad: }}{Muchos a uno}
+\end{BusinessFact}

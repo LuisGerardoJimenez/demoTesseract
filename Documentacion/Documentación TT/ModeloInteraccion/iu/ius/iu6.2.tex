@@ -1,0 +1,34 @@
+%--------------------------------------
+\subsection{IU 6.2 Modificar caso de uso}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor modificar la información de un caso de uso.
+\subsubsection{Diseño}
+	En la figura \IUref{IU6.2}{Modificar caso de uso} se muestra la pantalla ''Modificar caso de uso'' que permite modificar un caso de uso. El actor deberá modificar la información solicitada, y gestionar las precondiciones y postcondiciones.
+	Una vez ingresada la redacción solicitada en la pantalla, el actor deberá oprimir el botón \IUbutton{Aceptar}, el sistema validará y modificará la información sólo si se han cumplido todas las reglas de negocio establecidas.
+	
+	Finalmente se mostrará el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6}{Gestionar Casos de uso}, para indicar que la información del punto del caso de uso se ha modificado correctamente.
+	
+	En la parte superior derecha, el sistema muestra el proyecto y el módulo en el que actualmente se encuentra trabajando.
+
+\IUfig[1]{interfaces/IU6-2modifcarCU}{IU6.2}{Modificar Caso de uso}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar la modificación del caso de uso, dirige a la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar la modificación del caso de uso, dirige a la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\item \IUbutton{Registrar}: Permite al actor registrar una precondición o postcondición, dirige a una pantalla emergente.
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} para indicar que el registro fue exitoso.
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG5}{Dato incorrecto}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando se ha excedido la longitud de alguno de los campos.
+	\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando se registre un caso de uso con un nombre o número que ya se encuentre registrado.
+	\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando el estado del caso de uso no sea ''Edición''.
+	\item \cdtIdRef{MSG14}{Dato no registrado}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando un elemento referenciado no existe en el sistema.
+	\item \cdtIdRef{MSG18}{Caracteres inválidos}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando el nombre del caso de uso contiene un carácter no válido.
+	\item \cdtIdRef{MSG19}{Token incorrecto}: Se muestra en la pantalla \IUref{IU6.2}{Modificar Caso de uso} cuando el token ingresado se encuentra estructurado de manera incorrecta.
+\end{Citemize}

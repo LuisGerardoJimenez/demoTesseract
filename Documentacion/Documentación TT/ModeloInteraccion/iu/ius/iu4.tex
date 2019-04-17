@@ -1,0 +1,25 @@
+%--------------------------------------
+\subsection{IU 4 Gestionar módulos}
+
+\subsubsection{Objetivo}
+	En esta pantalla el actor puede visualizar algunos atributos de los módulos registrados y las operaciones disponibles de gestión.
+\subsubsection{Diseño}
+	En la figura \ref{IU4} se muestra la pantalla ''Gestionar Módulos'', por medio de la cual se podrán gestionar las personas a través de una tabla. El actor podrá solicitar el registro, la modificación, la eliminación, la gestión de casos de uso y la gestión de pantallas de un módulo mediante los botones: \IUbutton{Registrar}, \editar, \eliminar, {\UCsist } y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pantalla}} respectivamente.
+	
+	En la esquina superior derecha de la pantalla, el sistema mostrará la clave y el nombre del proyecto del cual se están gestionando los módulos.
+
+\IUfig[1]{interfaces/IU4gestionModulos}{IU4}{Gestionar Módulos}\label{IU4}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Registrar}: Permite al actor solicitar el registro de un módulo, dirige a la pantalla \IUref{IU4.1}{Registrar módulo}
+	\item \editar [Modificar]: Permite al actor solicitar la modificación de un módulo, dirige a la pantalla \IUref{IU4.1}{Modificar módulo}
+	\item \eliminar [Eliminar]: Permite al actor solicitar la eliminación de un módulo, dirige a una pantalla emergente.
+	\item \UCsist [Gestionar casos de uso]: Permite al actor solicitar la gestión de los casos de uso del módulo, dirige a la pantalla \IUref{IU6}{Gestionar Casos de uso}.
+	\item \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pantalla}} [Gestionar pantallas]: Permite al actor solicitar la gestión de las pantallas del módulo, dirige a la pantalla \IUref{IU7}{Gestionar pantallas}
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU4}{Gestionar módulo} cuando no existen módulos registrados.
+\end{Citemize}

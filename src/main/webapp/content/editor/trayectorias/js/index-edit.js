@@ -144,16 +144,16 @@ function construirFila(noPaso, realiza, redaccion, verbo, otroVerbo, id) {
 				"<center>" +
 					"<a onclick='dataTableCDT.moveRow(tablaPaso, this, \"up\");' button='true'>" +
 					"<img class='icon'  id='icon' src='" + window.contextPath + 
-					"/resources/images/icons/flechaArriba.png' title='Subir Paso'/></a>" +
+					"/resources/images/icons/FlechaArriba.svg' title='Subir Paso'/></a>" +
 					"<a onclick='dataTableCDT.moveRow(tablaPaso, this, \"down\");' button='true'>" +
 					"<img class='icon'  id='icon' src='" + window.contextPath + 
-					"/resources/images/icons/flechaAbajo.png' title='Bajar Paso'/></a>" +
+					"/resources/images/icons/FlechaAbajo.svg' title='Bajar Paso'/></a>" +
 					"<a button='true' onclick='solicitarModificacionPaso(this);'>" +
 					"<img class='icon'  id='icon' src='" + window.contextPath + 
-					"/resources/images/icons/editar.png' title='Modificar Paso'/></a>" +
+					"/resources/images/icons/Editar.svg' title='Modificar Paso'/></a>" +
 					"<a onclick='dataTableCDT.deleteRowPasos(tablaPaso, this);' button='true'>" +
 					"<img class='icon'  id='icon' src='" + window.contextPath + 
-					"/resources/images/icons/eliminar.png' title='Eliminar Paso'/></a>" +
+					"/resources/images/icons/Eliminar.svg' title='Eliminar Paso'/></a>" +
 				"</center>" ];
 	return row;
 }

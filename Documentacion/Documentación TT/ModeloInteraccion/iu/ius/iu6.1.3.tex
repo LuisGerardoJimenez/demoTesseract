@@ -1,0 +1,21 @@
+%--------------------------------------
+\subsection{IU 6.1.3 Registrar Postcondición}
+
+\subsubsection{Objetivo}
+	Esta pantalla permite al actor registrar una postcondición.
+\subsubsection{Diseño}
+	En la figura \IUref{IU6.1.3}{Registrar Postcondición} se muestra la pantalla ''Registrar Postcondición'' que permite registrar una postcondición. Una vez ingresada la redacción solicitada en la pantalla, el actor deberá oprimir el botón \IUbutton{Aceptar} . El sistema validará y agregará la postcondición a la tabla de ''Postcondiciones'' solo si se han cumplido todas las reglas de negocio establecidas.
+
+\IUfig[1]{interfaces/IU6-1-3registrarPostcondicion}{IU6.1.3}{Registrar Postcondición}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite al actor guardar el registro de la postcondición, dirige a la pantalla \IUref{IU6.1}{Registrar Caso de uso} o a la pantalla \IUref{IU6.2}{Modificar Caso de uso}, según corresponda.
+	\item \IUbutton{Cancelar}: Permite al actor cancelar el registro de la postcondición, dirige a la pantalla \IUref{IU6.1}{Registrar Caso de uso} o a la pantalla \IUref{IU6.2}{Modificar Caso de uso}, según corresponda
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.3}{Registrar postcondición} cuando no se ha ingresado un dato marcado como obligatorio.
+	\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.3}{Registrar postcondición} cuando se ha excedido la longitud de alguno de los campos.
+\end{Citemize}

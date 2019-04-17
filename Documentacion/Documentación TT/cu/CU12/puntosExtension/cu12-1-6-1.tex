@@ -1,0 +1,116 @@
+	\begin{UseCase}{CU12.1.6.1}{Registrar Punto de extensión}{
+		Los puntos de extensión describen una región de la trayectoria en la que se puede extender el funcionamiento a través de otro caso de uso. Este caso de uso permite al analista registrar un punto de extensión.
+	}
+		\UCitem{Versión}{\color{Gray}0.1}
+		\UCitem{Actor}{\hyperlink{jefe}{Líder de Análisis}, \hyperlink{analista}{Analista}}
+		\UCitem{Propósito}{Registrar los puntos de extensión de un caso de uso.}
+		\UCitem{Entradas}{
+		\begin{itemize}
+			\item \cdtRef{entidadExtension:observacionRevision}{Causa}: Se escribe desde el teclado.
+			\item Regiónde la trayectoria: Se escribe desde el teclado.
+			\item Caso de uso al que extiende: Se escribe desde el teclado.
+		\end{itemize}	
+		}
+		\UCitem{Salidas}{\begin{itemize}
+				\item \cdtIdRef{MSG1}{Operación exitosa}: Se muestra en la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión} para indicar que el registro fue exitoso.
+		\end{itemize}}
+		\UCitem{Destino}{Pantalla}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Que el caso de uso al que pertenece el punto de extensión se encuentre en estado ''Edición'' o ''Pendiente de corrección''.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{
+		\begin{itemize}
+			\item Se registrará un nueva punto de extensión para un caso de uso en el sistema.
+		\end{itemize}
+		}
+		\UCitem{Errores}{\begin{itemize}
+		\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando no se ha ingresado un dato marcado como obligatorio.
+		\item \cdtIdRef{MSG29}{Formato incorrecto}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando el tipo de dato ingresado no cumple con el tipo de dato solicitado en el campo.
+		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando se ha excedido la longitud de alguno de los campos.
+		\item \cdtIdRef{MSG7}{Registro repetido}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando se registre un caso de uso con un nombre que ya se encuentre registrado en el sistema.
+		\item \cdtIdRef{MSG14}{Dato no registrado}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando un elemento referenciado no existe en el sistema.
+		\item \cdtIdRef{MSG19}{Token Incorrecto}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando el token ingresado se encuentra estructurado de forma incorrecta.
+		\item \cdtIdRef{MSG16}{Registro necesario}: Se muestra en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión} cuando el actor no registro ningún paso de la trayectoria.
+		\item \cdtIdRef{MSG12}{Ha ocurrido un error}: Se muestra en la pantalla \IUref{IU6}{Gestionar Casos de uso} cuando el estado del caso de uso no sea ''Edición" o ''Pendiente
+		de corección''.
+		\end{itemize}.
+		}
+		\UCitem{Tipo}{Secundario, extiende del caso de uso \UCref{CU12.1.6}{Gestionar Puntos de extensión}.}
+	\end{UseCase}
+%--------------------------------------
+	\begin{UCtrayectoria}
+		\UCpaso[\UCactor] Solicita registrar un punto de extensión oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión}.
+		\UCpaso[\UCactor] Verifica que el caso de uso se encuentre en estado ''Edición'' o en estado ''Pendiente de corrección''. \Trayref{RPEXT-I}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}.
+		\UCpaso[\UCactor] Selecciona el caso de uso que extiende. \label{CU12.1.6.1-P4}
+		\UCpaso[\UCactor] Ingresa la causa del punto de extensión.
+		\UCpaso[\UCsist] Ingresa la región de la trayectoria. \Trayref{RPEXT-A} \label{CU12.1.6.1-P6}
+		\UCpaso[\UCactor] Solicita guardar la información del punto de extensión oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}. \Trayref{RPEXT-B} 
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RPEXT-C}
+		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RPEXT-D} \Trayref{RPEXT-E} 
+		\UCpaso[\UCsist] Verifica que el punto de extensión no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN17}{Unicidad de puntos de extensión}. \Trayref{RPEXT-F} 
+		\UCpaso[\UCsist] Verifica que los tokens utilizados se encuentren correctamente estructurados ,con base en la regla de negocio \BRref{RN31}{Estructura de tokens}. \Trayref{RPEXT-G}
+		\UCpaso[\UCsist] Verifica que los elementos referenciados existan en el sistema ,con base en la regla de negocio \BRref{RN10}{Referencia a elementos}. \Trayref{RPEXT-H}
+		\UCpaso[\UCsist] Registra la información del punto de extensión en el sistema.
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión} para indicar al actor que el registro se ha realizado exitosamente.
+	\end{UCtrayectoria}		
+%--------------------------------------
+	
+	\begin{UCtrayectoriaA}{RPEXT-A}{El actor desea seleccionar un paso.}
+		\UCpaso[\UCactor] Ingresa el token {\em P·}. 
+		\UCpaso[\UCsist] Obtiene los pasos del caso de uso.
+		\UCpaso[\UCsist] Muestra una lista con los pasos encontradas.
+		\UCpaso[\UCactor] Selecciona un paso de la lista.
+		\UCpaso[\UCsist] Verifica que el nombre del caso de uso al que pertenece el paso no contenga espacios. \Trayref{RPEXT-J}
+		\UCpaso[\UCsist] Agrega la clave del caso de uso al que pertenece el paso al texto, seguido del signo ''·''.
+		\UCpaso[\UCsist] Agrega el número del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega el nombre del caso de uso al texto, seguido del signo '':''.
+		\UCpaso[\UCsist] Agrega la clave de la trayectoria a la que pertenece el paso al texto, seguido del signo ''·''.
+		\UCpaso[\UCsist] Agrega el número del paso seleccionado al texto.
+		\UCpaso Continúa en el paso \ref{CU12.1.6.1-P6} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-B}{El actor desea cancelar la operación.}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU6.1.4}{Gestionar Puntos de extensión}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-C}{El actor no ingresó algún dato marcado como obligatorio.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}, indicando al actor que el dato es obligatorio.
+		\UCpaso Regresa al paso \ref{CU12.1.6.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-D}{El actor proporciona un dato que excede la longitud máxima.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}, para indicar que el dato excede el tamaño máximo permitido.
+		\UCpaso Regresa al paso \ref{CU12.1.6.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-E}{El actor ingresó un tipo de dato incorrecto.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}, para indicar que se ha ingresado un tipo de dato inválido.
+		\UCpaso Regresa al paso \ref{CU12.1.6.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RPEXT-F}{El actor ingresó un punto de extensión que ya existe.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}, indicando al actor que existe un actor con el mismo nombre.
+		\UCpaso Regresa al paso \ref{CU12.1.6.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-G}{El actor ingresó un token estructurado de manera incorrecta.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG19}{Token incorrecto} en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}, indicando al actor que el token utilizado no es correcto.
+		\UCpaso Regresa al paso \ref{CU12.1.6.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{RPEXT-H}{Alguno de los elementos referenciados no existe en el sistema.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG14}{Dato no registrado} en la pantalla \IUref{IU6.1.4.1}{Registrar Punto de extensión}, indicando al actor que el elemento que no se encuentra registrado en el sistema.
+		\UCpaso Regresa al paso \ref{CU12.1.6.1-P4} de la trayectoria principal.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-I}{El caso de uso no se encuentra en estado ''Edición'' o ''Pendiente de corrección''.}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU6}{Gestionar Casos de uso}, indicando que no es posible registrar una trayectoria debido a que el estado del caso de uso es inválido.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{RPEXT-J}{El texto contiene espacios.}
+		\UCpaso[\UCsist] Sustituye los espacios por guiones bajos.
+	\end{UCtrayectoriaA}
