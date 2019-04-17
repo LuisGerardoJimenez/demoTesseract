@@ -308,7 +308,6 @@ public class ModulosCtrl extends ActionSupportTESSERACT implements
 
 	@VisitorFieldValidator
 	public Modulo getModel() {
-		System.out.println("Entre al GetModel");
 		return (model == null) ? model = new Modulo() : model;
 	}
 

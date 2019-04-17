@@ -32,7 +32,7 @@ public class TerminoGlosarioBs {
 	public static void registrarTerminoGlosario(TerminoGlosario model)
 			throws Exception {
 		try {
-			validar(model);
+			//validar(model);
 			model.setClave(CLAVE);
 			model.setNumero(new TerminoGlosarioDAO()
 					.siguienteNumeroTerminoGlosario(model.getProyecto().getId()));

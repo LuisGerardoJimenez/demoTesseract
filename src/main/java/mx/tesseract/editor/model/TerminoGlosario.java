@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.ValidatorType;
+
 import mx.tesseract.admin.model.Proyecto;
 
 /**
@@ -27,5 +30,11 @@ public class TerminoGlosario extends Elemento implements java.io.Serializable {
 	public TerminoGlosario(String clave, String numero, String nombre,
 			Proyecto proyecto, String descripcion, EstadoElemento estadoElemento) {
 		super(clave, numero, nombre, proyecto, descripcion, estadoElemento);
+	}
+	
+	@Override
+	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	public String getDescripcion() {
+		return super.getDescripcion();
 	}
 }
