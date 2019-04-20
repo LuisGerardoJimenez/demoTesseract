@@ -32,7 +32,7 @@ public class TerminoGlosarioBs {
 	public static void registrarTerminoGlosario(TerminoGlosario model)
 			throws Exception {
 		try {
-			//validar(model);
+			validar(model);
 			model.setClave(CLAVE);
 			model.setNumero(new TerminoGlosarioDAO()
 					.siguienteNumeroTerminoGlosario(model.getProyecto().getId()));
@@ -68,23 +68,6 @@ public class TerminoGlosarioBs {
 	}
 
 	private static void validar(TerminoGlosario model) {
-
-		// Validaciones del nombre
-		if (Validador.esNuloOVacio(model.getNombre())) {
-			throw new TESSERACTValidacionException(
-					"El usuario no ingresó el nombre del término.", "MSG4", null,
-					"model.nombre");
-		}
-		if (Validador.validaLongitudMaxima(model.getNombre(), 200)) {
-			throw new TESSERACTValidacionException(
-					"El usuario ingreso un nombre muy largo.", "MSG6",
-					new String[] { "200", "caracteres" }, "model.nombre");
-		}
-		if (Validador.contieneCaracterInvalido(model.getNombre())) {
-			throw new TESSERACTValidacionException(
-					"El usuario ingreso un nombre con caracter inválido.",
-					"MSG23", new String[] { "El", "nombre" }, "model.nombre");
-		}
 		// Se asegura la unicidad del nombre
 		List<TerminoGlosario> terminos = TerminoGlosarioBs.consultarTerminosGlosarioProyecto(model.getProyecto());
 		for(TerminoGlosario termino : terminos) {
@@ -97,18 +80,6 @@ public class TerminoGlosarioBs {
 							"model.nombre");
 				}
 			}
-		}
-		// Validaciones de la Descripción
-		if (Validador.esNuloOVacio(model.getDescripcion())) {
-			throw new TESSERACTValidacionException(
-					"El usuario no ingresó la descripción del término.", "MSG4",
-					null, "model.descripcion");
-		}
-
-		if (Validador.validaLongitudMaxima(model.getDescripcion(), 999)) {
-			throw new TESSERACTValidacionException(
-					"El usuario ingreso una descripcion muy larga.", "MSG6",
-					new String[] { "999", "caracteres" }, "model.descripcion");
 		}
 	}
 
@@ -140,7 +111,6 @@ public class TerminoGlosarioBs {
 			he.printStackTrace();
 			throw new Exception();
 		}
-
 	}
 
 	public static List<String> verificarReferencias(TerminoGlosario model) {
@@ -295,9 +265,7 @@ public class TerminoGlosarioBs {
 			model.setEstadoElemento(ElementoBs
 					.consultarEstadoElemento(Estado.EDICION));
 			model.setNombre(model.getNombre().trim());
-
 			new TerminoGlosarioDAO().modificarElemento(model);
-
 		} catch (JDBCException je) {
 			System.out.println("ERROR CODE " + je.getErrorCode());
 			je.printStackTrace();
@@ -306,7 +274,6 @@ public class TerminoGlosarioBs {
 			he.printStackTrace();
 			throw new Exception();
 		}
-		
 	}
 
 }

@@ -85,7 +85,7 @@ public class Elemento implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	@StringLengthFieldValidator(message = "%{getText('MSG6',{'10', 'caracteres'})}", trim = true, maxLength = "10", shortCircuit= true)
 	@Column(name = "clave", nullable = false, length = 10)
 	public String getClave() {
@@ -96,7 +96,7 @@ public class Elemento implements java.io.Serializable {
 		this.clave = clave;
 	}
 
-	@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "%{getText('MSG4')}", shortCircuit= true)
 	@StringLengthFieldValidator(message = "%{getText('MSG6',{'20', 'números'})}", trim = true, maxLength = "20", shortCircuit= true)
 	@Column(name = "numero", nullable = false)
 	public String getNumero() {
