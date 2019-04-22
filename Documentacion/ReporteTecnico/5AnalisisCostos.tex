@@ -1,0 +1,158 @@
+
+
+\chapter{Estimación de tiempo y costo} \label{cap:cinco}
+
+\section{Puntos de función}
+
+Es una técnica de estimación de software desarrollada originalmente por Allan Albrecht en 1979 mientras trabajaba para IBM, quien definió conceptos para medir el software a partir de valoraciones de funcionalidades entregadas al usuario y no a partir de aspectos técnicos, con la intención de producir valoraciones independientes de la tecnología y fases del ciclo de vida utilizado.
+
+El trabajo de Albrecht fue continuado por el grupo internacional de usuarios de puntos de función, quienes plasmaron sus conceptos en el método IFPUG-FPA, el cual realiza las valoraciones a partir de la funcionalidad del sistema, primero clasificándolas, luego asignando una complejidad y ponderación a cada una según unas tablas predefinidas, determinando así el valor de puntos de función.
+
+Sumando los puntos de todas las funcionalidades se obtiene la valoración de todo el proyecto y finalmente se puede aplicar un factor de ajuste, que puede depender de características generales del sistema como por ejemplo requerimientos no funcionales como el rendimiento, reusabilidad, facilidad de instalación y operación entre otros aspectos.
+
+Los puntos de función permiten traducir el tamaño de funcionalidades de software a un número, a través de la suma ponderadas de las características que este tiene. Una vez que tenemos los puntos de función, podemos traducirlos en horas hombre o días de trabajo, según factor de conversión que dependería de mediciones históricas de nuestra productividad. Con las horas hombre, podemos determinar el costo y presupuesto de los proyectos. \hyperlink{b12}{[12]}.
+
+\newpage
+
+Desarrollaremos la medición en dos pasos, primero determinaremos los componentes funcionales del presupuesto de desarrollo de software, a partir del análisis de requerimientos realizado anteriormente. Seguidamente, realizaremos el cálculo de los puntos de función, con lo cual obtendremos una medida del tamaño del proyecto.\\
+
+Para determinar los componentes funcionales, debemos determinar tanto las transacciones de negocio como los componentes de datos, siguiendo el método de análisis de puntos de función.  Las transacciones de negocio que podemos desglosar a partir de los requerimientos de software son las siguientes.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Tipo de Caso de uso}} & \textcolor{white}{\textbf{Cantidad}} \\ \hline
+		Gestionar & 13  \\
+		\hline
+		Registrar & 18  \\
+		\hline
+		Modificar o Editar & 15  \\
+		\hline
+		Eliminar & 17  \\
+		\hline
+		Buscar & 9  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Seguidamente, clasificamos las transacciones de negocio, que pueden ser de 3 tipos: Entradas, salidas y consultas. 
+
+\begin{itemize}
+\item Entradas: Registrar modificar y eliminar
+\item Salida: Gestionar
+\item Consultas: Buscar
+\item Archivo lógico interno: Tablas en Base de datos
+
+\end{itemize}
+
+Adicionalmente, debemos asignar un nivel de complejidad alto, medio o bajo a cada uno con base en la siguiente tabla.
+
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}|p{1cm}|p{1cm}|p{1cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Tipo}} & \textcolor{white}{\textbf{Baja}} & \textcolor{white}{\textbf{Media}} & \textcolor{white}{\textbf{Alta}} \\ \hline
+		Entrada  externa (EI) & 3PF & 4PF & 6PF  \\
+		\hline
+		Salida  externa (EO) & 4PF & 5PF & 7PF  \\
+		\hline
+		Consulta  externa (EQ) & 3PF & 4PF & 6PF  \\
+		\hline
+		Archivo lógico interno (ILF) & 7PF & 10PF & 15PF  \\
+		\hline
+		Archivo de interfaz externo (ILF) & 5PF & 7PF & 10PF  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Los niveles de complejidad dependen de factores como por ejemplo el número de campos no repetidos, número de archivos a ser leídos, creados o actualizados, número de sub grupos de datos o formatos de registros, entre otros.
+
+Al clasificar las transacciones de negocio y asignar los niveles de complejidad se llegó a la conclusión que para el desarrollo de TESSERACT, la complejidad en todos sus niveles es \textbf {MEDIA}
+
+Al determinar los puntos de función tenemos una medida de la magnitud del tamaño del software y del esfuerzo que se requiere para desarrollarlo.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Tipo de Caso de uso}} & \textcolor{white}{\textbf{Cantidad}} & \textcolor{white}{\textbf{Complejidad}} & \textcolor{white}{\textbf{Total PF}} \\ 
+		\hline
+		Gestionar & 13  &  5 &  65  \\
+		\hline
+		Registrar & 18 &  4 &  72 \\
+		\hline
+		Modificar o Editar & 15 &  4 &  60  \\
+		\hline
+		Eliminar & 17 &  4 &  68  \\
+		\hline
+		Buscar & 9 &  4 &  36 \\
+		\hline
+		Tablas en BD & 65 &  10 &  650 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\textbf {MAGNITUD ESTIMADA:} 951 PF\\
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{5cm}|p{3cm}|p{3cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Lenguaje}} & \textcolor{white}{\textbf{Horas PF Promedio}} & \textcolor{white}{\textbf{Lineas de código por PF}} \\ \hline
+		Lenguajes de 4ta generación & 8  & 20 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\textbf {HORAS HOMBRE:} 7608 hrs para que una persona termine el sistema.\\
+
+
+Ahora bien para estimar el tiempo se tienen los siguientes datos:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Concepto}} & \textcolor{white}{\textbf{Tiempo}} \\ \hline
+		Desarrolladores & 4  \\
+		\hline
+		Horas de trabajo al día & 8  \\
+		\hline
+		Días al mes de trabajo & 24  \\
+		\hline
+		Horas de trabajo x desarrollador & 1902  \\
+		\hline
+		Dias de trabajo x desarrollador & 237  \\
+		\hline
+		Meses de trabajo  & 10  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\textbf {TIEMPO ESTIMADO:} 10 meses para desarrollar el software, con un trabajo de lunes a sábado, 8 hrs diarias con 4 desarrolladores.\\
+
+Para estimar el costo del proyecto se tiene la siguiente información:
+
+\textbf {TIEMPO ESTIMADO:} 10 MESES \\
+\textbf {DESARROLLADORES:} 4 DESARROLLADORES\\
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Concepto}} & \textcolor{white}{\textbf{Cantidad}} & \textcolor{white}{\textbf{Total}} \\ \hline
+		Sueldo Mensual de un desarrollador & \$18,000 & \$720,000   \\
+		\hline
+		Consumo de luz por mes & \$125  & \$1250 \\
+		\hline
+		Consumo de agua por mes & \$50  & \$500  \\
+		\hline
+		Otros costos del proyectopor mes & \$850  & \$8500  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Datos salariales promedios obtenidos de https://www.indeed.com.mx/salaries/Desarrollador/a-java-Salaries
+
+\textbf {COSTO TOTAL ESTIMADO:} \$730,250  \\

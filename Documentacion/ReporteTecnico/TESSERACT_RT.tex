@@ -1,42 +1,85 @@
-\documentclass[11pt]{book}
-
-\usepackage[utf8]{inputenc}
+\documentclass[12pt]{report}
 \usepackage{cdtUsecases}
+\usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{txfonts}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumerate} 
-\title{
-    \bigskip
-		INSTITUTO POLITÉCNICO NACIONAL\\
-	\smallskip
-		ESCUELA SUPERIOR DE CÓMPUTO
-	\bigskip
-}
-\subtitle{
-	\bigskip
-		 Trabajo terminal\\
-	\bigskip
-		 Sistema generador de documentos de casos de uso\\
-		 "TESSERACT"\\
-	\smallskip
-		 2018-B140
-}
-\author{\textcolor{black}{Presentan:} \\\textcolor{blue}{Jiménez Chávez Luis Gerardo}\\ \textcolor{blue}{López Orozco Diego Efrain}\\ \textcolor{blue}{Martínez Ibáñez Esteban Pablo}\\ \textcolor{blue}{Olvera Neria Yamile Giselle}\\
-\\Directores: M. en C. José Jaime López Rabadán, M. en C. Hermes Francisco Montes Casiano
-}
-\date{\today}
+\usepackage{wrapfig}
+\usepackage{eso-pic}
+\usepackage{wallpaper} 
+\newcommand\BackgroundPic{
+		\parbox[b][\paperheight]{\textwidth}{%
+			\vfill
+			\flushleft
+			\includegraphics[width=0.18\paperwidth,height=\paperheight,
+			keepaspectratio]{images/port2}%
+			\vfill
+}}
+\newenvironment{changemargin}[2]{% 
+	\begin{list}{}{% 
+			\setlength{\topsep}{0pt}% 
+			\setlength{\leftmargin}{#1}% 
+			\setlength{\rightmargin}{#2}% 
+			\setlength{\listparindent}{\parindent}% 
+			\setlength{\itemindent}{\parindent}% 
+			\setlength{\parsep}{\parskip}% 
+		}% 
+		\item[]}{\end{list}} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
-%\ThisLRCornerWallPaper{1}{theme/FooterPortadaTesseract}
-\maketitle
-%\frontmatter
-\tableofcontents
-%\listoffigures
-%\listoftables
-\LRCornerWallPaper{1}{theme/LineaLogo}
+\begin{document}	
+	\AddToShipoutPicture*{\BackgroundPic}
+	\begin{center}
+	\vspace*{0.4in}
+\begin{LARGE}
+	\textbf {INSTITUTO POLITÉCNICO NACIONAL}\\
+\end{LARGE}
+\smallskip
+\begin{large}
+	\textbf {ESCUELA SUPERIOR DE CÓMPUTO}\\
+\end{large}
+\vspace*{0.35in}
+\begin{LARGE}
+	\textbf {ESCOM}\\
+\end{LARGE}
+	\vspace*{0.5in}
+\begin{large}	
+\textit {Trabajo terminal}\\
+\end{large}
+	\vspace*{0.3in}
+\begin{Large}	
+	\textbf {Sistema generador de documentos de casos de uso\\
+		"TESSERACT"}\\
+\end{Large}
+\bigskip
+\begin{large}	
+	\textit {2018-B140}\\
+\end{large}
+	\vspace*{0.3in}
+\begin{large}	
+	\textit {Presentan}\\
+	\textbf {Jiménez Chávez Luis Gerardo}\\
+	\textbf {López Orozco Diego Efrain}\\
+	\textbf {Martínez Ibáñez Esteban Pablo}\\
+	\textbf {Olvera Neria Yamile Giselle}\\
+\end{large}
+	\vspace*{0.3in}
+\begin{large}	
+	\textit {Directores}\\
+\end{large}
 
+\begin{normalsize}
+	\textbf {M. en C. Hermes Francisco \hspace{1.5cm} M. en C. José Jaime\\
+	.\hspace{0.5cm} Montes Casiano \hspace{2.8cm} López Rabadán }
+\end{normalsize}
+\end{center}
+\vspace*{0.8in}
+\begin{flushright}
+06 de Mayo del 2019
+\end{flushright}
+
+\tableofcontents
 %=========================================================
 \include{1introduccion}
 %=========================================================
@@ -49,5 +92,5 @@
 \include{5AnalisisCostos}
 %=========================================================
 \include{Bibliografia}
-
 \end{document}
+

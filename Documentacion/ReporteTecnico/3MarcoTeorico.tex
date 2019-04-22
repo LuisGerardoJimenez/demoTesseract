@@ -1,14 +1,8 @@
-%=========================================================
-\chapter{Marco teórico}
+
+
+\chapter{Marco teórico} \label{cap:tres}
 
 \section{Ingeniería de software}
-
-%El software se ha incrustado profundamente en casi todos los aspectos de nuestras vidas y, como consecuencia, el número de personas que tienen interés en las características y funciones que brinda una aplicación específica ha crecido en forma notable, por lo que debe hacerse un esfuerzo concertado para entender el problema antes de desarrollar una aplicación de software, por otro lado, los requerimientos de la tecnología de la información que demandan los individuos, negocios y gobiernos se hacen cada vez más complejos. En la actualidad, grandes equipos de personas crean programas de cómputo que antes eran elaborados por un solo individuo. El software sofisticado, que alguna vez se implementó en un ambiente de cómputo predecible y autocontenido, hoy en día se halla incrustado en el interior de todo, desde la electrónica de consumo hasta dispositivos médicos o sistemas de armamento. La complejidad de estos nuevos sistemas y productos basados en computadora demanda atención cuidadosa a las interacciones de todos los elementos del sistema.
-%
-%Hacer ingeniería con el software en todas sus formas y a través de todos sus dominios de aplicación, se ha convertido en una necesidad tangible . 
-%
-%El análisis es el proceso clave de la construcción de modernas aplicaciones de sistemas de información y la base para el diseño y desarrollo de la aplicación de software robusto y vigoroso. 
-
 Una de las primeras definiciones de ingeniería de software fue dada por Fritz Bauer en el año de 1969, quien define que la ingeniería de software es “el establecimiento y uso de principios robustos, orientados a obtener software económico que sea fiable y que funcione de manera eficiente sobre máquinas reales” \hyperlink{b07}{[7]}, aunque esta definición omite algunos términos referentes a tiempos de entrega, procesos eficaces, y calidad de software, nos da un panorama de sus principios fundamentales y es también la base de la definición que la IEEE ha desarrollado de una manera más completa: 
 
 "La ingeniería de software es: 1) La aplicación de un enfoque sistemático, disciplinado y cuantificable al desarrollo, operación y mantenimiento de software; es decir, la aplicación de la ingeniería al software. 
@@ -48,8 +42,8 @@ Durante el desarrollo, se realizan tareas específicas para cada etapa, por ejem
 
 \subsubsection{Análisis}
 
-El proceso de análisis dentro del desarrollo de software consiste en comprender y definir los requerimientos del sistema, evaluar las restricciones presenta, así como los insumos se requieren para su debida construcción.
-Al ser la primera etapa dentro del proceso de desarrollo es las más crítica y sensible, ya que cualquier error que surja dentro de esta perjudicará las etapas consecuentes ocasionando retrasos en el proceso.
+El proceso de análisis dentro del desarrollo de software consiste en comprender y definir los requerimientos del sistema, evaluar las restricciones que presenta, así como los insumos se requieren para su debida construcción.
+Al ser la primera etapa dentro del proceso de desarrollo es las más crítica y sensible, ya que cualquier error de gran impacto que surja dentro de esta perjudicará las etapas consecuentes ocasionando retrasos en el proceso.
 En esta etapa se construye el documento de análisis, en donde se describen todos los requerimientos que el cliente ha solicitado mediante diferentes componentes como lo son:
 
 \begin{itemize}
@@ -64,6 +58,39 @@ En esta etapa se construye el documento de análisis, en donde se describen todo
 
 \subsubsection{Caso de Uso}
 
-Un caso de uso es una actividad que puede realizar un usuario dentro del software. Estas actividades sirven para describir el comportamiento del producto en distintas condiciones en las que el sistema responde a alguna de las peticiones realizadas por el usuario, es decir, describe el funcionamiento de
-los componentes acorde a las acciones que los usuarios realizan dentro del software.
+Un caso de uso es una actividad que puede realizar un usuario dentro del software. Estas actividades sirven para describir el comportamiento del producto en distintas condiciones en las que el sistema responde a alguna de las peticiones realizadas por el usuario, es decir, describe el funcionamiento de los componentes acorde a las acciones que los usuarios realizan dentro del software.
+
+En un libro que analiza cómo escribir casos de uso eficaces, Alistair Cockburn [Coc01b] afirma que “un caso de uso capta un contrato […] [que] describe el comportamiento del sistema en distintas condiciones en las que el sistema responde a una petición de alguno de sus participantes[…]”.
+
+En esencia, un caso de uso narra una historia estilizada sobre cómo interactúa un usuario final (que tiene cierto número de roles posibles) con el sistema en circunstancias específicas. La historia puede ser un texto narrativo, un lineamiento de tareas o interacciones, una descripción basada en un formato o una representación diagramática. Sin importar su forma, un caso de uso ilustra el software o sistema desde el punto de vista del usuario final.
+
 Un caso de uso está compuesto por distintos elementos, los cuales se describen a continuación:
+\begin{itemize}
+\item \textbf{Actor}: Es la idealización de un rol que puede jugar una persona, otro sistema, proceso, un dispositivo o de alguna cosa que interactúa con el sistema. Los actores son objetos que residen fuera del sistema, en tanto que los casos de uso están compuestos por objetos y acciones que residen dentro del sistema. Todo actor tiene uno o más objetivos cuando utiliza el sistema.  \hyperlink{b09}{[9]}. 
+
+\item \textbf{Entidad} : Representación de un objeto exclusivo único en el mundo real que se está controlando. Algunos ejemplos de entidad son una sola persona, un solo producto o una sola organización. 
+
+\item \textbf{Atributo} : Es una especificación que define una propiedad de un objeto, elemento o archivo. También puede referirse o establecer el valor específico para una instancia determinada de los mismos.
+
+\item \textbf{Entrada}: Es la información producida por el usuario para ser guardada o procesada en el sistema. El usuario comunica y determina qué clases de entrada aceptará el sistema (por ejemplo, secuencias de control o de texto escritas a máquina a través del teclado y el ratón).
+
+\item \textbf{Salida}: Es la información producida por el sistema y percibida por el usuario. Las clases de salida los productos de programa, y las clases de entrada la que el programa acepta, definen la interfaz de usuario del programa.
+
+\item \textbf{Acción}: Evento originado por el usuario mediante botones.
+
+\item \textbf{Pantalla}: Es la interfaz de usuario, utiliza imágenes, iconos y menús para mostrar las acciones disponibles entre las que el usuario puede escoger en un sistema. Su función es proporcionar un entorno visual amigable y sencillo de usar que facilite la comunicación del usuario con el software.
+
+\item \textbf{Regla de Negocio}: Es aquella que rige los procesos de un negocio para garantizar el correcto funcionamiento del software. Las reglas de negocio establecen los procedimientos que se deben realizar y las condiciones sobre las que dichas actividades se van a ejecutar.
+
+\item \textbf{Mensaje}: Constituyen la mínima unidad de comunicación entre el usuario y el sistema. Se trata de un proceso de comunicación completa porque el sistema lanza un mensaje hacia el usuario que no se resuelve hasta que el usuario lo recibe o lo responde, completando así el proceso de comunicación con la realimentación correspondiente.
+
+\item \textbf{Trayectoria}: Es un conjunto de pasos que describen la interaccion entre el usuario y el sistema.
+
+\item \textbf{Paso}: Es una instruccion que realiza el usuario o el sistema.
+
+\item \textbf{Precondición}: Está formada por el conjunto de condiciones que se tienen que cumplir para que se pueda iniciar un caso de uso. En muchos casos supone la ejecución de casos de uso previos.
+
+\item \textbf{Postcondición}: Refleja el estado en que se queda el sistema una vez ejecutado el caso de uso.
+
+\item \textbf{Puntos de extensión}: Es la incorporación implícita del comportamiento de otro caso de uso, el cuál no es parte del flujo principal. Modela la parte opcional del sistema, un subflujo que sólo se ejecuta bajo ciertas condiciones o varios flujos que se pueden insertar en un punto determinado. 
+\end{itemize}
