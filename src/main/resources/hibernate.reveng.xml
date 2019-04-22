@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-catalog="PRISMA" match-name="ValorEntrada"/>
-  <table-filter match-catalog="PRISMA" match-name="Escenario_ValorEntrada"/>
-  <table-filter match-catalog="PRISMA" match-name="Escenario"/>
-  <table-filter match-catalog="PRISMA" match-name="ValorMensajeParametro"/>
-  <table-filter match-catalog="PRISMA" match-name="Query"/>
-  <table-filter match-catalog="PRISMA" match-name="ValorEntradaTrayectoria"/>
-  <table-filter match-catalog="PRISMA" match-name="ErroresPrueba"/>
-  <table-filter match-catalog="PRISMA" match-name="Prueba"/>
-  <table-filter match-catalog="PRISMA" match-name="Sinonimo"/>
-  <!--<table-filter match-catalog="PRISMA" match-name="Verbo_Sinonimo"/>-->
+  <table-filter match-catalog="TESSERACT" match-name="ValorEntrada"/>
+  <table-filter match-catalog="TESSERACT" match-name="Escenario_ValorEntrada"/>
+  <table-filter match-catalog="TESSERACT" match-name="Escenario"/>
+  <table-filter match-catalog="TESSERACT" match-name="ValorMensajeParametro"/>
+  <table-filter match-catalog="TESSERACT" match-name="Query"/>
+  <table-filter match-catalog="TESSERACT" match-name="ValorEntradaTrayectoria"/>
+  <table-filter match-catalog="TESSERACT" match-name="ErroresPrueba"/>
+  <table-filter match-catalog="TESSERACT" match-name="Prueba"/>
+  <table-filter match-catalog="TESSERACT" match-name="Sinonimo"/>
+  <!--<table-filter match-catalog="TESSERACT" match-name="Verbo_Sinonimo"/>-->
 
   
   

@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import java.util.HashSet;
@@ -26,7 +26,7 @@ import mx.tesseract.generadorPruebas.model.ConfiguracionHttp;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 
 @Entity
-@Table(name = "CasoUso", catalog = "PRISMA")
+@Table(name = "CasoUso", catalog = "TESSERACT")
 @PrimaryKeyJoinColumn(name = "Elementoid", referencedColumnName = "id")
 public class CasoUso extends Elemento implements java.io.Serializable {
 

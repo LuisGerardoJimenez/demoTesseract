@@ -15,7 +15,7 @@ import mx.tesseract.editor.model.Entrada;
 import mx.tesseract.editor.model.ReglaNegocio;
 
 @Entity
-@Table(name = "ValorDesconocido", catalog = "PRISMA")
+@Table(name = "ValorDesconocido", catalog = "TESSERACT")
 public class ValorDesconocido implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;

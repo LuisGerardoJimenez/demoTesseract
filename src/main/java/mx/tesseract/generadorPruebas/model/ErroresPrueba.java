@@ -18,7 +18,7 @@ import mx.tesseract.editor.model.Paso;
 import mx.tesseract.editor.model.ReglaNegocio;
 
 @Entity
-@Table(name = "erroresprueba", catalog = "PRISMA")
+@Table(name = "erroresprueba", catalog = "TESSERACT")
 public class ErroresPrueba implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 1L;

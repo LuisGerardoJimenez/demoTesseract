@@ -26,7 +26,7 @@ import mx.tesseract.editor.model.Trayectoria;
 
 
 @Entity
-@Table(name = "ValorPantallaTrayectoria", catalog = "PRISMA")
+@Table(name = "ValorPantallaTrayectoria", catalog = "TESSERACT")
 public class ValorPantallaTrayectoria extends Elemento implements java.io.Serializable{
 
 	

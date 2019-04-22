@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 13/06/2015
+ * Luis Gerardo Jiménez
  */
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -22,7 +22,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "PostPrecondicion", catalog = "PRISMA")
+@Table(name = "PostPrecondicion", catalog = "TESSERACT")
 public class PostPrecondicion implements java.io.Serializable {
 
 	/**

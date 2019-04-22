@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import mx.tesseract.editor.model.CasoUso;
 
 @Entity
-@Table(name = "ConfiguracionTrayectoria", catalog = "PRISMA")
+@Table(name = "ConfiguracionTrayectoria", catalog = "TESSERACT")
 public class ConfiguracionTrayectoria implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;

@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 13/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import javax.persistence.CascadeType;

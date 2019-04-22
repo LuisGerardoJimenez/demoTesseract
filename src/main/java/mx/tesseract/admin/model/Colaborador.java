@@ -16,9 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.opensymphony.xwork2.validator.annotations.EmailValidator;
-import com.opensymphony.xwork2.validator.annotations.IntRangeFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RegexFieldValidator;
-import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
@@ -27,7 +25,7 @@ import mx.tesseract.util.Constantes;
 
 
 @Entity
-@Table(name = "Colaborador", catalog = "PRISMA")
+@Table(name = "Colaborador", catalog = "TESSERACT")
 public class Colaborador implements java.io.Serializable {
 
 	/**

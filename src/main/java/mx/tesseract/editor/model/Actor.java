@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import mx.tesseract.admin.model.Proyecto;
 
 @Entity
-@Table(name = "Actor", catalog = "PRISMA")
+@Table(name = "Actor", catalog = "TESSERACT")
 @PrimaryKeyJoinColumn(name = "Elementoid", referencedColumnName = "id")
 public class Actor extends Elemento implements java.io.Serializable {
 

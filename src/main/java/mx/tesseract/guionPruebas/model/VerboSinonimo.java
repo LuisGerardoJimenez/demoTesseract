@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "VerboSinonimo", catalog = "PRISMA")
+@Table(name = "VerboSinonimo", catalog = "TESSERACT")
 public class VerboSinonimo implements java.io.Serializable {
 
 	/**

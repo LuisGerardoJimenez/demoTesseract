@@ -31,7 +31,7 @@ import mx.tesseract.admin.model.Proyecto;
 import mx.tesseract.util.Constantes;
 
 @Entity
-@Table(name = "Modulo", catalog = "PRISMA", uniqueConstraints = {
+@Table(name = "Modulo", catalog = "TESSERACT", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "clave", "Proyectoid" }) })
 public class Modulo implements java.io.Serializable {
 

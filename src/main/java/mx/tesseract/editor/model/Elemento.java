@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -32,7 +32,7 @@ import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import mx.tesseract.admin.model.Proyecto;
 
 @Entity
-@Table(name = "Elemento", catalog = "PRISMA")
+@Table(name = "Elemento", catalog = "TESSERACT")
 @Inheritance(strategy=InheritanceType.JOINED)
 
 @JsonTypeInfo(

@@ -16,7 +16,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.context.annotation.Lazy;
 
 @Entity
-@Table(name = "Instruccion", catalog = "PRISMA")
+@Table(name = "Instruccion", catalog = "TESSERACT")
 public class Instruccion implements java.io.Serializable {
 
 	/**

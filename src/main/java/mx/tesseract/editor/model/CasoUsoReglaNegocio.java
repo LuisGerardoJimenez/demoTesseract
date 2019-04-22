@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 13/06/2015
+ * Luis Gerardo Jiménez
  */
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "CasoUso_ReglaNegocio", catalog = "PRISMA", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = "CasoUso_ReglaNegocio", catalog = "TESSERACT", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"CasoUsoElementoid", "ReglaNegocioElementoid"}))
 public class CasoUsoReglaNegocio implements java.io.Serializable {
 

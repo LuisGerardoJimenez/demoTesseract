@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 17/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -40,7 +40,7 @@ import mx.tesseract.generadorPruebas.model.ValorMensajeParametroTrayectoria;
 import mx.tesseract.generadorPruebas.model.ValorPantallaTrayectoria;
 
 @Entity
-@Table(name = "Trayectoria", catalog = "PRISMA", uniqueConstraints = @UniqueConstraint(columnNames = { "clave",
+@Table(name = "Trayectoria", catalog = "TESSERACT", uniqueConstraints = @UniqueConstraint(columnNames = { "clave",
 		"CasoUsoElementoid" }))
 public class Trayectoria implements java.io.Serializable, Comparable<Trayectoria> {
 

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Sinonimo", catalog = "PRISMA")
+@Table(name = "Sinonimo", catalog = "TESSERACT")
 public class Sinonimo implements java.io.Serializable {
 
 	/**
