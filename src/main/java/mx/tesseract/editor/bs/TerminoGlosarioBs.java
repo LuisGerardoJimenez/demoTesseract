@@ -33,11 +33,19 @@ public class TerminoGlosarioBs {
 			throws Exception {
 		try {
 			validar(model);
+			System.out.println("Agregando nueva clave");
 			model.setClave(CLAVE);
 			model.setNumero(new TerminoGlosarioDAO()
 					.siguienteNumeroTerminoGlosario(model.getProyecto().getId()));
+			System.out.println("Agregando nuevo numero");
 			model.setEstadoElemento(ElementoBs
 					.consultarEstadoElemento(Estado.EDICION));
+			System.out.println("Id: "+model.getId());
+			System.out.println("Clave: "+model.getClave());
+			System.out.println("Numero: "+model.getNumero());
+			System.out.println("EstadoElemento: "+model.getEstadoElemento().getId());
+			System.out.println("ProyectoId: "+model.getProyecto().getId());
+			System.out.println("Agregando nuevo termino");
 			new TerminoGlosarioDAO().registrarTerminoGlosario(model);
 		} catch (JDBCException je) {
 			if (je.getErrorCode() == 1062) {
@@ -71,6 +79,8 @@ public class TerminoGlosarioBs {
 		// Se asegura la unicidad del nombre
 		List<TerminoGlosario> terminos = TerminoGlosarioBs.consultarTerminosGlosarioProyecto(model.getProyecto());
 		for(TerminoGlosario termino : terminos) {
+			System.out.println("Término: "+termino.getNombre());
+			System.out.println("Proyecto: "+termino.getProyecto().getId());
 			if(termino.getId() != model.getId()) {
 				if(termino.getNombre().equals(model.getNombre())) {
 					throw new TESSERACTValidacionException(

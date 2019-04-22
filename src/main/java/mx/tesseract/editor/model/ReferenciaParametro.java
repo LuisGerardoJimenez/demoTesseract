@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -25,7 +25,7 @@ import mx.tesseract.generadorPruebas.model.ValorMensajeParametroTrayectoria;
 
 
 @Entity
-@Table(name = "ReferenciaParametro", catalog = "PRISMA")
+@Table(name = "ReferenciaParametro", catalog = "TESSERACT")
 public class ReferenciaParametro implements java.io.Serializable {
 
 	/**

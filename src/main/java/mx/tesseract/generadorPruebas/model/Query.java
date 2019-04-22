@@ -17,7 +17,7 @@ import mx.tesseract.editor.model.ReferenciaParametro;
 
 
 @Entity
-@Table(name = "Query", catalog = "PRISMA")
+@Table(name = "Query", catalog = "TESSERACT")
 public class Query implements java.io.Serializable {
 
 	/**

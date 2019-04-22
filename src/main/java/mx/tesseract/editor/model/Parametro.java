@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 25/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import javax.persistence.Column;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import mx.tesseract.admin.model.Proyecto;
 
 @Entity
-@Table(name = "Parametro", catalog = "PRISMA")
+@Table(name = "Parametro", catalog = "TESSERACT")
 public class Parametro implements java.io.Serializable {
 
 	/**

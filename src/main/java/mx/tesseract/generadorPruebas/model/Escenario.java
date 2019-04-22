@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "Escenario", catalog = "PRISMA")
+@Table(name = "Escenario", catalog = "TESSERACT")
 public class Escenario implements java.io.Serializable {
 
 	/**

@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 17/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import java.util.HashSet;
@@ -24,7 +24,7 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "Paso", catalog = "PRISMA", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = "Paso", catalog = "TESSERACT", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"numero", "Trayectoriaid" }))
 public class Paso implements java.io.Serializable, Comparable<Paso> {
 

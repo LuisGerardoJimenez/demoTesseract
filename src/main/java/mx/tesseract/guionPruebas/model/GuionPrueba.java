@@ -13,7 +13,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 
 @Entity
-@Table(name = "GuionPrueba", catalog = "PRISMA")
+@Table(name = "GuionPrueba", catalog = "TESSERACT")
 public class GuionPrueba implements java.io.Serializable {
 
 	/**

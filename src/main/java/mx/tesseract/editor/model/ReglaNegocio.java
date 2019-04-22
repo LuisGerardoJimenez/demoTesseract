@@ -1,5 +1,8 @@
 package mx.tesseract.editor.model;
 
+/**
+ * Luis Gerardo Jiménez
+ */
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +19,7 @@ import mx.tesseract.admin.model.Proyecto;
 
 
 @Entity
-@Table(name = "ReglaNegocio", catalog = "PRISMA")
+@Table(name = "ReglaNegocio", catalog = "TESSERACT")
 @PrimaryKeyJoinColumn(name = "Elementoid", referencedColumnName = "id")
 //@JsonTypeName("reglaNegocio")
 public class ReglaNegocio extends Elemento implements java.io.Serializable {

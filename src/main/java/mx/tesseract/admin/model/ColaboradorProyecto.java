@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Colaborador_Proyecto", catalog = "PRISMA", uniqueConstraints = @UniqueConstraint(columnNames = {
+@Table(name = "Colaborador_Proyecto", catalog = "TESSERACT", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"ColaboradorCURP", "Proyectoid" }))
 public class ColaboradorProyecto implements java.io.Serializable {
 

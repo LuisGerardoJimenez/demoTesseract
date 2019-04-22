@@ -1,7 +1,7 @@
 package mx.tesseract.editor.model;
 
 /*
- * Sergio Ramírez Camacho 07/06/2015
+ * Luis Gerardo Jiménez
  */
 
 import javax.persistence.Column;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UnidadTamanio", catalog ="PRISMA")
+@Table(name = "UnidadTamanio", catalog ="TESSERACT")
 public class UnidadTamanio implements java.io.Serializable {
 
 	/**
