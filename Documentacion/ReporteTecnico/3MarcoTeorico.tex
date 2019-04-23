@@ -1,14 +1,26 @@
-
-
 \chapter{Marco teórico} \label{cap:tres}
 
-\section{Ingeniería de software}
-Una de las primeras definiciones de ingeniería de software fue dada por Fritz Bauer en el año de 1969, quien define que la ingeniería de software es “el establecimiento y uso de principios robustos, orientados a obtener software económico que sea fiable y que funcione de manera eficiente sobre máquinas reales” \hyperlink{b07}{[7]}, aunque esta definición omite algunos términos referentes a tiempos de entrega, procesos eficaces, y calidad de software, nos da un panorama de sus principios fundamentales y es también la base de la definición que la IEEE ha desarrollado de una manera más completa: 
+Todo proyecto de software se desencadena por alguna necesidad de negocios: la de corregir un defecto en una aplicación existente, la de adaptar un “sistema heredado” a un ambiente de negocios cambiante, la de ampliar las funciones y características de una aplicación ya existente o la necesidad de crear un producto, servicio o sistema nuevo.
+Al comenzar un proyecto de software, es frecuente que las necesidades del negocio se expresen de manera informal como parte de una simple conversación.  El esfuerzo de ingeniería tendrá éxito sólo si también lo tiene el software. El mercado aceptará el producto sólo si el software incrustado en éste satisface las necesidades del cliente.
 
-"La ingeniería de software es: 1) La aplicación de un enfoque sistemático, disciplinado y cuantificable al desarrollo, operación y mantenimiento de software; es decir, la aplicación de la ingeniería al software. 
-2) El estudio de enfoques según el punto 1"
+\section{Ingeniería de software}
+
+Una de las primeras definiciones de ingeniería de software fue dada por Fritz Bauer en el año de 1969, quien define que la ingeniería de software es..\\
+
+	\textit {“el establecimiento y uso de principios robustos, orientados a obtener software económico que sea fiable y que funcione de manera eficiente sobre máquinas reales” }. \\
+	
+  Aunque esta definición omite algunos términos referentes a tiempos de entrega, procesos eficaces, y calidad de software, nos da un panorama de sus principios fundamentales y es también la base de la definición que la IEEE ha desarrollado de una manera más completa: \\
+
+ \textit {"La ingeniería de software es: La aplicación de un enfoque sistemático, disciplinado y cuantificable al desarrollo, operación y mantenimiento de software; es decir, la aplicación de la ingeniería al software.”}  \hyperlink{b07}{[7]}\\
 
 La ingeniería de software está formada por un proceso, un conjunto de métodos (prácticas) y un arreglo de herramientas que permite a los profesionales elaborar software de cómputo de alta calidad. 
+
+Un aspecto muy importante de Ingeniería de Software es que proporciona parámetros formales para lo que se conoce como Gestión (o Administración) de Proyectos de Software. Esto se refiere a que Ingeniería de Software proporciona diversas métricas y metodologías que pueden usarse como especificaciones para todo lo referente a la administración del personal involucrado en proyectos de software, ciclos de vida de un proyecto de software, costos de un proyecto, y en si todo el aspecto administrativo que
+implica el desarrollar software.\\
+
+La ingeniería en general es el análisis, diseño, construcción, verificación y gestión de entidades técnicas. En general, todo proceso de ingeniería debe comenzar por contestar las siguientes preguntas: ¿Cuál es el problema a
+resolver?, ¿Cuáles son las características de la entidad que se utiliza para resolver el problema?, ¿Cómo se realizará la entidad (y la solución)?, ¿Cómo se construirá la entidad?, ¿Cómo va a probarse la entidad?, y ¿Cómo se apoyará la entidad cuando los
+usuarios finales soliciten correcciones y adaptaciones a la entidad?.  \hyperlink{b07}{[7]}  \\
 
 \begin{figure}[H]
 	\begin{center}
@@ -22,8 +34,9 @@ La ingeniería de software es una tecnología con varias capas, como se muestra 
 
 El proceso de software forma la base para el control de la administración de proyectos de software, y establece el contexto en el que se aplican métodos técnicos, se generan productos del trabajo (modelos, documentos, datos, reportes, formatos, etc.), se establecen puntos de referencia, se asegura la calidad y se administra el cambio de manera apropiada.
 
-\subsection{Proceso de desarrollo de software}
+\section{Proceso de desarrollo de software}
 
+Se define proceso del software como una estructura para las actividades, acciones y tareas que se requieren a fin de construir software de alta calidad. La ingeniería de software es llevada a cabo por personas creativas y preparadas que deben adaptar un proceso maduro de software a fin de que resulte apropiado para los productos que construyen y para las demandas de su mercado.
 Cuando se trabaja en la construcción de un producto o sistema, es importante ejecutar una serie de pasos predecibles, una estructura general para la ingeniería de software se define en cinco actividades elementales:
 
 \begin{enumerate}
@@ -38,23 +51,33 @@ Existen diferentes metodologías de desarrollo con modificaciones y adecuaciones
 
 Durante el desarrollo, se realizan tareas específicas para cada etapa, por ejemplo, para la etapa de modelado se elabora el documento de análisis (donde se describe el funcionamiento del sistema), así como el diseño (en donde se genrean los diagramas que describen el funcionamiento establecido en el análisis); en la fase de construcción se genera el código del software y en la etapa de pruebas se valida y verifica que el software cumpla con lo asentado en las fases precedentes.
 
-\subsection{Modelado}
+\subsection{Análisis}
 
-\subsubsection{Análisis}
-
-El proceso de análisis dentro del desarrollo de software consiste en comprender y definir los requerimientos del sistema, evaluar las restricciones que presenta, así como los insumos se requieren para su debida construcción.
+El proceso de análisis dentro del desarrollo de software consiste en obtener los requerimientos del sistema para crear una solución, identificar los problemas a resolver o necesidad a ser atendida, evaluar las restricciones que presenta, así como los insumos se requieren para su debida construcción.
 Al ser la primera etapa dentro del proceso de desarrollo es las más crítica y sensible, ya que cualquier error de gran impacto que surja dentro de esta perjudicará las etapas consecuentes ocasionando retrasos en el proceso.
-En esta etapa se construye el documento de análisis, en donde se describen todos los requerimientos que el cliente ha solicitado mediante diferentes componentes como lo son:
 
-\begin{itemize}
-	\item Reglas de negocio
-	\item Mensajes
-	\item Pantallas
-	\item Casos de uso
-	\item Entidades
-\end{itemize}
+\bigskip
 
- Este documento emplea un lenguaje técnico especializado ya que busca ser comprendido por los diseñadores y programadores para su correcta construcción.
+En esta etapa se construye el documento de análisis, en donde se describen todos los requerimientos que el cliente ha solicitado mediante diferentes componentes
+Con base en los requisitos, el analista sigue el proceso de análisis identificando en alto nivel que funcionalidades deberá poseer el sistema para cumplir los requerimientos. Una solución común para mapear cada funcionalidad es a través de CASOS DE USO.
+
+Este documento emplea un lenguaje técnico especializado ya que busca ser comprendido por los diseñadores y programadores para su correcta construcción.
+
+\subsubsection{Documento de análisis}
+
+Parte 1. Modelo de negocio:
+Glosario de términos
+Modelo de información utilizado para representar la información que será almacenada en el sistema.
+Reglas de negocio mediante las cuales se normará el funcionamiento del sistema.
+Parte 2. Modelo dinámico, el cual describe funcionalidad a partir de los siguientes capítulos:
+Arquitectura lógica.
+Máquinas de estados que modelarán el comportamiento de las entidades que así lo necesiten.
+Funciones y roles que tendrán los actores que interactuarán con el sistema.
+Casos de uso que describen funcionalidad.
+Parte 3. Interacción con el usuario, que muestra las interfaces y mensajes a partir de los siguientes
+capítulos:
+Interfaces del sistema.
+Catálogo de mensajes
 
 \subsubsection{Caso de Uso}
 
