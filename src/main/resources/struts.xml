@@ -10,7 +10,7 @@
 	<constant name="struts.custom.i18n.resources" value="global" />
 
 	<!-- Activa el modo desarrollador -->
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 
 	<!-- Permite definir mas de un ActionMapper, si el primero no obtiene una 
 		respuesta correcta, se utilizará el siguiente mapper -->

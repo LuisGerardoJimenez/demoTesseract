@@ -22,6 +22,7 @@
 
 	<s:actionmessage theme="jquery" />
 	<s:actionerror theme="jquery" />
+	<s:hidden name="debug" value="browser"></s:hidden>
 	<br />
 
 	<p class="instrucciones">Ingrese la información solicitada.</p>
@@ -32,7 +33,7 @@
 			<table class="seccion">
 				<tr>
 					<td class="label obligatorio"><s:text name="labelNombre" /></td>
-					<td><s:textfield name="model.nombre" maxlength="200"
+					<td><s:textfield name="model.nombre" maxlength="100"
 							cssErrorClass="input-error" cssClass="inputFormulario ui-widget" />
 						<s:fielderror fieldName ="model.nombre" cssClass="error"
 							theme="jquery" /></td>
