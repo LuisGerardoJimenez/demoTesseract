@@ -1,1 +1,104 @@
 \chapter{Metodología} \label{cap:siete}
+
+En este capítulo se describen las actividades realizadas para la entrega de sprints planteados en TT1.
+
+En Scrum, la metodología bajo la cual se está desarrollando el proyecto, se ejecuta en bloques temporales cortos y fijos (iteraciones de un mes). Cada iteración proporciona un resultado completo, un incremento de producto que sea potencialmente entregable. Para ello, durante la iteración el equipo colabora estrechamente y se llevan a cabo las siguientes dinámicas:
+\bigskip
+Cada día el equipo realiza una reunión de sincronización, donde cada miembro inspecciona el trabajo de los otros para poder hacer las adaptaciones necesarias, comunica cuales son los impedimconfictos en los que se encuentra, actualiza el estado de la lista de tareas de la iteración (Sprint Backlog) y los gráficos de trabajo pendiente (Burndown charts).
+\bigskip
+El Facilitador, se encarga de que el equipo pueda mantener el foco para cumplir con sus objetivos.
+Elimina los obstáculos que el equipo no puede resolver por sí mismo, protege al equipo de interrupciones externas que puedan afectar el objetivo de la iteración o su productividad.
+\newpage
+
+\section{Sprint 0: Configuración del ambiente de trabajo}
+\subsection{Selección de herramientas}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{3cm}|p{3cm}|p{6cm}|}
+		\hline
+		\rowcolor{black} \textcolor{white} {\textbf{Elemento}} & \textcolor{white}{\textbf{Herramienta}} & \textcolor{white}{\textbf{Justificación}}  \\ \hline
+		Sistema de composición de textos & Latex & Es un sistema de software libre y de composición tipográfica de alta calidad, esta herramienta incluye características diseñadas para la producción de la documentación técnica en donde se establecen las características del proyecto. \\
+		\hline
+		Lenguaje de programación & Java & La idea principal de TESSERACT es que opere como un sistema web, java al ser un lenguaje multiplataforma nos permite construir un producto con las características deseadas. Otras de las ventajas que tiene java son sus librerias estandar, la facilidad de programación y su paradigma orientado a objetos. \\
+		\hline
+		Framework & Struts & Struts permite reducir el tiempo de desarrollo. Su carácter de "software libre" y su compatibilidad con todas las plataformas en las que Java Entreprise esté disponible lo convierten en una herramienta altamente disponible. \\
+		\hline
+		SGBD & Mysql & MySQL es un sistema gestor de base de datos muy popular, es usado por su simplicidad y rendimiento. Es la opción para algunas aplicaciones comerciales gracias a su facilidad de uso y el poco tiempo que requiere para ponerse en marcha.  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+%Inicio de sesión
+%Proyectos
+%Personal
+%Colaboradores de proyecto
+%Módulos
+%Glosario
+\section{Sprint 1: Análisis, diseño y codificación del módulo de usuarios}
+
+\subsection{Gestionar personal}
+
+El actor visualiza aquellas personas involucradas dentro de la organización, y permite realizar diferentes acciones, como un nuevo registro o consultar, modificar y eliminar personas previamente registradas.
+
+\subsubsection {Análisis}
+Es importante tener un mecanismo de control sobre aquellas entidades humanas que participan en las activades, toma de desiciones y otras funciones dentro de un proyecto de software. Estas personas pueden estar involucradas en uno o más proyectos.
+\bigskip
+El administrador, tiene la facultad y poder de:\\
+
+\textbf {Registrar persona:} Para el registro fué de suma importancia establecer los datos de entrada más relevantes para el sistema, esto con el fin de no saturar la base de datos.\\
+
+La información solicitada para el registro de personal es la siguiente:
+
+\begin{itemize}
+	\item \textbf{CURP:} Con el fin de tener unicidad de registros en la base de datos.
+	\item \textbf{Nombre, Primer Apellido, Segundo Apellido:} Con el fin de identificar a las personas.
+	\item \textbf{Correo electrónico:} Para utilizarse como nombre de usuario en el inicio de sesión.
+	\item \textbf{Contraseña:} Con el fin de tener una autenticación segura y comprobada en el sistema.
+\end{itemize}
+
+Una vez que se realiza el registro de una persona de manera exitosa, esta podrá participar en algún proyecto.\\
+
+
+\textbf {Modificar persona:} Dentro del sistema existe la posibilidad de que los datos de una persona previamente registrada sean modificados, a excepción de la CURP.
+
+\textbf {Eliminar persona:} El sistema debe permitir al administrador eliminar el registro de una persona siempre y cuando esta no lidere ningún proyecto.
+
+\subsection{Iniciar sesión}
+
+\section{Sprint 2: Análisis, diseño y codificación del módulo de gestión de proyectos}
+\subsection{Gestionar proyectos de administrador}
+
+
+\section{Sprint 3: Análisis, diseño y codificación del módulo de asociación de proyectos}
+\subsection{Gestionar proyectos de colaborador}
+\subsubsection {Análisis}
+El actor puede visualizar los proyectos en los que participa, este es el punto de acceso para gestionar: módulos, términos del glosario, entidades, reglas de negocio, mensajes y actores, así como para descargar el documento de análisis y en caso de ser líder, elegir a los colaboradores.\\
+
+\textbf {Elegir colaboradores:} El líder de análisis tiene la facultad de seleccionar a aquellas personas que colaborarán en el proyecto. Para que una persona puedas ser colaboradora tiene que haberse registrado previamente en el módulo de registro de personal.
+
+\subsection{Gestionar módulos}
+
+\subsubsection {Análisis}
+Para facilitar la construcción de sistemas de software, la estrategia de Divide y Vencerás es una técnica imprescindible, la cual se basa en la descomposición de un problema en subproblemas de su mismo tipo, lo que permite disminuir la complejidad de los mismos. La manera en la que se descompone un sistema es através de sus módulos, es por eso que se le proporcionar al actor un mecanismo para llevar el control de los módulos de un proyecto. \\
+
+\textbf {Registrar módulo:}
+Para registrar los módulos del proyecto se le solicita al actor ingresar la siguiente información:
+
+\begin{itemize}
+	\item \textbf{Clave:} Con el fin de tener unicidad de registros en la base de datos.
+	\item \textbf{Nombre:} Con el fin de identificar los módulos.
+	\item \textbf{Descripción} Para especificar las características y contenido del módulo.
+\end{itemize}
+
+\textbf {Modificar módulo:}
+Dentro del sistema existe la posibilidad de modificar los datos de un módulo previamente registrado, a excepción de su clave.\\
+
+\textbf {Eliminar módulo:} 
+El sistema debe permitir al actor eliminar el registro de un módulo siempre y cuando no existan referencias al contenido del módulo a eliminar desde elementos de algún otro módulo.
+
+
+\subsection{Gestionar términos del glosario}
+\subsubsection {Análisis}
+En un proyecto es de suma importancia que se tenga una lista de palabras y expresiones clasificadas de un texto con su respectivo significado. La correcta definición conceptual de los términos de negocio en el sistema se hace imprescindible para comprenderlo.
+
