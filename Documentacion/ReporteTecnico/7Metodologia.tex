@@ -28,18 +28,22 @@ Elimina los obstáculos que el equipo no puede resolver por sí mismo, protege a
 		\hline
 	\end{tabular}
 \end{table}
-
+\newpage
 %Inicio de sesión
 %Proyectos
 %Personal
 %Colaboradores de proyecto
 %Módulos
 %Glosario
+
 \section{Sprint 1: Análisis, diseño y codificación del módulo de usuarios}
 
-\subsection{Gestionar personal}
+\subsection{Iniciar sesión}
+\subsubsection {Análisis}
+Se requiere un proceso mediante el cual se controle el acceso individual al sistema mediante la identificación de usuario utilizando credenciales provistas por el registro de personal.\\
 
-El actor visualiza aquellas personas involucradas dentro de la organización, y permite realizar diferentes acciones, como un nuevo registro o consultar, modificar y eliminar personas previamente registradas.
+\subsection{Gestionar personal}
+El actor puede visualizar aquellas personas de la organización que se encuentran involucradas en uno o más proyectos, del  mismo modo el actor puede realizar diferentes acciones, como un nuevo registro o consultar, modificar y eliminar personas previamente registradas.
 
 \subsubsection {Análisis}
 Es importante tener un mecanismo de control sobre aquellas entidades humanas que participan en las activades, toma de desiciones y otras funciones dentro de un proyecto de software. Estas personas pueden estar involucradas en uno o más proyectos.
@@ -59,15 +63,44 @@ La información solicitada para el registro de personal es la siguiente:
 
 Una vez que se realiza el registro de una persona de manera exitosa, esta podrá participar en algún proyecto.\\
 
-
 \textbf {Modificar persona:} Dentro del sistema existe la posibilidad de que los datos de una persona previamente registrada sean modificados, a excepción de la CURP.
 
 \textbf {Eliminar persona:} El sistema debe permitir al administrador eliminar el registro de una persona siempre y cuando esta no lidere ningún proyecto.
 
-\subsection{Iniciar sesión}
-
 \section{Sprint 2: Análisis, diseño y codificación del módulo de gestión de proyectos}
 \subsection{Gestionar proyectos de administrador}
+\subsubsection {Análisis}
+El administrador puede visualizar todos los proyectos registrados en el sistema, así como registrar, modificar o eliminar un proyecto.\\
+
+El administrador, tiene la facultad y poder de:\\
+
+\textbf {Registrar proyecto:}
+Para registrar los proyectos se le solicita al administrador ingresar la siguiente información:
+
+\begin{itemize}
+	\item \textbf{Clave:} Con el fin de tener unicidad de registros en la base de datos.
+	\item \textbf{Nombre:} Con el fin de identificar los módulos.
+	\item \textbf{Fecha de inicio:} Que identifica la fecha de inicio del proyecto.
+	\item \textbf{Fecha de término:} Que identifica la fecha fin del proyecto prevista.
+	\item \textbf{Fecha de inicio programada:} Que identifica la fecha de inicio programada del proyecto.
+	\item \textbf{Fecha de término programada:} Que identifica la fecha fin del proyecto programada.
+	\item \textbf{Líder del Proyecto:} Para la creación de un proyecto debe de haber al menos un colaborador registrado.
+	\item \textbf{Descripción} Para especificar las características y contenido del proyecto.
+	\item \textbf{Contraparte:} Para identificar al cliente o solicitante del proyecto.
+	\item \textbf{Presupuesto:} Con el fin de identificar el presupuesto destinado al proyecto.
+	\item \textbf{Estado del Proyecto:} Con el fin de identificar en que estado se encuentra el proyecto.
+\end{itemize}
+
+Se puede registrar un proyecto siempre y cuando exista al menos un colaborador registrado, así como la iformaciónn referente a los estados del proyecto.\\
+
+Una vez registrado el proyecto se podrán gestionar los Términos del glosario, Entidades, Reglas de negocio, Mensajes y Actores.\\
+
+\textbf {Modificar proyecto:}
+Dentro del sistema existe la posibilidad de modificar la información de un proyecto previamente registrado, siempre y cuando el proyecto se encuentre en estado "En negociación" o "Iniciado"\\
+
+\textbf {Eliminar proyecto:}
+El sistema debe permitir al administrador eliminar el registro de un proyecto.\\
+
 
 
 \section{Sprint 3: Análisis, diseño y codificación del módulo de asociación de proyectos}
@@ -75,7 +108,8 @@ Una vez que se realiza el registro de una persona de manera exitosa, esta podrá
 \subsubsection {Análisis}
 El actor puede visualizar los proyectos en los que participa, este es el punto de acceso para gestionar: módulos, términos del glosario, entidades, reglas de negocio, mensajes y actores, así como para descargar el documento de análisis y en caso de ser líder, elegir a los colaboradores.\\
 
-\textbf {Elegir colaboradores:} El líder de análisis tiene la facultad de seleccionar a aquellas personas que colaborarán en el proyecto. Para que una persona puedas ser colaboradora tiene que haberse registrado previamente en el módulo de registro de personal.
+\textbf {Elegir colaboradores:} El líder de análisis tiene la facultad de seleccionar a aquellas personas que colaborarán en el proyecto. Para que una persona puedas ser colaboradora tiene que haberse registrado previamente en el módulo de registro de personal.\\
+
 
 \subsection{Gestionar módulos}
 
@@ -101,4 +135,22 @@ El sistema debe permitir al actor eliminar el registro de un módulo siempre y c
 \subsection{Gestionar términos del glosario}
 \subsubsection {Análisis}
 En un proyecto es de suma importancia que se tenga una lista de palabras y expresiones clasificadas de un texto con su respectivo significado. La correcta definición conceptual de los términos de negocio en el sistema se hace imprescindible para comprenderlo.
+
+El actor, tiene la facultad y poder de:\\
+
+\textbf {Registrar término:}
+Para registrar la información de un término se le solicita al actor ingresar la siguiente información.
+\begin{itemize}
+	\item \textbf{Nombre:} Con el fin de identificar los módulos.
+	\item \textbf{Descripción} Para especificar las características y contenido del término.
+\end{itemize}
+
+\textbf {Modificar término:}
+Dentro del sistema existe la posibilidad de modificar los datos de un término previamente registrado.\\
+
+\textbf {Eliminar término:} 
+El sistema debe permitir al actor eliminar el registro de un término existente.\\
+
+\textbf {Consultar término:} 
+El sistema debe permitir al actor consultar la información de un término existente.
 
