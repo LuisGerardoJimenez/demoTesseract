@@ -27,6 +27,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.VisitorFieldValidator;
 
 @ResultPath("/content/editor/")
 @Results({
@@ -292,6 +293,7 @@ public class ActoresCtrl extends ActionSupportTESSERACT implements
 		return "referencias";
 	}
 
+	//@VisitorFieldValidator
 	public Actor getModel() {
 		return (model == null) ? model = new Actor() : model;
 	}

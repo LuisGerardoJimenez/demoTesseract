@@ -9,6 +9,7 @@ import javax.persistence.Transient;
 
 import com.opensymphony.xwork2.validator.annotations.RegexFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 
 import mx.tesseract.admin.model.Proyecto;
@@ -37,6 +38,7 @@ public class TerminoGlosario extends Elemento implements java.io.Serializable {
 	
 	@Override
 	@Transient
+	@StringLengthFieldValidator(message = "%{getText('MSG6',{'100', 'caracteres'})}", trim = true, maxLength = "100", shortCircuit= true)
 	@RegexFieldValidator(type = ValidatorType.FIELD, message = "%{getText('MSG50')}", regex = Constantes.REGEX_CAMPO_ALFABETICO_CARACTERES_ESPECIALES, shortCircuit = true)
 	public String getNombre() {
 		return super.getNombre();
