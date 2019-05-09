@@ -27,17 +27,20 @@
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU1}{Iniciar Sesión}.
 		\UCpaso[\UCactor] Ingresa los datos solicitados. \label{P3}
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
-		\UCpaso[\UCsist] Verifica que no se haya omitido ningún campo marcado como obligatorio con base en la regla de negocio \BRref{RN8}{Datos Obligatorios}. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que no se haya omitido ningún campo marcado como obligatorio con base en la regla de negocio \BRref{RN8}{Datos Obligatorios}. \hyperlink{CU1:TAA}{[Trayectoria alternativa A]}
 		\UCpaso[\UCsist] Verifica que los datos cumplan con el formato y el tipo de dato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{B} \Trayref{C} \Trayref{D}
 		\UCpaso[\UCsist] Verifica que el actor se encuentre registrado en el sistema. \Trayref{E}
 		\UCpaso[\UCsist] Verifica que la contraseña ingresada corresponda con la del usuario. \Trayref{E}
 		\UCpaso[\UCsist] Muestra la pantalla IU 4 Gestionar proyectos.	
 	\end{UCtrayectoria}		
 %--------------------------------------
-		\begin{UCtrayectoriaA}{A}{El actor no ingresó un dato marcado como obligatorio}
+		\hypertarget{CU1:TAA}{\textbf{Trayectoria alternativa A}}\\
+		\noindent \textbf{Condición:} El actor no ingresó uno o más campos obligatorios
+		\begin{enumerate}
 			\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato Obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU1}{Iniciar Sesión}.
 			\UCpaso[\UCactor] Regresa al paso \ref{P3} de la Trayectoria Principal.
-		\end{UCtrayectoriaA}
+			\item[- -] - - {\em {Fin de la trayectoria}}.%
+		\end{enumerate}
 
 %--------------------------------------
 		\begin{UCtrayectoriaA}{B}{El actor ingresó un dato con un número de caracteres fuera del rango permitido}
