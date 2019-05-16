@@ -1,5 +1,5 @@
 	\begin{UseCase}{CU1}{Iniciar sesión}{
-		El actor se ingresa con su nombre y contraseña a su perfil y hacer uso de las funciones que le competen.
+		El actor se ingresa con su correo electrónico y contraseña a su perfil para hacer uso de las funciones que le competen.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Actor}{\hyperlink{jefe}{Líder de proyecto}, \hyperlink{analista}{Analista}, \hyperlink{admin}{Administrador}}
@@ -10,13 +10,12 @@
 		\end{itemize}}
 		\UCitem{Salidas}{Ninguna}
 		\UCitem{Destino}{Pantalla}
-		\UCitem{Precondiciones}{Que el actor se encuentre registrado en el sistema.}
+		\UCitem{Precondiciones}{Interna: Que el actor se encuentre registrado en el sistema.}
 		\UCitem{Postcondiciones}{El actor podrá hacer uso del sistema.}
 		\UCitem{Errores}{\begin{itemize}
 		\item \cdtIdRef{MSG4}{Dato Obligatorio}: Se muestra en la pantalla \IUref{IU1}{Iniciar Sesión} cuando no se ha ingresado un dato marcado como obligatorio.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU1}{Iniciar Sesión} cuando se ha excedido la longitud de alguno de los campos.
 		\item \cdtIdRef{MSG23}{Correo electrónico y/o contraseña incorrectos}: Se muestra en la pantalla \IUref{IU1}{Iniciar Sesión} cuando el correo electrónico y/o la contraseña ingresada son incorrectos.
-		\item \cdtIdRef{MSG31}{Longitud Mínima}: Se muestra en la pantalla \IUref{IU1}{Iniciar Sesión} cuando se ha ingresado una contraseña que no cumple con la longitud mínima.
 		\end{itemize}
 		}
 		\UCitem{Tipo}{Caso de uso primario}
@@ -25,17 +24,19 @@
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita ingresar al sistema a través de la URL.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU1}{Iniciar Sesión}.
-		\UCpaso[\UCactor] Ingresa los datos solicitados. \label{P3}
+		\UCpaso[\UCactor] Ingresa el \cdtRef{colaboradorEntidad:correoColaborador}{Correo} y \cdtRef{colaboradorEntidad:passColaborador}{Contraseña}. \label{P3}
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
-		\UCpaso[\UCsist] Verifica que no se haya omitido ningún campo marcado como obligatorio con base en la regla de negocio \BRref{RN8}{Datos Obligatorios}. \hyperlink{CU1:TAA}{[Trayectoria alternativa A]}
-		\UCpaso[\UCsist] Verifica que los datos cumplan con el formato y el tipo de dato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{B} \Trayref{C} \Trayref{D}
-		\UCpaso[\UCsist] Verifica que el actor se encuentre registrado en el sistema. \Trayref{E}
-		\UCpaso[\UCsist] Verifica que la contraseña ingresada corresponda con la del usuario. \Trayref{E}
-		\UCpaso[\UCsist] Muestra la pantalla IU 4 Gestionar proyectos.	
+		\UCpaso[\UCsist] Verifica que no se haya omitido ningún campo marcado como obligatorio con base en la regla de negocio \BRref{RN8}{Datos Obligatorios}. \hyperlink{CU1:TAA}{[Trayectoria A]}
+		\UCpaso[\UCsist] Verificar que los datos ingresados cumpla con la longitud correcta, con base en la regla de negocio \BRref{RN37}{Longitud de datos}. \hyperlink{CU1:TAB}{[Trayectoria B]}
+		\UCpaso[\UCsist] Verifica que los datos cumplan con el formato y el tipo de dato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \hyperlink{CU1:TAC}{[Trayectoria C]}
+		\UCpaso[\UCsist] Verifica que el actor se encuentre registrado en el sistema. \hyperlink{CU1:TAD}{[Trayectoria D]}
+		\UCpaso[\UCsist] Verifica que la contraseña ingresada corresponda con la del usuario. \hyperlink{CU1:TAE}{[Trayectoria E]}
+		\UCpaso[\UCsist] Inicia sesión como \hyperlink{admin}{Administrador}. \hyperlink{CU1:TAF}{[Trayectoria F]} \hyperlink{CU1:TAG}{[Trayectoria G]}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
 	\end{UCtrayectoria}		
 %--------------------------------------
 		\hypertarget{CU1:TAA}{\textbf{Trayectoria alternativa A}}\\
-		\noindent \textbf{Condición:} El actor no ingresó uno o más campos obligatorios
+		\noindent \textbf{Condición:} El actor no ingresó uno o más campos obligatorios.
 		\begin{enumerate}
 			\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato Obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU1}{Iniciar Sesión}.
 			\UCpaso[\UCactor] Regresa al paso \ref{P3} de la Trayectoria Principal.
@@ -43,22 +44,54 @@
 		\end{enumerate}
 
 %--------------------------------------
-		\begin{UCtrayectoriaA}{B}{El actor ingresó un dato con un número de caracteres fuera del rango permitido}
+
+		\hypertarget{CU1:TAB}{\textbf{Trayectoria alternativa B}}\\
+		\noindent \textbf{Condición:} El actor ingresó un dato con un número de caracteres fuera del rango permitido.
+		\begin{enumerate}
 	\UCpaso[\UCsist] Muestra el \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que presenta el error en la pantalla \IUref{IU1}{Iniciar Sesión}.
 	\UCpaso[\UCactor] Regresa al paso \ref{P3} de la Trayectoria Principal.
-\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{C}{El actor ingresó un tipo de dato incorrecto.}
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------
+		\hypertarget{CU1:TAC}{\textbf{Trayectoria alternativa C}}\\
+		\noindent \textbf{Condición:} El actor ingresó un un dato con un formato o tipo de dato incorrecto.
+	\begin{enumerate}
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU1}{Iniciar sesión}, para indicar que se ha ingresado un tipo de dato inválido.
 		\UCpaso Regresa al paso \ref{P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
+		\item[- -] - - {\em {Fin de la trayectoria}}.
+	\end{enumerate}
 
-	\begin{UCtrayectoriaA}{D}{El actor ingresó una contraseña que no cumple la longitud mínima requerida}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG31}{Longitud mínima} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU1}{Iniciar sesión}, para indicar que se ha ingresado una contraseña que no cumple con la longitud mínima.
-		\UCpaso Regresa al paso \ref{P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
 %--------------------------------------
-		\begin{UCtrayectoriaA}{E}{El actor ingresó un dato incorrecto}
+		\hypertarget{CU1:TAD}{\textbf{Trayectoria alternativa D}}\\
+		\noindent \textbf{Condición:} El actor un correo que no se encuentra registrado en el sistema.
+		\begin{enumerate}
 	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG23}{Correo electrónico y/o contraseña incorrectos} en la pantalla \IUref{IU1}{Iniciar Sesión} notificando que los datos ingresados son incorrectos.
 	\UCpaso[\UCactor] Regresa al paso \ref{P3} de la Trayectoria Principal.
-\end{UCtrayectoriaA}
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+
+%--------------------------------------
+\hypertarget{CU1:TAE}{\textbf{Trayectoria alternativa E}}\\
+\noindent \textbf{Condición:} El actor ingresó una contraseña que no corresponde al correo ingresado.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG23}{Correo electrónico y/o contraseña incorrectos} en la pantalla \IUref{IU1}{Iniciar Sesión} notificando que los datos ingresados son incorrectos.
+	\UCpaso[\UCactor] Regresa al paso \ref{P3} de la Trayectoria Principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+	
+	
+%--------------------------------------
+	\hypertarget{CU1:TAF}{\textbf{Trayectoria alternativa F}}\\
+	\noindent \textbf{Condición:} El actor inició sesión como \hyperlink{jefe}{Líder de proyecto}.
+	\begin{enumerate}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
+		\item[- -] - - {\em {Fin del caso de uso}}.
+	\end{enumerate}
+
+%--------------------------------------
+\hypertarget{CU1:TAG}{\textbf{Trayectoria alternativa G}}\\
+\noindent \textbf{Condición:} El actor inició sesión como \hyperlink{analista}{Analista}.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
+	\item[- -] - - {\em {Fin del caso de uso}}.
+\end{enumerate}
