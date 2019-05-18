@@ -25,14 +25,14 @@
 		\UCitem{Destino}{Pantalla}
 		\UCitem{Precondiciones}{
 		\begin{itemize}
-			\item Que exista al menos un colaborador registrado.
-			\item Que exista información referente a los estados del proyecto.
+			\item Interna: Que exista al menos un colaborador registrado.
+			\item Interna: Que exista información referente a los estados del proyecto.
 		\end{itemize}
 		}
 		\UCitem{Postcondiciones}{
 		\begin{itemize}
 			\item Se registrará un proyecto en el sistema.
-			\item Se podrán gestionar los Términos del glosario, Entidades, Reglas de negocio, Mensajes y Actores.
+			\item Interna: Se podrán gestionar los Términos del glosario, Entidades, Reglas de negocio, Mensajes y Actores.
 		\end{itemize}
 		}
 		\UCitem{Errores}{\begin{itemize}
@@ -52,61 +52,89 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita registrar un proyecto oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
-		\UCpaso[\UCsist] Verifica que exista información referente a los estados de un proyecto, con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \Trayref{RP-A}
-		\UCpaso[\UCsist] Verifica que exista al menos un colaborador, con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \Trayref{RP-B}
+		\UCpaso[\UCsist] Verifica que exista información referente a los estados de un proyecto, con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \hyperlink{CU2-1:TAA}{[Trayectoria A]}
+		\UCpaso[\UCsist] Verifica que exista al menos un colaborador, con base en la regla de negocio \BRref{RN20}{Verificación de catálogos}. \hyperlink{CU2-1:TAB}{[Trayectoria B]}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2.1}{Registrar proyecto}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU2.1-P5}
-		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU2.1}{Registrar proyecto}. \Trayref{RP-C}
-		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RP-D}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RP-E} \Trayref{RP-F}
-		\UCpaso[\UCsist] Verifica que la clave del proyecto no se encuentre registrada en el sistema con base en la regla de negocio \BRref{RN22}{Unicidad de la clave del Proyecto}. \Trayref{RP-G}
-		\UCpaso[\UCsist] Verifica que el nombre del proyecto no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RP-H}
-		\UCpaso[\UCsist] Verifica que la fecha de término programada sea posterior a la fecha de inicio programada con base en la regla de negocio \BRref{RN35}{Validar Fecha}. \Trayref{RP-I}
+		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU2.1}{Registrar proyecto}. \hyperlink{CU2-1:TAC}{[Trayectoria C]}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \hyperlink{CU2-1:TAD}{[Trayectoria D]}
+		\UCpaso[\UCsist] Verificar que los datos ingresados cumpla con la longitud correcta, con base en la regla de negocio \BRref{RN37}{Longitud de datos}. \hyperlink{CU2-1:TAE}{[Trayectoria E]}
+		\UCpaso[\UCsist] Verifica que los datos ingresados cumplan con el formato y el tipo de dato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \hyperlink{CU2-1:TAF}{[Trayectoria F]}
+		\UCpaso[\UCsist] Verifica que la clave del proyecto no se encuentre registrada en el sistema con base en la regla de negocio \BRref{RN22}{Unicidad de la clave del Proyecto}. \hyperlink{CU2-1:TAG}{[Trayectoria G]}
+		\UCpaso[\UCsist] Verifica que el nombre del proyecto no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \hyperlink{CU2-1:TAH}{[Trayectoria H]}
+		\UCpaso[\UCsist] Verifica que la fecha de término programada sea posterior a la fecha de inicio programada con base en la regla de negocio \BRref{RN35}{Validar Fecha}. \hyperlink{CU2-1:TAI}{[Trayectoria I]}
 		\UCpaso[\UCsist] Registra la información del proyecto en el sistema
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
-		\begin{UCtrayectoriaA}{RP-A}{No hay estados con los que puede iniciar un proyecto}
-			\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que no es posible realizar la operación debido a la falta de información necesaria para el sistema.
-		\end{UCtrayectoriaA}
+\hypertarget{CU2-1:TAA}{\textbf{Trayectoria alternativa A}}\\
+\noindent \textbf{Condición:} El catálogo de estados de un proyecto no tiene información.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que no es posible realizar la operación debido a la falta de información necesaria para el sistema.
+	\item[- -] - - {\em {Fin del caso de uso}}.%
+\end{enumerate}
 
 %--------------------------------------
-
-		\begin{UCtrayectoriaA}{RP-B}{No hay ningún colaborador registrado.}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG17}{Falta de información} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} indicando que no hay colaboradores registrados.
-		\end{UCtrayectoriaA}
+	\hypertarget{CU2-1:TAB}{\textbf{Trayectoria alternativa B}}\\
+	\noindent \textbf{Condición:} No hay ningún colaborador registrado.
+	\begin{enumerate}
+		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar que no es posible realizar la operación debido a la falta de información necesaria para el sistema.
+		\item[- -] - - {\em {Fin del caso de uso}}.%
+	\end{enumerate}
 	
-	\begin{UCtrayectoriaA}{RP-C}{El actor desea cancelar la operación.}
-		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU2.1}{Registrar Proyecto}
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RP-D}{El actor no ingresó algún dato marcado como obligatorio.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU2.1}{Registrar Proyecto}, indicando al actor que el dato es obligatorio.
-		\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RP-E}{El actor proporciona un dato que excede la longitud máxima.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU2.1}{Registrar Proyecto}, para indicar que el dato excede el tamaño máximo permitido.
-		\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RP-F}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU2.1}{Registrar Proyecto}, para indicar que se ha ingresado un tipo de dato inválido.
-		\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RP-FG}{El actor ingresó una clave de proyecto repetida.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU2.1}{Registrar Proyecto}, indicando al actor que existe un proyecto con la misma clave.
-		\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{RP-H}{El actor ingresó un nombre de proyecto repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU2.1}{Registrar Proyecto}, indicando al actor que existe un proyecto con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RP-I}{El actor ingresó una fecha de término programada que no es posterior a la fecha de inicio programada.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG26}{Orden de fechas} y señala el campo de la fecha de término programada en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
-		\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
-	\end{UCtrayectoriaA}
+%--------------------------------------
+\hypertarget{CU2-1:TAC}{\textbf{Trayectoria alternativa C}}\\
+\noindent \textbf{Condición:} El actor desea cancelar la operación.
+\begin{enumerate}
+	\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU2.1}{Registrar Proyecto}
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
+	\item[- -] - - {\em {Fin del caso de uso}}.%
+\end{enumerate}
+%--------------------------------------	
+\hypertarget{CU2-1:TAD}{\textbf{Trayectoria alternativa D}}\\
+\noindent \textbf{Condición:} El actor no ingresó algún dato marcado como obligatorio.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} señalando el campo que presenta el error en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
+	\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU2-1:TAE}{\textbf{Trayectoria alternativa E}}\\
+\noindent \textbf{Condición:} El actor ingresó un dato con un número de caracteres fuera del rango permitido.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} señalando el campo que presenta el error en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
+	\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
+%-------------------------------------
+\hypertarget{CU2-1:TAF}{\textbf{Trayectoria alternativa F}}\\
+\noindent \textbf{Condición:} El actor ingresó un dato con un formato o tipo de dato incorrecto.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} señalando el campo que presenta el error en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
+	\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU2-1:TAG}{\textbf{Trayectoria alternativa G}}\\
+\noindent \textbf{Condición:} El actor ingresó una clave de proyecto que ya existe dentro del sistema.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} señalando el campo que presenta la duplicidad en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
+	\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------	
+\hypertarget{CU2-1:TAH}{\textbf{Trayectoria alternativa H}}\\
+\noindent \textbf{Condición:} El actor ingresó un nombre de proyecto que ya existe dentro del sistema.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} señalando el campo que presenta la duplicidad en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
+	\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU2-1:TAI}{\textbf{Trayectoria alternativa I}}\\
+\noindent \textbf{Condición:} La fecha de termino programada es menor a la fecha de inicio programada.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG26}{Orden de fechas} en el campo de fecha de término programada en la pantalla \IUref{IU2.1}{Registrar Proyecto}.
+	\UCpaso Regresa al paso \ref{CU2.1-P5} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
