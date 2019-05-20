@@ -27,20 +27,25 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar un proyecto oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
-		\UCpaso[\UCsist] Obtiene la información del proyecto seleccionado.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG10}{Confirmar eliminación} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar}
-		\UCpaso[\UCsist] Confirma la eliminación del proyecto oprimiendo el botón \IUbutton{Aceptar}. \Trayref{EP-A}
-		\UCpaso[\UCsist] Verifica que el proyecto pueda eliminarse, con base en la regla de negocio \BRref{RN34}{Eliminación de proyectos}. \Trayref{EP-B}
+		\UCpaso[\UCsist] Confirma la eliminación del proyecto oprimiendo el botón \IUbutton{Aceptar}. \hyperlink{CU2-3:TAA}{[Trayectoria A]}
+		\UCpaso[\UCsist] Verifica que el proyecto pueda eliminarse, con base en la regla de negocio \BRref{RN34}{Eliminación de proyectos}. \hyperlink{CU2-3:TAB}{[Trayectoria B]}
 		\UCpaso[\UCsist] Elimina el proyecto del sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} para indicar al actor que se ha eliminado el registro exitosamente.
 	\end{UCtrayectoria}		
-%--------------------------------------
-		\begin{UCtrayectoriaA}{EP-A}{El actor desea cancelar la operación.}
-			\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la ventana emergente.
-			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
-		\end{UCtrayectoriaA}
+%--------------------------------------	
+	\hypertarget{CU2-3:TAA}{\textbf{Trayectoria alternativa A}}\\
+	\noindent \textbf{Condición:} El actor desea cancelar la operación.
+	\begin{enumerate}
+		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la ventana emergente.
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
+		\item[- -] - - {\em {Fin del caso de uso}}.%
+	\end{enumerate}
 
 %--------------------------------------
-		\begin{UCtrayectoriaA}{EP-B}{No es posible eliminar el proyecto.}
-			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con el mensaje \cdtIdRef{MSG32}{No es posible eliminar}.
-		\end{UCtrayectoriaA}
+	\hypertarget{CU2-3:TAB}{\textbf{Trayectoria alternativa B}}\\
+	\noindent \textbf{Condición:} El proyecto tiene elementos asociados.
+	\begin{enumerate}
+		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador} con el mensaje \cdtIdRef{MSG32}{No es posible eliminar}.
+		\item[- -] - - {\em {Fin del caso de uso}}.%
+	\end{enumerate}
