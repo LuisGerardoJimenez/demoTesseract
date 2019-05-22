@@ -26,29 +26,35 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar un término del glosario oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU11}{Gestionar Términos de glosario}.
-		\UCpaso[\UCsist] Verifica que el término del glosario pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \Trayref{ET-A}
-		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado al término del glosario. \Trayref{ET-B}
+		\UCpaso[\UCsist] Verifica que el término del glosario pueda eliminarse de acuerdo a la regla de negocio \BRref{RN18}{Eliminación de elementos}. \hyperlink{CU6-3:TAA}{[Trayectoria A]}
+		\UCpaso[\UCsist] Verifica que ningún caso de uso se encuentre asociado al término del glosario. \hyperlink{CU6-3:TAB}{[Trayectoria B]}
 		\UCpaso[\UCsist] Muestra el mensaje emergente \cdtIdRef{MSG10}{Confirmar eliminación} con los botones \IUbutton{Aceptar} y \IUbutton{Cancelar} en la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
-		\UCpaso[\UCactor] Confirma la eliminación del término oprimiendo el botón \IUbutton{Aceptar}. \Trayref{ET-C}
+		\UCpaso[\UCactor] Confirma la eliminación del término oprimiendo el botón \IUbutton{Aceptar}. \hyperlink{CU6-3:TAC}{[Trayectoria C]}
 		\UCpaso[\UCsist] Elimina la información referente al término del glosario.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU11}{Gestionar Términos del glosario} para indicar al actor que el registro se ha eliminado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
-	
-	\begin{UCtrayectoriaA}{ET-A}{El término esta asociado un caso de uso liberado.}
-		\UCpaso[\UCsist] Oculta el botón \eliminar de la entidad que esta asociada a casos de uso liberados.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{ET-B}{El término del glosario está siendo referenciado en un caso de uso.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU11}{Gestionar Términos del glosario} en una pantalla emergente con la lista de casos de uso que están referenciando al término del glosario.
-		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
-	\end{UCtrayectoriaA}
-
-
-	\begin{UCtrayectoriaA}{ET-C}{El actor desea cancelar la operación.}
-		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
-	\end{UCtrayectoriaA}
-	
+\hypertarget{CU6-3:TAA}{\textbf{Trayectoria alternativa A}}\\
+\noindent \textbf{Condición:} El término se encuentra asociado a casos de uso liberados.
+\begin{enumerate}
+	\UCpaso[\UCsist] Oculta el botón \eliminar del término que esta asociado a casos de uso liberados.
+	\item[- -] - - {\em {Fin del caso de uso}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU6-3:TAB}{\textbf{Trayectoria alternativa B}}\\
+\noindent \textbf{Condición:} El término del glosario está siendo referenciado en un caso de uso.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} en la pantalla \IUref{IU11}{Gestionar Términos del glosario} en una pantalla emergente con la lista de casos de uso que están referenciando al término del glosario.
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} de la pantalla emergente.
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos del glosario}.
+	\item[- -] - - {\em {Fin del caso de uso}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU6-3:TAC}{\textbf{Trayectoria alternativa C}}\\
+\noindent \textbf{Condición:} El actor desea cancelar la operación.
+\begin{enumerate}
+	\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar} de la pantalla emergente.
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos del glosarios}.
+	\item[- -] - - {\em {Fin del caso de uso}}.%
+\end{enumerate}	
 

@@ -37,38 +37,53 @@
 		\UCpaso[\UCactor] Solicita registrar un término oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU11}{Gestionar Términos}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11.1}{Registrar Término}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU6.1-P3}
-		\UCpaso[\UCactor] Solicita guardar la información del término oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU11.1}{Registrar Término}. \Trayref{RT-A}
-		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RT-B}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RT-C} \Trayref{RT-D}
-		\UCpaso[\UCsist] Verifica que el nombre del término no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RT-E}
+		\UCpaso[\UCactor] Solicita guardar la información del término oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU11.1}{Registrar Término}. \hyperlink{CU6-1:TAA}{[Trayectoria A]}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \hyperlink{CU6-1:TAB}{[Trayectoria B]}
+		\UCpaso[\UCsist] Verificar que los datos ingresados cumpla con la longitud correcta, con base en la regla de negocio \BRref{RN37}{Longitud de datos}. \hyperlink{CU6-1:TAC}{[Trayectoria C]}
+		\UCpaso[\UCsist] Verifica que los datos ingresados cumplan con el formato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \hyperlink{CU6-1:TAD}{[Trayectoria D]}
+		\UCpaso[\UCsist] Verifica que el nombre del término no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \hyperlink{CU6-1:TAE}{[Trayectoria E]}
 		\UCpaso[\UCsist] Registra la información del término en el sistema.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU11}{Gestionar Términos del glosario} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
-%--------------------------------------
-	
-	\begin{UCtrayectoriaA}{RT-A}{El actor desea cancelar la operación.}
+%--------------------------------------	
+	\hypertarget{CU6-1:TAA}{\textbf{Trayectoria alternativa A}}\\
+	\noindent \textbf{Condición:} El actor desea cancelar la operación.
+	\begin{enumerate}
 		\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU11.1}{Registrar Término}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU11}{Gestionar Términos}.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RT-B}{El actor no ingresó algún dato marcado como obligatorio.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU11.1}{Registrar Término}, indicando al actor que el dato es obligatorio.
-		\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RT-C}{El actor proporciona un dato que excede la longitud máxima.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU11.1}{Registrar Término}, para indicar que el dato excede el tamaño máximo permitido.
-		\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RT-D}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU11.1}{Registrar Término}, para indicar que se ha ingresado un tipo de dato inválido.
-		\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{RT-E}{El actor ingresó un nombre de término repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU11.1}{Registrar Término}, indicando al actor que existe un término con el mismo nombre.
-		\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
+		\item[- -] - - {\em {Fin del caso de uso}}.%
+	\end{enumerate}
+%--------------------------------------
+\hypertarget{CU6-1:TAB}{\textbf{Trayectoria alternativa B}}\\
+\noindent \textbf{Condición:} El actor no ingresó algún dato marcado como obligatorio.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} señalando el campo que presenta el error en la pantalla \IUref{IU11.1}{Registrar Término}.
+	\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU6-1:TAC}{\textbf{Trayectoria alternativa C}}\\
+\noindent \textbf{Condición:} El actor ingresó un dato con un número de caracteres fuera del rango permitido.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} señalando el campo que presenta el error en la pantalla \IUref{IU11.1}{Registrar Término}.
+	\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU6-1:TAD}{\textbf{Trayectoria alternativa D}}\\
+\noindent \textbf{Condición:} El actor ingresó un dato con un formato de dato incorrecto.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} señalando el campo que presenta el error en la pantalla \IUref{IU11.1}{Registrar Término}.
+	\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------	
+\hypertarget{CU6-1:TAE}{\textbf{Trayectoria alternativa E}}\\
+\noindent \textbf{Condición:} El actor ingresó un nombre de término repetido.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} señalando el campo que presenta la duplicidad en la pantalla \IUref{IU11.1}{Registrar Término}.
+	\UCpaso Regresa al paso \ref{CU6.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
 
 
