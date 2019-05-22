@@ -1,6 +1,20 @@
 \begin{BusinessEntity}{colaboradorEntidad}{Colaborador}
 
-	\Battr{curpColaborador}{CURP}{Clave Única de Registro. Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener exactamente 18 caracteres. Caracteres admitidos: [A-Z] $|$ [0-9]}
+	\Battr{curpColaborador}{CURP}{Clave Única de Registro de Población o equivalente asignado por la ley. Debe contener los siguientes datos:
+		\begin{itemize}
+			\item Primer letra y vocal del primer apellido.
+			\item Primer letra del segundo apellido.
+			\item Primer letra del nombre de pila.
+			\item Fecha de nacimiento: año, mes y día.
+			\item Letra del sexo.
+			\item Entidad federativa de nacimiento.
+			\item Primera consonante del primer apellido.
+			\item Primera consonante del segundo apellido.
+			\item Primera consonante del nombre de pila.
+			\item Homoclave, para evitar registros publicados.
+			\item Digito verificador.
+		\end{itemize}
+		Es una palabra corta y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener exactamente 18 caracteres. Caracteres admitidos: [A-Z] $|$ [0-9]}
 		
 	\Battr{nombreColaborador}{NOMBRE: }{Nombre o nombres de pila del colaborador. Es una frase o enunciado y este dato es \hyperlink{tRequerido}{requerido} ({\em no se puede omitir}). Este atributo debe de contener como máximo 50 caracteres. Caracteres admitidos: [A-Z] $|$ [a-z] $|$ [á-é-í-ó-ú] $|$ [ ]}
 		

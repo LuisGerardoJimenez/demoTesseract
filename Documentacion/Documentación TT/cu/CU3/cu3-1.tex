@@ -1,9 +1,9 @@
 	\begin{UseCase}{CU3.1}{Registrar persona}{
-	Este caso de uso permite registrar la información de una persona que podrá ser elegida como colaborador de un proyecto.
+	Permite registrar la información de una persona que podrá ser elegida como colaborador de un proyecto.
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Actor}{\hyperlink{admin}{Administrador}}
-		\UCitem{Propósito}{Registrar la información de una persona.}
+		\UCitem{Propósito}{Registrar la información de una nueva persona para que pueda ser asociada como colaborador de uno o varios proyetos.}
 		\UCitem{Entradas}{
 		\begin{itemize}
 			\item \cdtRef{colaboradorEntidad:curpColaborador}{CURP}: Se escribe desde el teclado.
@@ -41,55 +41,78 @@
 		\UCpaso[\UCactor] Solicita registrar una persona oprimiendo el botón \IUbutton{Registrar} de la pantalla \IUref{IU3}{Gestionar Personal}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU3.1}{Registrar Persona}.
 		\UCpaso[\UCactor] Ingresa la información solicitada en la pantalla. \label{CU3.1-P3}
-		\UCpaso[\UCactor] Solicita guardar el proyecto oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU3.1}{Registrar Persona}. \Trayref{RPE-A}
-		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \Trayref{RPE-B}
-		\UCpaso[\UCsist] Verifica que los datos requeridos sean proporcionados correctamente con base en la regla de negocio \BRref{RN7}{Información correcta}. \Trayref{RPE-C} \Trayref{RPE-D} \Trayref{RPE-E} \Trayref{RPE-F}
-		\UCpaso[\UCsist] Verifica que la CURP de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN6}{Unicidad de nombres}. \Trayref{RPE-G}
-		\UCpaso[\UCsist] Verifica que el correo de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN36}{Unicidad de correos}. \Trayref{RPE-H}
+		\UCpaso[\UCactor] Solicita guardar a la persona oprimiendo el botón \IUbutton{Aceptar} de la pantalla \IUref{IU3.1}{Registrar Persona}. \hyperlink{CU3-1:TAA}{[Trayectoria A]}
+		\UCpaso[\UCsist] Verifica que el actor ingrese todos los campos obligatorios con base en la regla de negocio \BRref{RN8}{Datos obligatorios}. \hyperlink{CU3-1:TAB}{[Trayectoria B]}
+		\UCpaso[\UCsist] Verificar que los datos ingresados cumpla con la longitud correcta, con base en la regla de negocio \BRref{RN37}{Longitud de datos}. \hyperlink{CU3-1:TAC}{[Trayectoria C]} \hyperlink{CU3-1:TAD}{[Trayectoria D]}
+		\UCpaso[\UCsist] Verifica que los datos ingresados cumplan con el formato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \hyperlink{CU3-1:TAE}{[Trayectoria E]} \hyperlink{CU3-1:TAF}{[Trayectoria F]}
+		\UCpaso[\UCsist] Verifica que la CURP de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN33}{Unicidad de la CURP}. \hyperlink{CU3-1:TAG}{[Trayectoria G]}
+		\UCpaso[\UCsist] Verifica que el correo de persona no se encuentre registrado en el sistema con base en la regla de negocio \BRref{RN36}{Unicidad de correos}. \hyperlink{CU3-1:TAH}{[Trayectoria H]}
 		\UCpaso[\UCsist] Registra la información de la persona en el sistema
 		\UCpaso[\UCsist] Envía un correo con el mensaje \cdtIdRef{MSG25}{Datos de sesión} a la cuenta de correo electrónico proporcionada por el actor.
 		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG1}{Operación exitosa} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar al actor que el registro se ha realizado exitosamente.
 	\end{UCtrayectoria}		
 %--------------------------------------
-		\begin{UCtrayectoriaA}{RPE-A}{El actor desea cancelar la operación.}
-			\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU3.1}{Registrar Persona}.
-			\UCpaso[\UCsist] Muestra la pantalla \IUref{IU3}{Gestionar Personal}
-		\end{UCtrayectoriaA}
-
+\hypertarget{CU3-1:TAA}{\textbf{Trayectoria alternativa A}}\\
+\noindent \textbf{Condición:} El actor desea cancelar la operación.
+\begin{enumerate}
+	\UCpaso[\UCactor] Solicita cancelar la operación oprimiendo el botón \IUbutton{Cancelar} de la pantalla \IUref{IU3.1}{Registrar Persona}.
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU3}{Gestionar Personal}
+	\item[- -] - - {\em {Fin del caso de uso}}.%
+\end{enumerate}
+%--------------------------------------	
+\hypertarget{CU3-1:TAB}{\textbf{Trayectoria alternativa B}}\\
+\noindent \textbf{Condición:} El actor no ingresó algún dato marcado como obligatorio.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} señalando el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
 %--------------------------------------
-
-	\begin{UCtrayectoriaA}{RPE-B}{El actor no ingresó algún dato marcado como obligatorio.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG4}{Dato obligatorio} y señala el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que el dato es obligatorio.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-		\begin{UCtrayectoriaA}{RPE-C}{El actor proporciona un dato que excede la longitud máxima.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} y señala el campo que excede la longitud en la pantalla \IUref{IU3.1}{Registrar Personal}, para indicar que el dato excede el tamaño máximo permitido.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{RPE-D}{El actor ingresó un tipo de dato incorrecto.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} y señala el campo que presenta el dato inválido en la pantalla \IUref{IU3.1}{Registrar Persona}, para indicar que se ha ingresado un tipo de dato inválido.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RPE-E}{El actor ingresó una CURP con una longitud incorrecta.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG28}{Longitud de CURP inválida} y señala el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que la CURP no cumple con la longitud especificada.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RPE-F}{El actor ingresó una CURP inválida.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG30}{CURP inválida} y señala el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que la CURP no cumple con el formato especificado.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-	
-	\begin{UCtrayectoriaA}{RPE-G}{El actor ingresó una CURP repetida.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que existe una persona con la misma CURP.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
-
-	\begin{UCtrayectoriaA}{RPE-H}{El actor ingresó una correo repetido.}
-		\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} y señala el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}, indicando al actor que existe una persona con el mismo correo.
-		\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
-	\end{UCtrayectoriaA}
+\hypertarget{CU3-1:TAC}{\textbf{Trayectoria alternativa C}}\\
+\noindent \textbf{Condición:} El actor ingresó una CURP con una longitud incorrecta.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG28}{Longitud de CURP inválida} y señala el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU3-1:TAD}{\textbf{Trayectoria alternativa D}}\\
+\noindent \textbf{Condición:} El actor ingresó un dato con un número de caracteres fuera del rango permitido.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG6}{Longitud inválida} señalando el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
+%--------------------------------------	
+\hypertarget{CU3-1:TAE}{\textbf{Trayectoria alternativa E}}\\
+\noindent \textbf{Condición:} El actor ingresó una CURP inválida.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG30}{CURP inválida} señalando el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Personal}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU3-1:TAF}{\textbf{Trayectoria alternativa F}}\\
+\noindent \textbf{Condición:} El actor ingresó un dato con un formato o tipo de dato incorrecto.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG29}{Formato incorrecto} señalando el campo que presenta el error en la pantalla \IUref{IU3.1}{Registrar Persona}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU3-1:TAG}{\textbf{Trayectoria alternativa G}}\\
+\noindent \textbf{Condición:} El actor ingresó una CURP que ya existe dentro del sistema.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} señalando el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
+%--------------------------------------
+\hypertarget{CU3-1:TAH}{\textbf{Trayectoria alternativa H}}\\
+\noindent \textbf{Condición:} El actor ingresó una correo repetido.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG7}{Registro repetido} señalando el campo que presenta la duplicidad en la pantalla \IUref{IU3.1}{Registrar Personal}.
+	\UCpaso Regresa al paso \ref{CU3.1-P3} de la trayectoria principal.
+	\item[- -] - - {\em {Fin de la trayectoria}}.
+\end{enumerate}
 

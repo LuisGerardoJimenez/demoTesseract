@@ -1,5 +1,5 @@
 	\begin{UseCase}{CU4}{Gestionar Proyectos de Colaborador}{
-		Este caso de uso permite al actor visualizar los proyectos en los que se encuentra participando, además sirve como punto de acceso para gestionar: módulos, términos del glosario, entidades, reglas de negocio, mensajes y actores, así como para descargar el documento de análisis y en caso de ser líder, elegir a los colaboradores.
+		Permite al actor visualizar los proyectos en los que se encuentra participando, además sirve como punto de acceso para gestionar: módulos, términos del glosario, entidades, reglas de negocio, mensajes y actores, así como para descargar el documento de análisis y en caso de ser líder, elegir a los colaboradores.
 	}
 	\UCitem{Versión}{\color{Gray}0.1}
 	\UCitem{Actor}{\hyperlink{jefe}{Líder de análisis}, \hyperlink{admin}{Administrador}}
@@ -18,17 +18,27 @@
 %--------------------------------------
 \begin{UCtrayectoria}
 	\UCpaso[\UCactor] Solicita gestionar los proyectos presionando la opción ''Proyectos'' del menú \IUref{MN2}{Menú de Colaborador}.
-	\UCpaso[\UCsist] Obtiene la información de los proyectos en los que el actor se encuentra colaborando. \Trayref{GPC-A}
-	\UCpaso[\UCsist] Muestra la información del personal en la pantalla \IUref{IU4}{Gestionar Proyectos de colaborador}.
-	\UCpaso[\UCsist] Muestra el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/Colaboradores}} para cada proyecto en el que el actor sea líder.
-	\UCpaso[\UCactor] Gestiona los proyectos a través de las botones mostrados en la columna ''Acciones''. \label{CU4-P5}
+	\UCpaso[\UCsist] Obtiene la información de los proyectos en los que el actor se encuentra colaborando. \hyperlink{CU4:TAA}{[Trayectoria A]}
+	\UCpaso[\UCsist] Muestra la información de los proyectos en la pantalla \IUref{IU4}{Gestionar Proyectos de colaborador}.
+	\UCpaso[\UCsist] Muestra el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/Colaboradores}} para cada proyecto en el que el actor sea líder. \hyperlink{CU4:TAB}{[Trayectoria B]}
+	\UCpaso[\UCactor] Gestiona los proyectos a través de las botones: \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/Colaboradores}}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/entrar}}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pp}} y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/word}}. \label{CU4-P5}
 \end{UCtrayectoria}		
 %--------------------------------------
-\begin{UCtrayectoriaA}{GPC-A}{El actor no se encuentra colaborando en ningún proyecto.}
+\hypertarget{CU4:TAA}{\textbf{Trayectoria alternativa A}}\\
+\noindent \textbf{Condición:} El actor no se encuentra colaborando en ningún proyecto.
+\begin{enumerate}
 	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU4}{Gestionar Proyectos de Colaborador} para indicar que no hay registros de proyectos para mostrar.
-\end{UCtrayectoriaA}
-
+	\item[- -] - - {\em {Fin del caso de uso}}.%
+\end{enumerate}
 %--------------------------------------
+
+
+\hypertarget{CU4:TAB}{\textbf{Trayectoria alternativa B}}\\
+\noindent \textbf{Condición:} El actor no es líder.
+\begin{enumerate}
+	\UCpaso[\UCactor] Gestiona los proyectos a través de las botones: \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/entrar}}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pp}} y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/word}}.
+	\item[- -] - - {\em {Fin del caso de uso}}.%
+\end{enumerate}
 
 \subsubsection{Puntos de extensión}
 
