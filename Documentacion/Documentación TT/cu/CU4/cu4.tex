@@ -7,7 +7,7 @@
 	\UCitem{Entradas}{Ninguna}
 	\UCitem{Salidas}{\begin{itemize}
 			\item : \cdtRef{proyectoEntidad}{Proyecto}: Tabla que muestra \cdtRef{proyectoEntidad:claveProyecto}{Clave}, \cdtRef{proyectoEntidad:nombreProyecto}{Nombre} y el \cdtRef{proyectoEntidad:liderProyecto}{Líder del Proyecto} de todos los registros de los proyectos.
-			\item  \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU4}{Gestionar proyectos de colaborador} cuando el actor no se encuentra asociado a ningún proyecto.
+			\item  \cdtIdRef{MSG2}{No existe información}: Se muestra en la pantalla \IUref{IU5}{Gestionar proyectos de colaborador} cuando el actor no se encuentra asociado a ningún proyecto.
 	\end{itemize}}
 	\UCitem{Destino}{Pantalla}
 	\UCitem{Precondiciones}{Ninguna}
@@ -19,7 +19,7 @@
 \begin{UCtrayectoria}
 	\UCpaso[\UCactor] Solicita gestionar los proyectos presionando la opción ''Proyectos'' del menú \IUref{MN2}{Menú de Colaborador}.
 	\UCpaso[\UCsist] Obtiene la información de los proyectos en los que el actor se encuentra colaborando. \hyperlink{CU4:TAA}{[Trayectoria A]}
-	\UCpaso[\UCsist] Muestra la información de los proyectos en la pantalla \IUref{IU4}{Gestionar Proyectos de colaborador}.
+	\UCpaso[\UCsist] Muestra la información de los proyectos en la pantalla \IUref{IU5}{Gestionar Proyectos de colaborador}.
 	\UCpaso[\UCsist] Muestra el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/Colaboradores}} para cada proyecto en el que el actor sea líder. \hyperlink{CU4:TAB}{[Trayectoria B]}
 	\UCpaso[\UCactor] Gestiona los proyectos a través de las botones: \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/Colaboradores}}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/entrar}}, \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/pp}} y \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/word}}. \label{CU4-P5}
 \end{UCtrayectoria}		
@@ -27,7 +27,7 @@
 \hypertarget{CU4:TAA}{\textbf{Trayectoria alternativa A}}\\
 \noindent \textbf{Condición:} El actor no se encuentra colaborando en ningún proyecto.
 \begin{enumerate}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU4}{Gestionar Proyectos de Colaborador} para indicar que no hay registros de proyectos para mostrar.
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador} para indicar que no hay registros de proyectos para mostrar.
 	\item[- -] - - {\em {Fin del caso de uso}}.%
 \end{enumerate}
 %--------------------------------------
