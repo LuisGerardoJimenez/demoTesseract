@@ -1,5 +1,5 @@
 	\begin{UseCase}{CU3}{Gestionar Personal}{
-		Este caso de uso permite al actor visualizar todas las personas de la organización, así como solicitar el registro, consulta, modificación y eliminación de una persona.
+		Permite al actor visualizar todas las personas de la organización, así como solicitar el registro, consulta, modificación y eliminación de una persona.
 	}
 	\UCitem{Versión}{\color{Gray}0.1}
 	\UCitem{Actor}{\hyperlink{admin}{Administrador}}
@@ -18,15 +18,17 @@
 %--------------------------------------
 \begin{UCtrayectoria}
 	\UCpaso[\UCactor] Solicita gestionar al personal presionando la opción ''Personal'' del menú \IUref{MN1}{Menú de Administrador}.
-	\UCpaso[\UCsist] Obtiene la información del personal registrado. \Trayref{GP-A}
+	\UCpaso[\UCsist] Obtiene la información del personal registrado. \hyperlink{CU3:TAA}{[Trayectoria A]}
 	\UCpaso[\UCsist] Muestra la información del personal en la pantalla \IUref{IU3}{Gestionar Personal}.
 	\UCpaso[\UCactor] Gestiona los proyectos a través de los botones: \IUbutton{Registrar}, \editar  y \eliminar. \label{CU3-P4}
 \end{UCtrayectoria}		
 %--------------------------------------
-\begin{UCtrayectoriaA}{GP-A}{No existen registros de personas}
-	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar que no hay registros de personas para mostrar.
-\end{UCtrayectoriaA}
-
+\hypertarget{CU3:TAA}{\textbf{Trayectoria alternativa A}}\\
+\noindent \textbf{Condición:} No existen registros de colaboradores.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra el mensaje \cdtIdRef{MSG2}{No existe información} en la pantalla \IUref{IU3}{Gestionar Personal} para indicar que no hay registros de colaboradores para mostrar.
+	\item[- -] - - {\em {Fin de la trayectoria}}.%
+\end{enumerate}
 %--------------------------------------
 
 \subsubsection{Puntos de extensión}
