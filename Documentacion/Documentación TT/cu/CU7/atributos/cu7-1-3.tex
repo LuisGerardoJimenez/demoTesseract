@@ -19,17 +19,16 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar un atributo oprimiendo el botón \eliminar del registro que desea eliminar de la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad}.
-		\UCpaso[\UCsist] Busca los elementos que estén referenciando al atributo.
-		\UCpaso[\UCsist] Verifica que ningún elemento esté referenciando al atributo. \Trayref{A}
+		\UCpaso[\UCsist] Verifica que ningún elemento esté referenciando al atributo. \hyperlink{CU7-1-3:TAA}{[Trayectoria A]}
 		\UCpaso[\UCsist] Elimina el atributo del sistema y actualiza la tabla de atributos de la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad}.
-	\end{UCtrayectoria}		
+	\end{UCtrayectoria}	
 %--------------------------------------
-	
-	\begin{UCtrayectoriaA}{A}{El atributo está siendo referenciado en un elemento.}
+	\hypertarget{CU7-1-3:TAA}{\textbf{Trayectoria alternativa A}}\\
+	\noindent \textbf{Condición:} El atributo está siendo referenciado en un elemento.
+	\begin{enumerate}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad} con el mensaje \cdtIdRef{MSG13}{Eliminación no permitida} mostrando una lista de elementos que están referenciando al atributo.
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar} del mensaje.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12.1}{Registrar Entidad} o \IUref{IU12.2}{Modificar Entidad}.
-	\end{UCtrayectoriaA}
-
-	
+		\item[- -] - - {\em {Fin del caso de uso}}.%
+	\end{enumerate}
 
