@@ -22,13 +22,15 @@
 %--------------------------------------
 	\begin{UCtrayectoria}
 		\UCpaso[\UCactor] Solicita eliminar un término del glosario oprimiendo el botón \raisebox{-1mm}{\includegraphics[height=11pt]{images/Iconos/consultar}} del registro que desea consultar de la pantalla \IUref{IU12}{Gestionar Entidades} o la liga correspondiente a un término en la pantalla \IUref{IU6.3}{Consultar caso de uso}.
-		\UCpaso[\UCsist] Obtiene la información de la entidad seleccionada. \Trayref{CENT-A}
+		\UCpaso[\UCsist] Obtiene la información de la entidad seleccionada. \hyperlink{CU7-4:TAA}{[Trayectoria A]}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12.3}{Consultar Entidad} con la información de la entidad.
 		\UCpaso[\UCactor] Consulta la información de la entidad.
 		\UCpaso[\UCactor] Solicita finalizar la consulta oprimiendo el botón \IUref{Regresar} de la pantalla \IUref{IU12.3}{Consultar Entidad}.
 	\end{UCtrayectoria}		
 %--------------------------------------
-	
-	\begin{UCtrayectoriaA}{CENT-A}{La entidad que se desea consultar no existe.}
-		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
-	\end{UCtrayectoriaA}
+\hypertarget{CU7-4:TAA}{\textbf{Trayectoria alternativa A}}\\
+\noindent \textbf{Condición:} La entidad que se desea consultar no existe.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU12}{Gestionar Entidades} con el mensaje \cdtIdRef{MSG12}{Ha ocurrido un error}.
+	\item[- -] - - {\em {Fin del caso de uso}}.
+\end{enumerate}
