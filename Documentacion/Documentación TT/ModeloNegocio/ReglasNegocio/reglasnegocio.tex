@@ -434,3 +434,20 @@
 	\BRitem[Descripción:] Los datos proporcionados al sistema deben tener el número y el valor de caracteres especificados en el modelo conceptual.
 	\BRitem[Referenciado por:] \UCref{}{}. 
 \end{BussinesRule}
+
+\begin{BussinesRule}{RN38}{Funciones de administrador} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] El administrador no puede participar en ningún proyecto como \hyperlink{jefe}{Líder de proyecto} ni como \hyperlink{analista}{Analista}.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
+
+
+\begin{BussinesRule}{RN39}{Roles del sistema} 
+	\BRitem[Tipo:] Restricción de operación. 
+	\BRitem[Clase:] Habilitadora. 
+	\BRitem[Nivel:] Control. % Otras opciones para nivel: Control, Influencia.
+	\BRitem[Descripción:] Un \hyperlink{jefe}{Líder de proyecto} no puede participar como \hyperlink{analista}{Analista} en otro proyecto, sin embargo un \hyperlink{analista}{Analista} puede participar en varios proyectos.
+	\BRitem[Referenciado por:] \UCref{}{}. 
+\end{BussinesRule}
