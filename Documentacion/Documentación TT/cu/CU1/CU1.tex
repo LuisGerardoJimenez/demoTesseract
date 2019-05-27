@@ -11,7 +11,7 @@
 		\UCitem{Salidas}{Ninguna}
 		\UCitem{Destino}{Pantalla}
 		\UCitem{Precondiciones}{Interna: Que el actor se encuentre registrado en el sistema.}
-		\UCitem{Postcondiciones}{El actor podrá hacer uso del sistema.}
+		\UCitem{Postcondiciones}{El actor podrá hacer uso del sistema dependiendo del rol que tenga.}
 		\UCitem{Errores}{\begin{itemize}
 		\item \cdtIdRef{MSG4}{Dato Obligatorio}: Se muestra en la pantalla \IUref{IU1}{Iniciar Sesión} cuando no se ha ingresado un dato marcado como obligatorio.
 		\item \cdtIdRef{MSG6}{Longitud inválida}: Se muestra en la pantalla \IUref{IU1}{Iniciar Sesión} cuando se ha excedido la longitud de alguno de los campos.
@@ -22,7 +22,7 @@
 	\end{UseCase}
 %--------------------------------------
 	\begin{UCtrayectoria}
-		\UCpaso[\UCactor] Solicita ingresar al sistema a través de la URL.
+		\UCpaso[\UCactor] Solicita ingresar al sistema a través de la URL correspondiente al proyecto.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU1}{Iniciar Sesión}.
 		\UCpaso[\UCactor] Ingresa el \cdtRef{colaboradorEntidad:correoColaborador}{Correo} y \cdtRef{colaboradorEntidad:passColaborador}{Contraseña}. \label{P3}
 		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
@@ -31,7 +31,8 @@
 		\UCpaso[\UCsist] Verifica que los datos cumplan con el formato y el tipo de dato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \hyperlink{CU1:TAC}{[Trayectoria C]}
 		\UCpaso[\UCsist] Verifica que el actor se encuentre registrado en el sistema. \hyperlink{CU1:TAD}{[Trayectoria D]}
 		\UCpaso[\UCsist] Verifica que la contraseña ingresada corresponda con la del usuario. \hyperlink{CU1:TAE}{[Trayectoria E]}
-		\UCpaso[\UCsist] Inicia sesión como \hyperlink{admin}{Administrador}. \hyperlink{CU1:TAF}{[Trayectoria F]} \hyperlink{CU1:TAG}{[Trayectoria G]}
+		\UCpaso[\UCsist] Verifica el rol que tiene el usuario con base a la regla de negocio \BRref{RN39}{Roles del sistema}. \hyperlink{CU1:TAF}{[Trayectoria F]} \hyperlink{CU1:TAG}{[Trayectoria G]}
+		\UCpaso[\UCsist] Inicia sesión como \hyperlink{admin}{Administrador}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
 	\end{UCtrayectoria}		
 %--------------------------------------
