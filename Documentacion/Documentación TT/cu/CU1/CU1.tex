@@ -1,5 +1,13 @@
 	\begin{UseCase}{CU1}{Iniciar sesión}{
-		El actor ingresa con su correo electrónico y contraseña a su perfil para hacer uso de las funciones que le competen.
+			
+        En el inicio de sesión se controla el acceso a las distintas funciones del sistema de acuerdo con el rol asignado a un actor y mediante la entrada de datos como lo son el correo electrónico y contraseña. Tesserac define los siguientes roles con las siguientes características:
+			
+		 \begin{enumerate}
+         \item\hyperlink{admin}{Administrador}: Actor único, encargado de  registrar los proyectos y al personal de la organización. 
+         \item\hyperlink{jefe}{Líder de proyecto}: Encargado de dirigir y coordinar el proyecto en desarrollo. Asignado desde el registro del proyecto. 
+         \item\hyperlink{analista}{Analista} Encargado de documentar los elementos que componen el proyecto y validar los requerimientos del software. Asignado desde el registro del proyecto. \\
+         \end{enumerate}
+
 	}
 		\UCitem{Versión}{\color{Gray}0.1}
 		\UCitem{Actor}{\hyperlink{jefe}{Líder de proyecto}, \hyperlink{analista}{Analista}, \hyperlink{admin}{Administrador}}
