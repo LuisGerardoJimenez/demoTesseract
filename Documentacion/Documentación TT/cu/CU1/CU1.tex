@@ -39,7 +39,7 @@
 		\UCpaso[\UCsist] Verifica que los datos cumplan con el formato y el tipo de dato requerido, con base en la regla de negocio \BRref{RN7}{Información correcta}. \hyperlink{CU1:TAC}{[Trayectoria C]}
 		\UCpaso[\UCsist] Verifica que el actor se encuentre registrado en el sistema. \hyperlink{CU1:TAD}{[Trayectoria D]}
 		\UCpaso[\UCsist] Verifica que la contraseña ingresada corresponda con la del usuario. \hyperlink{CU1:TAE}{[Trayectoria E]}
-		\UCpaso[\UCsist] Verifica el rol que tiene el usuario con base a la regla de negocio \BRref{RN39}{Roles del sistema}. \hyperlink{CU1:TAF}{[Trayectoria F]} \hyperlink{CU1:TAG}{[Trayectoria G]}
+		\UCpaso[\UCsist] Verifica el rol que tiene el usuario con base a la regla de negocio \BRref{RN39}{Roles del sistema}. \hyperlink{CU1:TAF}{[Trayectoria F]} \hyperlink{CU1:TAG}{[Trayectoria G]}\hyperlink{CU1:TAH}{[Trayectoria H]}
 		\UCpaso[\UCsist] Inicia sesión como \hyperlink{admin}{Administrador}.
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU2}{Gestionar proyectos de Administrador}.
 	\end{UCtrayectoria}		
@@ -91,7 +91,7 @@
 	
 %--------------------------------------
 	\hypertarget{CU1:TAF}{\textbf{Trayectoria alternativa F}}\\
-	\noindent \textbf{Condición:} El actor inició sesión como \hyperlink{jefe}{Líder de proyecto}.
+	\noindent \textbf{Condición:} El actor tiene el rol de \hyperlink{jefe}{Líder de proyecto}.
 	\begin{enumerate}
 		\UCpaso[\UCsist] Muestra la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
 		\item[- -] - - {\em {Fin del caso de uso}}.
@@ -99,8 +99,17 @@
 
 %--------------------------------------
 \hypertarget{CU1:TAG}{\textbf{Trayectoria alternativa G}}\\
-\noindent \textbf{Condición:} El actor inició sesión como \hyperlink{analista}{Analista}.
+\noindent \textbf{Condición:} El actor tiene el rol de \hyperlink{analista}{Analista}.
 \begin{enumerate}
 	\UCpaso[\UCsist] Muestra la pantalla \IUref{IU5}{Gestionar Proyectos de Colaborador}.
+	\item[- -] - - {\em {Fin del caso de uso}}.
+\end{enumerate}
+
+\hypertarget{CU1:TAH}{\textbf{Trayectoria alternativa H}}\\
+\noindent \textbf{Condición:} El actor tiene mas de un rol.
+\begin{enumerate}
+	\UCpaso[\UCsist] Muestra la pantalla emergente \IUref{IU1.1}{Elegir Rol} en la cual permite elegir al actor con que rol desea iniciar sesión.
+	\UCpaso[\UCactor] Elije el rol con el que desea iniciar sesión.
+	\UCpaso[\UCsist] Muestra la pantalla correspondiente a el rol que el actor eligió. 
 	\item[- -] - - {\em {Fin del caso de uso}}.
 \end{enumerate}
