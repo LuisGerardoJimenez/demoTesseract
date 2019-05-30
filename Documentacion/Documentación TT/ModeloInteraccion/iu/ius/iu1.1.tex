@@ -1,0 +1,21 @@
+%--------------------------------------
+\subsection{IU1.1 Elegir rol}
+
+\subsubsection{Objetivo}
+	Controlar el acceso al sistema cuando el actor que inició sesión tiene mas de un rol.
+
+\subsubsection{Diseño}
+	En la figura \ref{IU1-1} se muestra la pantalla ''Elegir Rol'' que permite ingresar al sistema eligiendo un rol en específico. El actor deberá elegir con que rol desea ingresar al sistema, y deberá oprimir el botón \IUbutton{Aceptar}, finalmente se mostrará la pantalla IU5 Gestionar Proyectos de colaborador (Líder de análisis) en caso de que el actor haya elegido entrar como líder o la pantalla IU5A Gestionar Proyectos de colaborador (Analista) si el actor eligió entrar como analista. 
+
+\IUfig[1]{interfaces/IU-1-1ROL}{IU1.1}{Elegir Rol}\label{IU1-1}
+\subsubsection{Comandos}
+\begin{itemize}
+	\item \IUbutton{Aceptar}: Permite ingresar al sistema, dirige al actor a la pantalla IU5 Gestionar Proyectos de colaborador (Líder de análisis) o IU5A Gestionar Proyectos de colaborador (Analista) según corresponda.
+\end{itemize}
+
+\subsubsection{Mensajes}
+
+\begin{Citemize}
+	\item \cdtIdRef{MSG4}{Dato obligatorio}: Se muestra cuando no se ha ingresado un dato marcado como obligatorio.
+\end{Citemize}
+
