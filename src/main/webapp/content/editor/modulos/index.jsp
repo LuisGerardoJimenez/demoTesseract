@@ -33,13 +33,13 @@
 						${blanks}
 						<s:url var="urlCU" value="%{#pageContext.request.contextPath}/modulos!entrarCU?idSel=%{#modulo.id}"/>
 						<s:a href="%{urlCU}">
-						<img id="" class="button" title=""
-								src="${pageContext.request.contextPath}/resources/images/icons/UC.svg2" /></s:a>
+						<img id="" class="button" title="0"
+								src="${pageContext.request.contextPath}/resources/images/icons/UC.svg" /></s:a>
 						${blanks}
 						<s:url var="urlIU" value="%{#pageContext.request.contextPath}/modulos!entrarIU?idSel=%{#modulo.id}"/>
 						<s:a href="%{urlIU}">
-						<img id="" class="button" title=""
-								src="${pageContext.request.contextPath}/resources/images/icons/IU.svg2" /></s:a>
+						<img id="" class="button" title="1"
+								src="${pageContext.request.contextPath}/resources/images/icons/IU.svg" /></s:a>
 						${blanks}
 						<s:url var="urlEditar" value="%{#pageContext.request.contextPath}/modulos/%{#modulo.id}/edit"/>			
 						<s:a href="%{urlEditar}">

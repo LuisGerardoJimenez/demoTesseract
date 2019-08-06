@@ -1,7 +1,7 @@
 /**
  * 
  */
-var contextPath = "prisma";
+var contextPath = "tesseract";
 $(document)
 .ready(
 		function() {
@@ -19,7 +19,7 @@ $(document)
 			$("input[type=file]").on('change',function(){
 				var id = $(this).attr('id');
 				var uploadFiles = id.split("-");
-				$("#upload-"+uploadFiles[1]).css("background","no-repeat url('/prisma/resources/images/icons/checked.png')");
+				$("#upload-"+uploadFiles[1]).css("background","no-repeat url('/tesseract/resources/images/icons/checked.png')");
 				guardarCadena(id);
 				
 			});		

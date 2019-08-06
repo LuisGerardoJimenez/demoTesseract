@@ -1,4 +1,4 @@
-var contextPath = "prisma";
+var contextPath = "tesseract";
 $(document)
 .ready(
 		function() {

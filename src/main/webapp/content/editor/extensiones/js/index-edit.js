@@ -1,4 +1,4 @@
-var contextPath = "prisma";
+var contextPath = "tesseract";
 
 $(document).ready(function() {
 	window.scrollTo(0,0);

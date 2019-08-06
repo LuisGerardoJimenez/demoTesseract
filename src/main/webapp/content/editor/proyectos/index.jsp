@@ -68,8 +68,8 @@
 										<s:param name="extension">pdf</s:param>
 								</s:url>
 								<s:a href="%{urlDescargar}" method="post">
-										<img id="" class="button" title=""
-											src="${pageContext.request.contextPath}/resources/images/icons/pdf.svg2" />										
+										<img id="" class="button" title="Descargar"
+											src="${pageContext.request.contextPath}/resources/images/icons/pdf.svg" />										
 								</s:a>
 								${blanks}
 								<s:url var="urlDescargarDocx"
@@ -77,8 +77,8 @@
 										<s:param name="extension">docx</s:param>
 								</s:url>
 								<s:a href="%{urlDescargarDocx}" method="post">
-										<img id="" class="button" title=""
-											src="${pageContext.request.contextPath}/resources/images/icons/docx.svg2" />									
+										<img id="" class="button" title="Descargar"
+											src="${pageContext.request.contextPath}/resources/images/icons/docx.svg" />									
 								</s:a>
 							</td>
 						</tr>

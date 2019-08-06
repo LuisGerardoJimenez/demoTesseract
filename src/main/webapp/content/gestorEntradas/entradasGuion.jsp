@@ -8,7 +8,7 @@
 <title>Casos de uso</title>
 <style>
 div.upload {
-    background: no-repeat url('/prisma/resources/images/icons/subir.png');
+    background: no-repeat url('/tesseract/resources/images/icons/subir.png');
     overflow: hidden;
 }
 
